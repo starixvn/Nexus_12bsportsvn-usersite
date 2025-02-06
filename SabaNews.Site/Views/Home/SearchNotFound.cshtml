@@ -1,0 +1,46 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using SabaNews.Resources
+@inject IConfiguration configuration
+
+@{
+    var baseUrl = configuration.GetValue<string>("BaseUrl");
+}
+@section Title{
+	@ViewResources.NotFoundPostMsg
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/notfound.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+	<script src="~/minify/js/notfound.min.js" asp-append-version="true"></script>
+}
+
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description;' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="@ViewResources.SiteName" />
+    <meta http-equiv="REFRESH" content="1800" />
+    <meta name="robots" content="noindex, nofollow" />
+}
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="notfound-container">
+        <div class="heading-notfound">
+            Không tìm thấy kết quả chứa từ khóa của bạn
+        </div>
+        <form action="" method="post" class="form-notfound">
+            <input type="text" placeholder="tìm kiếm..." class="keyword" value="@Model.Header.Keyword">
+            <button class="search-button">
+                <i class="icon-search"></i>
+            </button>
+        </form>
+        <div class="back-to-home">
+            <a href="/">Quay lại trang chủ</a>
+        </div>
+        @await Html.PartialAsync(ViewResources.RelatedPostView, new PostComponentViewModel { PostId = 0, Title = "Tin mới nhất" })
+    </div>
+</section>

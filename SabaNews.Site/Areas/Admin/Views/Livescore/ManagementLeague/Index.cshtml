@@ -1,0 +1,159 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper
+@using SabaNews.Resources
+@using SabaNews.Core.Helper;
+@{
+    Layout = "_AdminLayout";
+    var count = 0;
+}
+
+@section TopHeader{
+    @ViewResources.ManagementLeague
+}
+
+@section Title{
+    @ViewResources.ManagementLeague
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.ManagementLeague" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/managementleague/managementleague.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/jquery-ui.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <div class="form-horizontal show-league">
+            <p href="javascript:;" id="btn_major_league" class="label label-blue btn_major_league btn_show_league">Major Leagues</p>
+            <p href="javascript:;" id="btn_hot_league" class="label label-blue btn_hot_league">Hot Leagues</p>
+    </div>
+    
+    <div class="form-horizontal filter" id="filter">
+        <div class="form-input">
+            <p class="label-admin">@ViewResources.SearchLabel</p>
+            <input type="text" class="custom-input list-input" id="search" name="searchLeague" placeholder="Enter League Name..." />
+        </div>
+    </div>
+    <div class="content">
+        <div class="add-league">
+            <button href="javascript:;" class="label label-blue btn-link btn_league"><img src="~/images/icon/icon-plus.png" class="icon-add-league" />@ViewResources.AddLeague</button>
+        </div>
+        <div class="data-grid" id="data-grid"></div>
+        
+        <div class="table-admin league-hot" id="leagueshot">
+            <table id="tblLocations" class="data-grid-hot">
+                <tr>
+                    <th>#</th>
+                    <th>@ViewResources.LeagueFullNameEN</th>
+                    <th>@ViewResources.LeagueNameVN</th>
+                    <th>Country Icon</th>
+                    <th>@ViewResources.Country</th>
+                    <th>@ViewResources.CountryVN</th>
+                    <th>@ViewResources.CreatedDate<i class="icon-sort-admin" id="btn-sort-createdDate"></i></th>
+                    <th>@ViewResources.Action</th>
+                </tr>
+                @{
+                    foreach (var league in Model)
+                    {
+                        var iconCountry = league.CountryIconVN ?? league.CountryLogo;
+                        count++;
+                        <tr>
+                            <td class="text-center" width="4%">@count</td>
+                            <td class="text-left" width="24%">@league.LeagueFullNameEN</td>
+                            <td class="text-left" width="24%">@league.LeagueNameVN</td>
+                            <td class="text-center" width="8%"><img src="@(iconCountry ?? GetTeamIcon(iconCountry))" width="30"></td>
+                            <td class="text-left" width="12%">@league.CountryEN</td>
+                            <td class="text-left" width="12%">@league.CountryVN</td>
+                            <td class="text-center" width="12%">@DateTimeUtilize.ChangeTimeZoneToClient(league.CreatedDate)</td>
+                            <td class="text-center" width="4%">
+                                <i class="icon icon-edit-admin btn-Edit" title="Edit" data-name="@league.LeagueFullNameEN"
+                               data-url="@Url.Action("EditLeague", "ManagementLeague", new { leagueId = league.LeagueId})"></i>
+
+                                <i class="icon icon-delete-admin btn-Delete" title="Delete"
+                               data-url="@Url.Action("RemoveLeagueExtra", "ManagementLeague", new { leagueId = league.LeagueId})"></i>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+
+    </div>
+
+    <div class="modal modal-edit-center" id="AddLeagueContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-edit-center" id="EditLeagueContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/admin/managementleague/managementleague.js" asp-append-version="true"></script>
+    <script src="~/js/select2.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery-183.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery-ui.min.js"></script>
+}

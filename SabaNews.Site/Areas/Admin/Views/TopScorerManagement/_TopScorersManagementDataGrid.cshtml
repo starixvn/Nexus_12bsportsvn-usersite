@@ -1,0 +1,47 @@
+﻿@using SabaNews.Resources
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th width="5%">@ViewResources.Top</th>
+                <th width="13%">@ViewResources.TeamNameEN</th>
+                <th width="13%">@ViewResources.TeamFullNameEN</th>
+                <th width="13%">@ViewResources.TeamNameVN</th>
+                <th width="13%">@ViewResources.PlayerNameEN</th>
+                <th width="13%">@ViewResources.PlayerFullNameEN</th>
+                <th width="10%">@ViewResources.Win</th>
+                <th width="10%">@ViewResources.Assist</th>
+                <th>@ViewResources.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.Top</td>
+                        <td class="text-left">@item.TeamNameEN</td>
+                        <td class="text-left">@item.TeamFullNameEN</td>
+                        <td class="text-left">@item.TeamNameVN</td>
+                        <td class="text-left">@item.PlayerNameEN</td>
+                        <td class="text-left">@item.PlayerFullNameEN</td>
+                        <td class="text-center">@item.Goals</td>
+                        <td class="text-center">@item.Assists</td>
+                        <td class="text-center">
+                            <i class="icon icon-edit-admin btn-Edit" title="Edit"
+                               data-url="@Url.Action("UpdateTopScorers", "TopScorerManagement", new { rowNum = item.RowNum, teamId = item.TeamId})"></i>
+                            <i class="icon icon-delete-admin btn-delete" title="Delete"
+                                            data-id="@item.RowNum"></i>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

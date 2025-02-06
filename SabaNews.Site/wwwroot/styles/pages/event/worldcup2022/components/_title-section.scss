@@ -1,0 +1,63 @@
+﻿.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+
+    @include tableMobile {
+        margin-bottom: 2rem;
+    }
+    h2 {
+        color: $title-color;
+        font-weight: 700;
+        font-size: 2.4rem;
+        text-transform: uppercase;
+        margin: 0 1rem;
+        @include tableMobile {
+            font-size: 2.4rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: $title-color;
+        }
+
+        .title-pc {
+            display: block;
+
+            @include tableMobile {
+                display: none;
+            }
+        }
+
+        .title-mb {
+            display: none;
+
+            @include tableMobile {
+                display: block;
+                text-align: center;
+                line-height: 3.3rem;
+            }
+        }
+    }
+}
+
+.page-items-box{
+    margin-bottom: 3rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .title-section {
+        margin-bottom: 1rem !important;
+
+        h2 {
+            font-size: 2rem;
+
+            @include tableMobile {
+                font-size: 2rem;
+            }
+        }
+    }
+}

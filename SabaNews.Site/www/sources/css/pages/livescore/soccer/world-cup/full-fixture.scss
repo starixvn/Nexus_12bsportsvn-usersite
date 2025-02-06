@@ -1,0 +1,423 @@
+@import "../../../../abstracts/variables";
+@import "../../../../abstracts/mixins";
+@import "../../../../base/base";
+@import "../../../../components/block-extension";
+@import "../../../../components/container";
+@import "../../../../components/soccer-item";
+@import "../../../../components/nav-tab";
+@import "../../../../components/tooltip";;
+@import "../../../../components/recent-post";
+@import './components/wc-nav-tabs';
+.livescore-soccer {
+  display: unset;
+  grid-template-columns: unset;
+  grid-template-rows: unset;
+  .soccer-match-grid {
+    &-item {
+      background: none;
+      border: none;
+      overflow : unset;
+      @include tableMobile{
+        padding: 0 1.2rem;
+      }
+      .soccer-match-grid-item-header {
+        padding: 1rem 1.2rem;
+        color: $color-title;
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        width: 23rem;
+        height: 4rem;
+        margin: auto;
+        background: linear-gradient(160.96deg, #FFD68F -2.57%, #C2A97D 95.84%);
+        border: none;
+        display: flex;
+        justify-content: center;
+        color: #2F2F2F;
+        position: absolute;
+        top: 0;
+        right: 50%;
+        transform: translate(50%,-50%);
+        clip-path: polygon(95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0);
+        @include tableMobile {
+          font-size: 1.4rem;
+          line-height: 1;
+          padding: .5rem;
+          width: 100%;
+          height: 3rem;
+          background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+          clip-path: polygon(97% 0, 100% 50%, 97% 100%, 3% 100%, 0 50%, 3% 0);
+          color: #fff;
+        }
+      }
+      .soccer-match-grid-item-body{
+        border-radius: 5px;
+        padding: 3rem 0 0;
+        background: #EEEEE4;
+        .group-match-item{
+          background: #FAFAED;
+          border: 1px solid #66172A;
+          border-radius: 5px;
+          margin-bottom: 1rem;
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
+        @include tableMobile{
+          padding: 2rem 0 1rem 0;
+          .group-match-item{
+            border-radius: 5px;
+            padding: 1rem .5rem 1rem 1.2rem;
+            .soccer-match-item{
+              padding: 0;
+              .soccer-match-date-result{
+                order: 2;
+                font-size: 1.1rem;
+              }
+              .soccer-team-logo{
+                width: 2.6rem;
+                height: 1.8rem;
+              }
+              .soccer-team-name{
+                font-size: 1.4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .group-searchbar {
+    .livescore-soccer-search-bar {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
+.season-standings {
+  .table {
+    .soccer-team {
+      display: flex;
+      align-items: center;
+
+      .soccer-team-logo {
+        width: 2.4rem;
+        height: 2.4rem;
+        margin-right: 1.6rem;
+      }
+    }
+  }
+}
+.livescore-league-header-detail {
+  margin-bottom: 1.6rem;
+  @include Mobile{
+    margin-bottom: 1rem;
+  }
+  &-name {
+    text-transform: uppercase;
+  }
+}
+
+.group-match-item-slogan {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: .6rem 1.4rem;
+  @include tableMobile{
+    padding: .6rem 1rem;
+  }
+  img {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: 1rem;
+  }
+  .icon-fav-league{
+    font-size: 2.4rem;
+    margin-right: 1.2rem;
+    @include tableMobile{
+      font-size: 2rem;
+    }
+  }
+}
+
+.group-match-item{
+  margin-bottom: 0;
+  &:last-child{
+    .soccer-match-item{
+      border-width: 0;
+      margin-bottom: 0;
+    }
+  }
+  .soccer-match-item{
+    background: none;
+    position: relative;
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    &:hover{
+      background: none;
+    }
+    .soccer-match-team{
+      @include tableMobile{
+        width: 75%;
+      }
+      .group-team{
+        color: #67182B;
+        font-weight: 600;
+        @include creen1199px{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .soccer-team-result{
+          display: none;
+          @include tableMobile{
+            display: flex;
+          }
+        }
+        .home-team{
+          @include creen1199px{
+            border-bottom: none;
+            padding-bottom: 0;
+            justify-content: flex-end;
+          }
+          @include tableMobile{
+            border-bottom: 1px solid #C4C4B8;;
+          }
+          .soccer-team-logo{
+            margin-left: 1rem;
+            margin-right: 0;
+            @include tableMobile{
+              margin-left: 0;
+              margin-right: 1rem;
+              order: 1;
+            }
+          }
+          .soccer-team-status{
+            @include creen1199px{
+              margin-right: 1rem;
+            }
+          }
+          .soccer-team-name{
+            text-align: right;
+            @include tableMobile{
+              text-align: inherit;
+            }
+          }
+        }
+        .away-team{
+          @include creen1199px{
+            padding-top: 0;
+          }
+          .soccer-team-logo{
+            margin-right: 1rem;
+          }
+          .soccer-team-status{
+            @include creen1199px{
+              margin-left: 1rem;
+            }
+          }
+        }
+        .soccer-team{
+          @include creen1199px{
+            width: 20rem;
+          }
+        }
+        .soccer-team-name{
+          font-size: 1.5rem;
+          padding-right: 0;
+          font-weight: 500;
+          &.win{
+            font-weight: 700;
+          }
+          @include tableMobile{
+            font-size: 1.4rem;
+            order: 2;
+          }
+        }
+        .soccer-team-logo{
+          border: 1px solid #66172A;
+          border-radius: 3px;
+          width: 4.2rem;
+          height: 2.8rem;
+          overflow: hidden;
+          object-fit: cover;
+        }
+        .soccer-team-status{
+          @include tableMobile{
+            order: 3;
+            margin-left: .6rem;
+          }
+        }
+      }
+    }
+    .soccer-match-date-result{
+      @include creen1199px{
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+  .live-intermission{
+    .soccer-match-date-result{
+      @include creen1199px{
+        top: 55%;
+      }
+    }
+  }
+}
+
+.wc-round-score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+  margin: 0 2rem;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%, 10% 0);
+  height: 50px;
+  justify-content: center;
+  @include creen1199px{
+    width: 10rem;
+  }
+  @include tableMobile{
+    display: none;
+  }
+  .total-score{
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 700;
+  }
+  .haft-score{
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.group-match-item{
+  .soccer-match-item{
+    .soccer-match-stage{
+      margin-right: 0;
+      text-align: center;
+      color: #67182B;
+      font-weight: 600;
+      @include tableMobile{
+        width: 6rem;
+        text-align: center;
+      }
+    }
+    &:hover{
+      box-shadow: none;
+    }
+    .soccer-match-team{
+      @include creen1199px{
+        width: 100%;
+      }
+    }
+  } 
+} 
+
+.wc-soccer-items{
+  margin-bottom: 4rem;
+  position: relative;
+  @include tableMobile{
+    margin-bottom: 1.6rem;
+    &:first-child{
+      margin-top: 2.5rem;
+    }
+  }
+}
+
+
+.sticker-standing-left {
+  position: fixed;
+  top: 50%;
+  left: 3rem;
+  transform: translate(0,-50%);
+  z-index: -1;
+  @include tableMobile{
+    display: none;
+  }
+}
+
+.sticker-standing-right {
+  position: fixed;
+  right: 3rem;
+  bottom: 9rem;
+  z-index: -1;
+  @include tableMobile{
+    display: none;
+  }
+}
+
+
+.live,.live.live-intermission{
+  .soccer-match-stage{
+      width: 12rem;
+      margin-top: 0;
+      font-size: 1.3rem !important;
+      @include tableMobile{
+        width: 6rem;
+      }
+      span{
+          color: #E13C29 !important;
+      }
+  }
+}
+
+.nav-select-mb{
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  border: 1px solid #66172A;
+  width: 14rem;
+  padding: .8rem 0 .8rem 1.2rem;
+  border-radius: 5px;
+  margin: 0 auto;
+  select {
+    background-position: 2px;
+    background-repeat: no-repeat;
+    width: 2.4rem;
+    height: 2rem;
+    font-size: 0;
+    outline: none;
+    border: none;
+    -webkit-appearance: none;
+    background: transparent url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuMTc1IDcuMTU4MzNMMTAgMTAuOTc1TDEzLjgyNSA3LjE1ODMzTDE1IDguMzMzMzNMMTAgMTMuMzMzM0w1IDguMzMzMzNMNi4xNzUgNy4xNTgzM1oiIGZpbGw9IiM1QTExMjMiLz4KPC9zdmc+Cg==);
+  }
+  option {
+    color: #4f4f4f;
+    font-weight: 400;
+    padding: 0 1.5rem;
+    font-size: 1.5rem;
+  }
+  .name-round{
+    color: #5A1123;
+    font-weight: 700;
+    margin-right: .5rem;
+    font-size: 1.3rem;
+  }
+}
+
+.tab-content {
+  max-width: 80rem;
+  margin: auto;
+  padding-top: 4rem;
+}
+
+.banner-change-domain, .skeleton-banner-align {
+  top: 16.2rem;
+  &.banner-left, &.skeleton-banner-align-left {
+    margin-right: 42rem;
+  }
+
+  &.banner-right, &.skeleton-banner-align-right {
+      margin-left: 42rem;
+  }
+}

@@ -1,0 +1,95 @@
+.minigame-standing-control{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 67rem;
+    margin: 1.2rem auto;
+}
+
+.minigame-control{
+    max-width: 67rem;
+    margin: 1.2rem auto;
+    border-bottom: 2px solid #E8E8D6;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include Mobile{
+        border-bottom:  none;
+    }
+    button{
+        display: block;
+        width: 11.3rem;
+        cursor: pointer;
+        text-align: center;
+        margin-right: 1rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2.8rem;
+        padding: .6rem 1.2rem;
+        background: #8A172F;
+        border: 1px solid #E8E8D6;
+        border-bottom: none;
+        border-radius: 5px 5px 0px 0px;
+        color: #E8E8D6;
+        transition: background , color .3s ease-in-out ;
+        &.active,&:hover{
+            background: #E8E8D6;
+            color: #88172E;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
+.minigame-nav{
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid #E8E8D6;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tableMobile{
+        margin: 1.2rem 0;
+    }
+    a{
+        display: block;
+        text-decoration: none;
+        margin-right: 1rem;
+        background: #6E1228;
+        border: 1px solid #E8E8D6;
+        border-radius: 5px 5px 0px 0px;
+        color: #E8E8D6;
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        padding: .6rem 1.2rem;
+        border-bottom: none;
+        &:last-child{
+            margin-right: 0;
+        }
+        &.active{
+            background: #E8E8D6;
+            border: 1px solid #E8E8D6;
+            color: #88172E;
+        }
+    }
+}
+
+.nav-select-mb{
+    width: 14rem;
+    margin: 0 auto;
+    .minigame-nav-mobile{
+        width: 100%;
+        height: 4rem;
+        margin-top: 1rem;
+        color: #5A1123;
+        padding: 1rem 1.2rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 1.3rem;
+        &:focus{
+            outline: none;
+        }
+    }
+}

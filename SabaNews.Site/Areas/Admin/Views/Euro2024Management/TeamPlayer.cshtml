@@ -1,0 +1,200 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader {
+    Euro 2024 Minigame
+}
+
+@section Title {
+    Euro 2024 Minigame
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.Euro2024Management" />
+}
+@section Styles {
+    <link rel="stylesheet" href="~/styles/pages/admin/euro-2024/team.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <p class="back-parent-page">
+        <a href="/Admin/Euro2024Management/Team">
+            <i class="icon-arrow-left"></i>
+            <span>Back to Team List</span>
+        </a>
+    </p>
+    <div class="content">
+        <div class="add-player">
+            <button href="javascript:;" class="label label-blue btn-link btn-create-player"><img
+                    src="~/images/icon/icon-plus.png" class="icon-add-player" />@ViewResources.AddPlayer</button>
+        </div>
+        
+        <div class="data-grid" id="data-grid">
+        </div>
+    </div>
+
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal " id="CreatePlayerModel" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">Add Player</h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                    <div class="form-section">
+                        <form id="updateMatch">
+                            <div class="form-input">
+                                <span class="left-section">Player Name</span>
+                                <div class="right-section">
+                                    <input class="form-control input-custom " type="text" name="player-name"
+                                        id="addLeagueId" />
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Player Full Name</span>
+                                <div class="right-section">
+                                    <input class="form-control input-custom" type="text" name="player-full-name" />
+                                    <p class="error-input player-full-name-error"></p>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Birthday</span>
+                                <div class="right-section">
+                                    <input class="form-control input-custom"   type="date" name="birthday" />
+                                    <p class="error-input birthday-error"></p>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Jersey number</span>
+                                <div class="right-section">
+                                    <input class="form-control input-custom input-number" type="text"
+                                        name="shirt-number" />
+                                    <p class="error-input shirt-number-error"></p>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Club</span>
+                                <div class="right-section">
+                                    <input class="form-control input-custom" type="text" name="club" />
+                                    <p class="error-input club-error"></p>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Position</span>
+                                <div class="right-section">
+                                    <select class="form-control input-custom position-select" style="width:100%">
+                                        @foreach (var postition in
+                                        SabaNews.Core.Constants.Livescore.MatchConstants.ListPlayerPosition)
+                                        {
+                                            <option value="@postition.Id">@postition.Name</option>
+                                        }
+                                    </select>
+                                    <p class="error-input league-error"></p>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <span class="left-section">Icon</span>
+                                <div class="right-section">
+                                    <div class="form-group-input form-group-input-left">
+                                        <div class="admin-text-logo">
+                                            <div class="input-upload">
+                                                <input type="file" class="input-file photo addPlayerIcon">
+                                                <div class="txt-img"><i class="icon-upload"></i>
+                                                    <span>@ViewResources.UploadNewImage</span></div>
+                                                <div class="img-upload">
+                                                    <p class="error photo-error" style="display:none"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-input form-group-input-right">
+                                        <div class="admin-text-logo admin-text-logo-data-img">
+                                            <button type="button" class="cancel-upload icon-close"
+                                                style="display:flex"></button>
+                                            <img src="/css/images/logo-dummy.png" id="iconLeague" alt="Alternate Text"
+                                                class="review_photo" style="display:flex" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="btn-custom-admin btn-save-create" type="button">Save</button>
+                                <button class="btn-custom-admin btn-cancel" type="button"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal " id="EditPlayerModel" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">Edit Player</h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</section>
+
+@section Scripts {
+    <script>window.teamId = '@Model'</script>
+    <script src="~/js/admin/euro2024/teamPlayer.js" asp-append-version="true"></script>
+}

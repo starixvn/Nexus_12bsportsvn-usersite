@@ -1,0 +1,169 @@
+/*:root {
+    --column : 12;
+    --padding-col : 0 1.5rem;
+}*/
+.modal .modal-content {
+  border: none;
+  border-radius: 0;
+  max-width: 60rem;
+  margin: 0 auto;
+  top: 10rem;
+  box-shadow: 0px 7px 25px rgba(0, 0, 0, 0.25);
+}
+.modal .modal-content .modal-title {
+  background-color: #1F2252;
+  color: #fff;
+  padding: 0 1.6rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal .modal-content .modal-title.title-success {
+  background-color: #2270CE;
+}
+.modal .modal-content .modal-title.title-warning {
+  background-color: #A59A39;
+}
+.modal .modal-content .modal-title.title-error {
+  background-color: #FF5757;
+}
+.modal .modal-content .modal-title .icon-title {
+  margin-right: 1.2rem;
+}
+.modal .modal-content .modal-title .title {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.modal .modal-content .modal-title .close-login {
+  cursor: pointer;
+  background-color: transparent;
+  line-height: 1;
+}
+.modal .modal-content .modal-title .close-login:focus {
+  outline: none;
+}
+.modal .modal-content .modal-title .close-login .icon-close:before {
+  color: #fff;
+}
+.modal .modal-body {
+  padding: 2.4rem 1.6rem;
+}
+.modal .modal-body p {
+  margin: 0;
+}
+.modal .modal-body .custom-input {
+  border: 1px solid #DDDDDD;
+}
+.modal .modal-body .user_list {
+  margin-bottom: 1.6rem;
+}
+.modal .modal-body .form-radio {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+.modal .modal-body .form-radio .raido-custom {
+  width: 5.5rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.modal .modal-body .form-radio .raido-custom:last-child {
+  margin-right: 0;
+}
+.modal .modal-body .form-radio .raido-custom input[type=radio] {
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+.modal .button-confirm {
+  padding: 0 1.6rem 2.4rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.modal .button-confirm .confirm-action {
+  margin-right: 1rem;
+}
+
+#TestSendEmail .button-confirm {
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.input-custom {
+  height: 4rem;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  color: #444444;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #DDDDDD;
+}
+
+.table-admin {
+  margin-top: 0;
+}
+.table-admin .icon-delete-admin:hover {
+  cursor: pointer;
+}
+.table-admin .league-level1 {
+  background: #ffe5de;
+  font-weight: bold;
+}
+.table-admin .league-level2 {
+  background: #d5e6ff;
+  font-weight: bold;
+}
+.table-admin .league-name {
+  position: relative;
+}
+.table-admin .league-name.has-child::after {
+  position: absolute;
+  content: "";
+  top: 2rem;
+  right: 1rem;
+  border-style: solid;
+  border-color: #888 transparent transparent transparent;
+  border-width: 6px 6px 0 6px;
+}
+.table-admin .league-name.active::after {
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent #888 transparent;
+}
+.table-admin td img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+}
+
+.error-input {
+  margin-top: 0.7rem !important;
+  color: red;
+}
+
+.modal-title .title {
+  text-decoration: none !important;
+}
+
+.pl50 {
+  padding-left: 5rem !important;
+}

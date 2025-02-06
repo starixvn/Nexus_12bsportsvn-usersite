@@ -1,0 +1,143 @@
+﻿@using static SabaNews.Site.Extensions.WorldCupHelper;
+
+@section Title {
+    @Model.Header.Title
+}
+
+    @section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+    @{
+    var countStageActive = GetCountStageActiveMinigame(Model.Matches);
+    var countStageEnd = GetCountStageEndMinigame(Model.Matches);
+}
+
+    @section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+
+    <link rel="stylesheet" href="~/minify/styles/membership-event.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/event/worldcup2022/minigame.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/minigame-detail.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/minigame-detail.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+    @section Scripts{
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/minigame-detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/minigame-detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/js/event/worldcup2022/worldcup.js" asp-append-version="true"></script>
+}
+
+    @(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-lastest-news minigame-section">
+    <ul class="header-nav-event">
+        <li>
+            <a href="@Url.Action("Minigame", "WorldCup2022")" class="btn-home">
+                <i class="icon icon-minigame_home"></i>
+                <span>Sự Kiện</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="click-number-rule btn-nav-guide">
+                <i class="icon icon-minigame_guide"></i>
+                <span>Thể Lệ</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Minigame", "WorldCup2022")#stage-minigame" class="click-list-rigister">
+                <i class="icon icon-minigame_connect"></i>
+                <span>Tham Gia Dự Đoán</span>
+            </a>
+        </li>
+        @{
+            if (Model.IsLogin)
+            {
+                <li>
+                    <a href=@Url.Action("MinigameProfile", "WorldCup2022") class="click-my-prediction active">
+                        <i class="icon icon-minigame_my_fav"></i>
+                        <span>Dự Đoán Của Tôi</span>
+                    </a>
+                </li>
+            }
+            if (countStageActive > 0)
+            {
+                <li>
+                    <a href="@Url.Action("Minigame", "WorldCup2022")#minigame-standing" class="click-list-standing">
+                        <i class="icon icon-minigame_standing"></i>
+                        <span>Bảng Xếp Hạng</span>
+                    </a>
+                </li>
+            }
+            if (countStageEnd > 0)
+            {
+                <li>
+                    <a href="@Url.Action("Minigame", "WorldCup2022")#minigame-winners" class="click-list-result">
+                        <i class="icon icon-minigame_list_user"></i>
+                        <span>Danh Sách Trúng Thưởng</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+    <div class="statistic-grid">
+        <div class="wraper-minigame-table">
+            <div class="minigame-title">
+                <h1 class="text">
+                    Dự đoán của tôi
+                </h1>
+                <div class="dots-parent">
+                    <ul>
+                        <li class="dots-small"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-parent-center"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-small"></li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="auth-provider auth-minigame">
+                @if (Model.User.Photo == null)
+                {
+                    <li class="avatar-user">@Model.User.Name.Substring(0, 1)</li>
+                }
+                else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                {
+                    <li class="avatar-user"><img class="profile_image" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                }
+                else
+                {
+                    <li class="avatar-user"><img class="profile_image" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                }
+                <li class="auth-displayname"><a class="item">@Model.User.Name</a></li>
+            </ul>
+            <div id="app-container"></div>
+        </div>
+        
+
+        <div class="dock-stage-icon">
+            <img src="~/images/worldcup/minigame/winner_sticker_4.svg" alt="Alternate Text" />
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync("~/Views/Event/WorldCup2022/Minigame/_Guide.cshtml")
+
+
+

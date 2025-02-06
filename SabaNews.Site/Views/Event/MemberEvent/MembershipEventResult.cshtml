@@ -1,0 +1,243 @@
+﻿
+@section Title{
+    Kết quả sự kiện Rước Lộc Tân Niên
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/membership-event.min.css" asp-append-version="true">
+
+}
+@section Scripts{
+    <script src="~/minify/js/membership-event.min.js" asp-append-version="true"></script>
+}
+
+
+<body class="result-page">
+    <div class="wrapper-menu-event"></div>
+    <div class="wrapper-header wrapper-result">
+        <div class="flower-result">
+            <div class="flower-result-img"><img src="~/images/event/chill.png"></div>
+            <div class="flower-result-img"><img src="~/images/event/chill.png"></div>
+        </div>
+        <div class="banner-result">
+            <img src="~/images/event/result-banner.png" alt="result-banner" class="img-res" />
+        </div>
+        <div class="img-event-position img-event-position-1"><img src="~/images/event/img3.png" alt="Alternate Text" /></div>
+        <div class="header-menu">
+            <div class="logo-event">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/images/event/logo.png" alt="saba-sports" asp-append-version="true">
+                </a>
+            </div>
+            @if (Model.IsLogin)
+            {
+                <div class="after-login">
+                    <ul class="users auth-section">
+                        @if (Model.User.Photo == null)
+                        {
+                            <li class="avatar">@Model.User.Name.Substring(0, 1)</li>
+                        }
+                        else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                        {
+                            <li class="avatar"><img class="profile_image" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                        }
+                        else
+                        {
+                            <li class="avatar"><img class="profile_image" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                        }
+                        @*<li class="avatar"><img src="~/images/sabasports.svg" alt="saba-sports" asp-append-version="true"></li>*@
+                        <li class="name">@Model.User.Name</li>
+                    </ul>
+                    <div class="profile-login">
+                        <ul class="users-login-review">
+                            @if (Model.User.Photo == null)
+                            {
+                                <li class="users-login-avatar">@Model.User.Name.Substring(0, 1)</li>
+                            }
+                            else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                            {
+                                <li class="users-login-avatar"><img loading="lazy" src="@Model.User.Photo" data-name="@Model.User.Name.Substring(0, 1)" asp-append-version="true" /></li>
+                            }
+                            else
+                            {
+                                <li class="users-login-avatar"><img class="profile_image" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" asp-append-version="true" /></li>
+                            }
+                            <li class="users-name"><a href="#">@Model.User.Name</a></li>
+                        </ul>
+                        <ul class="list-profile">
+                            @if (Model.IsAdmin)
+                            {
+                                <li>
+                                    <a class="item" href="~/Admin/Statistic/Index">@ViewResources.Administration</a>
+                                </li>
+                            }
+                            <li><a href="@Url.Action("ListSavedPosts", "Profile")">Tin đã lưu</a></li>
+                            <li><a href="@Url.Action("Index", "Profile")">Tài Khoản của tôi</a></li>
+                            <li class="auth-logout"><a href="~/Auth/Logout?returnUrl=@Context.Request.Path">Đăng xuất <i class="icon-logout"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="login auth-input">
+                    <a href="javascript:;" class="btn btn-event auth-login">Đăng Nhập</a>
+                </div>
+            }
+        </div>
+        <ul class="header-nav-event">
+            <li>
+                <a href="@Url.Action("MembershipEvent", "MemberEvent")" class="active">
+                    <i class="icon icon-event-home btn-home"></i>
+                    <span>Sự Kiện</span>
+                </a>
+            </li>
+        </ul>
+        <div class="toggle-mobile-event">
+            <i class="icon icon-menu-event"></i>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main-result">
+            <div class="thank-users">
+                <a href="#">Saba.vn</a> xin chân thành cảm ơn Quý độc giả đã tham gia chương trình minigame "Rước Lộc Tân Niên". Căn cứ vào 3 số đuôi của Giải Đặc Biệt từ kết quả xổ số miền Bắc ngày 28/02/2022 là <a target="_blank" href="https://xoso.com.vn/xsmb-28-02-2022.html">075</a>, chúng tôi đã tìm ra được những độc giả may mắn trúng thưởng như sau:
+            </div>
+            <div class="last-result-event">
+                <div class="item-result">
+                    <img src="~/images/event/item1.png" alt="item-1" class="img-res" />
+                    <div class="user-final">
+                        <p class="email">owb***ice@gmail.com</p>
+                        <p class="name">Số may mắn: 052</p>
+                        <p class="date">14/02/2022 13:55:16</p>
+                    </div>
+                </div>
+                <div class="item-result">
+                    <img src="~/images/event/item2.png" alt="item-2" class="img-res" />
+                    <div class="user-final">
+                        <p class="email">lon***009@gmail.com</p>
+                        <p class="name">Số may mắn: 101</p>
+                        <p class="date">21/02/2022 04:37:14</p>
+                    </div>
+                    <div class="user-final">
+                        <p class="email">cuo***106@gmail.com</p>
+                        <p class="name">Số may mắn: 116</p>
+                        <p class="date">14/02/2022 09:53:57</p>
+                    </div>
+                </div>
+                <div class="item-result">
+                    <img src="~/images/event/item3.png" alt="item-3" class="img-res" />
+                    <div class="user-final">
+                        <p class="email">chu***p86@gmail.com</p>
+                        <p class="name">Số may mắn: 123</p>
+                        <p class="date">15/02/2022 07:38:45</p>
+                    </div>
+                    <div class="user-final">
+                        <p class="email">tap***lot@gmail.com</p>
+                        <p class="name">Số may mắn: 123</p>
+                        <p class="date">23/02/2022 02:13:04</p>
+                    </div>
+                    <div class="user-final">
+                        <p class="email">ait***en5@gmail.com</p>
+                        <p class="name">Số may mắn: 123</p>
+                        <p class="date">25/02/2022 20:22:52</p>
+                    </div>
+                </div>
+            </div>
+            <div class="result-noted">
+                <div class="main-noted">
+                    <div class="txt-noted">
+                        <p><a href="#">Saba.vn</a> xin gửi lời chúc mừng đến các Quý độc giả đã may mắn trúng giải. Chúng tôi sẽ chủ động liên lạc đến từng độc giả qua địa chỉ email khi đăng ký tài khoản.  </p>
+                        <p>Một lần nữa xin chân thành cảm ơn Quý độc giả đã quan tâm và tham gia chương trình. Hy vọng sẽ tiếp tục nhận được sự quan tâm và ủng hộ của Quý độc giả trong những chương trình tiếp theo. </p>
+                    </div>
+                    <div class="txt-noted parent-heading">
+                        <div class="heading-noted">lưu ý</div>
+                        <p><a href="https://saba.vn/">Saba.vn</a> sẽ chỉ sử dụng duy nhất 1 địa chỉ email là info@saba.vn, Quý độc giả trúng giải vui lòng kiểm tra email ở tất cả các hộp thư (kể cả SPAM/THƯ RÁC)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="img-event-position img-event-position-2"><img src="~/images/event/img6.png" alt="Alternate Text" /></div>
+            <div class="img-event-position img-event-position-3"><img src="~/images/event/lixi.png" alt="Alternate Text" /></div>
+            <div class="img-event-position img-event-position-4"><img src="~/images/event/img2.png" alt="Alternate Text" /></div>
+        </div>
+    </div>
+</body>
+
+
+
+<div class="auth-form">
+    <div class="modal" id="register" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body register">
+                    <div class="heading-modal-event">nhập số may mắn</div>
+                    <p class="text-event-modal">Bạn có muốn nhập con số may mắn này không ?</p>
+                    <ul>
+                        <li><a href="#nhap-so-may-man" class="btn btn-event btn-accept active">đồng ý</a></li>
+                        <li><a href="#" class="btn btn-event btn-outline-event">bỏ qua</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="auth-form event-guide">
+    <div class="modal" id="guide" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body guide">
+                    <div class="title-event">
+                        <img src="~/images/event/line.png" class="img-res" />
+                        <span>THỂ LỆ</span>
+                    </div>
+                    <div class="main-guide scooped-corners">
+                        <div class="txt-guide">
+                            <div class="event-txt">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis in erat lectus arcu, a odio. Turpis diam ultricies egestas feugiat ligula ultrices ac. Cras cras nisl ornare tristique nunc, convallis ut condimentum malesuada. Lectus bibendum quam porta tellus. Turpis non magna eu netus. Nulla lectus in nec fermentum. Rutrum volutpat sit commodo pulvinar nibh ipsum. Ultricies nisl, turpis ut rutrum sed fermentum rhoncus at enim. Et et, quis sed ullamcorper massa sed curabitur sit ac. Duis id sagittis, dolor ultricies tincidunt mi lorem in dignissim. Convallis augue lorem ultricies congue cursus nisl turpis lorem pellentesque. Ultricies lorem senectus curabitur semper nulla duis tincidunt. Erat enim, posuere sagittis, viverra vel, viverra ornare sit. Sapien, tellus sapien eget nunc. Turpis diam ipsum in a nec tellus, sed interdum malesuada. Fames aliquet quis ullamcorper vestibulum et duis sit fringilla gravida. Habitant rhoncus risus ut mi semper sit enim, semper varius. In mi turpis eget fermentum iaculis in turpis facilisi. Pulvinar vitae ac sit in sapien.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis in erat lectus arcu, a odio. Turpis diam ultricies egestas feugiat ligula ultrices ac. Cras cras nisl ornare tristique nunc, convallis ut condimentum malesuada. Lectus bibendum quam porta tellus. Turpis non magna eu netus. Nulla lectus in nec fermentum. Rutrum volutpat sit commodo pulvinar nibh ipsum. Ultricies nisl, turpis ut rutrum sed fermentum rhoncus at enim. Et et, quis sed ullamcorper massa sed curabitur sit ac. Duis id sagittis, dolor ultricies tincidunt mi lorem in dignissim. Convallis augue lorem ultricies congue cursus nisl turpis lorem pellentesque. Ultricies lorem senectus curabitur semper nulla duis tincidunt. Erat enim, posuere sagittis, viverra vel, viverra ornare sit. Sapien, tellus sapien eget nunc. Turpis diam ipsum in a nec tellus, sed interdum malesuada. Fames aliquet quis ullamcorper vestibulum et duis sit fringilla gravida. Habitant rhoncus risus ut mi semper sit enim, semper varius. In mi turpis eget fermentum iaculis in turpis facilisi. Pulvinar vitae ac sit in sapien .
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis in erat lectus arcu, a odio. Turpis diam ultricies egestas feugiat ligula ultrices ac. Cras cras nisl ornare tristique nunc, convallis ut condimentum malesuada. Lectus bibendum quam porta tellus. Turpis non magna eu netus. Nulla lectus in nec fermentum. Rutrum volutpat sit commodo pulvinar nibh ipsum. Ultricies nisl, turpis ut rutrum sed fermentum rhoncus at enim. Et et, quis sed ullamcorper massa sed curabitur sit ac. Duis id sagittis, dolor ultricies tincidunt mi lorem in dignissim. Convallis augue lorem ultricies congue cursus nisl turpis lorem pellentesque. Ultricies lorem senectus curabitur semper nulla duis tincidunt. Erat enim, posuere sagittis, viverra vel, viverra ornare sit. Sapien, tellus sapien eget nunc. Turpis diam ipsum in a nec tellus, sed interdum malesuada. Fames aliquet quis ullamcorper vestibulum et duis sit fringilla gravida. Habitant rhoncus risus ut mi semper sit enim, semper varius. In mi turpis eget fermentum iaculis in turpis facilisi. Pulvinar vitae ac sit in sapien..
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@*<div class="main">
+        <form id="membership-event">
+            <input type="number" id="luckyNumber" name="luckyNumber" />
+            <button type="submit">submit</button>
+        </form>
+    </div>
+
+
+    <div class="auth-form">
+        <div class="modal" id="Notice" style="display:none">
+            <div class="modal-content modal-auth">
+                <div class="modal-warning">
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body modal-resetpass">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>*@

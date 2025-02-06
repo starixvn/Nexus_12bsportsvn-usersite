@@ -1,0 +1,21 @@
+﻿.view-more {
+    text-align: right;
+    margin-top : 3.2rem;
+    width : 16rem;
+    margin-left : auto;
+    a {
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #2F2F2F;
+        justify-content: flex-end;
+        font-weight : 700;
+        i {
+            margin-left : .9rem;
+            &:before {
+                font-size: 2rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+@import './../../../../abstracts/mixins';
+@import './components/minigame_control';
+@import './components/input-custom';
+@import './components/minigame-section';
+@import './components/minigame-table';
+
+.winner-minigame{
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #4C65DD;
+    background: #1830A1;
+    position: relative;
+    z-index: 9;
+    overflow: hidden;
+    @include Mobile{
+        margin: 0 1.2rem;
+    }
+    .img-table{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 0;
+        @include Mobile{
+            text-align: right;
+            right: -35px;
+        }
+        img{
+            @include Mobile{
+                width: 50%;
+            }
+        }
+    }
+}
+
+.line-winner{
+    z-index: 1;
+    &.show-pc{
+        display: block;
+        @include Mobile{
+            display: none;
+        }
+    }
+    &.show-mobile{
+        display: none;
+        @include Mobile{
+            display: block;
+        }
+    }
+}
+
+.detailWinners {
+    display: none;
+}

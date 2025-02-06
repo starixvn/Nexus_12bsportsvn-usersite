@@ -1,0 +1,37 @@
+﻿@section Metadata {
+	<meta name="robots" content="noindex,nofollow">
+}
+
+@section Title{
+	THÔNG BÁO THAY ĐỔI TÊN MIỀN
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+@(await Component.InvokeAsync("Menu"))
+
+<section class="main">
+    <div class="container">
+        <div class="block block-main">
+            <h2 class="block__title">
+                <a>THÔNG BÁO THAY ĐỔI TÊN MIỀN</a>
+            </h2>
+            <div class="block__content">
+                <div class="warning content">
+                    <h6><em>Kính gửi Quý độc giả,</em></h6>
+                    <p>Trước hết, SABA Sports xin chân thành cảm ơn Quý độc giả đã đồng hành cùng chúng tôi trong suốt thời gian qua.</p>
+                    <p>Nhằm mục đích giúp Quý độc giả dễ dàng hơn trong việc tìm kiếm và ghi nhớ, từ ngày 12 tháng 12 năm 2021, SABA Sports (phiên bản tiếng Việt) chính thức thay đổi tên miền từ <strong>vn.sabasports.com</strong> sang <strong>saba.vn</strong>. Do đó, Quý độc giả vui lòng cập nhật lại địa chỉ truy cập trang web mới của chúng tôi để có thể tiếp tục theo dõi các tin tức thể thao và nhận định mới nhất.</p>
+
+                    <p>Các bài viết trên <strong>vn.sabasports.com</strong> vẫn sẽ được giữ nguyên khi đổi sang tên miền mới <strong>saba.vn</strong>.</p>
+                    <p>Chúng tôi hy vọng sẽ tiếp tục nhận được sự tin tưởng, ủng hộ và đồng hành của Quý độc giả trong thời gian tới.</p>
+                    <p>Trân trọng.</p>
+                </div>
+            </div>
+        </div>
+        <div class="block block-extension">
+            @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel())
+        </div>
+    </div>
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>

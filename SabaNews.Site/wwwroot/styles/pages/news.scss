@@ -1,0 +1,286 @@
+﻿@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+@import '../base/base';
+
+@import '../layout/footer';
+@import '../layout/header';
+@import '../layout/block-extension';
+
+@import '../components/fonts';
+@import '../components/block';
+@import '../components/buttons';
+@import '../components/container';
+@import '../components/img';
+@import '../components/card-horizontal';
+@import '../components/card-vertical';
+@import '../components/pagination';
+@import '../components/lazyload';
+@import '../components/sub-structure';
+@import '../components/modal';
+@import '../components/ads';
+@import '../components/_popup-event';
+@import '../components/loading';
+@import '../components/sub-menu-category';
+
+.main {
+    @include tableMobile {
+        position: relative;
+        overflow-x: hidden;
+    }
+}
+
+.block-main {
+    .card-horizontal, .skeleton-horizontal {
+        margin-bottom: 1.6rem;
+
+        @include Mobile {
+            margin-bottom: 1.2rem;
+        }
+
+        &-highlight {
+            height: 26.6rem;
+            grid-template-columns: 47rem 1fr;
+            grid-column-gap: 0;
+            grid-template-rows: unset;
+            align-items: flex-start;
+            margin-bottom: $column-gap;
+            background-color: $block-highlight-bgcolor;
+            padding-bottom: 0;
+            border-bottom: none;
+            border-radius: 3px;
+            .text-skeleton {
+                padding: 1.2rem;
+            }
+            @include tableMobile {
+                display: inherit;
+                height: auto;
+            }
+
+            @include Mobile {
+                margin-bottom: 1.2rem;
+            }
+
+            .card-horizontal__content {
+                padding: 1.2rem;
+
+                @include tableMobile {
+                    margin-top: 1rem;
+                }
+
+                @include Mobile {
+                    padding: 8px;
+                    margin-top: 0;
+                }
+            }
+
+            .title {
+                font-size: 1.6rem;
+                line-height: 2rem;
+
+                @include Mobile {
+                    font-size: 2rem;
+                    line-height: 3rem;
+                }
+            }
+
+            .description {
+                margin-top: .6rem;
+                font-weight: 500;
+                font-size: 1.3rem;
+                @include tableMobile {
+                    display: block;
+                    margin-top: 0;
+                }
+
+                @include Mobile {
+                    font-size: 1.6rem;
+                    line-height: 2.4rem;
+                    margin-bottom: .8rem;
+                }
+            }
+            .card-horizontal__image, .skeleton-horizontal__image {
+                height: 100%;
+                @include tableMobile {
+                    max-height: 100% !important;
+                    border-radius: 3px 3px 0 0px;
+                }
+                img{
+                    max-height: 26.6rem;
+                }
+            }
+
+
+            .skeleton-horizontal__image {
+                @include tableMobile {
+                    height: 20rem;
+                }
+            }
+        }
+        &.none-border-mobile{
+            &:nth-child(5){
+                @include Mobile{
+                    border-bottom: none;
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .skeleton-horizontal__image {
+        height: 11rem;
+
+        @include tableMobile {
+            height: 9.3rem;
+        }
+    }
+}
+
+
+.block-warning {
+    .content {
+        line-height: 3.2rem;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .block__title {
+        &:before {
+            content: "CẢNH BÁO VỀ WEBSITE MẠO DANH THƯƠNG HIỆU SABA SPORTS";
+            line-height: 2.7rem;
+            color: #f12f19;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: bold;
+
+            @include Mobile {
+                content: "CẢNH BÁO VỀ WEBSITE MẠO DANH";
+                font-size: 1.6rem;
+            }
+        }
+    }
+
+
+    img {
+        max-width: 100%;
+    }
+
+    figcaption {
+        line-height: 1.8rem;
+    }
+
+    .aligncenter {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    [class*="banner"] {
+        text-align: center;
+        margin-bottom: 20px;
+
+        img {
+            border: 1px solid #e0e0e0;
+        }
+    }
+
+    .banner-desktop {
+        display: block;
+
+        @include tableMobile {
+            display: none;
+        }
+    }
+
+    .banner-mobile {
+        display: none;
+
+        @include tableMobile {
+            display: block;
+        }
+    }
+
+    .domain {
+        padding-left: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+.block-policy {
+    .content {
+        line-height: 3.2rem;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .domain {
+        padding-left: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+
+.resetpass-container {
+    display: inherit !important;
+
+    .reset-page {
+        p {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+
+.title-new-page {
+    padding-left: 0;
+
+    &::after {
+        display: none;
+    }
+}
+
+.card-horizontal-highlight{
+    .card-horizontal__image{
+        border-radius: 3px 0 0 3px;
+    }
+}
+.list-rss {
+    list-style-type: none;
+    li {
+        margin-bottom: 15px;
+        font-size: 16px;
+        position: relative;
+        padding-left: 18px;
+
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #ef4136;
+            display: inline-block;
+            border-radius: 40px;
+            left: 0;
+            position: absolute;
+            top: 9px;
+        }
+    }
+
+    .rss-category {
+        font-weight: 700;
+        color: #ef4136;
+        text-decoration: none;
+    }
+}
+
+#guess-section{
+    margin-top: 2.2rem;
+    @include tableMobile{
+        margin-top: 3rem;
+    }
+}
+
+
+.livescore-home{
+    margin: 2rem 0 ;
+}

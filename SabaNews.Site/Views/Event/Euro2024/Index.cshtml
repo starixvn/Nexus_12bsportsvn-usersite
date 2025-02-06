@@ -1,0 +1,418 @@
+@using SabaNews.Core.Constants
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@section Title {
+    @Model.Header.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-home.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts {
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/lib/swipper/js/swiper-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/euro2024.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/home.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/euro-2024-home.min.js" asp-append-version="true"></script>
+    </environment>
+}
+
+@(await Component.InvokeAsync("HeaderEuro2024" , new { cateSlug = Model.Header.Slug }))
+
+<div class="page-euro-2024 page-home">
+
+    <div id="euro-fixture">
+
+    </div>
+    @* hot-news *@
+    <div class="block block-hot-news">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="block-heading-text">
+                    <a href="@Url.Action("LastestNews", "Euro2024")">
+                        Tin mới nhất
+                    </a>
+                </h2>
+                @* <a href="@Url.Action("LastestNews", "Euro2024")" class="view-more">Xem chi tiết</a> *@
+            </div>
+            <div class="block-body">
+                @* <div class="block-columns">
+                    <div class="block-columns-2">
+                        @if(Model.LastestNews.Count > 0){
+
+                            <div class="swiper swiper-hot-news">
+                                <div class="swiper-wrapper">
+                                    @{
+                                        int firstBlockIndex = 0;
+                                        @foreach (var post in Model.LastestNews) {
+                                            {
+                                                firstBlockIndex++;
+                                                if(firstBlockIndex >= 6)
+                                                {
+                                                    continue;
+                                                }
+                                            }
+                                            <div class="swiper-slide block-items block-items-vertical block-items-vertical-hot">
+                                                <div class="block-items-img hover-image">
+                                                    <a href="@Url.Action("PostDetailEuro", "Euro2024", new { slug = @post.Slug })">
+                                                        <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" />
+                                                    </a>
+                                                </div>
+                                                <h2 class="block-items-heading">
+                                                    <a href="@Url.Action("PostDetailEuro", "Euro2024", new { slug = @post.Slug })">@post.PostTitle</a>
+                                                </h2>
+                                                <div class="block-heading-description">
+                                                    @post.PostExcerpt
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <div class="swiper-button swiper-button-next btn-next"><i class="icon-chevron-right"></i></div>
+                                <div class="swiper-button swiper-button-prev btn-prev"><i class="icon-chevron-left"></i></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        }
+                        @if(Model.LastestNews.Count > 0){
+                            <div class="block-child">
+                                @{
+                                    int lastBlockIndex = 0;
+                                    @foreach (var post in Model.LastestNews){
+                                        {
+                                            lastBlockIndex++;
+                                            if(lastBlockIndex <= 5) {
+                                                continue;
+                                            }
+                                        }
+                                        <h3 class="block-child-text"><a href="@Url.Action("PostDetailEuro", "Euro2024", new { slug = @post.Slug })">@post.PostTitle</a></h3>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div> *@
+
+                @if (Model.LastestNews.Count > 0)
+                {
+                    <div class="gird-hot-news">
+                        @{
+                            var lastestPostIamgeIndex = 0;
+                            
+                            foreach (var post in Model.LastestNews)
+                            {
+                                var hotnews = lastestPostIamgeIndex == 0 ? "block-items-vertical-hot" : "";
+                                {
+                                    lastestPostIamgeIndex++;
+                                    if (lastestPostIamgeIndex >= 5)
+                                    {
+                                        continue;
+                                    }
+                                }
+                                <div class="block-items block-items-vertical block-items-@lastestPostIamgeIndex @hotnews">
+                                    <div class="block-items-img hover-image"> 
+                                        <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">
+                                            <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" />
+                                        </a>
+                                    </div>
+                                    <div class="group-title-hot">
+                                        <h2 class="block-items-heading">
+                                            <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">@post.PostTitle</a>
+                                        </h2>
+                                        @{
+                                            if(lastestPostIamgeIndex == 1)
+                                            {
+                                                <div class="block-heading-description">
+                                                    @post.PostExcerpt
+                                                </div>
+                                            }  
+                                        }
+                                    </div>
+                                </div>
+                                
+                            }
+                        }
+
+                        @{
+                            var lastestPostTextIndex = 0;
+                            <div class="block-child">
+                                @foreach (var post in Model.LastestNews)
+                                {
+                                    {
+                                        lastestPostTextIndex++;
+                                        if (lastestPostTextIndex <= 5)
+                                        {
+                                            continue;
+                                        }
+                                    }
+                                    <h3 class="block-child-text"><a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">@post.PostTitle</a></h3>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @* standing *@
+    <div class="block block-standing">
+        <div class="block-heading">
+            <div class="container">
+                <h2 class="block-heading-text">
+                    <a href="@Url.Action("Standing", "Euro2024")">
+                        Bảng xếp hạng
+                    </a>
+                </h2>
+            </div>
+        </div>
+        <div class="block-body">
+            <div id="home-standing"></div>
+        </div>
+    </div>
+    @* guess *@
+    <div class="block block-guess">
+        <div class="container">
+            <div class="main-guess">
+                <div class="block-heading">
+                    <h2 class="block-heading-text">
+                        <a href="@Url.Action("CommentaryNews", "Euro2024")">
+                            Nhận định dự đoán
+                        </a>
+                    </h2>
+                    @* <a href="@Url.Action("CommentaryNews", "Euro2024")" class="view-more">Xem chi tiết</a> *@
+                </div>
+                <div class="block-body">
+                    @if(Model.Commentary.Count > 0)
+                    {
+                        var firstPost = Model.Commentary[0];
+                        <div class="scroll-snap">
+                            @foreach( var post in  Model.Commentary)
+                            {
+                                <div class="scroll-snap-items">
+                                    <div class="block-items block-items-vertical">
+                                        <div class="block-items-img hover-image">
+                                            <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">
+                                                <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" />
+                                            </a>
+                                        </div>
+                                        <h4 class="block-items-heading">
+                                            <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">@post.PostTitle</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                        </div> 
+                        <div class="news-and-poll">
+                            <div class="block-items block-items-vertical block-items-vertical-hot">
+                                <div class="block-items-img hover-image">
+                                    <a href="@Url.Action("Article", "Euro2024", new { slug = @firstPost.Uri })">
+                                        <img src=@firstPost.FeatureImage alt=@firstPost.PostTitle class="img-res" loading="lazy" />
+                                    </a>
+                                </div>
+                                <div class="group-title-hot">    
+                                    <h4 class="block-items-heading">
+                                        <a href="@Url.Action("Article", "Euro2024", new { slug = @firstPost.Uri })">@firstPost.PostTitle</a>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="euro-poll"></div>
+                        </div>
+
+                        <div class="swiper swiper-guess">
+                            <div class="swiper-wrapper">
+                                @{
+                                    var lastestPostIndex = 0;
+                                    @foreach( var post in  Model.Commentary)
+                                    {
+                                        {
+                                            lastestPostIndex++;
+                                            @if(lastestPostIndex <= 1)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        <div class="swiper-slide block-items block-items-vertical">
+                                            <div class="block-items-img hover-image">
+                                                <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">
+                                                    <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" />
+                                                </a>
+                                            </div>
+                                            <h4 class="block-items-heading">
+                                                <a href="@Url.Action("Article", "Euro2024", new { slug = @post.Uri })">@post.PostTitle</a>
+                                            </h4>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="swiper-button swiper-button-next btn-next"><i class="icon-slide icon-chevron-right"></i></div>
+                            <div class="swiper-button swiper-button-prev btn-prev"><i class="icon-slide icon-chevron-left"></i></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-videos-and-kingsocer">
+        <div class="container">
+            <div class="block-group">
+                <div class="block-video">
+                    <div class="block-heading">
+                        <h2 class="block-heading-text">
+                            <a href="@Url.Action("Video", "Euro2024")">
+                                Video
+                            </a>
+                        </h2>
+                    </div>
+                    <div class="block-body">
+                        <div class="group-video">
+                            <div class="box-vertical">
+                                @{
+                                    var numVideos = 0;
+                                    foreach (var video in Model.Videos)
+                                    {
+                                        numVideos++;
+                                        var display = numVideos == 1 ? "block" : "none";
+                                        <div style="display:@display;" class="box-play-video" id="slide-@video.ID">
+                                            <input type="hidden" name="iframe_value" value="@video.PostContent" />
+                                            <div class="block-items block-items-vertical block-items-vertical-hot">
+                                                <div class="block-items-img hover-image">
+                                                    <a title="@video.PostTitle">
+                                                        <img src="@Url.Content(video.FeatureImage)" alt="@video.PostTitle" class="img-res" loading="lazy" />
+                                                        <div class="btn-play-video" post-id="@video.ID">
+                                                            <span class="icon-play"></span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div style="display:none;" class="play_video"></div>
+                                                <h4 class="block-items-heading">
+                                                    <a title="@video.PostTitle" href="@Url.Action("Article", "Euro2024", new { slug = video.Uri })">@video.PostTitle</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="block-child-video slide-video">
+                                <div class="swiper swiper-video">
+                                    <div class="swiper-wrapper scroll-snap">
+                                        @foreach (var video in Model.Videos)
+                                        {
+                                            <div class="swiper-slide scroll-snap-items block-items block-items-vertical">
+                                                <div class="block-items-img hover-image">
+                                                    <a title="@video.PostTitle" href="javascript:;" data-id="@video.ID" class="img-slider">
+                                                        <img src="@Url.Content(video.FeatureImage)" alt="@video.PostTitle" class="img-res" loading="lazy" />
+                                                    </a>
+                                                    <span class="icons-child-video">
+                                                        <img src="~/images/euro2024/child-icon-video.svg" alt="child-icon-video">
+                                                        Video
+                                                    </span>
+                                                </div>
+                                                <h4 class="block-items-heading">
+                                                    <a title="@video.PostTitle" href="@Url.Action("Article", "Euro2024", new { slug = video.Uri })">@video.PostTitle</a>
+                                                </h4>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="swiper-button swiper-button-next btn-next"><i class="icon-slide icon-chevron-right"></i></div>
+                                    <div class="swiper-button swiper-button-prev btn-prev"><i class="icon-slide icon-chevron-left"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-kingsocer">
+                    <div class="euro-top-scorer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-all">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="block-heading-text">
+                    <a href="#">
+                        Tổng quan
+                    </a>
+                </h2>
+            </div>
+            <div class="block-body">
+                <div class="gird-main">
+                    <div class="gird-main-items">
+                        <a href="@(Model.Domain + Euro2024.HostUrl)" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-1.png" alt="item">
+                        </a>
+                        <a href="@(Model.Domain + Euro2024.HostUrl)" class="gird-main-items-title">
+                            Nước chủ nhà
+                        </a>
+                    </div>
+                    <div class="gird-main-items">
+                        <a href="@(Model.Domain + Euro2024.StadiumUrl)" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-2.png" alt="item">
+                        </a>
+                        <a href="@(Model.Domain + Euro2024.StadiumUrl)" class="gird-main-items-title">
+                           sân vận động
+                        </a>
+                    </div>
+                    <div class="gird-main-items">
+                        <a href="@(Model.Domain + Euro2024.BallUrl)" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-3.png" alt="item">
+                        </a>
+                        <a href="@(Model.Domain + Euro2024.BallUrl)" class="gird-main-items-title">
+                           bóng thi đấu
+                        </a>
+                    </div>
+                    <div class="gird-main-items">
+                        <a href="@(Model.Domain + Euro2024.MascotUrl)" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-4.png" alt="item">
+                        </a>
+                        <a href="@(Model.Domain + Euro2024.MascotUrl)" class="gird-main-items-title">
+                           linh vật
+                        </a>
+                    </div>
+                    <div class="gird-main-items">
+                        <a href="/euro-2024/doi-tuyen" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-5.png" alt="item">
+                        </a>
+                        <a href="/euro-2024/doi-tuyen" class="gird-main-items-title">
+                           Đội tuyển
+                        </a>
+                    </div>
+                    <div class="gird-main-items">
+                        <a href="@(Model.Domain + Euro2024.RecordUrl)" class="gird-main-items-img hover-image">
+                            <img src="~/images/euro2024/block-all-6.png" alt="item">
+                        </a>
+                        <a href="@(Model.Domain + Euro2024.RecordUrl)" class="gird-main-items-title">
+                           kỷ lục
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

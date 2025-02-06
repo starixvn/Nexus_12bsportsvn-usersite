@@ -1,0 +1,436 @@
+﻿.wc-table {
+    border-radius: 5px;
+    background: linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    border: 1px solid $white-color;
+    overflow: hidden;
+    position: relative;
+    &::after{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 7rem;
+        background: $primary-bg;
+        position: absolute;
+        top: -10px;
+        left: 0px;
+        z-index: 0;
+        transform: skewY(2deg);
+        border-bottom: 1px solid #fff;
+    }
+    .wc-table-header {
+        display: flex;
+        height: 5.8rem;
+        user-select: none;
+        align-items: center;
+        padding: 1rem 2.4rem;
+        position: inherit;
+        z-index: 9;
+        @include tableMobile {
+            padding: 1.6rem 1.2rem !important;
+        }
+        .name-group{
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: normal;
+        }
+        .cell-rank{
+            font-weight: 700;
+        }
+    }
+
+    .wc-table-body {
+        font-size: 1.3rem;
+        .cell-rank{
+            font-weight: 600;
+        }
+    }
+
+    .cell-participant {
+        align-self: center;
+        display: flex;
+        flex: 1 0 15rem;
+        text-align: left;
+        align-items: center;
+
+        @include tableMobile {
+            flex: 1 0 16rem;
+        }
+    }
+
+    .team {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        &-logo {
+            margin-right: 1.7rem;
+            width: 3rem;
+            height: 3rem;
+            @include Mobile{
+                margin-right: 1rem;
+            }
+
+            img {
+                width: 3rem;
+                height: 3rem;
+                object-fit: cover;
+                border: 1px solid $white-color;
+                background: $white-color;
+                border-radius: 100px;
+            }
+        }
+
+        &-name {
+            width: 11rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: $white-color;
+            font-weight: 600;
+            @include tableMobile {
+                width: 11rem;
+            }
+            a{
+                text-decoration: none;
+                color: $white-color;
+            }
+        }
+    }
+
+    .number {
+        margin-right: .6rem;
+        width: 2rem;
+        text-align: center;
+    }
+
+    .cell-rank {
+        width: 4rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+    }
+
+    .wc-table-row {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem 0;
+        margin: 0 2.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+        @include Mobile{
+            margin: 0 1.2rem;
+        }
+
+        &:last-child{
+            border-bottom: none !important;
+        }
+
+        &.show {
+            &:nth-child(3) {
+                border-bottom: none !important;
+            }
+        }
+        .cell-rank{
+            color: $white-color !important;
+        }
+    }
+
+    .btn-next-standing, .btn-back-standing {
+        cursor: pointer;
+        font-size: 2.4rem;
+
+        &.button-stop {
+            color: #A46E80;
+        }
+    }
+
+    .btn-next-standing {
+        margin-left: .6rem;
+    }
+
+    .btn-back-standing {
+        margin-right: .6rem;
+    }
+    .group-button {
+        position: relative;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 1.2rem;
+        .name{
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            color: $white-color;
+        }
+        .list-button{
+            list-style: none;
+            display: flex;
+            gap: .5rem;
+            li{
+                width: 2.8rem;
+                height: 2.8rem;
+                background: #09154E;
+                border-radius: 5px;
+                border: 1px solid $white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                a{
+                    text-decoration: none;
+                    color: $white-color;
+                    display: block;
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    line-height: normal;
+                    width: 100%;
+                    text-align: center;
+                }
+                &.active{
+                    background: $primary-color;
+                    a{
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wc-on-mobile{
+    color: $white-color;
+    .wc-table-header{
+        padding-bottom: 0 !important;
+    }
+    .wc-table-body{
+        // .wc-table-row{
+        //     &:first-child{
+        //         padding-top: 0;
+        //     }
+        // }
+    }
+
+    .tab-content{
+        .wc-table-body:not(:first-child){
+            display: none;
+        }
+    }
+}
+
+
+
+.page-items-box {
+    .wc-table {
+        .cell-participant {
+            flex: 1 0 20rem;
+        }
+
+        .cell-rank {
+            width: 5rem !important;
+        }
+
+        .wc-table-row {
+            padding: .8rem 0 !important;
+        }
+    }
+}
+
+.king-soccer {
+    @include Mobile{
+        max-height: 100%;
+        overflow: unset;
+    }
+    .wc-table {
+        color: $white-color;
+        overflow: hidden;
+        background: transparent;
+        &::after{
+            display: none;
+        }
+        .wc-table-header {
+            border-bottom: none;
+            background: linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+            box-shadow: none;
+            height: 4rem;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: .8rem;
+            border-radius: 5px;
+            .cell-rank{
+                font-size: 1.5rem;
+                @include Mobile{
+                    font-size: 1.4rem !important;
+                }
+            }
+        }
+        .wc-table-row {
+            border-bottom: none;
+            padding: .6rem 2rem;
+            background: #F2F2F2;
+            margin: 0 0 .8rem;
+            border-radius: 5px;
+            @include Mobile{
+                padding: .3rem 1rem;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+            &.hide {
+                display: none;
+            }
+            .cell-rank{
+                color: $color-title !important;
+            }
+        }
+
+        .cell-rank {
+            width: 8rem;
+            font-weight: 600;
+            @include tableMobile {
+                width: 7rem;
+            }
+        }
+
+        .show-on-mobile{
+            display: none;
+            @include tableMobile{
+                display: block;
+            }
+        }
+
+        .show-on-pc{
+            display: block;
+            @include tableMobile{
+                display: none;
+            }
+        }
+        .team,.team-name{
+            color: $color-title;
+            font-weight: 400;
+        }
+        .player-name{
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: normal;
+            @include Mobile{
+                font-size: 1.4rem;
+            }
+        }
+        .team{
+            font-size: 1.3rem;
+            @include Mobile{
+                font-size: 1.2rem;
+            }
+        }
+        .team-logo{
+            margin-right: 1rem;
+            width: 2.4rem;
+            height: 2.4rem;
+            @include Mobile{
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+            img{
+                width: 2.4rem;
+                height: 2.4rem;
+                border: none;
+                @include Mobile{
+                    width: 2.4rem;
+                    height: 2.4rem;
+                }
+            }
+        }
+        .number{
+            font-size: 1.4rem;
+            margin-right: 1.6rem;
+            width: 2rem;
+            @include Mobile{
+                margin-right: .6rem;
+            }
+        }
+    }
+}
+
+
+
+.euro-top-scorer{
+    border-radius: 5px;
+    border: 2px solid $primary-bg;
+    background: #FFFDF9;
+    overflow: hidden;
+    min-height: 52rem;
+    @include Mobile{
+        background: transparent;
+    }
+    .border-top-scorer{
+        padding: 2rem;
+        @include Mobile{
+            padding: 1.2rem;
+        }
+    }
+}
+
+.king-soccer-header{
+    padding: 1.6rem 2rem;
+    background: #143CDB;
+    border: 1px solid #143cdb;
+    @include Mobile{
+        padding: 1rem 1.2rem;
+    }
+    &-text{
+        color: #FFF;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        @include Mobile{
+            font-size: 1.6rem;
+        }
+    }
+}
+
+#standingWC {
+    @include tableMobile {
+        margin: 3rem -1.2rem 3rem -1.2rem;
+    }
+
+    .king-soccer {
+        @include tableMobile {
+            display: grid;
+        }
+
+        .wc-table {
+            @include tableMobile {
+                width: 32rem;
+            }
+        }
+    }
+}
+
+
+
+
+.top-scorer-hide-button {
+    background: #66172A;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    color: $white-color;
+    width: 100%;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+        margin-left: .5rem;
+        font-size: 2rem;
+    }
+}
+
+

@@ -1,0 +1,42 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.PostViewStatistic
+}
+
+@section Title{
+    @ViewResources.PostViewStatistic
+}
+
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.PostViewStatistic" />
+}
+
+<section class="page-content">
+    <div id="error" class="error"></div>
+    <div class="form-filter">
+        <p>@ViewResources.FilterStatisticDetail</p>
+        <form class="form-horizontal" action="PostViewStatistic" method="post" id="filter">
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.From</p>
+                <input type="date" class="custom-input" id="FromDate" name="FromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.To</p>
+                <input type="date" class="custom-input" id="ToDate" name="ToDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            </div>
+            <button class="btn-custom-admin" type="submit" id="submit-btn">@ViewResources.Submit</button>
+        </form>
+    </div>
+
+    <div class="content">
+        <div class="statistic-report" id="statistic-report"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/minify/js/admin_statistic_post_view.min.js" asp-append-version="true"></script>
+}

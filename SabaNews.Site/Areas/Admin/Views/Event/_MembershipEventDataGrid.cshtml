@@ -1,0 +1,44 @@
+﻿@using SabaNews.Resources
+@{ var count = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize; }
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.Email</th>
+                <th>@ViewResources.LuckynumberAdmin</th>
+                <th>
+                    <p class="warning-admin">
+                        @ViewResources.JoinedDate
+                        @*<i id="date-sort" class="table-sort icon-sort-admin" sort-type="@Model.DateSort"></i>*@
+                    </p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model.Users)
+                {
+                    count++;
+                    var joinDate = SabaNews.Core.Helper.DateTimeUtilize.FormatDateTime(user.JoinDate, "dd/MM/yyyy HH:mm:ssss");
+                    <tr>
+                        <td class="text-center" width="5%">@count</td>
+                        <td class="text-left" width="20%">@user.Name</td>
+                        <td class="text-left" width="25%">@user.Email</td>
+                        <td class="text-center">@user.LuckyNumber</td>
+                        <td class="text-center" width="25%">@joinDate</td>
+                    </tr>
+                }
+            }
+            @if (Model.Users.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

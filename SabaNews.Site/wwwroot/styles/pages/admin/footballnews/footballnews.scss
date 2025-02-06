@@ -1,0 +1,156 @@
+﻿@import '../custom-modal';
+@import '../custom-input';
+
+.modal-edit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.select2-dropdown {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: -100000px;
+    width: 100%;
+    z-index: 1051;
+    width: 300px !important;
+}
+
+.modal-open .modal {
+    overflow-x: unset;
+    overflow-y: unset;
+}
+
+#EditCategory {
+    .modal-content {
+        max-width: 50rem !important;
+
+        .title {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 0;
+            text-transform: unset;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 1rem 1.6rem !important;
+        }
+
+        .row {
+            display: inline;
+            flex-wrap: wrap;
+            flex: 1 0 100%;
+            margin: 0;
+        }
+
+        td {
+            padding: 7px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333333;
+        }       
+
+        .form-control {
+            display: block;
+            height: 31px;
+            padding: 5px 8px;
+            line-height: 1.5;
+            border: 1px solid #CCC;
+            font-size: 14px;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        .txt-countryVn, .txt-leagueNameVn, .txt-leagueFullNameVn {
+            width: 300px !important;
+        }
+
+        .border {
+            border: 1px solid #CCC !important;
+        }
+
+        .txt-countryEn {
+            border: unset;
+        }
+
+        .txt-countryVn {
+            font-weight: unset;
+        }     
+
+        .form-btn {
+            padding-top: 15px;
+            padding-right: 5px;
+            text-align: right;
+        }
+
+        .flex-form-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            width: 348px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label-admin {
+                width: 30%;
+                margin: 0;
+            }
+
+            label {
+                width: 148px;
+            }
+        }
+
+        .form-btn .btn {
+            margin-left: 12px;
+            width: 80px;
+            font-size: 15px;
+        }
+    }
+}
+
+.page-content .error {
+    margin-bottom: 0 !important;
+    margin-top: 1rem !important;
+}
+
+.table-admin {
+    margin-top: 0;
+    max-width: 100%;
+
+    .icon-delete-admin:hover {
+        cursor: pointer;
+    }
+
+    .icon-sort-admin:hover {
+        cursor: pointer;
+    }
+
+    .icon-delete-admin, .icon-edit-admin {
+        font-size: 20px;
+    }
+
+    .icon-edit-admin:hover {
+        cursor: pointer;
+    }
+
+    .main-pagination {
+        .items-pagination {
+            margin-top: 10px;
+        }
+    }
+}

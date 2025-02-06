@@ -1,0 +1,75 @@
+﻿@using DeviceDetectorNET;
+
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/detailstanding.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/detail.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/detail.chunk.css" asp-append-version="true" />
+
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        window.selectedMatchId = @Model.MatchId;
+        window.isEventPage = true;
+    </script>
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/detail.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/detail.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/minify/js/worldcup2022-match.min.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("HeaderWorldCup"))
+<section class="worldcup-match-detail">
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+    <div class="swiper swipper-mobile-banner">
+        <div class="swiper-wrapper">
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-top"></div>
+            </div>
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-center"></div>
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-ads-wc"></div>
+    </div>
+    <div id="worldcup-fixture"></div>
+    <div class="wc-page-main">
+        <div id="app-container" class="container-match-detail"></div>
+    </div>
+</section>

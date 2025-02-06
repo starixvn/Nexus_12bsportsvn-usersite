@@ -1,0 +1,107 @@
+﻿namespace SabaNews.Site.Controllers.Event
+{
+    using Microsoft.AspNetCore.Mvc;
+    using SabaNews.Core.Constants;
+    using SabaNews.Criteria.Posts;
+    using SabaNews.Livescore.Models.Match;
+    using SabaNews.Livescore.Services;
+    using SabaNews.Livescore.Services.Criteria.League;
+    using SabaNews.Livescore.Services.Criteria.Match;
+    using SabaNews.Models.ViewModel.WorldCup2022;
+    using SabaNews.Services;
+    using SabaNews.Services.Interfaces;
+<<<<<<< HEAD
+=======
+    using System.Collections.Generic;
+    using System.Linq;
+>>>>>>> 397801450 (feat: create LastestNews world cup)
+    using System.Threading.Tasks;
+
+    public class WorldCup2022Controller : Controller
+    {
+        private readonly IDataControlService dataControlService;
+        private readonly IPostService postService;
+        private readonly IMatchService matchService;
+        private readonly ILeagueService leagueService;
+        private const long LeagueIdWC = 14638;
+        private const long SeasonIdWC = 10810;
+        private const string CategorySlugWC = "world-cup-2022";
+
+        public WorldCup2022Controller(
+            IPostService postService,
+            IDataControlService dataControlService,
+            IMatchService matchService,
+            ILeagueService leagueService)
+        {
+            this.postService = postService;
+            this.dataControlService = dataControlService;
+            this.matchService = matchService;
+            this.leagueService = leagueService;
+        }
+
+        [Route("world-cup-2022")]
+        public async Task<IActionResult> Index()
+        {
+            var model = await dataControlService.GetWorldCupPageViewModel();
+            return View("~/Views/Event/WorldCup2022/Index.cshtml", model);
+        }
+
+        [Route("world-cup-2022/tin-tuc-world-cup-2022")]
+        public async Task<IActionResult> LastestNews()
+        {
+            var cateSlugCriteria = new GetPostsByCateSlugCriteria() { _CategorySlug = CategorySlugWC, _Start = 0, _End = 10 };
+            var standingsCriteria = new GetSeasonStandingsCriteria() {LeagueId = LeagueIdWC, SeasonId = SeasonIdWC };
+            var topScorersCriteria = new GetTopScorersCriteria() {LeagueId = LeagueIdWC, SeasonId = SeasonIdWC };
+
+            var news = await postService.GetPostsByCateSlugAsync(cateSlugCriteria);
+            var standing = await matchService.GetSeasonStandingsAsync(standingsCriteria);
+            var topScorers = await leagueService.GetTopScorersAsync(topScorersCriteria);
+
+            var viewModel = new LastestNewsViewModel()
+            {
+                Posts = news,
+                Standings = GroupStandingsByGroupName(standing),
+                TopScorers = topScorers
+            };
+            return View("~/Views/Event/WorldCup2022/LastestNewsWC.cshtml", viewModel);
+        }
+
+        private static List<StandingViewModel> GroupStandingsByGroupName(IList<SeasonStandings> seasonStandings)
+        {
+            var groupNames = GetGroupNames(seasonStandings);
+            var standingsViewModels = new List<StandingViewModel>();
+            
+            for(int i = 0; i < groupNames.Count; i++)
+            {
+                standingsViewModels.Add(new StandingViewModel
+                {
+                    GroupName = groupNames[i],
+                    Standings = seasonStandings.Where(x => x.GroupName == groupNames[i]).ToList()
+                });
+            }
+
+            return standingsViewModels;
+        }
+
+        private static List<string> GetGroupNames(IList<SeasonStandings> seasonStandings)
+        {
+            var groupNames = new List<string>();
+            foreach(var item in seasonStandings)
+            {
+                if(groupNames.Count == 0)
+                {
+                    groupNames.Add(item.GroupName);
+                }
+                else
+                {
+                    var check = groupNames.Where(x => x == item.GroupName).ToList();
+                    if(check.Count == 0)
+                    {
+                        groupNames.Add(item.GroupName);
+                    }
+                }
+            }
+            return groupNames;
+        }
+    }
+}

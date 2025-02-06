@@ -1,0 +1,203 @@
+.soccer-match-grid-main{
+    margin-bottom: 3.2rem;
+    @include Mobile{
+        margin-bottom: 2rem;
+    }
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+
+.soccer-match-grid-body{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.2rem;
+    @include tableMobile{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include Mobile{
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: .8rem;
+    }
+}
+
+.soccer-match-grid-items{
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    background: #FFFDF9;
+    padding: 1.2rem 0 1.2rem 1.2rem;
+    position: relative;
+    overflow: hidden;
+    @include Mobile{
+        padding: .8rem 0 .8rem .8rem;
+    }
+    &::after{
+        content: '';
+        display: block;
+        width: calc(100% - 15rem);
+        height: 100%;
+        background: #143CDB;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        clip-path: polygon(0 0, 95% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.soccer-match-grid-date{
+    color: $color-222;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 1.2rem;
+    @include Mobile{
+        margin-bottom: .8rem;
+    }
+}
+.euro-match-item  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .euro-result{
+        min-width: 15rem;
+    }
+    &.live,&.live-intermission{
+        .group-live-icon{
+            display: block;
+            width: 7.5rem;
+            text-align: center;
+            @include Mobile{
+                width: 7rem;
+            }
+            .soccer-match-stage{
+                span{
+                    font-size: 1.4rem;
+                    @include Mobile{
+                        font-size: 1.4rem;
+                    }
+                    &::before,&::after{
+                        z-index: 99;
+                    }
+                }
+            }
+        }
+    }
+    &.live{
+        .soccer-match-stage{
+            span{
+                &::before{
+                    top: 7px;
+                }
+                &::after{
+                    top: 3px;
+                }
+            }
+        }
+    }
+    &.live-intermission{
+        .soccer-match-stage{
+            margin-top: 1.2rem;
+            span{
+                padding-top: .8rem;
+                &::before{
+                    top: 0;
+                    left: 50%;
+                    transform: translate(50%, 0);
+                }
+                &::after{
+                    top: -4px;
+                    left: 48%;
+                    transform: translate(50%, 0);
+                }
+            }
+        }
+    }
+}
+.euro-match-team{
+    position: relative;
+    z-index: 1;
+    &-home{
+        margin-bottom: 1.2rem;
+        @include Mobile{
+            margin-bottom: .4rem;
+        }
+    }
+    &-home,&-away{
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        img{
+            width: 3.4rem;
+            height: 3.4rem;
+            object-fit: cover;
+            border-radius: 50px;
+            background: $white;
+            @include Mobile{
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+        .soccer-team-name{
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: normal;
+            color: $white;
+            @include Mobile{
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+.euro-round-score{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-222;
+    .total-score {
+        padding-right: 1.2rem;
+        border-right: 1px solid #DADADA;
+        color: $color-222;
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: normal;
+        .date-time{
+            font-weight: 600;
+            @include Mobile{
+                font-size: 2rem;
+            }
+        }
+        @include Mobile{
+            font-size: 2rem;
+        }
+    }
+    .haft-score {
+        padding-left: 1.8rem;
+        color: $color-222;
+        font-size: 1.4rem;
+        font-weight: 600;
+        line-height: normal;
+        .end-round {
+            margin-top: .9rem;
+        }
+    }
+}
+
+.soccer-team-status{
+    list-style: none;
+    @include tableMobile{
+        order: 3;
+    }
+    li{
+        text-transform: uppercase;
+        background: #7297C1;
+        border: 1px solid #ABC4E1;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1rem;
+        padding: .1rem .5rem;
+    }
+}

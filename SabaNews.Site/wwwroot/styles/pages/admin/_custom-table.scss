@@ -1,0 +1,220 @@
+﻿@import '../../abstracts/variables';
+@import './pagination-admin';
+.custom-table {
+    width: 100%;
+    background: $bg-table;
+    box-shadow: 0px 1px 4px rgba(86, 89, 146, 0.1);
+    border: 1px solid $border-table;
+
+    tr {
+        &:not(:first-child) {
+            &:hover {
+                background-color: #FEF3D6;
+            }
+        }
+
+        th {
+            border: 1px solid $border-table;
+            line-height: 1.6rem;
+            color: #424242;
+            padding: 1.5rem 0;
+        }
+
+        td {
+            border: 1px solid $border-table;
+            padding: .6rem 1rem;
+
+            a {
+                text-decoration: none;
+                color: #0052CC;
+            }
+        }
+    }
+}
+
+
+
+.label {
+    font-size: 1.2rem;
+    border-radius: 3px;
+    padding: .3rem 1.2rem;
+    font-weight: bold;
+    margin: 0 .5rem;
+
+    &:hover {
+        text-decoration: none;
+        color: $color-fff;
+    }
+
+    &-blue {
+        background: #C4DDFA;
+        color: #5A86B8;
+        border: 1px solid #7CB2EF;
+
+        &:hover {
+            background: #5A86B8;
+            border: 1px solid #5A86B8;
+        }
+    }
+
+    &-green {
+        background: #E7FBD0;
+        border: 1px solid #96D152;
+        color: #77A83F;
+
+        &:hover {
+            background: #77A83F;
+            border: 1px solid #77A83F;
+        }
+    }
+
+
+    &-red {
+        background: #FFD2CF;
+        border: 1px solid #FC9F99;
+        color: #CA5E57;
+
+        &:hover {
+            background: #CA5E57;
+            border: 1px solid #CA5E57;
+        }
+    }
+
+    &.resend-all {
+        background: #DAEAFF;
+        color: #346CB5;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid #8ABDFF;
+
+        &:hover {
+            background: #346CB5;
+            border: 1px solid #346CB5;
+            color: $color-fff;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.table-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+
+    .action {
+        width: 2.4rem;
+        height: 2.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.6rem;
+        margin: 0 .8rem;
+        text-decoration: none;
+        border-radius: 100%;
+        position: relative;
+
+        &:hover {
+            .tooltip-menu {
+                display: block;
+                left: -4rem;
+                top: 3rem;
+                z-index: 9999;
+            }
+        }
+
+        &.action-edit {
+            &:hover {
+                background-color: #D7E9C2;
+
+                i {
+                    &:before {
+                        color: #00875A;
+                    }
+                }
+            }
+        }
+
+        &.action-delete {
+            &:hover {
+                background-color: #FFCBC8;
+
+                i {
+                    &:before {
+                        color: #DE350B;
+                    }
+                }
+            }
+        }
+
+        &.action-send {
+            &:hover {
+                background-color: #D4E6FF;
+
+                i {
+                    &:before {
+                        color: #0052CC;
+                    }
+                }
+            }
+        }
+        &.action-resend {
+            &:hover {
+                background-color: #D4E6FF;
+
+                i {
+                    &:before {
+                        color: #0052CC;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.pagination {
+    height: 4.1rem;
+    border-bottom: 1px solid $border-table;
+    border-left: 1px solid $border-table;
+    border-right: 1px solid $border-table;
+    justify-content: center;
+    padding: 0;
+    background-color: $bg-table;
+
+    .icon-pagination {
+        &:before {
+            color: #444444;
+        }
+
+        &.disabled {
+            opacity: .5;
+        }
+    }
+
+    .main-pagination {
+        .items-pagination {
+            .item {
+                color: #444444;
+            }
+        }
+
+        .active {
+            background-color: #E0E1F0;
+        }
+    }
+}
+.resend-all-email {
+    border-top: 1px solid #E3E3E3;
+    border-right: 1px solid #E3E3E3;
+    border-left: 1px solid #E3E3E3;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #EDEDED;
+    padding: 0 1rem;
+}

@@ -1,0 +1,22 @@
+﻿<script>
+    window.loading = '@Model.Count';
+</script>
+@{
+    foreach (var post in Model)
+    {
+    <div class="video-items">
+                <div class="hover-image">
+                    <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })" class="card-vertical__title text-description">
+                        <img asp-append-version="true" loading="lazy" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                    </a>
+                    <div class="btn-play-video btn-play-orthers" post-id="@post.ID" data-url ="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })">
+                        <span class="icon-play play-orthers" data-url ="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })"></span>
+                    </div>
+                </div>
+                <div class="title">
+                    <h2><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })" class="card-vertical__title text-description">@post.PostTitle</a></h2>
+                    <p class="date-time"> @post.PostTime</p>
+                </div>
+    </div>
+    }
+}

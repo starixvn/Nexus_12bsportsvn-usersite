@@ -1,0 +1,63 @@
+﻿@model string
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/favourite-league.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/favourite-league.chunk.css" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/favourite-league.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/favourite-league.chunk.js" asp-append-version="true"></script>
+    </environment>
+}
+@section Metadata {
+    <meta name="robots" content="noindex, follow,noarchive,max-image-preview:large" />
+    <link rel="canonical" href="@ViewBag.Link" />
+}
+@section Title{
+    Giải đấu quan tâm
+}
+@(await Component.InvokeAsync("Menu", new { page = "home-page" }))
+<h1 style="display: none;">Giải đấu của tôi</h1>
+<div id="app-container"></div>
+@await Html.PartialAsync(ViewResources.SidebarBannerView)
+
+@section Schema {
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "WebPage",
+        "id": "@ViewBag.Link",
+        "url": "@ViewBag.Link",
+        "name": "Giải đấu quan tâm",
+        "description": "Xem bóng đá trực tiếp trận đấu trên SABA VN, link xem TRỰC TIẾP BÓNG ĐÁ mới nhất cho điện thoại, máy tính mới nhất.",
+        "publisher": {
+            "@@type": "Organization",
+            "name": "SABAVN Sports",
+            "logo": {
+            "@@type": "ImageObject",
+            "url": "https://www.sabavn.net/images/sabasports.svg"
+            }
+        },
+        "inLanguage": "vi-VN",
+        "isPartOf": {
+            "@@type": "Website",
+            "name": "SABAVN.net",
+            "url": "https://www.sabavn.net/"
+        }
+    }
+    </script>
+}

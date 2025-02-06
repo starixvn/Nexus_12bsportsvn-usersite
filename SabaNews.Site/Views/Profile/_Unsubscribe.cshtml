@@ -1,0 +1,13 @@
+﻿<div class="container">
+	<div class="block__content block__title">
+		@if (Model)
+		{
+			<h3>@ViewResources.UnsubscribeSuccessfully</h3>
+		}
+		else
+		{
+			<h3>@ViewResources.ExpiredLink</h3>
+			<div>@ViewResources.IncorrectLinkUnsubscribeUser</div>
+		}
+	</div>
+</div>

@@ -1,0 +1,30 @@
+﻿.loading {
+    .ring {
+        width: 5rem;
+        height: 5rem;
+        margin: 0 auto;
+        padding: 1rem;
+        border: 7px dashed #fff;
+        border-radius: 100%;
+        animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+    }
+}
+
+@keyframes loadingD {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.blockPage {
+    background-color: transparent !important;
+    border: none !important;
+}

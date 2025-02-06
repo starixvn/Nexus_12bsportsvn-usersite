@@ -1,0 +1,61 @@
+﻿@using SabaNews.Resources
+@{
+	Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+	@ViewResources.User
+}
+
+@section Title{
+	@ViewResources.User
+}
+
+@section ActiveMenu {
+	<input type="text" readonly hidden name="activeMenu" value="@ViewResources.User" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/user/user.css" asp-append-version="true">
+}
+
+<section class="page-content">
+	<div id="error" class="error"></div>
+	<div class="form-filter">
+		<form class="form-horizontal" action="PostViewStatistic" method="post" id="filter">
+			<div class="form-input">
+				<p class="label-admin">@ViewResources.From</p>
+				<input type="date" class="custom-input" id="FromDate" name="FromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+			</div>
+			<div class="form-input">
+				<p class="label-admin">@ViewResources.To</p>
+				<input type="date" class="custom-input" id="ToDate" name="ToDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+			</div>
+			<div class="form-input">
+				<p class="label-admin">Search Option</p>
+				<select class="list-input custom-input" id="search-type">
+					<option value="name">Name</option>
+					<option value="email">Email</option>
+					<option value="sabaId">SabaID</option>
+					<option value="birthday">Birthday Year</option>
+					<option value="phone">Phone Number</option>
+				</select>
+			</div>
+			<div class="form-input">
+				<p class="label-admin">@ViewResources.SearchLabel</p>
+				<input type="text" class="custom-input list-input" id="search" name="search" value="" placeholder="search by email or name..." />
+			</div>
+
+			<button class="btn-custom-admin" type="submit" id="submit-btn">@ViewResources.Submit</button>
+			<button class="label label-blue btn-link btn-exportexcel">Export excel</button>
+		</form>
+	</div>
+
+	<div class="content">
+		<div class="user-grid" id="user-grid"></div>
+	</div>
+</section>
+
+@section Scripts {
+	<script src="~/js/admin/user/user.js" asp-append-version="true"></script>
+}

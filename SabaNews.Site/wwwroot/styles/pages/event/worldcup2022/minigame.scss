@@ -1,0 +1,772 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './components/container';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/modal-event';
+@import './components/table-stage';
+
+body, .overflow-modal {
+    overflow: unset;
+
+    &.before-start-minigame {
+        background: url('../../../../images/worldcup/minigame/bg_before_event.png') $primary-bg !important;
+        background-attachment: fixed !important;
+    }
+}
+
+.disable-background {
+    background: unset !important;
+}
+
+
+//before event
+.before-event {
+    @include creen1391px {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%
+    }
+
+    .ready {
+        font-size: 2.4rem;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 1rem;
+        color: $white-color;
+        margin: 6rem 0 4rem;
+
+        @include creen1391px {
+            margin: 0;
+            margin-bottom: 3rem;
+        }
+
+        @include tableMobile {
+            margin: 3rem 0 2.4rem 0;
+            font-size: 1.6rem;
+        }
+    }
+
+    .count-day {
+        width: 100%;
+        max-width: 94rem;
+        margin: 0 auto;
+        height: 11.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        @include tableMobile {
+            max-width: 35rem;
+            height: 5rem;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(98% 0, 100% 50%, 98% 100%, 2% 100%, 0 50%, 2% 0);
+            background: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .counter-day {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            height: 100%;
+            align-items: center;
+
+            .counter {
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                .clock {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    .clock-time {
+                        font-size: 10rem;
+                        color: #FABB0A;
+                        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        font-weight: 800;
+                        position: relative;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 14rem;
+
+                        @include tableMobile {
+                            font-size: 4rem;
+                            width: 5rem;
+                        }
+
+                        &:after {
+                            content: '';
+                            display: block;
+                            width: 1rem;
+                            height: 1rem;
+                            background: #43BEAC;
+                            clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+                            position: absolute;
+                            right: -35%;
+                            top: 50%;
+                            transform: translate(50%, -50%);
+
+                            @include Mobile {
+                                width: .8rem;
+                                height: .8rem;
+                            }
+                        }
+                    }
+
+                    .clock-text {
+                        color: $white-color;
+                        position: absolute;
+                        right: 50%;
+                        bottom: -40px;
+                        transform: translate(50%, -50%);
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        font-size: 1.8rem;
+
+                        @include tableMobile {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    .clock {
+                        .clock-time {
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .img-man {
+        text-align: center;
+        margin-top: -10rem;
+
+        @include tableMobile {
+            margin-top: 2rem;
+        }
+
+        &-pc {
+            display: block;
+
+            @include tableMobile {
+                display: none;
+            }
+        }
+
+        &-mobile {
+            display: none;
+
+            @include tableMobile {
+                display: block;
+            }
+        }
+    }
+}
+
+
+
+
+.wrapper-header {
+    background: none;
+    height: 35vw;
+    position: relative;
+
+
+    @include tableMobile {
+        background: url('../../../../images/worldcup/minigame/top-banner-mobile.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+
+    @include Mobile {
+        padding-bottom: 63.5rem;
+        height: 35vw;
+    }
+
+    @include iphoneX {
+        padding-bottom: 61rem !important;
+    }
+
+    @include iphone6 {
+        padding-bottom: 57rem !important;
+    }
+
+
+    @include iphoneXR {
+        padding-bottom: 61rem;
+    }
+
+    @include iphone1213 {
+        padding-bottom: 63.5rem !important;
+    }
+
+    .wave-game {
+        background: url('../../../../images/worldcup/minigame/top_bg.png') $primary-bg;
+        background-size: 100%;
+        background-position: top center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transform: skewY(-2deg);
+        transform-origin: top left;
+
+        @include tableMobile {
+            background: url('../../../../images/worldcup/minigame/top_bg.png') $primary-bg;
+        }
+    }
+
+    .header-control {
+        left: auto;
+        right: 20%;
+        top: 60%;
+
+
+        @include tableMobile {
+            top: auto;
+            right: 30%;
+            bottom: 6rem;
+            left: auto;
+        }
+
+        @include Mobile {
+            top: auto;
+            right: auto;
+            bottom: 4rem;
+        }
+
+        ul {
+            margin-bottom: 2.4rem;
+
+            li {
+                clip-path: polygon(95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0);
+                background: #FF004B;
+
+                @include tableMobile {
+                    clip-path: polygon(93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%, 7% 0);
+                }
+
+                &:first-child {
+                    margin-right: 5rem;
+
+                    @include tableMobile {
+                        margin-right: 2rem;
+                    }
+                }
+
+                a {
+                    border: none;
+                    border-radius: 0;
+                    color: $white-color;
+                    line-height: 3.3rem;
+                    text-transform: inherit;
+                    box-shadow: none;
+                    padding: 0.2vw 2vw;
+                    background: none;
+                    display: block;
+
+                    &:hover {
+                        background: #FF1B5E;
+                        border: none;
+                        color: $white-color;
+                    }
+
+                    @include tableMobile {
+                        font-size: 2rem;
+                        padding: .2rem 3rem;
+                    }
+                }
+            }
+        }
+
+        .btn-standing {
+            clip-path: polygon(95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0);
+            background: #FFCB3A;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            width: 23rem;
+            text-align: center;
+            margin: 0 auto;
+
+            @include tableMobile {
+                width: 21rem;
+            }
+
+            a {
+                padding: 0.2vw 0;
+                font-weight: 700;
+                font-size: 2.4rem;
+                line-height: 3.3rem;
+                display: block;
+                text-decoration: none;
+                color: #3F081B;
+
+                @include tableMobile {
+                    font-size: 2rem;
+                    padding: 0.2rem 3rem;
+                }
+            }
+        }
+    }
+
+    &-column {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        grid-gap: 1rem;
+    }
+}
+
+.minigame-title {
+    margin-bottom: 3.2rem;
+
+    @include tableMobile {
+        margin-bottom: 1.6rem;
+    }
+
+    .text {
+        color: #833D55;
+        padding-bottom: 1.8rem;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 2.8rem;
+        text-align: center;
+        max-width: 70rem;
+        margin: 0 auto;
+
+        @include tableMobile {
+            font-size: 1.6rem;
+        }
+    }
+
+    .dots-parent {
+        height: 2px;
+        display: block;
+        background: #833D55;
+        width: 33.5rem;
+        margin: 0 auto;
+        position: relative;
+
+        @include Mobile {
+            width: 25rem;
+        }
+
+        &:after, &:before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: #570F28;
+            clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+            position: absolute;
+        }
+
+        &:after {
+            left: -5px;
+            top: -2px;
+        }
+
+        &:before {
+            right: -5px;
+            top: -2px;
+        }
+
+        ul {
+            position: absolute;
+            background: #eeeee4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%,-50%);
+            padding: 0 1rem;
+
+            li {
+                background: #570F28;
+                clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+                margin-right: 5px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &.dots-small {
+                    width: 6px;
+                    height: 6px;
+                }
+
+                &.dots-regular {
+                    width: 7px;
+                    height: 7px;
+                }
+
+                &.dots-parent-center {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+}
+
+.wrapper-container {
+    max-width: 115rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+.container-stage {
+    max-width: 70rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+    position: relative;
+}
+
+.row-stage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem 5rem;
+
+    @include Mobile {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 2rem 5rem;
+    }
+}
+
+
+.sticky_icon {
+    img {
+        position: absolute;
+
+        &.right-top {
+            top: 0;
+            right: -85px;
+
+            @include tableMobile {
+                display: none;
+            }
+        }
+
+        &.left-bottom {
+            bottom: 0;
+            left: -75px;
+
+            @include tableMobile {
+                display: none;
+            }
+        }
+    }
+}
+.main-stage {
+    margin-top: 4rem;
+    position: relative;
+
+    @include tableMobile {
+        margin-top: 2.6rem;
+    }
+
+    @include Mobile {
+        padding: 0 3.5rem;
+    }
+
+    .stage-items {
+        position: relative;
+        z-index: 9;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 1.7rem;
+        height: 20rem;
+        cursor: no-drop;
+
+        &.stage-votes {
+            cursor: pointer;
+
+            .stage-round {
+                transition: filter .3s ease-in-out;
+
+                &:hover {
+                    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.35));
+                }
+
+                h2 {
+                    background: #E8E8D6;
+                    color: #82152C;
+                    transition: background .3s ease-in-out;
+
+                    &:hover {
+                        background: #F8F8F1;
+                    }
+                }
+            }
+
+            .icon-stage {
+                cursor: pointer;
+                background: #FFCA36;
+
+                i {
+                    &:before {
+                        color: #47000E;
+                    }
+                }
+            }
+
+            ul {
+                li {
+                    font-size: 1.8rem;
+
+                    @include tableMobile {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+
+            .status-stage-time {
+                color: #FFCA36;
+                font-weight: 700;
+            }
+        }
+
+        &.end-stage {
+            .icon-stage {
+                cursor: pointer;
+                background: #FFCA36;
+
+                i {
+                    &:before {
+                        color: #47000E;
+                    }
+                }
+            }
+        }
+
+        .icon-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: rgba($color: #EEEEE4, $alpha: .2);
+            border-radius: 5px;
+            width: 3.8rem;
+            height: 4.2rem;
+            margin: 0 auto;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+
+            i {
+                font-size: 2.4rem;
+
+                &:before {
+                    color: #EEEEE4;
+                }
+            }
+        }
+
+        .bg-items {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+        }
+
+
+
+        .stage-round {
+            h2 {
+                background: #97394D;
+                color: #F2A6B6;
+                font-weight: 700;
+                font-size: 2rem;
+                line-height: 2.8rem;
+                text-align: center;
+                padding: .7rem 0;
+                max-width: 23rem;
+                margin: 1.6rem auto;
+                clip-path: polygon(96% 0, 100% 49%, 96% 100%, 4% 100%, 0 49%, 4% 0);
+                text-transform: uppercase;
+            }
+        }
+
+        .count-and-time {
+            list-style: none;
+            max-width: 23rem;
+            width: 100%;
+            margin: 0 auto;
+
+            li {
+                color: #E8E8D6;
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+                display: flex;
+                justify-content: center;
+
+                @include tableMobile {
+                    font-size: 1.4rem;
+                }
+
+                &.font-weight-bold {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+
+.wave-standing-main {
+    background: linear-gradient(119.36deg, #901831 0%, #310818 100%);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: skewY(-2deg);
+    transform-origin: top left;
+}
+
+.wave-standing-bg {
+    background: url('../../../../images/worldcup/minigame/mask_bxh.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top 3rem center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transform-origin: top left;
+    transform: skewY(-2deg);
+
+    @include tableMobile {
+        background-position: top 1rem center;
+    }
+}
+
+.minigame-winner {
+    background: url('../../../../images/worldcup/minigame/bg_winner.png') no-repeat top center;
+    background-size: cover;
+    padding: 10rem 0 10rem 0;
+}
+
+.section-stage {
+    padding: 5rem 0 15rem 0;
+    position: relative;
+
+    @include tableMobile {
+        padding: 5rem 0 5rem 0;
+    }
+
+    .bg-stage {
+        background: url('../../../../images/worldcup/minigame/bg_stage.png') no-repeat top center;
+        background-size: contain;
+        opacity: 0.2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        @include tableMobile {
+            background-size: cover;
+            height: 50%;
+            top: 10%;
+        }
+    }
+}
+
+.custom-select {
+    appearance: none;
+    background: url('../../../../images/worldcup/minigame/chevron-down.png') 100% no-repeat #E8E8D6;
+    background-position: center right .5rem;
+}
+
+#minigame-standing {
+    .custom-select {
+        @include Mobile {
+            background: url('../../../../images/worldcup/minigame/chevron-down.png') 96% / 8% no-repeat #E8E8D6;
+        }
+    }
+}
+
+#minigame-winners {
+    .custom-select {
+        @include Mobile {
+            background: url('../../../../images/worldcup/minigame/chevron-down_winner.png') 96% / 8% no-repeat #8A172F;
+        }
+    }
+}
+
+
+.statistic-grid {
+    &::before {
+        display: block;
+        content: "";
+        position: fixed;
+        background: url(../../../../images/worldcup/minigame/mask_bxh.png);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top 9rem center;
+
+        @include tableMobile {
+            background-position: top 12.5rem center;
+        }
+    }
+
+    &::after {
+        display: block;
+        content: "";
+        position: fixed;
+        background: linear-gradient(119.36deg, #901831 0%, #310818 100%);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -2;
+    }
+}
+
+.footer {
+    background-color: #081224;
+}

@@ -1,0 +1,104 @@
+﻿@using SabaNews.Resources
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader {
+Euro 2024 Team
+}
+
+@section Title {
+Euro 2024 Team
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.Euro2024Management" />
+}
+@section Styles {
+    <link rel="stylesheet" href="~/styles/pages/admin/euro-2024/team.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <div class="form-horizontal navigation">
+        <p class="label label-blue item-navigation"><a href="@Url.Action("Poll", "Euro2024Management")">Poll</a></p>
+        <p class="label label-blue item-navigation active"> <a href="@Url.Action("Team", "Euro2024Management")">Team</a></p>
+        <p class="label label-blue item-navigation"> <a href="@Url.Action("Minigame", "Euro2024Management")">Minigame</a></p>
+    </div>
+    <div class="content">
+        <div class="data-grid" id="data-grid">
+            <div class="table-admin">
+                <table class="data-grid">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="13%">Team Name</th>
+                            <th width="13%">Logo</th>
+                            <th>@ViewResources.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var count = 0;
+                            foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td class="text-center">@count</td>
+                                    <td class="text-left">@GetGeneralName(item.TeamNameEN, item.TeamFullNameEN, item.TeamNameVN)
+                                    </td>
+                                    <td class="text-center"><img src="@(item.IconVN ?? GetTeamIcon(item.Icon))" width="50">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("TeamPlayer", "Euro2024Management", new { teamId = item.TeamId})"><i
+                                                class="icon icon-edit-admin btn-Edit" title="Edit"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal modal-edit-center" id="EditPlayerContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/admin/topscorers/topscorers.js" asp-append-version="true"></script>
+}

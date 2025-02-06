@@ -1,0 +1,182 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './base/base';
+@import './layout/header';
+@import './layout/footer';
+@import './components/button';
+@import './components/container';
+@import './components/block';
+@import './components/hover-img-item';
+@import './components/items-block';
+@import './components/table';
+
+.ishow-pc{
+    display: block;
+    @include Mobile{
+        display: none;
+    }
+}
+
+.ishow-mobile{
+    display: none;
+    @include Mobile{
+        display: block;
+    }
+}
+
+
+.pages-main-hot {
+    display: grid;
+    grid-template-columns: 60rem auto;
+    grid-gap: 2rem;
+    @include tableMobile{
+        grid-template-columns: 35rem auto;
+    }
+    @include Mobile{
+        display: unset;
+    }
+
+    .page-items-hot {
+       
+        .block-items-vertical-hot{
+            @include Mobile{
+                margin-bottom: 2rem;
+            }
+            .hover-image{
+                max-height: 40rem;
+                height: 40rem;
+                @include Mobile{
+                    max-height: 20.5rem;
+                    height: 20.5rem;
+                }
+            }
+            .group-title-hot{
+                position: unset;
+                min-height: auto;
+                background: transparent;
+                padding: 0;
+                .block-items-heading,.block-heading-description{
+                    color: $color-title;
+                    a{
+                        color: $color-title;
+                    }
+                }
+                .block-heading-description{
+                    @include Mobile{
+                        display: block !important;
+                    }
+                }
+            }
+        }
+
+        .post-hot {
+            .hover-image {
+                height: 40rem;
+
+                @include tableMobile {
+                    height: 30rem;
+                }
+
+                @include Mobile {
+                    height: 40rem;
+                }
+            }
+        }
+    }
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: auto 37.1rem;
+    grid-gap: 0;
+    padding-top: 2rem;
+    @include tableMobile{
+        grid-template-columns: auto 30rem;
+    }
+    @include Mobile{
+        display: block;
+        padding-top: 0;
+    }
+    .page-items-right{
+        border-left: 1px solid #E2E2E2;
+        padding-left: 2rem;
+        @include Mobile{
+            border-left: none;
+        }
+    }
+    .page-items-left {
+        padding-right: 2rem;
+        @include Mobile{
+            padding-right: 0;
+        }
+    }
+}
+
+
+
+.view-more {
+    margin-bottom: 3rem;
+
+    @include tableMobile {
+        margin-right: 1.2rem;
+    }
+}
+
+
+
+
+.news-grid{
+    .block-items-horizontal{
+        padding-bottom: 0;
+    }
+}
+
+.euro-top-standing{
+    @include Mobile{
+        margin-top: 2rem;
+    }
+}
+.euro-top-scorer{
+    @include Mobile{
+        margin: 2rem 0;
+    }
+}
+
+.king-soccer{
+    .team-name{
+        .team{
+            display: none;
+        }
+    }
+}
+
+.wc-table{
+    .wc-table-header{
+        height: 4rem;
+        padding: 2rem 1.2rem;
+    }
+    .wc-table-row{
+        padding: 1.2rem 0;
+        margin: 0 1.2rem;
+    }
+}
+
+.king-soccer{
+    .wc-table-row{
+        padding: .6rem 1rem !important;
+    }
+    .number{
+        margin-right: .3rem !important;
+        @include tableMobile{
+            margin-right: 1rem !important;
+        }
+        @include Mobile{
+            margin-right: .3rem !important;
+        }
+    }
+    .wc-table-header{
+        height: 3.6rem !important;
+    }
+}
+
+

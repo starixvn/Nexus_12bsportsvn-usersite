@@ -1,0 +1,55 @@
+﻿@using SabaNews.Resources;
+@using SabaNews.Site.Extensions;
+@using SabaNews.Core.Helper;
+@{
+    var count = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize;
+}
+<div class="table-admin">
+    <table class="data-grid-hot">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.LeagueFullNameEN</th>
+                <th>@ViewResources.LeagueNameVN</th>
+                <th>Country Icon</th>
+                <th>@ViewResources.Country</th>
+                <th>@ViewResources.CountryVN</th>
+                <th>@ViewResources.CreatedDate<i class="icon-sort-admin" id="btn-sort-createdDate"></i></th>
+                <th>@ViewResources.Action</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var league in Model.Leagues)
+                {
+                    var iconCountry = league.CountryIconVN ?? league.CountryLogo;
+                    count++;
+                    <tr>
+                        <td class="text-center" width="5%">@count</td>
+                        <td class="text-left" width="20%">@league.LeagueFullNameEN</td>
+                        <td class="text-left" width="20%">@league.LeagueNameVN</td>
+                        <td class="text-center" width="8%"><img src="@(iconCountry ?? LivescoreHelper.GetTeamIcon(iconCountry))" width="30"></td>
+                        <td class="text-left" width="12%">@league.CountryEN</td>
+                        <td class="text-left" width="12%">@league.CountryVN</td>
+                        <td class="text-center" width="12%">@DateTimeUtilize.ChangeTimeZoneToClient(league.CreatedDate)</td>
+                        <td class="text-center" width="8%">
+                            <i class="icon icon-delete-admin btn-Delete" title="Delete"
+                           data-url="@Url.Action("RemoveLeagueExtra", "ManagementLeague", new { leagueId = league.LeagueId})"></i>
+                        </td>
+                        <td class ="text-center" width="4%">
+                            <i class="icon icon-sort-admin"></i>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Leagues.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

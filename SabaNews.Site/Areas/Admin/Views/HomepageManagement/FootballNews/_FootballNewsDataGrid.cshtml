@@ -1,0 +1,39 @@
+﻿@using SabaNews.Resources;
+@using SabaNews.Core.Helper;
+@{
+    var count = 0;
+}
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th width="5%">#</th>
+                <th width="12%">Category</th>
+                <th width="12%">Created Date</th>
+                <th width="5%">@ViewResources.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td class="text-center">@count</td>
+                        <td class="text-center">@item.Category</td>
+                        <td class="text-center">@DateTimeUtilize.FormatDateTime(item.CreatedDate, "dd/MM/yyyy HH:mm:ssss")</td>
+                        <td class="text-center">
+                            <i class="icon icon-edit-admin btn-Edit" data-count="@count" title="Edit"></i>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="4">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

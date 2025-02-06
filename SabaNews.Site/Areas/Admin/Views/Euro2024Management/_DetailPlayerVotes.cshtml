@@ -1,0 +1,135 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper;
+@using static SabaNews.Site.Extensions.EuroHelper;
+@using SabaNews.Core.Constants;
+@using System.Linq;
+@model SabaNews.Models.ViewModel.Event.Euro2024.AdminDetailMinigameViewModel;
+@{
+    var count = 0;
+    var totalPoint = 0;
+    var stages = new long[] { Euro2024.EightTeamStage, Euro2024.QuarterfinalsStage, Euro2024.SemifinalsStage, Euro2024.FinalStage  };
+    var classStages = new string[] { "eight-team", "quarterfinals", "semifinal", "final"  };
+}
+<div class="table-admin">
+    <div class="form-filter-detail">
+        <form class="form-horizontal">
+            <p>User Name: </p>
+            <input class="username" disabled type="text" value="@Model.Username" />
+            <p>Email: </p>
+            <input class="email" disabled type="text" value="@Model.Email" />
+        </form>
+        <form class="form-horizontal">
+            <p>Ranking No. </p>
+            <input class="rank" disabled type="text" value="@Model.Rank" />
+            <p>Total Point: </p>
+            <input class="total-point" disabled type="text" value="@Model.Totalpoint" />
+        </form>
+    </div>
+    
+    @if(Model.StageDetail != Euro2024.MinigameStage2){
+        <table class="data-grid">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="22%">Match</th>
+                    <th width="15%">Prediction</th>
+                    <th width="10%">Result</th>
+                    <th width="17%">Last Edit</th>
+                    <th width="17%">First Selection</th>
+                    <th width="6%">Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    count = 0;
+                    totalPoint = 0;
+                    foreach (var match in Model.Matches.Where(m => m.Stage.StageId == Euro2024.GroupStageId).ToList())
+                    {
+                        count++;
+                        var vote = GetVotePredict(match, Model.Votes);
+                        var result = GetResultPredict(match, Model.Votes);
+                        var teamVote = GetMatchNamePredict(match, Model.Votes);
+                        var point = vote?.Point ?? 0;
+                        totalPoint = totalPoint + point;
+                            <tr>
+                                <td class="text-center" width="5%">@count</td>
+                                <td class="text-left" width="22%">@GetTeamName(match.HomeTeam) -vs- @GetTeamName(match.AwayTeam)</td>
+                                <td class="text-center" width="15%">@teamVote</td>
+                                <td class="text-center" width="10%">
+                                    <span class="choose choose-@result">
+                                        <i class="icon-@result"></i>
+                                    </span>
+                                </td>
+                                <td class="text-center" width="17%">@(vote != null ? SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(vote.UpdatedDate, "dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                <td class="text-center" width="17%">@(vote != null ? SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(vote.CreatedDate, "dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                            </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="total-score">
+            <span>Total point</span>
+            <span>@totalPoint</span>
+        </div>
+    }
+    else
+    {
+        <div class="filter-detail">
+            <span class="btn-round active" data-id="eight-team" >Vòng 1/8</span>
+            <span class="btn-round" data-id="quarterfinals">Tứ Kết</span>
+            <span class="btn-round" data-id="semifinal">Bán Kết</span>
+            <span class="btn-round" data-id="final">Chung Kết</span>
+        </div>
+        @for(var i = 0; i < stages.Count(); i++)
+        {
+            var matchStage = Model.Matches.Where(m => m.Stage.StageId == stages[i]).ToList();
+            var isDisplay = i == 0;
+            var classStage = classStages[i];
+            totalPoint = 0;
+            <div id="table-round-@classStage" class="table-round" style="display: @(isDisplay ? "block": "none");" >
+                <table class="data-grid">
+                    <thead style="width: 100% !important;">
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="22%">Match</th>
+                            <th width="15%">Prediction</th>
+                            <th width="10%">Result</th>
+                            <th width="17%">Last Edit</th>
+                            <th width="17%">First Selection</th>
+                            <th width="6%">Point</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var match in matchStage)
+                        {
+                            count++;
+                            var vote = GetVotePredict(match, Model.Votes);
+                            var result = GetResultPredict(match, Model.Votes);
+                            var teamVote = GetMatchNamePredict(match, Model.Votes);
+                            var point = vote?.Point ?? 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="22%">@GetTeamName(match.HomeTeam) -vs- @GetTeamName(match.AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="17%">@(vote != null ? SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(vote.UpdatedDate, "dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="17%">@(vote != null ? SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(vote.CreatedDate, "dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="total-score">
+                    <span>Total point</span>
+                    <span>@totalPoint</span>
+                </div>
+            </div>
+        }
+    }
+</div>
+

@@ -1,0 +1,560 @@
+@import '../../../../abstracts/variables';
+@import '../../../../abstracts/mixins';
+@import '../../../../base/base';
+@import '../../../../components/soccer-item';
+@import './components/play-offs';
+@import './components/date-bar';
+
+.play-offs{
+  padding-top: 15rem;
+  @media (max-width : 1500px) {
+    padding-top: 10rem;
+  }
+  @include tableMobile{
+    padding-top: 0;
+  }
+}
+
+.draw-show-mb{
+    display: none;
+    @include tableMobile{
+        display: block;
+    }
+}
+.draw-show-pc{
+    display: block;
+    @include tableMobile{
+        display: none;
+    }
+}
+.wc-playoffs-showmb{
+    .draw-container {
+      padding: 0 0.8rem;
+      @include tableMobile{
+        padding: 0;
+      }
+        .draw-wrapper{
+            margin: 0 -1.2rem;
+            .draw{
+              margin-bottom: 5rem;
+                &__brackets{
+                  grid-gap: 5rem 0;
+                  margin: 0;
+                }
+                &__header{
+                  background: transparent;
+                  grid-template: "previous label next" 3.8rem / 1.6rem 1fr 1.6rem;
+                  border: none;
+                  padding: 0 1.2rem;
+                }
+                &__round{
+                  grid-template-rows: 4rem;
+                  border: 1px solid #C8C8B0;
+                  border-radius: 5px;
+                  border-top: none;
+                  padding-bottom: 1rem;
+                  overflow: hidden;
+                  @include tableMobile{
+                    border: none;
+                  }
+                  &--first{
+                    .draw__header{
+                      .draw__arrow--previous{
+                        opacity: .5;
+                      }
+                    }
+                    .draw__bracket{
+                      .bracket{
+                        &::before{
+                          display: none;
+                        }
+                      }
+                    }
+                  }
+                  &--last{
+                    .draw__header{
+                      .draw__arrow--next{
+                        opacity: .5;
+                      }
+                    }
+                  }
+                }
+                &__label{
+                  @include tableMobile{
+                    color: #FAAA00;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: normal;
+                  }
+                }
+                &__arrow{
+                  &::before{
+                    background: #FAAA00;
+                    color: #000;
+                    font-size: 2.6rem;
+                    border-radius: 5px;
+                  }
+                  &--next{
+                    right: 8px;
+                  }
+                  &--previous{
+                    left: 8px;
+                  }
+                }
+                &__final{
+                  &--header{
+                    text-align: center;
+                    color: #561020;
+                  }
+                }
+                &__bracket{
+                  &::after{
+                    @include tableMobile{
+                      width: 1.6rem;
+                      right: 25px;
+                    }
+                    @include Mobile{
+                      width: 1.6rem;
+                      right: -45px;
+                    }
+                    
+                  }
+                  .bracket{
+                    gap: 1.2rem;
+                    &::before{
+                      top: 50%;
+                      content: '';
+                      height: 1px;
+                      position: absolute;
+                      display: block;
+                      background: #fff;
+                      @include tableMobile{
+                        width: calc(100% + 40px);
+                        left: -100%;
+                      }
+                      @include Mobile{
+                        width: calc(100% - 29px);
+                        left: -100%;
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    }
+}
+
+.bracket-final{
+  &::after{
+    display: none;
+  }
+}
+
+.name-and-logo {
+  display: flex;
+  align-items: center;
+}
+
+.wc-playoffs-showpc{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.2rem;
+    margin-bottom: 10rem;
+    @media (max-width : 1500px) {
+      transform: scale(.8);
+    }
+    .draw-container{
+        .draw-wrapper{
+            display: unset;
+            overflow: unset;
+            .draw{
+                padding-bottom: 0;
+                grid-gap: 4rem;
+                grid-auto-columns: 19rem;
+                &__round{
+                    grid-template-rows: auto; 
+                }
+                &__header{
+                    display: none !important;
+                }
+                .bracket {
+                  background: transparent;
+                  border: none;
+                  grid-gap: 1rem;
+                  position: relative;
+                }
+                &__brackets{
+                  grid-gap: 5rem 0;
+                }
+                &__bracket{
+                  &::after{
+                    width: .5rem !important;
+                    right: -20px;
+                  }
+                }
+            }
+        }
+    }
+    .flex-play-offs{
+        display: grid;
+        grid-template-columns: 65rem 65rem;
+        align-items: center;
+        justify-content: center;
+        grid-gap: 14rem;
+        position: relative;
+        &::-webkit-scrollbar {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #ededed;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+      }
+    .bracket__participant,.bracket__image,.bracket__result {
+      position: relative;
+      z-index: 999;
+    }
+}
+
+.draw__round{
+  .group-playoff{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.6rem;
+    padding: 0 1.2rem;
+    max-width: 19rem;
+    width: 100%;
+    @include tableMobile{
+      max-width: 100%;
+      width: calc(100% - 140px);
+      margin: 0 auto;
+    }
+    @include Mobile{
+      width: 100%;
+      max-width: 26rem;
+      margin: 0 auto;
+    }
+    &-home{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        right: -15px;
+        z-index: -1;
+        border-right: 1px solid #fff;
+        border-top: 1px solid #fff;
+        top: 50%;
+        @include tableMobile{
+          right: -30px;
+        }
+      }
+      &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: -15px;
+        z-index: -1;
+        border-left: 1px solid #fff;
+        border-top: 1px solid #fff;
+        top: 50%;
+        @include tableMobile{
+          left: -30px;
+        }
+      }
+    }
+    &-away{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        right: -15px;
+        z-index: -1;
+        border-right: 1px solid #fff;
+        border-color: #d9d9d9;
+        border-bottom: 1px solid #fff;
+        bottom: 50%;
+        @include tableMobile{
+          right: -30px;
+        }
+      }
+      &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: -15px;
+        z-index: -1;
+        border-left: 1px solid #fff;
+        border-color: #d9d9d9;
+        border-bottom: 1px solid #fff;
+        bottom: 50%;
+        @include tableMobile{
+          left: -30px;
+        }
+      }
+    }
+    .clip-skew{
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.50));
+      border-bottom-left-radius: 5px;
+      border-top-right-radius: 5px;
+      transform: skew(-15deg);
+      @include tableMobile{
+        z-index: -1;
+      }
+    }
+  }
+  &--first{
+    .group-playoff{
+      &::after{
+        display: none;
+      }
+    }
+    .draw__bracket{
+      &::before{
+        content: "";
+        position: absolute;
+        width: .5rem;
+        height: 1px;
+        border-top: 1px solid #fff;
+        border-color: #d9d9d9;
+        bottom: -25%;
+        right: -25px;
+        @include tableMobile{
+          width: calc(100% + 25px);
+          right: -100%;
+        }
+        @include Mobile{
+          width: calc(100% - 45px);
+          right: -100%;
+        }
+      }
+      &--even{
+        &::before{
+          display: none;
+        }
+      }
+    }
+  }
+  &--last{
+    .draw__bracket{
+      &::after{
+        left: -20px !important;
+        @include tableMobile{
+          width: calc(100% - 29px) !important;
+          left: -100% !important;
+        }
+      }
+      &::before{
+        content: '';
+        border-top: 1px solid #d9d9d9;
+        width: 29%;
+        position: absolute;
+        right: -70px;
+        top: 50%;
+        @include tableMobile{
+          display: none;
+        }
+      }
+      .group-playoff{
+        @include tableMobile{
+          &-home,&-away{
+            &::before{
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.euro-result{
+  position: absolute;
+  top: 30%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 19rem;
+  gap: 25rem;
+  &-header{
+      list-style: none;
+      text-align: center;
+      li{
+          color: #FAAA00;
+          font-size: 2.4rem;
+          font-weight: 700;
+          line-height: normal;
+          margin-bottom: 1rem;
+          &.logo-result{
+            margin-bottom: 0;
+          }
+          &.uppercase-title{
+            text-transform: uppercase;
+          }
+      }
+  }
+  &-footer{
+      position: absolute;
+      bottom: -25px;
+      right: 50%;
+      transform: translate(50%,0);
+      list-style: none;
+      text-align: center;
+      li{
+          font-weight: 700;
+          font-size: 1.4rem;
+          line-height: 1.9rem;
+          color: #EF4300;
+          i{
+              font-size: 2.4rem;
+          }
+      }
+  }
+  .group-playoff{
+    margin: 0 auto;
+    .bracket__image{
+      width: 2.6rem;
+      height: 2.6rem;
+      margin-right: .4rem;
+      border-radius: 50px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .bracket__name {
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: #222;
+      cursor: pointer;
+    }
+    .bracket__result{
+      font-size: 2rem;
+      background: #0A195B;
+      width: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      height: 90%;
+      color: #fff;
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      border-top-right-radius: 5px;
+      transform: skew(-15deg);
+      font-weight: 700;
+      span{
+        transform: skew(10deg);
+      }
+    }
+    &-home,&-away{
+      &::before{
+        display: none;
+      }
+      &::after{
+        display: none;
+      }
+    }
+  }
+  .bracket {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+
+.notfound-name {
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: #000;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: normal;
+}
+
+
+
+.wc-flip-x{
+  transform: rotateY(180deg);
+  .bracket,.bracket__series{
+      transform: rotateY(180deg);
+  }
+  .group-playoff{
+    &-home{
+      &::before{
+        left: -15px;
+        border-left: 1px solid #fff;
+        border-right: none !important;
+      }
+      &::after{
+        right: -15px !important;
+        border-right: 1px solid #fff !important;
+        border-left: none !important;
+        left: auto !important;
+      }
+    }
+    &-away{
+      &::before{
+        left: -15px;
+        border-left: 1px solid #fff;
+        border-right: none !important;
+      }
+      &::after{
+        right: -15px !important;
+        border-right: 1px solid #fff !important;
+        border-left: none !important;
+        left: auto !important;
+      }
+    }
+  }
+  .bracket__result{
+    border-bottom-left-radius: 5px;
+  }
+}
+
+
+.win{
+  .bracket__name {
+    font-weight: 600;
+  }
+}
+
+.header-round {
+  position: absolute;
+  top: -40px;
+  color: #FAAA00;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: normal;
+  display: block;
+  width: 100%;
+  @include tableMobile{
+    display: none;
+  }
+}
+
+

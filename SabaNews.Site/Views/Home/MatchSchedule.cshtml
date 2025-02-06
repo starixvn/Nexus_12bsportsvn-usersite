@@ -1,0 +1,32 @@
+﻿@section Metadata {
+	<meta name="description" content='@Model.Header.Description' />
+	<meta property="og:description" content='@Model.Category.OgDescription' />
+	<meta property="og:title" content='@Model.Category.OgTitle' />
+	<meta property="og:image" content='@Model.Category.OgImage' />
+}
+
+@section Title{
+	@Model.Header.Title
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+
+@(await Component.InvokeAsync("Menu", new { CategorySlug = Model.Header.CategorySlug }))
+<section class="main">
+    <div class="container">
+        <div class="block block-main">
+            <h2 class="block__title"><a>Lịch Thi Đấu</a></h2>
+            <div class="block__content">
+                <div class="match-schedule">@Html.Raw(@Model.Post.PostContent)</div>
+            </div>
+        </div>
+        <div class="block block-extension">
+            @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel())
+        </div>
+        
+    </div>
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>
+

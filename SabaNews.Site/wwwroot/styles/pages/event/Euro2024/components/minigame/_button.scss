@@ -1,0 +1,40 @@
+.btn-event{
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 28px;
+    padding: .7rem 3.7rem;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow ease-in-out .3s;
+    text-align: center;
+    &:hover{
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.35);
+    }
+    @include Mobile{
+        padding: .7rem 2.4rem;
+        font-size: 1.6rem;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.35);
+    }
+    &-success {
+        background: #07B856;
+    }
+    &-warning{
+        background: #FFCA00;
+        color: #222;
+        @include Mobile{
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.35);
+        }
+    }
+    &-lock{
+        background: rgba(0, 0, 0, 0.25);
+        color: #fff;
+        opacity: 0.35;
+        cursor: not-allowed !important;
+        box-shadow: none;
+        &:hover{
+            box-shadow: none;
+        }
+    }
+}

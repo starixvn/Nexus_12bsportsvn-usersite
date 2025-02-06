@@ -1,0 +1,427 @@
+﻿@import '../custom-modal';
+@import '../custom-input';
+
+.modal-edit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.show-league {
+    border-bottom: 1px solid Silver;
+    width: 249px;
+    height: 28px;
+
+    .btn_major_league {
+        width: 113px;
+        color: navy;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: left;
+        height: 28px;
+        margin-right: 30px;
+    }
+
+    .btn_major_league:hover {
+        cursor: pointer;
+    }
+
+    .btn_hot_league:hover {
+        cursor: pointer;
+    }
+
+    .btn_hot_league {
+        width: 106px;
+        color: navy;
+        font-size: 16px;
+        font-weight: bold;
+        height: 28px;
+        text-align: center;
+    }
+
+    .btn_show_league {
+        border-bottom: 3px solid navy;
+    }
+}
+
+.select2-dropdown {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: -100000px;
+    width: 100%;
+    z-index: 1051;
+    width: 397px !important;
+}
+
+#AddLeagueContent .modal-content, #EditLeagueContent .modal-content {
+    .title {
+        color: #fff;
+        font-size: 1.6rem;
+        margin-bottom: 0;
+        text-transform: unset;
+        line-height: 1;
+    }
+
+    .select2-dropdown {
+        background-color: white;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        left: -100000px;
+        width: 100%;
+        z-index: 1051;
+        width: 397px !important;
+    }
+
+    .select2-container {
+        margin-left: -375px;
+    }
+
+    .modal-body {
+        padding: 1rem 1.6rem !important;
+    }
+
+    .row {
+        display: inline;
+        flex-wrap: wrap;
+        flex: 1 0 100%;
+        margin: 0;
+    }
+
+    td {
+        padding: 7px;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 14px;
+        color: #333333;
+    }
+
+    .lable-major {
+        margin-left: 40px;
+    }
+
+    .checkbox-major {
+        margin-left: 5px;
+    }
+
+    .form-control {
+        display: block;
+        height: 31px;
+        padding: 5px 8px;
+        line-height: 1.5;
+        border: 1px solid #CCC;
+        font-size: 14px;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .label-LeagueID {
+        width: 70px;
+    }
+
+    .txt-countryVn, .txt-leagueNameVn, .txt-leagueFullNameVn, .txt-countryEn {
+        width: 397px !important;
+        margin-left: -375px;
+    }
+
+    .txt-countryEn{
+        border: unset;
+    } 
+    
+    .txt-countryVn {
+        width: 250px !important;
+        margin-left: -375px;
+    }
+
+    .txt-leagueId {
+        width: 60px !important;
+        margin-left: 77px;
+        margin-right: 40px;
+    }
+
+    .txt-countryEn {
+        font-weight: unset;
+    }
+
+    .txt-priority {
+        width: 65px !important;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    .form-btn {
+        padding-top: 15px;
+        padding-right: 5px;
+        text-align: right;
+    }
+
+    .form-btn .btn {
+        margin-left: 12px;
+        width: 80px;
+        font-size: 15px;
+    }
+
+    .flex-form-input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        width: 348px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .label-admin {
+            width: 30%;
+            margin: 0;
+        }
+
+        label {
+            width: 148px;
+        }
+
+        .admin-text-logo {
+            &-data-img {
+                background: #FFFFFF;
+                border: 1px solid #DDDDDD;
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                text-align: center;
+                position: relative;
+                height: 5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    width: 4rem;
+                    height: 4rem;
+                    object-fit: cover;
+                    margin: 0 auto;
+                }
+
+                .icon-close {
+                    position: absolute;
+                    right: 3px;
+                    top: 3px;
+                    font-size: 1.2rem;
+                    background: transparent;
+                    cursor: pointer;
+                    color: #4F4F4F;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .w-75 {
+            width: 256px !important;
+            margin-right: 10px;
+        }
+
+        .custom-input {
+            width: 100%;
+            cursor: inherit;
+        }
+    }
+}
+
+.modal-open .modal {
+    overflow-x: unset;
+    overflow-y: unset;
+}
+
+#leagueshot {
+    .selected {
+        display: flex;
+        align-items: center;
+        td{
+            height: 42px;
+        }
+    }
+}
+
+    
+.page-content .error {
+    margin-bottom: 0 !important;
+    margin-top: 1rem !important;
+}
+
+.input-upload {
+    border: 1px dashed $border-heading;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: .5rem;
+    background: #f7f7f7;
+    height: 5rem;
+    overflow: hidden;
+
+    img {
+        max-width: 4rem;
+        height: 4rem;
+    }
+
+    .icon-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 1.8rem;
+        background: transparent;
+        cursor: pointer;
+        color: #1F2252;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .txt-img {
+        margin-top: 5px;
+        display: flex;
+        margin-left: 16px;
+
+        .icon-upload {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+        }
+
+        span {
+            margin-top: 7px;
+        }
+    }
+
+    .photo-error {
+        margin: 0;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .input-file {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .save-img {
+        color: $color-fff;
+        padding: 1rem 2rem;
+        background: #9f224e;
+        border: none;
+        margin-top: 2rem;
+        font-weight: bold;
+        border-radius: 3px;
+        position: relative;
+        z-index: 100;
+        cursor: pointer;
+        display: none;
+        margin: 1rem auto;
+    }
+}
+
+.add-league {
+    height: 4.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.filter {
+    margin-top: 5px;
+
+    .select2-container {
+        width: 260px !important;
+    }
+
+    input{
+        width: 300px !important;
+    }
+}
+
+.filter-majorLeague {
+    width: 70px;
+}
+
+.btn_league {
+    background-color: silver;
+    border: none;
+    color: black;
+    padding: 1px 10px;
+    margin-right: -5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.btn_league:hover {
+    cursor: pointer;
+    background-color: #3333FF;
+    border: none;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.icon-add-league {
+    width: 20px;
+    height: 20px;
+    margin: -2px 5px 0 0;
+}
+
+.table-admin {
+    margin-top: 0;
+    max-width: 100%;
+
+    .icon-delete-admin:hover {
+        cursor: pointer;
+    }
+
+    .icon-sort-admin:hover {
+        cursor: pointer;
+    }
+
+    .icon-delete-admin, .icon-edit-admin {
+        font-size: 20px;
+    }
+
+    .icon-edit-admin:hover {
+        cursor: pointer;
+    }
+
+    .main-pagination {
+        .items-pagination {
+            margin-top: 10px;
+        }
+    }
+}

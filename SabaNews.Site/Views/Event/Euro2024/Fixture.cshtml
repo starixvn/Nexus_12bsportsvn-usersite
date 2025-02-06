@@ -1,0 +1,55 @@
+﻿@using SabaNews.Core.Constants
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Metadata {
+    <meta name="description" content='@Model.Description' />
+    <meta property="og:description" content='@Model.Description' />
+    <meta property="og:title" content='@Model.Title' />
+}
+
+@section Title {
+    @Model.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-full-fixture.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/full-fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/full-fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/full-fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/full-fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+}
+
+
+@(await Component.InvokeAsync("HeaderEuro2024", new { cateSlug = Model.Slug }))
+
+
+<section class="euro2024-standing">
+    <div class="euro-page-main">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="block-heading-text">
+                    @Euro2024.Fixture
+                </h2>
+            </div>
+        </div>
+        <div id="euro2024-full-fixture"></div>
+    </div>
+</section>

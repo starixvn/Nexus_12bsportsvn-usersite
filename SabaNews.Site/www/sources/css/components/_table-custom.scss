@@ -1,0 +1,186 @@
+﻿.table-custom {
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    margin-bottom: .6rem;
+    background: $border-soccer-item;
+    margin-top: .8rem;
+    overflow: hidden;
+
+    @include Mobile {
+        border-radius: 5px;
+    }
+
+    .table-custom-cell {
+        text-align: center;
+        font-weight: 400;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+
+        @include iphone5 {
+            font-size: 1rem;
+        }
+
+        @include Mobile {
+            font-size: 1.2rem;
+        }
+
+        &.cell-rank {
+            width: 4rem;
+
+            @include iphone5 {
+                width: 3rem;
+            }
+        }
+
+        &.cell-participant {
+            align-self: center;
+            display: block;
+            flex: 1 0 15rem;
+            justify-content: flex-start;
+            width: 15rem;
+            z-index: 1;
+            text-align: left;
+        }
+
+        &.cell-form {
+            width: 11rem;
+        }
+    }
+
+    &-header {
+        display: flex;
+        height: 4rem;
+        user-select: none;
+        align-items: center;
+
+        .table-custom-cell {
+            color: $color-title;
+            font-weight: 600;
+
+            @include Mobile {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    &-body {
+        background: $primary-bg;
+        display: grid;
+        grid-auto-rows: 3.6rem;
+
+        .table-custom-row {
+            border-bottom: 1px solid $bg-table-title-grey;
+            display: flex;
+            align-items: center;
+
+            span {
+                color: $color-222;
+            }
+
+            .table-bold {
+                font-weight: 700;
+            }
+
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .wld-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                > div {
+                    margin-right: .4rem;
+                }
+
+                .wld {
+                    border-radius: 3px;
+                    color: $white;
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    line-height: 1.6rem;
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+
+                    &.win {
+                        background-color: $win;
+                    }
+
+                    &.loss {
+                        background-color: $loss;
+                    }
+
+                    &.draw {
+                        background-color: $draw;
+                    }
+                }
+            }
+        }
+    }
+
+    .position {
+        border-radius: 3px;
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        text-align: center;
+        margin: 0 auto;
+
+        &.postition-color {
+            color: $white;
+            font-weight: 700;
+            color: #000000;
+        }
+    }
+
+    .soccer-team {
+        display: flex;
+        align-items: center;
+
+        &-logo {
+            width: 2.2rem;
+            height: 2.2rem;
+            margin-right: 1rem;
+        }
+
+        &-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+.promotion {
+    &-flex {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1.6rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &-color {
+        width: 2rem;
+        height: 2rem;
+        display: block;
+        margin-right: 1.4rem;
+        border-radius: 3px;
+    }
+
+    &-name {
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+
+        @include Mobile {
+            font-size: 1.2rem;
+        }
+    }
+}

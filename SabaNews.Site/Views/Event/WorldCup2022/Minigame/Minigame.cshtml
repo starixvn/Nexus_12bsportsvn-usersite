@@ -1,0 +1,92 @@
+﻿@using DeviceDetectorNET;
+@section Title {
+    @Model.Header.Title
+}
+
+    @section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+    @{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+
+    <link rel="stylesheet" href="~/minify/styles/membership-event.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/event/worldcup2022/minigame.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+    @section Scripts{
+    <environment include="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+        var checkLogin = '@Model.IsLogin';
+    </script>
+    <script src="~/js/event/worldcup2022/minigame.js" asp-append-version="true"></script>
+    <script src="~/js/event/worldcup2022/worldcup.js" asp-append-version="true"></script>
+}
+
+    @(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+
+
+<section class="before-event">
+    <h2 class="ready">
+        HÃY SẴN SÀNG
+    </h2>
+
+    <div class="count-day">
+        <ul class="counter-day">
+            <li class="counter">
+                <div class="clock" id="days">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="hours">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="minutes">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="seconds">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="img-man">
+        <div class="img-man-pc">
+            <img src="~/images/worldcup/minigame/before_event_man.png" alt="Alternate Text" class="img-res" />
+        </div>
+        <div class="img-man-mobile">
+            <img src="~/images/worldcup/minigame/before_event_man_mobile.png" alt="Alternate Text" class="img-res" />
+        </div>
+    </div>
+</section>

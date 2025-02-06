@@ -1,0 +1,146 @@
+﻿@import '../../abstracts/variables';
+.card-view {
+    display: grid;
+    grid-gap: 3.2rem;
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    margin-top: 2.4rem;
+    max-width: 105.8rem;
+
+    .card-pupple {
+        &:hover {
+            border: 2px solid #565CC2;
+        }
+    }
+
+    .card-green {
+        &:hover {
+            border: 2px solid #309F7A;
+        }
+    }
+
+    .card-orange {
+        &:hover {
+            border: 2px solid #E86747;
+        }
+    }
+
+    .card-blue {
+        &:hover {
+            border: 2px solid #3F7CD6;
+        }
+    }
+
+    .card-yellow {
+        &:hover {
+            border: 2px solid #8F730D;
+        }
+    }
+
+
+
+    .card-item {
+        background: $color-fff;
+        box-sizing: border-box;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 2rem;
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        transition: box-shadow .3s ease-in-out;
+
+        &:hover {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            width: 4.2rem;
+            height: 4.2rem;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+
+            .icon-page {
+                &:before {
+                    font-size: 2rem;
+                }
+            }
+        }
+
+        .bg-yellow {
+            background: #EEE4C1;
+
+            .icon-page {
+                &:before {
+                    color: #8F730D;
+                }
+            }
+        }
+
+        .bg-pupple {
+            background: #EAE7FD;
+
+            .icon-page {
+                &:before {
+                    color: #5243AA;
+                }
+            }
+        }
+
+        .bg-green {
+            background: #DDF9EF;
+
+            .icon-page {
+                &:before {
+                    color: #00875A;
+                }
+            }
+        }
+
+        .bg-orange {
+            background: #FFE5DE;
+
+            .icon-page {
+                &:before {
+                    color: #DE350B;
+                }
+            }
+        }
+
+        .bg-blue {
+            background: #D5E6FF;
+
+            .icon-page {
+                &:before {
+                    color: #0052CC;
+                }
+            }
+        }
+
+        .card-total {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+
+            .cart-total-title {
+                margin-bottom: 1rem;
+                color: #3A537E;
+                font-size: 1.6rem;
+                line-height: 1;
+            }
+
+            .cart-toal-count {
+                line-height: 1;
+                font-weight: bold;
+                color: #042765;
+                font-size: 3rem;
+            }
+
+            .date-detail-artical{
+                font-size : 2.2rem;
+            }
+        }
+    }
+}

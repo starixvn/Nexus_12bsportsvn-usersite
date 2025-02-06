@@ -1,0 +1,128 @@
+﻿@import '../abstracts/variables';
+@import '../abstracts/mixins';
+@import '../base/base';
+@import '../layout/footer';
+@import '../layout/header';
+@import '../components/fonts';
+@import '../components/block';
+@import '../components/container';
+@import '../components/img';
+@import '../components/card-horizontal';
+
+
+
+.main {
+    @include tableMobile {
+        position: relative;
+        overflow-x: hidden;
+    }
+}
+
+.notfound-container{
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.img-notfound,.text-notfound,.back-to-home , .form-notfound {
+    text-align: center;
+    color: #333;
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.img-notfound{
+    margin-bottom: 3rem;
+    @include Mobile{
+        width: 19.8rem;
+    }
+    img{
+        display: block;
+        margin: 0 auto;
+    }
+}
+.heading-notfound{
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    @include Mobile{
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+}
+
+.text-notfound{
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.6rem;
+}
+
+.form-notfound {
+    position: relative;
+    input {
+        width: 100%;
+        padding: 0.8rem 2.4rem;
+        border-radius: 20px;
+        border: 1px solid #DADADA;
+        background: #FFFDF9;
+        height: 4rem;
+        &::placeholder{
+            font-style: italic;
+            color: #828282;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-family: 'Open Sans';
+        }
+    }
+    .search-button {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: #4F4F4F;
+        i{
+            font-size: 2.4rem;
+            color: #4F4F4F;
+        }
+    }
+}
+
+.back-to-home{
+    max-width: 18.6rem;
+    margin-top: 1.6rem;
+    a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        font-size: 1.4rem;
+        padding: 1rem 0;
+        border-radius: 17px;
+        background: #EAEFF2;
+        line-height: normal;
+    }
+}
+
+.related-posts{
+    margin-top: 8rem;
+    min-height: 50rem;
+    @include Mobile{
+        margin-top: 5rem;
+    }
+    .card-horizontal{
+        grid-template-columns: 21.3rem 1fr;
+        @include Mobile{
+            grid-template-columns: 13rem 1fr;
+        }
+        &__image{
+            @include Mobile{
+                height: 8rem;
+            }
+        }
+    }
+}
+

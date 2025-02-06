@@ -1,0 +1,221 @@
+﻿@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+@import '../../base/base';
+
+@import '../../layout/footer';
+@import '../../layout/block-extension';
+@import '../../layout/Euro2020/_header.scss';
+
+@import '../../components/Euro2020/icon.scss';
+@import '../../components/Euro2020/title.scss';
+@import '../../components/container';
+
+
+.block__content {
+    .sub-category {
+        list-style: none;
+        text-align: center;
+        margin-bottom: 2.4rem;
+        overflow: auto;
+        @include Mobile  {
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .sub-item {
+            display: inline-block;
+
+            .tab-data {
+                display: inline-block;
+                padding: 10px 20px;
+                color: #064858;
+                font-weight: bold;
+                font-size: 20px;
+                text-decoration: none;
+                @include Mobile {
+                    font-size: 1.4rem;
+                }
+
+                &:hover, &.active {
+                    background-color: #03647B;
+                    border-radius: 10px;
+                    color: #fff
+                }
+            }
+        }
+    }
+}
+
+.post_content {
+    width: 550px;
+    margin: 0 auto;
+    @include Mobile {
+        width: 100%;
+    }
+    .date-block {
+        margin-bottom: 1.6rem;
+    }
+}
+
+.date-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: bold;
+    background-color: #03647B;
+    padding: 1rem 0;
+    clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+    @include Mobile {
+        font-size: 1.6rem;
+    }
+}
+.date-content {
+    border: 1px solid #4DAEC6;
+    padding: .4rem 2rem;
+    background-color: #FAFEFF;
+    margin: 0 2rem;
+    border-top: none;
+
+    @include Mobile {
+        padding: .4rem 1rem;
+    }
+
+    .match {
+        padding: 2.4rem 0;
+        border-bottom: 1px solid #CCDDE1;
+
+        @include Mobile {
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .support-info {
+        text-align: center;
+        position: relative;
+        top: -16px;
+        color: #4f4f4f;
+        font-size: 13px;
+        @include Mobile {
+            top: -10px;
+        }
+    }
+
+
+    .extra-info {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #4F4F4F;
+        font-weight: bold;
+
+        @include Mobile {
+            position: absolute;
+            width: 100%;
+            top: 48px;
+        }
+
+        .time-live {
+            position: relative;
+            top: 8px;
+        }
+    }
+
+    .main-info {
+        display: grid;
+        grid-template-columns: 1fr 12rem 1fr;
+        align-items: center;
+
+        @include Mobile {
+            grid-template-columns: 1fr 8rem 1fr;
+        }
+
+        * {
+            align-self: center;
+        }
+
+        .home-team, .away-team {
+            display: flex;
+            align-items: center;
+
+            @include Mobile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            [class*="flag"] {
+                height: 4rem;
+                width: 4rem;
+                border-radius: 50%;
+                border: 1px solid #bdbdbd;
+                background-clip: content-box;
+            }
+
+            .name {
+                font-size: 1.6rem;
+                color: #333;
+                font-weight: bold;
+
+                @include Mobile {
+                    font-size: 1.4rem;
+                    padding-top: .6rem;
+                }
+            }
+        }
+
+        .home-team {
+            justify-self: flex-end;
+
+            @include Mobile {
+                flex-direction: column-reverse;
+                justify-self: center;
+            }
+
+            .name {
+                padding-right: 1.2rem;
+
+                @include Mobile {
+                    padding-right: 0;
+                }
+            }
+        }
+
+        .away-team {
+            justify-self: flex-start;
+
+            @include Mobile {
+                justify-self: center;
+            }
+
+            .name {
+                padding-left: 1.2rem;
+
+                @include Mobile {
+                    padding-left: 0;
+                }
+            }
+        }
+
+        .time, .result {
+            justify-self: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0084A4;
+
+            @include Mobile {
+                font-size: 2.4rem;
+                align-self: flex-start;
+                position: relative;
+                top: 8px;
+            }
+        }
+
+        .time {
+            font-size: 1.6rem;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+﻿@using SabaNews.Core.Constants;
+
+<meta name="description" content='@Model.Header.Description' />
+<meta name="robots" content="noarchive">
+<meta property="og:description" content='@Model.Category.OgDescription' />
+<meta property="og:title" content='@Model.Category.OgTitle' />
+<meta property="og:image" content='@Model.Category.OgImage' />
+
+@section Title{
+	@Model.Header.Title
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/euro2020_schedule.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+	<script src="~/js/euro2020/euro2020.js" asp-append-version="true"></script>
+}
+
+
+<div class="page">
+	@(await Component.InvokeAsync("HeaderEvent", new { page = Constants.Euro2020ScheduleSlug }))
+	<div class="main-content">
+		<div class="container">
+			<h2 class="block__title"><span class="text-title">@Model.Header.HeadTitle</span></h2>
+			<div class="block__content">
+				<ul class="sub-category">
+					
+					@foreach (var post in Model.Posts)
+					{
+						var active = "";
+						if (post.PostExcerpt == Constants.Active)
+						{
+							active = "active";
+						}
+						<li class="sub-item"><a href="javascript:;" data-slug="@post.Slug" class="tab-data @active">@post.PostTitle</a></li>
+					}
+				</ul>
+
+				<div class="post_content">
+					@foreach (var post in Model.Posts)
+					{
+						if (post.PostExcerpt == Constants.Active)
+						{
+							@Html.Raw(post.PostContent)
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

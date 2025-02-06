@@ -1,0 +1,107 @@
+@import '~react-loading-skeleton/dist/skeleton.css';
+@import "../../../../abstracts/variables";
+@import "../../../../abstracts/mixins";
+@import "../../../../base/base";
+@import "../../../../components/block-extension";
+@import "../../../../components/soccer-item";
+@import './components/date-bar';
+@import './components/soccer-items';
+.euro-page-main {
+    padding-top: 2rem;
+}
+#euro-fixture {
+    .group-live-icon{
+        display: flex;
+        align-items: center;
+        i{
+            display: none;
+            font-size: 1.6rem;
+            margin-right: .6rem;
+            &::before{
+                color: #EFF612;
+            }
+        }
+    }
+    .live,.live.live-intermission{
+        .soccer-match-stage{
+            width: auto;
+            margin-top: 0;
+            font-size: 1.3rem !important;
+            span{
+                color: #EFF612 !important;
+                &::before,&::after{
+                    display: none;
+                }
+            }
+        }
+        .group-live-icon{
+            i{
+                display: block;
+            }
+        }
+    }
+    .react-loading-skeleton{
+        --base-color: #0B227D !important;
+
+        &::after {
+            background: #0B227D !important;
+        }
+    }
+    .group-match-item{
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+    }
+    .soccer-match-date-result{
+        border: 1px solid #0E2A99;
+        background: #0B227D;
+    }
+    .wc-date-bar .group-match-item .soccer-match-item{
+        border: none;
+        background: #091B61;
+    }
+}
+.nav-select-mb {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    justify-content: space-between;
+    border: 1px solid #143CDB;
+    width: 13rem;
+    padding: .5rem 0 .5rem 1.2rem;
+    border-radius: 3px;
+    margin: 0 auto;
+    .name-round{
+        color: #143CDB;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: normal;
+    }
+    select{
+        background-position: 2px;
+        background-repeat: no-repeat;
+        width: 2.8rem;
+        height: 2rem;
+        font-size: 0;
+        outline: none;
+        border: none;
+        -webkit-appearance: none;
+        background: transparent url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuNDEgOC41ODk4NEwxMiAxMy4xNjk4TDE2LjU5IDguNTg5ODRMMTggOS45OTk4NEwxMiAxNS45OTk4TDYgOS45OTk4NEw3LjQxIDguNTg5ODRaIiBmaWxsPSIjMTQzQ0RCIi8+Cjwvc3ZnPgo=);
+    }
+    option{
+        color: $color-222;
+        font-weight: 400;
+        padding: 0 1.5rem;
+        font-size: 1.4rem;
+    }
+}
+
+#euro2024-full-fixture{
+    padding-bottom: 6.3rem;
+    min-height: 100vh;
+    @include Mobile{
+        padding-bottom: 2rem;
+    }
+}
+
+.soccer-match-grid-items{
+    cursor: pointer;
+}

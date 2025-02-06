@@ -1,0 +1,458 @@
+﻿@section Title{
+	@Model.Title
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/profile.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+	<environment include="Development">
+		<script src="~/js/profile/update_profile.js" asp-append-version="true"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/minify/js/update_profile.min.js" asp-append-version="true"></script>
+	</environment>
+	
+}
+
+<div class="auth-form">
+	<div class="modal modal-noti" id="resetPasswordSuccesful" style="display:none">
+		<div class="modal-content modal-auth">
+			<div class="modal-warning">
+				<button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal-body modal-resetpass">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal modal-noti" id="DisconnectSuccessful" style="display:none">
+		<div class="modal-content modal-auth">
+			<div class="modal-warning">
+				<button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal-body modal-resetpass">
+					<div class="heading-noti">@ViewResources.Message</div>
+					<div class="content content-noti"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal modal-noti" id="ErrorConnectSocial" style="display:none">
+		<div class="modal-content modal-auth">
+			<div class="modal-warning">
+				<button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal-body modal-resetpass">
+					<div class="heading-noti">@ViewResources.Message</div>
+					<div class="content-noti">
+						@ViewResources.ErrorConnectSocial
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+	<div class="container profile-container">
+		<div class="block block-main">
+			@await Html.PartialAsync("~/Views/Profile/_LeftMenu.cshtml", new SabaNews.Models.ViewModel.Profile.LeftMenuViewModel { User = Model.User, Page = Model.Page  })
+		</div>
+		<div class="block block-extension">
+			<div class="block-header">
+				<h2 class="block__title">@ViewResources.MyAccount</h2>
+			</div>
+			<div class="block-body">
+				<div class="controls">
+					<div class="security">
+						<i class="icon-Verify"></i>
+						SabaSports cam kết bảo mật thông tin của bạn
+					</div>
+					<div class="items-choose controls__choose ">
+						<div class="title">@ViewResources.ProfilePhoto</div>
+						<div class="group-table">
+							<div class="profile">
+								@if (Model.User.Photo == null)
+								{
+									<div class="profile__avatar">@Model.User.Name.Substring(0, 1)</div>
+								}
+								else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+								{
+									<div class="profile__avatar remove-bg"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></div>
+								}
+								else
+								{
+									<div class="profile__avatar remove-bg"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></div>
+								}
+							</div>	
+							<form enctype="multipart/form-data" method="post" id="uploadPhoto">
+								<div class="img-upload">
+									<div class="group-upload">
+										<img id="review_photo" src="#" alt="review photo" width="150" style="display:none" />
+										<p class="error photo-error"></p>
+										<button type="submit" name="" class="save-img btn-submit-profile">Lưu hình ảnh</button>
+										<button type="button" class="cancel-upload icon-close" style="display:none"></button>
+									</div>
+								</div>
+								<div class="input-upload">
+									<input type="file" class="input-file" id="act-upload" name="photo">
+									<span class="txt-img"><i class="icon-upload"></i> @ViewResources.ProfileUploadNewPhoto</span>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="items-choose controls__account">
+						<div class="title">@ViewResources.ProfileAccount</div>
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"><i class="icon-profile icon-personalcard"></i> SabaID</div>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill">
+										<div class="text-fill">@Model.User.Id</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"><i class="icon-profile icon-email1"></i> @ViewResources.Email</div>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill">
+										<div class="text-fill">@Model.User.Email</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+
+						@if (Model.User.Password != "")
+						{
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill">
+									<i class="icon-profile icon-lock"></i> @ViewResources.Password
+								</div>
+								<a href="#" class="action social-action show-mb">@ViewResources.ChangePassword</a>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<input type="password" name="password" readonly value="@Model.User.Password" class="input-password password-dots input-auth" />
+									<a href="#" class="action social-action show-pc">@ViewResources.ChangePassword</a>
+								</div>
+								<div class="box-edit-form" id="form_update_password">
+									<div class="title title-edit">@ViewResources.ChangePassword</div>
+									<div class="input-form">
+										<input type="password" name="oldpassword" value="" class="input-edit input-auth" placeholder="Nhập mật khẩu cũ" />
+										<p class="error error-password validate-error old-password-error"></p>
+										<a href="javascript:void(0)" class="event-pass show-old-pass"><i class="icon-show"></i></a>
+										<a href="javascript:void(0)" class="event-pass hide-old-pass" style="display: none"><i class="icon-hide"></i></a>
+									</div>
+									<div class="input-form">
+										<input type="password" name="newpassword" value="" class="input-edit input-auth" placeholder="Tạo mật khẩu mới" />
+										<p class="error error-password validate-error new-password-error"></p>
+										<a href="javascript:void(0)" class="event-pass show-new-pass"><i class="icon-show"></i></a>
+										<a href="javascript:void(0)" class="event-pass hide-new-pass" style="display: none"><i class="icon-hide"></i></a>
+									</div>
+									<div class="group-submit">
+										<button class="btn-submit-edit btn-save-password btn-submit-profile btn-disabled" disabled>@ViewResources.Save</button>
+										<p class="forgot-pass"><a href="javascript:;" id="profile-forgot-password">@ViewResources.ForgotPassword</a></p>
+									</div>
+									<span class="close-edit icon-close"></span>
+								</div>
+							</div>
+						</div>
+						}
+					</div>
+
+
+
+					<div class="items-choose controls__account">
+						<div class="title">@ViewResources.ProfilePersonalInfo</div>
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"><i class="icon-profile icon-profile-user"></i> @ViewResources.Name</div>
+								<a href="#" class="action social-action show-mb">@ViewResources.Change</a>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill name-section">
+										<div class="text-fill">@Model.User.Name</div>
+									</div>
+									<a href="#" class="action social-action show-pc">@ViewResources.Change</a>
+								</div>
+								<p class="commitment">@ViewResources.ProfileShowWhenComment</p>
+								<div class="box-edit-form" id="form_update_name">
+									<div class="title title-edit">Họ và tên</div>
+									<div class="input-form error">
+										<input type="text" name="name" value="" class="input-edit input-auth" placeholder="Nhập họ và tên" />
+										<p class="error validate-error name-error">@ViewResources.ValidateName</p>
+									</div>
+									<div class="group-submit">
+										<button class="btn-submit-edit btn-save-name btn-submit-profile btn-disabled" disabled data-name="@Model.User.Name">@ViewResources.Save</button>
+									</div>
+									<span class="close-edit icon-close"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"><i class="icon-profile icon-ph_gender-intersex-bold"></i> @ViewResources.ProfileGender</div>
+								<a href="#" class="action social-action show-mb">@(Model.User.Gender == null ?  ViewResources.Add : ViewResources.Change)</a>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill gender-section">
+										<div class="text-fill">
+											@{ var disabled = "disabled"; }
+											@if (Model.User.Gender != null)
+											{
+												disabled = "";
+												@Model.User.Gender
+											}
+											else
+											{
+												@ViewResources.ProfileNoSelected
+											}
+
+										</div>
+									</div>
+									<a href="#" class="action social-action show-pc">@(Model.User.Gender == null ?  ViewResources.Add : ViewResources.Change)</a>
+								</div>
+								<div class="box-edit-form" id="form_update_gender">
+									<div class="title title-edit">@ViewResources.ProfileGender</div>
+									<form class="my-form">
+										<div class="radio-group">
+											<div class="item-radio">
+												<input type="radio" id="male" name="gender" value="Nam" @(Model.User.Gender == "Nam" ? "checked" : "")>
+												<label for="male">@ViewResources.Male</label>
+											</div>
+											<div class="item-radio">
+												<input type="radio" id="female" name="gender" value="Nữ" @(Model.User.Gender == "Nữ" ? "checked" : "")>
+												<label for="female">@ViewResources.Female</label>
+											</div>
+											<div class="item-radio">
+												<input type="radio" id="other" name="gender" value="Khác" @(Model.User.Gender == "Khác" ? "checked" : "")>
+												<label for="other">@ViewResources.Other</label>
+											</div>
+										</div>
+										<p class="error validate-error gender-error">@ViewResources.ValidateGender</p>
+									</form>
+									<div class="group-submit">
+										<button class="btn-submit-edit btn-submit-profile btn-save-gender btn-@disabled" @disabled data-gender="@Model.User.Gender">@ViewResources.Save</button>
+									</div>
+									<span class="close-edit icon-close"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"><i class="icon-profile icon-phone"></i> @ViewResources.ProfilePhone</div>
+								<a href="#" class="action social-action show-mb">@(Model.User.Phone == null ?  ViewResources.Add : ViewResources.Change)</a>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill phone-section">
+										<div class="text-fill">
+											@if (Model.User.Phone != null)
+											{
+												@Model.User.Phone
+											}
+											else
+											{
+												@ViewResources.ProfilePhoneValidate
+											}
+
+										</div>
+									</div>
+									<a href="#" class="action social-action show-pc">@(Model.User.Phone == null ?  ViewResources.Add : ViewResources.Change)</a>
+								</div>
+								<div class="box-edit-form" id="form_update_phone">
+									<div class="title title-edit">@ViewResources.ProfilePhoneUpdateTitle</div>
+									<div class="input-form error">
+										<input type="number" name="phone" value="" class="input-edit input-auth" placeholder="Nhập số điện thoại" />
+										<p class="error validate-error phone-error">Số điện thoại không hợp lệ</p>
+									</div>
+									<div class="group-submit">
+										<button class="btn-submit-edit btn-save-phone btn-submit-profile btn-disabled" data-phone="@Model.User.Phone" disabled>@ViewResources.Save</button>
+									</div>
+									<span class="close-edit icon-close"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill"> <i class="icon-profile icon-calendar"></i>  Năm sinh</div>
+								<a href="#" class="action social-action show-mb">@(Model.User.YearOfBirth == null ?  ViewResources.Add : ViewResources.Change)</a>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill yearOfBirth-section">
+										<div class="text-fill">
+											@if (Model.User.YearOfBirth != null)
+											{
+												@Model.User.YearOfBirth
+											}
+											else
+											{
+												<span>Chưa có năm sinh</span>
+											}
+										</div>
+										
+									</div>
+									<a href="#" class="action social-action show-pc">@(Model.User.YearOfBirth == null ?  ViewResources.Add : ViewResources.Change)</a>
+								</div>
+								<div class="box-edit-form" id="form_update_yearOfBirth">
+									<div class="title">Năm sinh</div>
+									@{ var currentYear = DateTime.Now.Year; }
+									<select  name="yearOfBirth" class="input-edit select-auth">
+										@for(var i = 1904 ;  i <= 2006 ; i++)
+										{
+											<option value="@i" class="orther-color">@i</option>
+										}
+									</select>
+									<div class="group-submit">
+										<button class="btn-submit-edit btn-submit-profile btn-save-yearOfBirth " data-year="@Model.User.YearOfBirth" >@ViewResources.Save</button>
+									</div>
+									<span class="close-edit icon-close"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="items-choose flow-us">
+						<div class="title">@ViewResources.Option</div>
+						<div class="group-table">
+							<div class="checkbox-wrapper-46">
+								<input type="hidden" name="current_subscribe" id="current_subscribe" value="@Model.User.IsSubscribe" />
+								<input type="checkbox" id="isSubscribe" class="inp-cbx" name="isSubscribe" @(Model.User.IsSubscribe == 1 ? "checked" : "" )/>
+								<label for="isSubscribe" class="cbx"
+									><span>
+									<svg viewBox="0 0 12 10" height="10px" width="12px">
+										<polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+									><span>@ViewResources.FollowSabaSports</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="items-choose controls__account social-network">
+						<div class="title">Mạng xã hội</div>
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill">
+									<div class="wrap-connect fb-connect">
+										<span class="icon-social">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+												<path d="M13.397 20.9972V12.8012H16.162L16.573 9.59217H13.397V7.54817C13.397 6.62217 13.655 5.98817 14.984 5.98817H16.668V3.12717C15.8487 3.03936 15.0251 2.99696 14.201 3.00017C11.757 3.00017 10.079 4.49217 10.079 7.23117V9.58617H7.33203V12.7952H10.085V20.9972H13.397Z" fill="#3B5999"/>
+											</svg>
+										</span>
+										<span class="txt txt-fb">Facebook</span>
+									</div>
+								</div>
+							</div>
+							@{
+								var isConnectFacebook = Model.User.LoginType != null && Model.User.LoginType.Contains(ViewResources.Facebook) ? true : false;
+								var isConnectGoogle = Model.User.LoginType != null && Model.User.LoginType.Contains(ViewResources.Google) ? true : false;
+							}
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill">
+										<div class="text-fill @(isConnectFacebook ? "connect" : "validate" )">
+											@if(isConnectFacebook) 
+											{
+												<div class="connect-socical">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+														<path d="M8.83464 13.8327L14.7096 7.95768L13.543 6.79102L8.83464 11.4993L6.45964 9.12435L5.29297 10.291L8.83464 13.8327ZM10.0013 18.3327C8.84852 18.3327 7.76519 18.1138 6.7513 17.676C5.73741 17.2388 4.85547 16.6452 4.10547 15.8952C3.35547 15.1452 2.76186 14.2632 2.32464 13.2493C1.88686 12.2355 1.66797 11.1521 1.66797 9.99935C1.66797 8.84657 1.88686 7.76324 2.32464 6.74935C2.76186 5.73546 3.35547 4.85352 4.10547 4.10352C4.85547 3.35352 5.73741 2.75963 6.7513 2.32185C7.76519 1.88463 8.84852 1.66602 10.0013 1.66602C11.1541 1.66602 12.2374 1.88463 13.2513 2.32185C14.2652 2.75963 15.1471 3.35352 15.8971 4.10352C16.6471 4.85352 17.2407 5.73546 17.678 6.74935C18.1157 7.76324 18.3346 8.84657 18.3346 9.99935C18.3346 11.1521 18.1157 12.2355 17.678 13.2493C17.2407 14.2632 16.6471 15.1452 15.8971 15.8952C15.1471 16.6452 14.2652 17.2388 13.2513 17.676C12.2374 18.1138 11.1541 18.3327 10.0013 18.3327Z" fill="#03A700"/>
+													</svg>
+													Đã liên kết
+												</div>
+											}else{
+												@ViewResources.NoConnect
+											}
+										</div>
+									</div>
+									@if (isConnectFacebook)
+									{
+									<a href="javascript:;" data-id="@Model.User.Id" data-type="@ViewResources.Facebook" class="social-action disconnect_social_login">Hủy liên kết</a>
+									}
+									else
+									{
+									<a href="ExternalAuthentication/Login?Provider=Facebook&returnUrl=/Profile" class="social-action connect">@ViewResources.Connect</a>
+									}
+								</div>
+							</div>
+						</div>
+						<div class="group-table">
+							<div class="left-table">
+								<div class="label-fill">
+									<div class="wrap-connect gg-connect">
+										<span class="icon-google-color">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+												<path d="M18.1726 8.36727H17.5013V8.33268H10.0013V11.666H14.7109C14.0238 13.6064 12.1776 14.9993 10.0013 14.9993C7.24005 14.9993 5.0013 12.7606 5.0013 9.99935C5.0013 7.2381 7.24005 4.99935 10.0013 4.99935C11.2759 4.99935 12.4355 5.48018 13.3184 6.2656L15.6755 3.90852C14.1871 2.52143 12.1963 1.66602 10.0013 1.66602C5.39922 1.66602 1.66797 5.39727 1.66797 9.99935C1.66797 14.6014 5.39922 18.3327 10.0013 18.3327C14.6034 18.3327 18.3346 14.6014 18.3346 9.99935C18.3346 9.4406 18.2771 8.89518 18.1726 8.36727Z" fill="#FFC107"/>
+												<path d="M2.62891 6.1206L5.36682 8.12852C6.10766 6.29435 7.90182 4.99935 10.0014 4.99935C11.276 4.99935 12.4356 5.48018 13.3185 6.2656L15.6756 3.90852C14.1872 2.52143 12.1964 1.66602 10.0014 1.66602C6.80057 1.66602 4.02474 3.4731 2.62891 6.1206Z" fill="#FF3D00"/>
+												<path d="M10.0008 18.3336C12.1533 18.3336 14.1091 17.5099 15.5879 16.1703L13.0087 13.9878C12.1439 14.6454 11.0872 15.0011 10.0008 15.0003C7.83328 15.0003 5.99286 13.6182 5.29953 11.6895L2.58203 13.7832C3.9612 16.482 6.76203 18.3336 10.0008 18.3336Z" fill="#4CAF50"/>
+												<path d="M18.1713 8.36857H17.5V8.33398H10V11.6673H14.7096C14.3809 12.5908 13.7889 13.3978 13.0067 13.9886L13.0079 13.9877L15.5871 16.1702C15.4046 16.3361 18.3333 14.1673 18.3333 10.0007C18.3333 9.4419 18.2758 8.89648 18.1713 8.36857Z" fill="#1976D2"/>
+											</svg>
+										</span>
+										<span class="txt">Google</span>
+									</div>
+								</div>
+							</div>
+							<div class="right-table">
+								<div class="box-control">
+									<div class="main-fill">
+										<div class="text-fill @(isConnectGoogle ? "connect" : "validate" )">
+											@if(isConnectGoogle)
+											{
+												<div class="connect-socical">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+														<path d="M8.83464 13.8327L14.7096 7.95768L13.543 6.79102L8.83464 11.4993L6.45964 9.12435L5.29297 10.291L8.83464 13.8327ZM10.0013 18.3327C8.84852 18.3327 7.76519 18.1138 6.7513 17.676C5.73741 17.2388 4.85547 16.6452 4.10547 15.8952C3.35547 15.1452 2.76186 14.2632 2.32464 13.2493C1.88686 12.2355 1.66797 11.1521 1.66797 9.99935C1.66797 8.84657 1.88686 7.76324 2.32464 6.74935C2.76186 5.73546 3.35547 4.85352 4.10547 4.10352C4.85547 3.35352 5.73741 2.75963 6.7513 2.32185C7.76519 1.88463 8.84852 1.66602 10.0013 1.66602C11.1541 1.66602 12.2374 1.88463 13.2513 2.32185C14.2652 2.75963 15.1471 3.35352 15.8971 4.10352C16.6471 4.85352 17.2407 5.73546 17.678 6.74935C18.1157 7.76324 18.3346 8.84657 18.3346 9.99935C18.3346 11.1521 18.1157 12.2355 17.678 13.2493C17.2407 14.2632 16.6471 15.1452 15.8971 15.8952C15.1471 16.6452 14.2652 17.2388 13.2513 17.676C12.2374 18.1138 11.1541 18.3327 10.0013 18.3327Z" fill="#03A700"/>
+													</svg>
+													Đã liên kết
+												</div>
+											}else{
+												@ViewResources.NoConnect
+											}
+										</div>
+									</div>
+									@if (isConnectGoogle)
+									{
+									<a href="javascript:;" class="social-action disconnect_social_login" data-id="@Model.User.Id" data-type="@ViewResources.Google">Hủy liên kết</a>
+									}
+									else
+									{
+									<a href="ExternalAuthentication/Login?Provider=Google&returnUrl=/Profile" class="social-action connect">@ViewResources.Connect</a>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>
+
+<script>
+	var email = '@Model.User.Email';
+	var errorConnectSocial = '@Model.ErrorConnectEmail';
+</script>

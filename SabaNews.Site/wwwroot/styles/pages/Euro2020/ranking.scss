@@ -1,0 +1,352 @@
+﻿@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+@import '../../base/base';
+
+@import '../../layout/footer';
+@import '../../layout/block-extension';
+@import '../../layout/Euro2020/_header.scss';
+
+@import '../../components/Euro2020/icon.scss';
+@import '../../components/Euro2020/title.scss';
+@import '../../components/container';
+
+.main-content .container {
+    width: 83.2rem;
+    margin: 0 auto;
+    @include Mobile {
+        width: 100%;
+    }
+}
+
+.block {
+    margin-bottom: 2.4rem;
+    border: 1px solid #4DAEC6;
+    position: relative;
+
+    .next, .previous {
+        position: absolute;
+        top: 8px;
+        font-size: 1.6rem;
+        padding: 8px 16px;
+        cursor: pointer;
+
+        &:before {
+            color: #fff;
+        }
+    }
+
+    .previous {
+        left: 0;
+        &:before {
+            content: '\276E';
+        }
+    }
+
+    .next {
+        right: 0;
+        &:before {
+            content: '\276F';
+        }
+    }
+}
+
+.block__content {
+    .sub-category {
+        list-style: none;
+        text-align: center;
+        background-color: #03647B;
+        padding: 0 4rem;
+
+        .sub-item {
+            display: inline-block;
+            margin-right: 2.4rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .tab-data {
+                display: inline-block;
+                color: #A2E2F1;
+                font-weight: bold;
+                font-size: 1.8rem;
+                text-decoration: none;
+                padding: 15px 0 14px;
+                position: relative;
+
+                &:before {
+                    position: absolute;
+                    height: 2px;
+                    width: 0;
+                    background-color: #fff;
+                    bottom: 10px;
+                    left: -1px;
+                    content: '';
+                }
+
+                &:hover, &.active {
+                    color: #fff;
+
+                    &:before {
+                        width: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.table-scroll {
+    position: relative;
+    overflow: hidden;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow: auto;
+    
+}
+
+.table-scroll table {
+    width: 100%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    @media screen and (max-device-width: 768px) {
+        width: 50rem;
+    }
+
+    @media screen and (max-device-width: 767px) and (orientation:landscape) {
+        width: 100%;
+    }
+}
+
+.table-scroll table, .clone {
+    > tbody > tr:last-child td{
+        border-bottom: none;
+    }
+}
+
+.table-scroll th, .table-scroll td {
+    padding: 10px 0;
+    background: #fff;
+    white-space: nowrap;
+    vertical-align: top;
+
+    @include Mobile {
+        padding: 5px 0 6px;
+    }
+
+    &:last-child {
+        color: #064858;
+        font-weight: bold;
+    }
+}
+
+.table-scroll td, .clone td {
+    border-bottom: 1px solid #CCDDE1;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.8rem; 
+    @include Mobile {
+        font-size: 1.4rem;
+    }
+}
+.table-scroll th, .clone th {
+    border-bottom: 1px solid #4DAEC6;
+    background-color: #C9E2E9;
+    padding: 4px 0;
+    &.col {
+        width: 8rem;
+    }
+}
+
+.table-scroll thead {
+    background: #C9E2E9;
+}
+
+.clone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.clone th, .clone td {
+    visibility: hidden
+}
+
+.sub-item.hide-tab {
+    display: none !important;
+}
+
+.clone th.fixed-side, .main-table th.fixed-side {
+    padding-left: 2rem;
+
+    @include Mobile {
+        min-width: 20rem;
+        padding-left: 1rem;
+    }
+}
+
+.clone .fixed-side, .main-table .fixed-side {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    visibility: visible;
+
+    .country {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+
+        @include Mobile {
+            font-size: 1.2rem;
+        }
+    }
+
+    [class*="flag"] {
+        margin: 0 1rem;
+        @include Mobile {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    .number {
+        width: 5.2rem;
+        height: 3.2rem;
+        color: #fff;
+        clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 0% 100%);
+        padding-left: 1.6rem;
+        line-height: 32px;
+        text-align: left;
+        @include Mobile {
+            font-size: 1.4rem;
+            width: 2.8rem;
+            height: 2.4rem;
+            padding-left: .8rem;
+            line-height: 24px;
+        }
+
+        $numbers: ("1": #024657, "2": #03576B, "3": #03677F, "4": #047894, "5": #0588A8, "6": #0699BD);
+
+        @each $number, $color in $numbers {
+            &.number-#{$number} {
+                background-color: $color;
+            }
+        }
+    }
+}
+
+.clone thead{
+    background: transparent;
+}
+
+
+.date-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: bold;
+    background-color: #03647B;
+    padding: 1rem 0;
+    clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+}
+
+.date-content {
+    border: 1px solid #4DAEC6;
+    padding: .4rem 3rem;
+    background-color: #FAFEFF;
+    margin: 0 2rem;
+    border-top: none;
+
+    .match {
+        padding: 2.4rem 0;
+        border-bottom: 1px solid #CCDDE1;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .extra-info {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #4F4F4F;
+        font-weight: bold;
+
+        .time-live {
+            position: relative;
+            top: 8px;
+        }
+    }
+
+    .main-info {
+        display: grid;
+        grid-template-columns: 1fr 14rem 1fr;
+        align-items: center;
+
+        * {
+            align-self: center;
+        }
+
+        .home-team, .away-team {
+            display: flex;
+            align-items: center;
+
+            [class*="flag"] {
+                height: 4rem;
+                width: 4rem;
+                border-radius: 50%;
+                border: 1px solid #bdbdbd;
+                background-clip: content-box;
+            }
+
+            .name {
+                font-size: 1.6rem;
+                color: #333;
+                font-weight: bold;
+            }
+        }
+
+        .home-team {
+            justify-self: flex-end;
+
+            .name {
+                padding-right: 1.2rem;
+            }
+        }
+
+        .away-team {
+            justify-self: flex-start;
+
+            .name {
+                padding-left: 1.2rem;
+            }
+        }
+
+        .time, .result {
+            justify-self: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0084A4;
+        }
+
+        .result {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+#table-scroll-main .main-table > tbody > tr {
+    td {
+        background-color: #E3FDE3;
+    }
+
+    &:nth-last-child(-n+2) td{
+        background-color: #fff;
+    }
+}
+    

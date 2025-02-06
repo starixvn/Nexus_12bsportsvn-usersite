@@ -1,0 +1,103 @@
+﻿@using SabaNews.Livescore.Models.Match
+@model GetMatchBySeasonParams
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/league-detail.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/league-detail.chunk.css" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <script type="text/javascript">
+        window.getMatchByStageParams = {
+            date: '@Model.Date.ToString("yyyy-MM-dd")',
+            leagueId: @Model.LeagueId,
+            seasonId: @Model.SeasonId,
+            selectedTab: '@Model.SelectedTab',
+            isCurrentSeason: '@Model.IsCurrentSeason'
+        };
+    </script>
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/league-detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/league-detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+}
+@{
+    var title = "title";
+    var description = "description";
+    if(Model.SelectedTab == "" || Model.SelectedTab == "tong-hop" || Model.SelectedTab == "general")
+    {
+        title = $"Livescore {GetLeagueName(Model.League)} {Model.League.Year}";
+        description = $" Cập nhật LTĐ, KQBĐ, link xem trực tiếp Livescore {GetLeagueName(Model.League)} {Model.League.Year} nhanh và chính xác nhất trên SABA VN";
+    }
+    else if(Model.SelectedTab == "lich-thi-dau" || Model.SelectedTab == "fixtures")
+    {
+        title = $"Lịch thi đấu {GetLeagueName(Model.League)} {Model.League.Year} [Mới nhất]";
+        description = $"Xem lịch thi đấu {GetLeagueName(Model.League)} {Model.League.Year} mới nhất trên SABA VN. LTĐ và xem trực tiếp các trận đấu {GetLeagueName(Model.League)} {Model.League.Year} được cập nhất liên tục cho độc giả.";
+    }
+    else if(Model.SelectedTab == "ket-qua" || Model.SelectedTab == "results")
+    {
+        title = $"KQBĐ trực tuyến {GetLeagueName(Model.League)} {Model.League.Year} [CẬP NHẬT]";
+        description = $"Xem KQBĐ trực tuyến {GetLeagueName(Model.League)} {Model.League.Year} mới nhất. Cập nhật kết quả bóng đá và tỷ số trận đấu {GetLeagueName(Model.League)} {Model.League.Year} chính xác nhất trên SABA VN.";
+    }
+    else
+    {
+        title = $"Livescore {GetLeagueName(Model.League)} {Model.League.Year}";
+        description = $" Cập nhật LTĐ, KQBD, link xem trực tiếp Livescore {GetLeagueName(Model.League)}  {Model.League.Year}nhanh và chính xác nhất trên SABA VN";
+    }
+}
+@section Metadata {
+    <meta name="robots" content="noindex, follow,noarchive,max-image-preview:large" />
+    <meta name="description" content='@description' />
+    @if(Model.IsCurrentSeason)
+    {
+        <link rel="canonical" href="@ViewBag.Link" />
+    }
+}
+@section Title{
+    @title
+}
+@(await Component.InvokeAsync("Menu", new { CategorySlug = "home-page" }))
+<h1 style="display: none;">@title</h1>
+<div id="app-container"></div>
+
+@await Html.PartialAsync(ViewResources.SidebarBannerView)
+
+@section Schema {
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "WebPage",
+        "id": "@ViewBag.Link",
+        "url": "@ViewBag.Link",
+        "name": "@title",
+        "description": "@description",
+        "publisher": {
+            "@@type": "Organization",
+            "name": "SABAVN Sports",
+            "logo": {
+            "@@type": "ImageObject",
+            "url": "https://www.sabavn.net/images/sabasports.svg"
+            }
+        },
+        "inLanguage": "vi-VN",
+        "isPartOf": {
+            "@@type": "Website",
+            "name": "SABAVN.net",
+            "url": "https://www.sabavn.net/"
+        }
+    }
+    </script>
+}

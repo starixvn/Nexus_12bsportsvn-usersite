@@ -1,0 +1,85 @@
+@using SabaNews.Resources
+<div class="form-section">
+    <form id="updatePlayer">
+        <div class="form-input">
+            <span class="left-section">Player Name</span>
+            <div class="right-section">
+                <input class="form-control input-custom " type="text" value="@Model.PlayerName" name="player-name"  />
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">Player Full Name</span>
+            <div class="right-section">
+                <input class="form-control input-custom" type="text" value="@Model.PlayerFullName"  name="player-full-name" />
+                <p class="error-input player-full-name-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">Birthday</span>
+            <div class="right-section">
+                <input class="form-control input-custom" type="date" value="@Model.Birthday.ToString("yyyy-MM-dd")"  name="birthday" />
+                <p class="error-input birthday-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">Jersey number</span>
+            <div class="right-section">
+                <input class="form-control input-custom input-number" type="text" value="@Model.ShirtNumber"  name="shirt-number" />
+                <p class="error-input shirt-number-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">Club</span>
+            <div class="right-section">
+                <input class="form-control input-custom" type="text" value="@Model.ClubName"  name="club" />
+                <p class="error-input club-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">Position</span>
+            <div class="right-section">
+                <select class="form-control input-custom position-select" style="width:100%">
+                    @foreach (var postition in
+                    SabaNews.Core.Constants.Livescore.MatchConstants.ListPlayerPosition)
+                    {
+                        var selected = postition.Id == Model.Position ? "selected" : "";
+                        <option value="@postition.Id" @selected>@postition.Name</option>
+                    }
+                </select>
+                <p class="error-input league-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            @{
+                var icon =  !string.IsNullOrEmpty(Model.Icon) ? Model.Icon : "/css/images/logo-dummy.png";
+            }
+            <span class="left-section">Icon</span>
+            <div class="right-section" id="PhotoEdit">
+                <div class="form-group-input form-group-input-left">
+                    <div class="admin-text-logo">
+                        <div class="input-upload">
+                            <input type="file" id="icon" class="input-file photo addPlayerIcon">
+                            <div class="txt-img"><i class="icon-upload"></i>
+                                <span>@ViewResources.UploadNewImage</span>
+                            </div>
+                            <div class="img-upload">
+                                <p class="error photo-error" style="display:none"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group-input form-group-input-right">
+                    <div class="admin-text-logo admin-text-logo-data-img">
+                        <button type="button" class="cancel-upload icon-close" style="display:flex"></button>
+                        <img src="@icon"  alt="Alternate Text" class="review_photo"
+                            style="display:flex" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button class="btn-custom-admin btn-save-edit" data-id="@Model.PlayerId" type="button">Save</button>
+            <button class="btn-custom-admin btn-cancel" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+    </form>
+</div>

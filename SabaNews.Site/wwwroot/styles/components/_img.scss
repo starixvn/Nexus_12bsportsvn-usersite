@@ -1,0 +1,96 @@
+.wp-block-image {
+    figcaption {
+        text-align: center;
+        position: relative;
+        font-size: 1.4rem;
+        margin-top: 5px;
+    }
+}
+
+.hover-image {
+    overflow: hidden;
+    border-radius: 3px;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    position: relative;
+    padding-bottom: 56.2%;
+    img {
+        transition: all .5s ease;
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-position: top;
+        transform: rotate(0.01deg) scale(1); 
+    }
+
+    &:hover {
+        img {
+            transition: all .5s ease;
+            transform: rotate(0.01deg) scale(1.01); 
+        }
+    }
+}
+
+.play_video{
+    overflow: hidden;
+    border-radius: 3px;
+    position: relative;
+    padding-bottom: 56.2%;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    iframe{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+.hover-none-16-9{
+    overflow: hidden;
+    border-radius: 3px;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: all .5s ease;
+        transform: rotate(0.01deg) scale(1); 
+    }
+
+    &:hover{
+        img{
+            transition: all 0.5s ease;
+            transform: rotate(0.01deg) scale(1.01); 
+        }
+    }
+}
+
+.fix-chrome{
+    .hover-image,.hover-none-16-9,.card-horizontal__image,.card-vertical__image{
+        img{
+            -webkit-backface-visibility: hidden;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: nearest-neighbor;
+        }
+    }
+}
+
+
+.hover-ff{
+    img{
+        image-rendering: auto;
+        transform: rotate(0.001deg) scale(1); 
+    }
+    &:hover{
+        img{
+            transform: translateZ(0) rotate(.0001deg) scale3d(1.02, 1.02, 2); 
+        }
+    }
+}
+

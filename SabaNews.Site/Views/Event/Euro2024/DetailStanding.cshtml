@@ -1,0 +1,149 @@
+@using SabaNews.Core.Helper;
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-standing-detail.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/standing.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/standing.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        window.isKnockout = '@Model.IsKnockoutStage'
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/standing.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/euro-2024-standing.min.js" asp-append-version="true"></script>
+    </environment>
+
+}
+
+@(await Component.InvokeAsync("HeaderEuro2024", new { cateSlug = Model.Header.Slug }))
+
+
+<section class="euro2024-standing">
+    <div id="euro-fixture"></div>
+    <div class="euro-page-main">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="block-heading-text">
+                    Bảng Xếp hạng
+                </h2>
+            </div>
+            <div class="live-score-nav">
+                <ul>
+                    <li>
+                        <a href="#vong-bang" class="active" id="btn-detail-standing">Vòng bảng</a>
+                    </li>
+                    <li>
+                        <a href="#knock-out" id="btn-knock-out" class="">Knock-out</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pages-detail-standing">
+                <div id="detail-standing">
+                    @{
+                        var indexTable = 0;
+                        @foreach (var standing in Model.StandingsViewModel)
+                        {
+                            indexTable++;
+                            <div class="scroll-sticky">
+                                <div class="wc-table wc-table-@indexTable wc-table-king-soccer scroll-snap-items">
+                                    <div class="standing-table-name">
+                                        @ViewResources.Board @standing.GroupName.Substring(0, 1)
+                                    </div>
+                                    <div class="wc-table-header">
+                                        <div class="wc-table-cell cell-rank first-width">
+                                            #
+                                        </div>
+                                        <div class="wc-table-cell cell-rank cell-participant">
+                                            Đội
+                                        </div>
+                                        <div class="wc-table-cell cell-rank">Trận</div>
+                                        <div class="wc-table-cell cell-rank hide-on-mobile">Thắng</div>
+                                        <div class="wc-table-cell cell-rank hide-on-mobile">Hòa</div>
+                                        <div class="wc-table-cell cell-rank hide-on-mobile">Thua</div>
+                                        <div class="wc-table-cell cell-rank width-cell hide-on-mobile">Bàn thắng</div>
+                                        <div class="wc-table-cell cell-rank width-cell hide-on-mobile">Bàn thua</div>
+                                        <div class="wc-table-cell cell-rank">+/-</div>
+                                        <div class="wc-table-cell cell-rank">Điểm</div>
+                                    </div>
+
+                                    <div class="wc-table-body">
+                                        @{
+                                            var count = 0;
+                                            @foreach (var item in standing.Standings)
+                                            {
+                                                var teamIcon = GetTeamIcon(item.Icon);
+                                                var teamName = GetStandingTeamName(item);
+                                                count++;
+                                                <div class="wc-table-row">
+                                                    <div class="wc-table-cell cell-rank first-width">
+                                                        <span class="@(count <= 2 ? "first-width-number" : "")">
+                                                            @count
+                                                        </span>
+                                                    </div>
+                                                    <div class="wc-table-cell cell-participant">
+                                                        <ul class="team">
+                                                            <li class="team-logo">
+                                                                <a href="@Url.Action("TeamDetail", "Euro2024", new { teamName = Helper.GetSlug(teamName), teamId = item.TeamId })"><img src="@(string.IsNullOrEmpty(item.IconVN) ? teamIcon : item.IconVN)" /></a>
+                                                            </li>
+                                                            <li class="team-name"> <a href="@Url.Action("TeamDetail", "Euro2024", new { teamName = Helper.GetSlug(teamName), teamId = item.TeamId })">@teamName</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wc-table-cell cell-rank">@item.Total</div>
+                                                    <div class="wc-table-cell cell-rank hide-on-mobile">@item.Won</div>
+                                                    <div class="wc-table-cell cell-rank hide-on-mobile">@item.Draw</div>
+                                                    <div class="wc-table-cell cell-rank hide-on-mobile">@item.Loss</div>
+                                                    <div class="wc-table-cell cell-rank width-cell hide-on-mobile">@item.Goals</div>
+                                                    <div class="wc-table-cell cell-rank width-cell hide-on-mobile">@item.GoalsAgainst</div>
+                                                    <div class="wc-table-cell cell-rank">@item.GoalDiff</div>
+                                                    <div class="wc-table-cell cell-rank points-table">@item.Points</div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div id="knock-out-main">
+                    <div id="euro-standing-playoff"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,94 @@
+﻿@using SabaNews.Resources;
+<table class="custom-table text-center">
+    <tr>
+        <th width="3%">@ViewResources.STT</th>
+        <th width="18%">@ViewResources.Subject</th>
+        <th width="8%">@ViewResources.Content</th>
+        <th width="12%">@ViewResources.CreatedDate</th>
+        <th width="10%">@ViewResources.CreatedBy</th>
+        <th width="6%">@ViewResources.TotalUsers</th>
+        <th width="6%">@ViewResources.Sendings</th>
+        <th width="10%">@ViewResources.Clicks / @ViewResources.Percentage</th>
+        <th width="5%">@ViewResources.Status</th>
+        <th width="10%">@ViewResources.Action</th>
+    </tr>
+
+	@{ var stt = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize; }
+	@foreach (var email in Model.Emails)
+	{
+		stt++;
+		var rate = (email.TotalClicked > 0 ? Math.Round((double)email.TotalClicked / email.TotalCreate * 100, 2) : 0) + "%";
+		var title = email.EmailTitle.Length > 50 ? email.EmailTitle.Substring(0, 50) + "..." : email.EmailTitle;
+		var createdDate = SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(email.CreatedDate);
+		<tr>
+			<td>@stt</td>
+			<td class="text-left">@title</td>
+			<td>
+				<input value="@email.EmailContent" type="hidden" class="email_content" />
+				<input value="@email.EmailTitle" type="hidden" class="email_title" />
+				<a href="javascript:;" class="label label-blue email view_content">View</a>
+			</td>
+			<td>@createdDate</td>
+			<td class="text-left">@email.CreatedName</td>
+			<td class="text-right">
+				@if (email.TotalCreate > 0)
+				{
+					<a href="@Url.Action("Detail", "Email", new { emailId = email.Id })">@email.TotalCreate</a>
+				}
+				else
+				{
+					@email.TotalCreate
+				}
+			</td>
+			<td class="text-right">
+					@email.TotalSent
+			</td>
+			<td class="text-right">@email.TotalClicked / @rate</td>
+			<td>
+				@if (email.Status == 0)
+				{
+					@ViewResources.Sent
+				}
+				else if (email.Status == 1)
+				{
+					@ViewResources.New
+				}
+			</td>
+			<td>
+				@if (email.Status == 1)
+				{
+					<p class="table-control">
+                        <a href="@Url.Action("Edit", "Email", new { emailId = @email.Id })" class="action action-edit edit-email" data-emailid="@email.Id">
+                            <i class="icon-edit-admin"></i>
+                            <span class="tooltip-menu">
+                                Edit
+                            </span>
+                        </a>
+                        <a href="javascript:;" class="action action-delete delete-email" data-emailid="@email.Id">
+                            <i class="icon-delete-admin"></i>
+                            <span class="tooltip-menu">
+                                Delete
+                            </span>
+                        </a>
+                        <a href="javascript:;" class="action action-send send-email" data-emailid="@email.Id">
+                            <i class="icon-send-admin"></i>
+                            <span class="tooltip-menu">
+                                Send
+                            </span>
+                        </a>
+					</p>
+				}
+			</td>
+		</tr>
+	}
+	@if (Model.Emails.Count == 0)
+	{
+		<tr>
+			<th class="nodata_table" colspan="9">@ViewResources.EmptyData</th>
+		</tr>
+	}
+</table>
+
+
+
+@(await Component.InvokeAsync("Paging", new { model = Model.Paging }))

@@ -1,0 +1,69 @@
+﻿@section Metadata {
+    <meta name="description" content='@Model.Description' />
+    <meta property="og:description" content='@Model.Description' />
+    <meta property="og:title" content='@Model.Title' />
+}
+
+@section Title {
+    @Model.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022-fixture.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/full-fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/full-fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/full-fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/full-fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/minify/js/worldcup2022-fixture.min.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Slug }))
+
+<section class="worldcup-fixture">
+    <div class="swiper swipper-mobile-banner">
+        <div class="swiper-wrapper">
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-top"></div>
+            </div>
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-center"></div>
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-ads-wc"></div>
+    </div>
+    <div class="wc-page-main">
+        <div class="title-section">
+            <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+            <h2>Lịch Thi Đấu</h2>
+            <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+        </div>
+        <div>
+            <div id="world-full-fixture"></div>
+        </div>
+        <div class="sticker-standing-left">
+            <img src="~/images/worldcup/sticker-standing-left.svg" alt="Alternate Text" class="img-res"/>
+        </div>
+        <div class="sticker-standing-right">
+            <img src="~/images/worldcup/sticker-standing-right.svg" alt="Alternate Text" class="img-res"/>
+        </div>
+    </div>
+</section>
+@await Html.PartialAsync(ViewResources.SidebarBannerView)

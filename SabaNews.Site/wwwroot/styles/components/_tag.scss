@@ -1,0 +1,24 @@
+.tag-post{
+    @include flex(center, wrap, flex-start, row);
+    .tag-item{
+        background-color: $block-highlight-bgcolor;
+        padding: .3rem 1.5rem;
+        margin: 0 .5rem 1rem 0;
+        border-radius: 1.5rem;
+        transition: background-color .3s ease;
+        &:hover{
+            background-color: $color-active;
+            a{
+                color: $color-fff;
+            }
+        }
+        .tag{
+            text-decoration: none;
+            font-size: 1.4rem;
+            line-height: 2.4rem;
+            color: $color-input;
+            display: block;
+            font-weight: 500;
+        }
+    }
+}

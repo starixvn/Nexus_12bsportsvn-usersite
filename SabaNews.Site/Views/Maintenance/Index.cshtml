@@ -1,0 +1,54 @@
+﻿@using SabaNews.Core.Models
+@inject UMSettings settings
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hệ thống đang bảo trì</title>
+    <link rel="stylesheet" href="~/minify/styles/maintenance.min.css" asp-append-version="true">
+</head>
+<body>
+    <div class="container">
+        <div class="grid-maintain">
+            <div class="items items-left">
+                <h1 class="primary-heading">
+                    THÔNG BÁO <br />
+                    NÂNG CẤP VÀ BẢO TRÌ HỆ THỐNG
+                </h1>
+                @if (settings.IsUrgent)
+                {
+                    <div class="content-page"> Nhằm mang lại trải nghiệm tốt hơn cho Quý độc giả, chúng tôi đang tiến hành nâng cấp, bảo trì hệ thống và sẽ sớm hoạt động trở lại.</div>
+                    <br />
+                }
+                else
+                {
+                    <div class="content-page">
+                        Nhằm mang lại trải nghiệm tốt hơn cho Quý độc giả, chúng tôi đang tiến hành nâng cấp, bảo trì định kỳ hệ thống đến @settings.To.
+                    </div>
+                    <br />
+                }
+
+                <div class="content-page">
+                    Trong thời gian thực hiện, trang Sabavn.net có thể bị gián đoạn. Quý độc giả vui lòng theo dõi chúng tôi trên
+                    <a href="https://www.facebook.com/sabasportsvietnam">Facebook</a>,
+                    <a href="https://www.youtube.com/SABASportsVietnam">Youtube</a> hoặc <a href="https://www.tiktok.com/@@sabasportsvietnam">Tiktok</a>
+                    để liên tục cập nhật những tin tức mới nhất.
+                </div>
+                <br />
+                <div class="content-page">
+                    Chúng tôi rất mong nhận được sự thông cảm từ Quý độc giả vì sự bất tiện này.
+                </div>
+            </div>
+            <div class="items items-right">
+                <img src="~/images/main-tain.png" alt="saba-sport" asp-append-version="true" class="img-res">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,58 @@
+﻿@{
+    int CurrentPage = Convert.ToInt32(Model.Paging.CurrentPage);
+    int TotalPages = Convert.ToInt32(Model.Paging.TotalPages);
+    var pageNext = CurrentPage + 1;
+    var pagePrev = CurrentPage - 1;
+    var checkPrev = CurrentPage > 1 ? "paging" : "disabled";
+    var checkNext = CurrentPage < TotalPages ? "paging" : "disabled";
+}
+
+<div class="list-user">
+    <ul class="heading-table">
+        <li class="text-left">Email</li>
+        <li class="text-center">Đội vô dịch</li>
+        <li class="text-center">Số may mắn</li>
+        <li class="text-center">Thời gian tham dự</li>
+    </ul>
+    <table class="table table-bordered">
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                var joinDate = SabaNews.Core.Helper.DateTimeUtilize.FormatDateTime(user.JoinDate, "dd/MM/yyyy HH:mm:ssss");
+
+                var emailFormat = user.Email;
+                var emailSplit = emailFormat.Split('@');
+                var first = emailSplit[0].Length >= 3 ? emailSplit[0].Substring(0, 3) : emailSplit[0].Substring(0, emailSplit[0].Length);
+                var last = "";
+                if (emailSplit[0].Length > 6)
+                {
+                    last = emailSplit[0].Substring(emailSplit[0].Length - 3);
+                }
+                emailFormat = first + "***" + last + "@" + emailSplit[1];
+                <tr>
+                    <td class="child-table child-first">@emailFormat</td>
+                    <td class="child-table child-two text-center font-weight-bold">@user.LuckyNumber</td>
+                    <td class="child-table child-three text-center">@joinDate</td>
+                </tr>
+            }
+            @if (Model.Users.Count == 0)
+            {
+                <tr>
+                    <td class="child-table text-center nodata_table" colspan="3">Danh sách hiện đang trống</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@if (TotalPages > 1)
+{
+    <ul class="pagination-event">
+        <li class="pre"><a href="javascript:;" data-page="@pagePrev" class="@checkPrev"><i class="icon icon-prev-event"></i></a></li>
+        @for (var i = 1; i <= TotalPages; i++)
+        {
+            var active = i == CurrentPage ? "active" : "";
+            <li class="number @active"><a data-page="@i" class="paging" href="javascript:;">@i</a></li>
+        }
+        <li class="next"><a href="javascript:;" data-page="@pageNext" class="@checkNext"><i class="icon icon-next-event"></i></a></li>
+    </ul>
+}

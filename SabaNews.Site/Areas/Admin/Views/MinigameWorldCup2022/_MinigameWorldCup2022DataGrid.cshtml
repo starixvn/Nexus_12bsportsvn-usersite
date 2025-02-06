@@ -1,0 +1,41 @@
+﻿@using SabaNews.Resources;
+@{ var count = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize; }
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.Email</th>
+                <th>@ViewResources.Point</th>
+                <th>@ViewResources.JoinedDate</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model.MiniGames)
+                {
+                    count++;
+                    <tr>
+                        <td class="text-center" width="5%">@count</td>
+                        <td class="text-left" width="30%">@user.UserName</td>
+                        <td class="text-left" width="30%">@user.Email</td>
+                        <td class="text-center" width="10%">@user.Point</td>
+                        <td class="text-center" width="19%">@user.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss")</td>
+                        <td class="text-center" width="6%"><i class="icon-page icon-list_alt-admin btn-detail" 
+                            data-rank='@count' data-totalpoint='@user.Point' data-userid='@user.UserId'></i></td>
+                    </tr>
+                }
+            }
+            @if (Model.MiniGames.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

@@ -1,0 +1,146 @@
+﻿.block-video .block__content {
+    @include grid(71rem 1fr, 46rem, 1.6rem);
+
+    @include tableMobile {
+        @include grid(48.7rem 1fr, 46rem, #{$column-gap});
+    }
+
+    @include landscapeTablet {
+        @include grid(66.7rem 1fr, 46rem, #{$column-gap});
+    }
+
+    @include Mobile {
+        display: inherit;
+    }
+}
+
+.guess-block .block__content {
+    display: grid;
+}
+
+
+.block-video, .guess-block {
+    .block__content {
+        
+
+        .swiper-video {
+            overflow: hidden;
+            grid-column: 1;
+
+            .swiper-container {
+                height: 100%;
+
+                .img-item {
+                    @media screen and (max-device-width: 767px) and (orientation:landscape) {
+                        height: 32rem;
+                    }
+
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .swiper-button-next, .swiper-button-prev {
+                display: none;
+
+                @include Mobile {
+                    display: block;
+                }
+            }
+
+            .btn-play-video {
+
+                @include Mobile {
+                    display: flex;
+                }
+            }
+        }
+
+        .slide-video {
+            grid-column: 2;
+            overflow: auto;
+
+            @include Mobile {
+                display: none;
+            }
+
+            .card-item {
+                background-color: $block-highlight-bgcolor;
+            }
+
+            .card-horizontal {
+                margin-bottom: 1rem;
+                padding-bottom: 0;
+
+                &__content {
+                    padding: 1rem 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            &::-webkit-scrollbar {
+                width: .6rem;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba($color-000, .2);
+                border-radius: 3px;
+            }
+        }
+
+        .card-horizontal {
+            grid-template-columns: 14rem 1fr;
+            grid-template-rows: 8rem;
+
+            &__image {
+                height: 8rem;
+            }
+
+            .card-horizontal__content {
+                padding: .4rem 0;
+                line-height: 1.8rem;
+            }
+
+            &.active .card-horizontal__image {
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 999;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    content: 'Đang phát';
+                    color: #fff;
+                    text-align: center;
+                    top: 0;
+                    padding-top: 3rem;
+                }
+            }
+
+            .title {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .play_video iframe {
+        height: 40rem;
+
+        @media screen and (max-width: 767px) {
+            height: 22rem;
+        }
+
+        @media screen and (max-device-width: 767px) and (orientation:landscape) {
+            height: 32rem;
+        }
+    }
+}

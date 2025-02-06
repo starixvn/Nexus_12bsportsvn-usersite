@@ -1,0 +1,46 @@
+body {
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+amp-story,
+amp-story-page {
+  background-color: #1c1c1c;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+}
+
+p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.d-flex {
+  display: flex;
+}
+
+amp-story h1 {
+  font-size: 1.6rem;
+}
+
+amp-story h2 {
+  font-size: 1.2rem;
+}
+
+amp-story p {
+  font-size: 1rem;
+}
+
+.align-end {
+  align-content: end;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,115 @@
+@using SabaNews.Resources
+<div class="modal auth-register authModal" id="modal-register" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-content modal-auth">
+        <div class="modal-body">
+            <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="main-auth">
+                <a href="#" class="auth-logo">
+                    <img src="/images/sabasports.svg" alt="auth logo" />
+                </a>
+                <div class="register-action">
+                    <div class="group-heading">
+                        <div class="title">Tạo tài khoản</div>
+                        <div class="slogan">Chào mừng bạn đến với SABAVN.NET</div>
+                    </div>
+                     <div class="validate-error summary-eror"></div>
+                    <form id="form-register">
+                        <div class="box-auth">
+                            <div class="box-auth-child">
+                                <div class="form-group-auth name-group">
+                                    <label class="label-auth">@ViewResources.Name</label>
+                                    <div class="group-input-auth">
+                                        <input type="text" class="input-auth" placeholder="Nhập tên" name="name" />
+                                    </div>
+                                    <div class="validate-error"></div>
+                                </div>
+                            </div>
+                            <div class="box-auth-child">
+                                <div class="form-group-auth email-group">
+                                    <label class="label-auth">Email</label>
+                                    <div class="group-input-auth">
+                                        <input type="email" name="email" class="input-auth" placeholder="Nhập email" autocomplete="new-email">
+                                    </div>
+                                    <div class="validate-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-auth">
+                            <div class="box-auth-child">
+                                <div class="form-group-auth password-group">
+                                    <label class="label-auth">@ViewResources.Password</label>
+                                    <div class="group-input-auth">
+                                        <input type="password" name="password" class="input-auth" placeholder="Nhập mật khẩu" autocomplete="new-password">
+                                        <span class="toggle-pass">
+                                            <i class="icon-form icon-show"></i>
+                                            <i class="icon-form icon-hide" style="display: none"></i>
+                                        </span>
+                                    </div>
+                                    <div class="validate-error"></div>
+                                </div>
+                            </div>
+                            <div class="box-auth-child">
+                                <div class="form-group-auth confirm-password-group">
+                                    <label class="label-auth">@ViewResources.ConfirmPassword</label>
+                                    <div class="group-input-auth">
+                                        <input type="password" name="confirmPassword" class="input-auth" placeholder="Nhập lại mật khẩu"  autocomplete="new-confirmPassword">
+                                        <span class="toggle-pass">
+                                            <i class="icon-form icon-show"></i>
+                                            <i class="icon-form icon-hide" style="display: none"></i>
+                                        </span>
+                                    </div>
+                                    <div class="validate-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-auth">
+                            <div class="box-auth-child">
+                                <div class="form-group-auth phone-group">
+                                    <label class="label-auth">Số điện thoại</label>
+                                    <div class="group-input-auth">
+                                        <input type="number" name="phone" class="input-auth" placeholder="Nhập số điện thoại">
+                                    </div>
+                                     <div class="validate-error"></div>
+                                </div>
+                            </div>
+                            <div class="box-auth-child">
+                                <div class="form-group-auth year-group">
+                                    <label class="label-auth">Năm sinh</label>
+                                    <div class="group-input-auth">
+                                        <select class="select-auth" name="yearOfBirth">
+                                            <option value="" selected>Chọn năm sinh</option>
+                                            @for(var i = 1904 ;  i <= 2006 ; i++)
+                                            {
+                                                <option class="color-other">@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-auth">
+                             <div class="box-auth-child">
+                                <div class="submit-auth  captcha">
+                                    <form action="" method="POST">
+                                        <div id="register-captcha" class="g-recaptcha"  data-action="LOGIN"></div>
+                                    </form>
+                                    <div class="validate-error"></div>
+                                </div>
+                             </div>
+                              <div class="box-auth-child">
+                                <div class="submit-auth">
+                                    <button class="submit submit-register" type="submit" >Tạo tài khoản</button>
+                                </div>
+                                <div class="group-question auth-input">
+                                    Bạn đã có tài khoản? <a href="#" class="auth-login">Đăng nhập ngay</a>
+                                </div>
+                              </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

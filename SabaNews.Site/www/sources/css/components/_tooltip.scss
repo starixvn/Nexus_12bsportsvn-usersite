@@ -1,0 +1,121 @@
+@import '~react-toastify/scss/main';
+
+.tooltip-add-favourite-match {
+    z-index: 99999999;
+    padding: .4rem 0;
+    pointer-events : none;
+    .arrow {
+        display: block;
+        width: .8rem;
+        height: .4rem;
+        position: absolute;
+        left: -2px !important;
+        top: 0;
+
+        &:before {
+            position: absolute;
+            content: "";
+            border-color: transparent;
+            border-style: solid;
+            display: block;
+            bottom: 0;
+            border-width: 0 5px 5px;
+            border-bottom-color: rgba(41, 41, 41, 0.9);
+        }
+    }
+}
+
+.tooltip-add-favourite-match [class$="inner"] {
+    background: rgba(41, 41, 41, 0.9);
+    color: #FFFFFF;
+    padding: .6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 2.4rem;
+}
+
+
+.fav-match, .fav-league {
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        li {
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 2.4rem;
+            display: inline-flex;
+            margin-right: 1rem;
+            align-items: center;
+            justify-content: center;
+            @include tableMobile{
+                margin-right: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+
+            i {
+                margin-right: .8rem;
+            }
+
+            a {
+                background: #BAD3FF;
+                border-radius: 3px;
+                text-decoration: none;
+                padding: 0.4rem;
+                font-weight: 700;
+                font-size: 1.2rem;
+                line-height: 1;
+                color: $color-title;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+.Toastify__toast {
+    background: $color-title;
+    padding: 0;
+    min-height: 4rem !important;
+    padding: .9rem 1.2rem !important;
+    margin-bottom: 0 !important;
+
+    @include tableMobile {
+        border-radius: 3px !important;
+    }
+}
+
+.Toastify__toast-container {
+    width: auto !important;
+
+    @include tableMobile {
+        bottom: 1em !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .show-link-toastify {
+        @include tableMobile {
+            width: 6rem;
+        }
+    }
+
+    .text-fav {
+
+        @include tableMobile {
+            width: 23rem;
+        }
+    }
+}
+
+.Toastify__close-button {
+    display: none;
+}
+
+.Toastify__toast-body {
+    padding: 0;
+    margin: 0;
+}

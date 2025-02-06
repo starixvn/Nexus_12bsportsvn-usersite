@@ -1,0 +1,207 @@
+@import '../abstracts/variables';
+@import '../abstracts/_mixins.scss';
+.footer-event {
+    background: linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    border-top: 4px solid #F12F19;
+    padding: 3.2rem 0;
+    margin-top: auto;
+    @include Mobile{
+        padding: 2rem 0;
+    }
+    &-top,&-menu,&-social{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include Mobile{
+            display: block;
+        }
+    }
+    &-top{
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #ADADAD;
+        @include Mobile{
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+        }
+    }
+    &-social{
+        gap: 1.6rem;
+        flex-wrap: wrap;
+        @include tableMobile{
+            width: 20rem;
+        }
+        .text-follow{
+            color: $white-color;
+            @include Mobile{
+                margin-bottom: 1rem;
+            }
+        }
+        .follow{
+            display: inline-flex;
+            gap: 1.6rem;
+            a{
+                font-size: 2.4rem;
+                color: $white-color;
+                text-decoration: none;
+            }
+        }
+    }
+    &-menu{
+        list-style: none;
+        gap: 3.2rem;
+        @include tableMobile{
+            gap: 1.6rem;
+        }
+        @include Mobile{
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #ADADAD;
+        }
+        li{
+            @include Mobile{
+                margin-bottom: 1.6rem;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            a{
+                font-size: 1.4rem;
+                font-weight: 600;
+                line-height: normal;
+                color: $white-color;
+                text-decoration: none;
+                @include tableMobile{
+                    font-size: 1rem;
+                }
+                @include Mobile{
+                    font-size: 1.4rem;
+                }
+                &:hover{
+                   color: $primary-color; 
+                }
+            }
+        }
+    }
+    .footer-info{
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        @include Mobile{
+            display: block;
+        }
+        .footer-logo{
+            @include Mobile{
+                margin-bottom: 1.2rem;
+            }
+            a{
+                display: block;
+                img{
+                    display: block;
+                    min-width: 11.6rem;
+                }
+            }
+        }
+        &-main{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            .footer-list-service{
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 1.6rem;
+                display: flex;
+                flex-wrap: wrap;
+                @include Mobile{
+                    margin-bottom: 1.2rem;
+                }
+                li{
+                    padding-right: 1rem;
+                    margin-right: 1rem;
+                    border-right: 1px solid #676767;
+                    @include Mobile{
+                        margin-bottom: .6rem;
+                    }
+                    &:last-child{
+                        border-right: 0;
+                        padding-right: 0;
+                        margin-right: 0;
+                    }
+                    a{
+                        text-decoration: none;
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                        line-height: 1.9rem;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .copy-right{
+            display: flex;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 2.4rem;
+            gap: 2.4rem;
+            @include Mobile{
+                display: block;
+            }
+            p{
+                color: $white-color;
+                @include Mobile{
+                    margin-bottom: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+.back-to-top-box {
+    position: fixed;
+    z-index: 99;
+    bottom: 3.5rem;
+    right: 3.5rem;
+    @include flex(center,nowrap,center,column);
+    width: 6rem;
+    height: 6rem;
+
+    @include Mobile {
+        display: none;
+    }
+
+    .back-to-top {
+        font-size: 1.6rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        transition: background-color .2s ease;
+        @include flex(center,nowrap,center,column);
+        background-color: rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+    }
+
+
+
+    .icon-chevron-right {
+        font-size: 2.4rem;
+        transform: rotate(270deg);
+        font-weight: bold;
+
+        &::before {
+            color: #323232;
+        }
+
+        @include tableMobile {
+            font-size: 2rem;
+        }
+    }
+
+    @include tableMobile {
+        right: 0.4rem;
+        bottom: 6rem;
+    }
+}

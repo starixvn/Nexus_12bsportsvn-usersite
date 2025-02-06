@@ -1,0 +1,295 @@
+﻿@using SabaNews.Resources
+@using SabaNews.Core.Constants.Livescore;
+@using SabaNews.Core.Helper;
+@using SabaNews.Site.Extensions;
+<form id="updateMatch">
+    <div class="flex-form-input">
+        <div class="form-group-input form-group-input-left">
+            <label class="label-admin">
+                KO date and time
+            </label>
+            <div class="admin-text-logo">
+                <div class="form-input">
+                    <input class="form-control custom-input" type="datetime-local" id="startTime" name="toDate"
+                           value="@DateTimeUtilize.FormatDateTime(Model.StartTime, "yyyy-MM-dd HH:mm")" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-form-input">
+        <div class="form-group-input form-group-input-left">
+            <label class="label-admin">
+                @ViewResources.Status
+            </label>
+            <div class="admin-text-logo">
+                <select class="form-control custom-input" id="status">
+                    @foreach (var status in MatchConstants.ListMatchStatus)
+                    {
+                        var selected = status.Id == Model.Status ? "selected" : "";
+                        <option value="@status.Id" @selected>@status.Name</option>
+
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group-input form-group-input-right">
+            <label class="label-admin">
+                Round
+            </label>
+            <div class="admin-text-logo admin-text-logo-round">
+                <input type="number" min="1" max="50" value="@Model.Round" class="form-control custom-input  input-number" id="round" name="round" />
+                <p class="error-input round-error"></p>
+            </div>
+        </div>
+    </div>
+    <div class="flex-form-input">
+        <div class="form-group-input form-group-input-left">
+            <label class="label-admin">
+                Stage name origin
+            </label>
+            <div class="admin-text-logo">
+                <input type="text" name="table-around" readonly class="form-control custom-input bg-custom-input" value="@(Model.Stage?.StageNameResource ?? Model.Stage?.StageNameEN)" />
+            </div>
+        </div>
+        <div class="form-group-input form-group-input-right">
+            <label class="label-admin">
+                Stage name VN
+            </label>
+            <div class="admin-text-logo admin-text-logo-stage-vn">
+                <input type="text" value="@Model.Stage?.StageNameCustom" class="form-control custom-input" id="stageNameVN" name="stageNameVN" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="admin-match-management">
+        <div class="item item-home">
+            <div class="admin-edit-title">Home</div>
+
+            <div class="flex-form-input">
+                <div class="form-group-input form-group-input-left w-75">
+                    <label class="label-admin">
+                        Name Origin
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="text" name="home-name-origin" readonly class="form-control custom-input bg-custom-input" value=" @(!string.IsNullOrEmpty(Model.HomeTeam.TeamNameEN) ? Model.HomeTeam.TeamNameEN : Model.HomeTeam.TeamFullNameEN)" style="height:5rem" / />
+                    </div>
+                </div>
+                <div class="form-group-input form-group-input-right w-25">
+                    <label class="label-admin">
+                        Logo Origin
+                    </label>
+                    <div class="admin-text-logo admin-text-logo-data-img">
+                        <img src="@LivescoreHelper.GetTeamIcon(Model.HomeTeam.Icon)" alt="Alternate Text" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="flex-form-input">
+                @{
+                    var display = !string.IsNullOrEmpty(Model.HomeTeam.IconVN);
+                    var hide = display ? "none" : "flex";
+                    var show = display ? "flex" : "none";
+                }
+                <div class="form-group-input form-group-input-left w-75">
+                    <label class="label-admin">
+                        Icon VN
+                    </label>
+                    <div class="admin-text-logo">
+
+                        <div class="input-upload">
+                            <input type="file" class="input-file photo" id="editHomeIcon">
+                            <div class="txt-img"><i class="icon-upload"></i> <span>@ViewResources.UploadNewImage</span></div>
+                            <div class="img-upload">
+                                <p class="error photo-error" style="display:none"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group-input form-group-input-right w-25">
+                    <label class="label-admin">
+                        Logo Origin
+                    </label>
+                    <div class="admin-text-logo admin-text-logo-data-img">
+                        <button type="button" class="cancel-upload icon-close" style="display:@show"></button>
+                        <img src="@Model.HomeTeam.IconVN" alt="Alternate Text" class="review_photo" style="display:@show" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        Name VN
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="hidden" id="editHomeId" value="@Model.HomeTeam.TeamId" />
+                        <input type="text" value="@Model.HomeTeam.TeamNameVN" class="form-control custom-input txt-homeVN" id="editHomeVN" name="HomeVN" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-status-column">
+                <div class="items-status">
+                    <label class="label-admin">
+                        1H Score
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.HomeTeamHalfScore" class="form-control w-100 custom-input input-number" id="homeTeamHalfScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        FT Score
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@LivescoreHelper.GetMatchTotalScore(Model, true)"
+                               class="form-control w-100 custom-input input-number" id="homeTeamExtraScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        PEN
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.HomeTeamPenaltyScore" class="form-control w-100 custom-input  input-number" id="homeTeamPenaltyScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        AGG
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.HomeTeamAggregateScore" class="form-control w-100 custom-input input-number"
+                               id="homeTeamAggregateScore" name="HomeVN" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input home-error error-input"></div>
+        </div>
+
+
+
+
+        <div class="item item-away">
+            <div class="admin-edit-title">Away</div>
+            <div class="flex-form-input">
+                <div class="form-group-input form-group-input-left w-75">
+                    <label class="label-admin">
+                        Name Origin
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="text" readonly name="home-name-origin" class="form-control custom-input bg-custom-input "
+                               value=" @(!string.IsNullOrEmpty(Model.AwayTeam.TeamNameEN) ? Model.AwayTeam.TeamNameEN : Model.AwayTeam.TeamFullNameEN)" style="height:5rem" />
+                    </div>
+                </div>
+                <div class="form-group-input form-group-input-right w-25">
+                    <label class="label-admin">
+                        Logo Origin
+                    </label>
+                    <div class="admin-text-logo admin-text-logo-data-img">
+                        <img src="@LivescoreHelper.GetTeamIcon(Model.AwayTeam.Icon)" alt="Alternate Text" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flex-form-input">
+                @{
+                    display = !string.IsNullOrEmpty(Model.AwayTeam.IconVN);
+                    hide = display ? "none" : "flex";
+                    show = display ? "flex" : "none";
+                }
+                <div class="form-group-input form-group-input-left w-75">
+                    <label class="label-admin">
+                        Icon VN
+                    </label>
+                    <div class="admin-text-logo">
+
+                        <div class="input-upload">
+                            <input type="file" class="input-file photo" id="editAwayIcon">
+                            <div class="txt-img"><i class="icon-upload"></i> <span>@ViewResources.UploadNewImage</span></div>
+                            <div class="img-upload">
+                                <p class="error photo-error" style="display:none"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group-input form-group-input-right w-25">
+                    <label class="label-admin">
+                        Logo Origin
+                    </label>
+                    <div class="admin-text-logo admin-text-logo-data-img">
+                        <button type="button" class="cancel-upload icon-close" style="display:@show"></button>
+                        <img src="@Model.AwayTeam.IconVN" alt="Alternate Text" class="review_photo" style="display:@show" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        Name VN
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="hidden" id="editAwayId" value="@Model.AwayTeam.TeamId" />
+                        <input type="text" value="@Model.AwayTeam.TeamNameVN" class="form-control custom-input" id="editAwayVN" name="AwayVN" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-status-column">
+                <div class="items-status">
+                    <label class="label-admin">
+                        1H Score
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.AwayTeamHalfScore" class="form-control w-100 custom-input input-number" id="awayTeamHalfScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        FT Score
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@LivescoreHelper.GetMatchTotalScore(Model, false)"
+                               class="form-control w-100 custom-input input-number" id="awayTeamExtraScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        PEN
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.AwayTeamPenaltyScore" class="form-control w-100 custom-input input-number" id="awayTeamPenaltyScore" name="HomeVN" />
+                    </div>
+                </div>
+                <div class="items-status">
+                    <label class="label-admin">
+                        AGG
+                    </label>
+                    <div class="admin-text-logo">
+                        <input type="number" min="0" max="100" value="@Model.AwayTeamAggregateScore" class="form-control w-100 custom-input input-number" id="awayTeamAggregateScore" name="HomeVN" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input away-error error-input"></div>
+        </div>
+    </div>
+    <div class="form-btn">
+        <button class="btn-custom-admin btn-btn-save" data-id="@Model.MatchId" id="btn-save">Save</button>
+        <button class="btn-custom-admin btn-btn-cancel" type="button" data-dismiss="modal">Cancel</button>
+    </div>
+</form>

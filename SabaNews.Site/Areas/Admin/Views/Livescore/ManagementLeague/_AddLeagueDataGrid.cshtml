@@ -1,0 +1,154 @@
+﻿@using SabaNews.Resources
+@using SabaNews.Livescore.Models.League
+@{ 
+    IList<League> listLeagues = Model;
+    var selectListLeague =
+            from item in listLeagues
+            select new SelectListItem
+            {
+                Text = item.LeagueFullNameEN,
+                Value = item.LeagueId.ToString()
+            };
+}
+<table width="100%" id="add-league">
+    <tbody>
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr class="row">
+                            <td>
+                                <label class="label-LeagueID">@ViewResources.LeagueId</label>
+                            </td>
+                            <td>
+                                <input type="text" value="@Model[0].LeagueId" class="form-control txt-leagueId" id="addLeagueId" name="LeagueId" readonly />
+                            </td>
+                            <td class="col-sm">
+                                <label>@ViewResources.Priority</label>
+                            </td>
+                            <td class="col-sm">
+                                <input type="number" value="@ViewBag.priority" min="0" max="@ViewBag.priority" class="form-control txt-priority" id="addPriority" name="Priority" />
+                            </td>
+                            <td class="col-sm">
+                                <label class="lable-major">@ViewResources.Hot</label>
+                            </td>
+                            <td class="col-sm">
+                                <input type="checkbox" class="checkbox-major" id="addMajor" name="Major" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.LeagueFullNameEN</label>
+                            </td>
+                            <td>
+                                @Html.DropDownList("LeagueId", new SelectList(Model, "LeagueId", "LeagueFullNameEN"), new { @class = "form-control txt-leagueFullNameVn", value = "LeagueId", id = "leagueFullNameEN" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.LeagueNameVN</label>
+                            </td>
+                            <td>
+                                <input type="text" value="@Model[0].LeagueNameVN" class="form-control txt-leagueNameVn" id="addLeagueNameVN" name="LeagueNameVN" />
+                            </td>
+                        </tr>
+
+                        <tr class="form-input flex-form-input">
+                            <td>
+                                <label>
+                                    League Icon
+                                </label>
+                            </td>
+                            <td>
+                                <div class="flex-form-input">
+                                    @{
+                                        var iconLeague = Model[0].IconVN ?? Model[0].Icon ?? "/css/images/logo-dummy.png";
+                                        var displayLeagueIcon = !string.IsNullOrEmpty(iconLeague);
+                                        var hideLeagueIcon = displayLeagueIcon ? "none" : "flex";
+                                        var showLeagueIcon = displayLeagueIcon ? "flex" : "none";
+                                    }
+                                    <div class="form-group-input form-group-input-left w-75">
+                                        <div class="admin-text-logo">
+                                            <div class="input-upload">
+                                                <input type="file" class="input-file photo" id="addLeagueIcon">
+                                                <div class="txt-img"><i class="icon-upload"></i> <span>@ViewResources.UploadNewImage</span></div>
+                                                <div class="img-upload">
+                                                    <p class="error photo-error" style="display:none"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-input form-group-input-right w-25">
+                                        <div class="admin-text-logo admin-text-logo-data-img">
+                                            <button type="button" class="cancel-upload icon-close" style="display:@showLeagueIcon"></button>
+                                            <img src="@iconLeague" id="iconLeague" alt="Alternate Text" class="review_photo" style="display:@showLeagueIcon" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.Country</label>
+                            </td>
+                            <td>
+                                <input type="text" disabled value="@Model[0].CountryEN" class="form-control txt-countryEn" id="addCountryEN" name="CountryEN" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.CountryVN</label>
+                            </td>
+                            <td>
+                                <input type="text" value="@Model[0].CountryVN" class="form-control txt-countryVn" id="addCountryVN" name="CountryVN" />
+                            </td>
+                        </tr>
+
+                        <tr class="form-input flex-form-input">
+                            <td>
+                                <label>
+                                    Country Icon
+                                </label>
+                            </td>
+                            <td>
+                                <div class="flex-form-input">
+                                    @{
+                                        var iconCountry = Model[0].CountryIconVN ?? Model[0].CountryLogo ?? "/css/images/logo-dummy.png";
+                                        var display = !string.IsNullOrEmpty(iconCountry);
+                                        var hide = display ? "none" : "flex";
+                                        var show = display ? "flex" : "none";
+                                    }
+                                    <div class="form-group-input form-group-input-left w-75">
+                                        <div class="admin-text-logo">
+                                            <div class="input-upload">
+                                                <input type="file" class="input-file photo" id="addCountryIcon">
+                                                <div class="txt-img"><i class="icon-upload"></i> <span>@ViewResources.UploadNewImage</span></div>
+                                                <div class="img-upload">
+                                                    <p class="error photo-error" style="display:none"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-input form-group-input-right w-25">
+                                        <div class="admin-text-logo admin-text-logo-data-img">
+                                            <button type="button" class="cancel-upload icon-close" style="display:@show"></button>
+                                            <img src="@iconCountry" id="iconContry" alt="Alternate Text" class="review_photo" style="display:@show" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-btn">
+                    <button class="btn btn-primary pl-4 pr-4" data-url="@Url.Action("AddLeagueExtra", "ManagementLeague")" id="btn-save-add">Save</button>
+                    <button class="btn btn-secondary pl-4 pr-4" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

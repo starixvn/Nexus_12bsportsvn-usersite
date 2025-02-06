@@ -1,0 +1,278 @@
+﻿@using SabaNews.Core.Constants;
+@using DeviceDetectorNET;
+@using SabaNews.Resources
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+    var isTablet = detector.IsTablet();
+}
+<meta name="description" content='@Model.ViewData.Description' />
+<meta name="robots" content="noarchive">
+<meta property="og:description" content='@Model.Category.OgDescription' />
+<meta property="og:title" content='@Model.Category.OgTitle' />
+<meta property="og:image" content='@Model.Category.OgImage' />
+
+@section Title{
+    @Model.ViewData.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2020_home.min.css" asp-append-version="true">
+}
+
+@section Scripts {
+    <script src="~/minify/js/swiper.min.js" asp-append-version="true"></script>
+    <script src="~/js/euro2020/home.js" asp-append-version="true"></script>
+}
+
+<div class="page">
+    @(await Component.InvokeAsync("HeaderEvent", new { page = Constants.Euro2020Slug }))
+    <div class="main-content">
+        <div class="block block-head">
+            <div class="container">
+                <div class="block lastest-news">
+                    <h2 class="block__title"><a href="@Url.Action("Category", "Euro2020", new { slug =  Constants.Euro2020HotNewsSlug})">@ViewResources.HotNews</a></h2>
+                    <div class="block__content">
+
+                        <div class="card-vertical card-highlight">
+                            @if (Model.HotNews.Length > 0)
+                            {
+                                <a href="@Url.Action("Single", "Post", new { slug =  Model.HotNews[0].Uri})" class="card-vertical__image hover-image">
+                                    @{
+                                        var imgSize = isMobile || isTablet ? ImageWidth.Width500 : ImageWidth.Width768;
+                                        string firstImgUrl = Model.HotNews[0].GetImageBySize(imgSize);
+                                    }
+                                    <picture>
+                                        <source srcset="@firstImgUrl" type="image/webp" class="img-res">
+                                        <source srcset="@firstImgUrl" type="image/jpeg" class="img-res">
+                                        <img asp-append-version="true" loading="lazy" src="@firstImgUrl" alt="" class="img-res img-block">
+                                    </picture>
+                                </a>
+                                <div class="card-content">
+                                    <a href="@Url.Action("Single", "Post", new { slug =  Model.HotNews[0].Uri})" class="card__title">@Model.HotNews[0].PostTitle</a>
+                                    <p class="card__description text-description">@Model.HotNews[0].PostExcerpt</p>
+                                    <p class="card__datetime">@Model.HotNews[0].PostTime</p>
+                                </div>
+                            }
+
+                        </div>
+                        @for (var i = 1; i < Model.HotNews.Length; i++)
+                        {
+                            var card = isMobile || isTablet ? "horizontal" : "vertical";
+
+                            string featuredImg = Model.HotNews[i].GetImageBySize(ImageWidth.Width300);
+                            <div class="card-@card">
+                                <a href="@Url.Action("Single", "Post", new { slug =  Model.HotNews[i].Uri})" class="card-@(card)__image hover-image">
+                                    <picture>
+                                        <source srcset="@featuredImg" type="image/webp" class="img-res">
+                                        <source srcset="@featuredImg" type="image/jpeg" class="img-res">
+                                        <img asp-append-version="true" loading="lazy" src="@featuredImg" alt="" class="img-res img-block">
+                                    </picture>
+                                </a>
+                                <div class="card-horizontal__content">
+                                    <a href="@Url.Action("Single", "Post", new { slug =  Model.HotNews[i].Uri})" class="title">@Model.HotNews[i].PostTitle</a>
+                                    <p class="datetime">@Model.HotNews[i].PostTime</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="board">
+                    <h2 class="block__title"><a href="@Url.Action("Ranking", "Euro2020")">@Constants.Euro2020Ranking</a></h2>
+                    <div class="block__content">
+                        <ul class="tab-lists">
+                            @{ var first = true; }
+                            @foreach (var post in Model.Ranking)
+                            {
+                                var active = "";
+                                if (first)
+                                {
+                                    first = false;
+                                    active = "active";
+                                }
+                                <li class="tab-item" data-tab="tab-@post.PostExcerpt.ToLower()"><a href="javascript:;" class="tab-link @active">@post.PostExcerpt.ToUpper()</a></li>
+                            }
+                        </ul>
+                        <div class="total_ranking">
+                            @Html.Raw(Model.TotalRanking.PostContent)
+                        </div>
+                    </div>
+                </div>
+                <div class="guess-block">
+                    <h2 class="block__title"><a href="@Url.Action("Category", "Euro2020", new { slug =  Constants.Euro2020IdentifySlug})">@ViewResources.Guess</a></h2>
+                    <div class="block__content">
+                        <div class="swiper-container guess-section">
+                            <div class="swiper-wrapper">
+                                @foreach (var post in Model.Identify)
+                                {
+                                    <div class="swiper-slide" id="slide-@post.ID">
+                                        <div class="img-item hover-image">
+                                            @{
+                                                string videoImg = post.GetImageBySize(ImageWidth.Width300);
+                                                <picture>
+                                                    <source srcset="@Url.Content(videoImg)" type="image/webp">
+                                                    <source srcset="@Url.Content(videoImg)" type="image/jpeg">
+                                                    <img loading="lazy" src="@Url.Content(videoImg)" alt="@post.PostTitle">
+                                                </picture>
+                                            }
+                                        </div>
+                                        <div class="content-box">
+                                            <h3 class="title-box"><a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="heading">@post.PostTitle</a></h3>
+                                        </div>
+                                    </div>}
+                            </div>
+                            <div class="swiper-button swiper-button-next"><span class="icon-slide icon-chevron-right"></span></div>
+                            <div class="swiper-button swiper-button-prev"><span class="icon-slide icon-chevron-left"></span></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block block-video">
+            <div class="container">
+                <h2 class="block__title"><a href="@Url.Action("Video", "Euro2020")">@ViewResources.Video</a></h2>
+                <div class="block__content flex-video">
+                    <div class="swiper-video">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                @foreach (var post in Model.Videos)
+                                {
+                                    <div class="swiper-slide" id="slide-@post.ID">
+                                        <input type="hidden" name="iframe_value" value="@post.PostContent" />
+                                        <div class="img-item hover-image">
+                                            @{
+
+                                                string videoImg = post.GetImageBySize(isDesktop ? ImageWidth.Width768 : ImageWidth.Width500);
+                                                <picture>
+                                                    <source srcset="@Url.Content(videoImg)" type="image/webp">
+                                                    <source srcset="@Url.Content(videoImg)" type="image/jpeg">
+                                                    <img loading="lazy" src="@Url.Content(videoImg)" alt="@post.PostTitle">
+                                                </picture>
+                                            }
+
+                                            <div class="btn-play-video">
+                                                <span class="icon-play"></span>
+                                            </div>
+                                        </div>
+                                        <div class="play_video"></div>
+                                        <div class="content-box">
+                                            <h3 class="title-box"><a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="heading">@post.PostTitle</a></h3>
+                                        </div>
+                                    </div>}
+                            </div>
+                            <div class="swiper-button swiper-button-next"><span class="icon-slide icon-chevron-right"></span></div>
+                            <div class="swiper-button swiper-button-prev"><span class="icon-slide icon-chevron-left"></span></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="slide-video">
+                        @foreach (var post in Model.Videos)
+                        {
+                            <div class="card-horizontal card-item">
+                                <a href="javascript:;" data-id="@post.ID" class="image-slider card-horizontal__image hover-image">
+                                    @{
+                                        string videoDesktopImg = post.GetImageBySize(ImageWidth.Width300);
+
+                                        <picture>
+                                            <source srcset="@Url.Content(videoDesktopImg)" type="image/webp" class="img-res">
+                                            <source srcset="@Url.Content(videoDesktopImg)" type="image/jpeg" class="img-res">
+                                            <img loading="lazy" src="@Url.Content(videoDesktopImg)" alt="@post.PostTitle" class="img-res img-block">
+                                        </picture>
+                                    }
+                                </a>
+                                <div class="card-horizontal__content">
+                                    <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" data-id="@post.ID" class="title">@post.PostTitle</a>
+                                    <p class="datetime">
+                                        @post.PostTime
+                                        @if (post.CommentCount > 0)
+                                        {
+                                            <a href="@Url.Action("Single", "Post", new { slug =  post.Uri})#comment" class="comment"><i class="icon-mode_comment_full"></i> <i class="number">@post.CommentCount</i></a>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block block-general-section">
+            <div class="container">
+                <h2 class="block__title"><a href="">@ViewResources.Overview</a></h2>
+                <div class="block__content">
+                    <a class="box team " href="@Url.Action("Team", "Euro2020")">
+                        <picture>
+                            <source srcset="~/images/euro2020/team_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/team_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/team_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small team-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.Team</div>
+                    </a>
+                    <a class="box stadium" href="@Url.Action("Single", "Post", new { slug = Constants.Euro2020StadiumSlug })">
+                        <picture>
+                            <source srcset="~/images/euro2020/stadium_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/stadium_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/stadium_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small stadium-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.Stadium</div>
+                    </a>
+                    <a class="box ball" href="@Url.Action("Single", "Post", new { slug = Constants.Euro2020BallSlug })">
+                        <picture>
+                            <source srcset="~/images/euro2020/ball_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/ball_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/ball_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small ball-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.Ball</div>
+                    </a>
+                    <a class="box mascot" href="@Url.Action("Single", "Post", new { slug = Constants.Euro2020MascotSlug })">
+                        <picture>
+                            <source srcset="~/images/euro2020/mascot_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/mascot_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/mascot_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small mascot-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.Mascot</div>
+                    </a>
+                    <a class="box record" href="@Url.Action("Single", "Post", new { slug = Constants.Euro2020RecordSlug })">
+                        <picture>
+                            <source srcset="~/images/euro2020/record_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/record_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/record_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small record-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.Record</div>
+                    </a>
+                    <a class="box top-goal-scorer" href="@Url.Action("Single", "Post", new { slug = Constants.Euro2020TopGoalScorer })">
+                        <picture>
+                            <source srcset="~/images/euro2020/top_soccer_img.png" type="image/webp" class="img-res">
+                            <source srcset="~/images/euro2020/top_soccer_img.png" type="image/jpeg" class="img-res">
+                            <img src="~/images/euro2020/top_soccer_img.png" alt="" class="img-res img-block" loading="lazy">
+                        </picture>
+                        <div class="logo-box">
+                            <span class="logo-small goal_soccer-logo"></span>
+                        </div>
+                        <div class="text">@ViewResources.TopGoalScorer</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

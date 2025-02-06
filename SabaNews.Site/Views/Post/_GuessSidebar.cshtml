@@ -1,0 +1,35 @@
+@using SabaNews.Core.Constants;
+<div class="block-guess">
+    <h3 class="block__title"><a href="@Url.Action("Category", "Home", new {slug = ViewBag.Slug + CategoryKey.Suffix} )">Nhận định bóng đá</a></h3>
+    <div class="block__content">
+        <div class="block-item">
+            @{
+                var postIndex = 0;
+                foreach (var post in Model)
+                {
+                    postIndex++;
+
+                    <div class="post card-vertical">
+                        @if(postIndex == 1){
+                            string featureImg = post.FeatureImage;
+                            <a href="@Url.Action("Single", "Post", new { slug = post.Slug })" class="card-vertical__image hover-image thumb thumb-65">
+                                <picture>
+                                    <source srcset="@Url.Content(featureImg)" type="image/webp" class="img-res">
+                                    <source srcset="@Url.Content(featureImg)" type="image/jpeg" class="img-res">
+                                    <img asp-append-version="true" data-original="@Url.Content(featureImg)" src="@Url.Content(featureImg)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                    <noscript>
+                                        <img asp-append-version="true" src="@Url.Content(featureImg)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                    </noscript>
+                                </picture>
+                            </a>
+                        }
+                        <h3><a class="card-vertical__title" href="@Url.Action("Single", "Post", new { slug = post.Slug })">@post.PostTitle</a></h3>
+                        <p class="card-vertical__datetime">
+                            <span>@post.PostTime</span>
+                        </p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

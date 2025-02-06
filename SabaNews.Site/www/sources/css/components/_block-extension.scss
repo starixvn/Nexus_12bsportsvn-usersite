@@ -1,0 +1,165 @@
+﻿.leagues-main {
+    margin: .5rem 0;
+}
+.livescore-soccer-extension {
+    padding-left: 1.6rem;
+    margin-bottom : 4rem;
+    @include tableMobile {
+        display: none;
+    }
+
+    .livescore-like {
+        padding: .8rem 1.2rem;
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        border: 1px solid #E6E6E6;
+        margin-bottom: .8rem;
+        position: relative;
+        cursor: pointer;
+
+        @include tableMobile {
+            display: none;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            line-height: 2.4rem;
+            color: $color-active-icon;
+            text-transform: uppercase;
+        }
+
+        .icon-livescore {
+            &:before {
+                color: $aciive-icon;
+            }
+        }
+
+        .number-like {
+            background: $color-active-icon;
+            padding: .3rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            line-height: 1;
+            color: $white;
+            border-radius: 3px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    }
+
+    .leagues {
+        background: $primary-bg;
+        border: 1px solid $border-color;
+        border-radius: 3px;
+
+        &-group {
+            display: flex;
+            align-items: center;
+        }
+
+        &-title {
+            background-color: #fffdf9;
+            border-bottom: 1px solid $border-color;
+            padding: 0.8rem .8rem 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            span {
+                font-weight: bold;
+                font-size: 1.4rem;
+                line-height: 2.4rem;
+                color: #f12f19;
+                text-transform: uppercase;
+                background-color: #fffdf9;
+                @include tableMobile {
+                    font-size: 1.6rem
+                }
+            }
+
+            i {
+                &:before {
+                    color: $aciive-icon;
+                }
+            }
+        }
+
+        &-item {
+            margin-bottom: .5rem;
+            position: relative;
+            cursor: pointer;
+            padding: .6rem 1.2rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .toggle-league {
+                display: none;
+
+                i {
+                    position: absolute;
+                    right: 11px;
+                    top: 50%;
+                    transform: translate(0,-50%);
+                }
+            }
+
+            &:hover {
+                background: #F5F5F5;
+
+                .toggle-league {
+                    display: block;
+                }
+
+                .leagues-name {
+                    color: $color-active-icon;
+                }
+
+                .start-active {
+                    display: block;
+                }
+
+                .leagues-name {
+                    .text {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .leagues-name {
+                display: flex;
+                align-items: center;
+
+                .logo {
+                    height: 3rem;
+                    width: 3rem;
+                    object-fit: cover;
+                    margin-right: .8rem;
+                }
+
+                .text {
+                    font-size: 1.4rem;
+                    line-height: 1.9rem;
+                    font-weight: 600;
+                    max-width: 20rem;
+                }
+            }
+        }
+    }
+}
+
+.icon-close {
+    cursor: pointer;
+
+    &.rotare-plus {
+        transform: rotate(135deg);
+    }
+}
+.empty-league {
+    padding: 0 1rem;
+}
+
+

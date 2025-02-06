@@ -1,0 +1,291 @@
+.minigame-table{
+    border-radius: 5px;
+    overflow: hidden;
+    .text-no-data{
+        padding: 1rem 0;
+        text-align: center;
+    }
+    .minigame-table-header{
+        border-radius: 5px 5px 0px 0px;
+        border-bottom: 1px solid #666;
+        background: #E6EAF8;
+        color: #222;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: normal;
+        height: 4.1rem;
+        display: flex;
+        align-items: center;
+        padding: 0 2.6rem;
+        .table-row{
+            font-size: 1.6rem;
+        }
+        @include Mobile{
+            height: 3.2rem;
+            padding: 0 1rem;
+            .table-row{
+                font-size: 1.3rem;
+            }
+        }
+    }
+    .minigame-table-body {
+        border-radius: 0 0 5px 5px;
+        background: #FFFDF9;
+        overflow: hidden;
+        overflow-y: auto;
+        max-height: 51.9rem;
+        @include Mobile{
+            max-height: 39.9rem;
+        }
+        &::-webkit-scrollbar{
+            width: .6rem;
+            @include Mobile{
+                display: none;
+            }
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+        &::-webkit-scrollbar-track{
+            background:transparent;
+        }
+        .table-row{
+            &-time{
+                width: 20rem;
+                @include Mobile{
+                    width: 7.5rem;
+                }
+            }
+        }
+    }
+    .minigame-table-items{
+        border-bottom: 1px solid #666;
+        padding: 0 2.6rem;
+        height: 5.2rem;
+        display: flex;
+        &.cursor-items{
+            cursor: pointer;
+        }
+        @include Mobile{
+            padding: 0 1rem;
+            height: 4rem;
+        }
+        &:hover, &.active{
+            background: #CBD5FF;
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+        .minigame-table-flex {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+    }
+    .table-row{
+        color:#222;
+        font-size: 1.4rem;
+        font-weight: 600;
+        line-height: normal;
+        @include Mobile{
+            font-size: 1.2rem;
+        }
+        &-index{
+            width: 6rem;
+            font-weight: 700;
+            @include Mobile{
+                width: 2.8rem;
+            }
+        }
+        &-score{
+            width: 4.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        &-time{
+            width: 20rem;
+            text-align: center;
+            @include Mobile{
+                width: 7.4rem;
+                font-size: 1.1rem;
+            }
+        }
+        &-name{
+            flex : 1 0 0;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            gap: 1rem;
+            .user-avatar{
+                width: 3.2rem;
+                height: 3.2rem;
+                background: #FFC800;
+                border: 1px solid #222;
+                border-radius: 5px;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                @include Mobile{
+                    display: none;
+                }
+            }
+            .user-name{
+                width: 33rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include Mobile{
+                    width: 16rem;
+                }
+            }
+        }
+    }
+}
+
+.minigame-table-header{
+    .table-row-time{
+        font-weight: 700;
+    }
+}
+
+.table-dropdown-header{
+    font-weight: 700;
+}
+
+.wrapper-scroll{
+    position: relative;
+    z-index: 9;
+    min-height: 50.9rem;
+    @include Mobile{
+        min-height: 43rem;
+    }
+}
+
+.table-dropdown{
+    background: #E7EAF2;
+}
+.table-dropdown{
+    &-round{
+        width: 20rem;
+        font-weight: 600;
+        @include Mobile {
+            width: 16rem;
+        }
+    }
+    &-score{
+        width: 4.5rem;
+        text-align: center;
+        font-weight: 600;
+        @include Mobile{
+            font-size: 1.3rem;
+        }
+    }
+    &-name{
+        flex: 1 0 0;
+    }
+    &-time{
+        width: 20rem;
+        @include Mobile {
+            width: 7.5rem;
+        }
+    }
+    &-header,&-body{
+        padding: 0 2.4rem;
+        display: flex;
+        height: 3.6rem;
+        align-items: center;
+        border-bottom: 1px solid #C4C4C4;
+        @include Mobile{
+            padding: 0 1rem;
+            font-size: 1.3rem;
+            height: 2.8rem;
+        }
+    }
+    &-header{
+       .table-dropdown-score,.table-dropdown-round{
+            font-weight: 700;
+       } 
+    }
+    &-body{
+        &:last-child{
+            border-bottom : 1px solid #666;
+        }
+    }
+}
+
+.profile-wraper-tablle{
+    border-radius: 10px;
+    border: 1px solid #4C65DD;
+    background: #1830A1;
+    padding: 3rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    min-height: 33.3rem;
+    @include Mobile{
+        padding: 2rem 1rem;
+        min-height: inherit;
+    }
+    .block-heading{
+        margin-bottom: 2rem;
+        &-text{
+            color: #fff;
+        }
+    }
+    .wrapper-scroll{
+        min-height: inherit;
+    }
+    .minigame-table{
+        .minigame-table-header{
+            .table-row{
+                font-size: 1.6rem;
+                @include Mobile{
+                    font-size: 1.3rem !important;
+                }
+            }
+        }
+        .table-row{
+            &-score{
+                width: 10rem;
+                @include Mobile{
+                    width: 12rem;
+                }
+            }
+            &-action{
+                width: 2.4rem;
+                height: 2.4rem;
+                .view-minigame-detail{
+                    font-size: 2.4rem;
+                    &::before{
+                        color: #222222;
+                    }
+                }
+                .icon-icon_lock{
+                    cursor: not-allowed;
+                }
+            }
+            &-time{
+                font-weight: 700;
+                width: 12rem;
+                @include Mobile{
+                    width: 6rem;
+                }
+            }
+            &-index{
+                @include Mobile{
+                    width: 3rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+
+@section Title{
+    RSS
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="base-container medium-container">
+    </div>
+    <div class="container medium-container">
+        <div class="block block-main block-category">
+            <ul class="list-rss">
+                <li><a class="rss-category" href="/rss/trang-chu.rss">Trang chủ: </a> @(Model.BaseUrl)rss/trang-chu.rss </li>
+                @foreach(var menu in Model.Menus)
+                {
+                    if(!string.IsNullOrEmpty(menu.CateSlug))
+                    {
+                        <li><a class="rss-category" href="/rss/@($"{menu.CateSlug}.rss")">@menu.MenuTitle: </a> @($"{Model.BaseUrl}rss/{menu.CateSlug}.rss") </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,233 @@
+﻿@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+@import '../base/base';
+
+@import '../layout/footer';
+@import '../layout/header';
+@import '../layout/block-extension';
+
+@import '../components/fonts';
+@import '../components/block';
+@import '../components/buttons';
+@import '../components/container';
+@import '../components/img';
+@import '../components/card-horizontal';
+@import '../components/card-vertical';
+@import '../components/pagination';
+@import '../components/lazyload';
+@import '../components/sub-structure';
+@import '../components/Euro2020/_ranking';
+@import '../components/Euro2020/_slider-video.scss';
+
+.block-main {
+    .card-horizontal {
+        margin-bottom: 1.6rem;
+
+        @include Mobile {
+            margin-bottom: 1.2rem;
+        }
+
+        &-highlight {
+            height: 30rem;
+            grid-template-columns: 44rem 1fr;
+            grid-column-gap: 0;
+            grid-template-rows: unset;
+            align-items: flex-start;
+            margin-bottom: $column-gap;
+            background-color: $block-highlight-bgcolor;
+            padding-bottom: 0;
+
+            @include tableMobile {
+                display: inherit;
+                height: auto;
+            }
+
+            @include Mobile {
+                margin-bottom: 1.2rem;
+            }
+
+            .card-horizontal__content {
+                padding: 16px;
+
+                @include tableMobile {
+                    margin-top: 1rem;
+                }
+
+                @include Mobile {
+                    padding: 8px;
+                    margin-top: 0;
+                }
+            }
+
+            .title {
+                font-size: 2rem;
+                line-height: 2.8rem;
+
+                @include Mobile {
+                    font-size: 1.6rem;
+                    line-height: 2.2rem;
+                }
+            }
+
+            .description {
+                margin-top: 1rem;
+
+                @include tableMobile {
+                    display: block;
+                    margin-top: 0;
+                }
+
+                @include Mobile {
+                    font-size: 1.2rem;
+                    line-height: 2rem;
+                }
+            }
+
+            .card-horizontal__image {
+                height: 100%;
+
+                @include tableMobile {
+                    max-height: 100% !important;
+                }
+            }
+        }
+    }
+}
+
+
+.block-warning {
+    .content {
+        line-height: 3.2rem;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .block__title {
+        &:before {
+            content: "CẢNH BÁO VỀ WEBSITE MẠO DANH THƯƠNG HIỆU SABA SPORTS";
+            line-height: 2.7rem;
+            color: #f12f19;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: bold;
+
+            @include Mobile {
+                content: "CẢNH BÁO VỀ WEBSITE MẠO DANH";
+                font-size: 1.6rem;
+            }
+        }
+
+        &:after {
+            content: none;
+        }
+    }
+
+
+    img {
+        max-width: 100%;
+    }
+
+    figcaption {
+        line-height: 1.8rem;
+    }
+
+    .aligncenter {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    [class*="banner"] {
+        text-align: center;
+        margin-bottom: 20px;
+
+        img {
+            border: 1px solid #e0e0e0;
+        }
+    }
+
+    .banner-desktop {
+        display: block;
+
+        @include tableMobile {
+            display: none;
+        }
+    }
+
+    .banner-mobile {
+        display: none;
+
+        @include tableMobile {
+            display: block;
+        }
+    }
+
+    .domain {
+        padding-left: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+
+.resetpass-container {
+    display: inherit !important;
+
+    .reset-page {
+        p {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+.sub-category {
+    list-style: none;
+    display: flex;
+    border-bottom: 1px solid #D4D4D4;
+    margin-bottom: 1.6rem;
+
+    .sub-item {
+        margin-right: 2.4rem;
+        font-weight: bold;
+
+        a {
+            color: #4F4F4F;
+            text-decoration: none;
+            padding-bottom: 6px;
+            display: inline-block;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                width: 0;
+                bottom: -1px;
+                height: .2rem;
+                background-color: #F12F19;
+                content: '';
+                left: 0;
+                transition: width .09s ease-in;
+            }
+        }
+
+        &:hover a, &.active a {
+            color: #F12F19;
+
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+}
+/*
+.wapper.active-fixed {
+    .child-mobile-menu, .button-mobile, .top-header {
+        position: fixed;
+        z-index: 10005;
+        top: 0;
+    }
+
+    .button-mobile {
+        z-index: 10004;
+    }
+}
+*/

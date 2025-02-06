@@ -1,0 +1,105 @@
+﻿<div class="header">
+    <div class="button-mobile">
+        <span class="line-mb"></span>
+        <span class="line-mb"></span>
+        <span class="line-mb"></span>
+    </div>
+    <div class="header-controls">
+        <div class="container padding-mobile-none">
+            <div class="banner-euro-desktop banner-desktop-top"></div>
+            @*<div class="skeleton-desktop skeleton-banner">
+                    <div class="skeleton-banner-euro-desktop"></div>
+                </div>*@
+
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/images/sabasports.svg" alt="saba-sports" asp-append-version="true">
+                </a>
+            </div>
+            <ul class="header-auth-provider">
+                <li class="item-control languages-box">
+                    <div class="language-select"><span class="flag flag-vn"></span><span class="country">Tiếng Việt</span></div>
+                    <ul class="languages-list">
+                        <li><a class="lang-item" href="https://www.sabasports.com.cn/"><span class="flag flag-cn"></span><span>简体中文</span></a>
+                        <li>
+                            <a class="lang-item" href="https://www.sabasports.com/"><span class="flag flag-en"></span><span>English</span></a>
+                        </li>
+                        <li>
+                            <a class="lang-item" href="https://www.sabasports.in/"><span class="flag flag-in"></span><span>India</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="item-control search-desktop search-input">
+                    <form action="/Search" method="post" id="search">
+                        <input class="keyword-input search-box" id="search-keyword" type="text" placeholder="Tìm kiếm...">
+                        <button type="submit" class="btn btn-search" aria-label="search">
+                            <i class="icon-search"></i>
+                        </button>
+                    </form>
+                </li>
+
+                <li class="item-control notification-auth">
+                    <span class="bell">
+                        <a href="#" class="auth-bell"><i class="icon-bell"></i></a>
+                        <a href="#" class="number-bell">10</a>
+                    </span>
+                </li>
+
+                <li class="item-control auth-input">
+                    @if (Model.IsAuthenticated)
+                    {
+                        <ul class="auth-provider">
+                            @if (Model.User.Photo == null)
+                            {
+                                <li class="avatar-user">@Model.User.Name.Substring(0, 1)</li>
+                            }
+                            else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                            {
+                                <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                            }
+                            else
+                            {
+                                <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                            }
+                            <li class="auth-displayname"><a class="item display-user">@Model.User.Name</a></li>
+                        </ul>
+                        <ul class="box-auth">
+                            <li>
+                                <ul class="auth-provider">
+                                    @if (Model.User.Photo == null)
+                                    {
+                                        <li class="avatar-user">@Model.User.Name.Substring(0, 1)</li>
+                                    }
+                                    else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                                    {
+                                        <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                                    }
+                                    <li class="auth-displayname"><a class="item display-user">@Model.User.Name</a></li>
+                                </ul>
+                            </li>
+                            @if (Model.IsAdmin)
+                            {
+                                <li class="info-user">
+                                    <a class="item" href="~/Admin/Statistic/Index">@ViewResources.Administration</a>
+                                </li>
+                            }
+                            <li class="info-user">
+                                <a class="item" href="@Url.Action("ListSavedPosts", "Profile")">Tin đã lưu</a>
+                            </li>
+                            <li class="info-user auth-info"><a href="@Url.Action("Index", "Profile")" class="item">@ViewResources.MyAccount</a></li>
+                            <li class="info-user auth-logout"><a href="~/Auth/Logout?returnUrl=@Context.Request.Path" class="item">@ViewResources.Logout<i class="icon-logout"></i> </a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="item auth-login" href="javascript:;">@ViewResources.Login</a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

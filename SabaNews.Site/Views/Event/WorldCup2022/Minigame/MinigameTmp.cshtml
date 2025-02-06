@@ -1,0 +1,238 @@
+﻿@using SabaNews.Core.Constants;
+@using static SabaNews.Site.Extensions.WorldCupHelper;
+@using DeviceDetectorNET;
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+    List<int> indexMatches = [15, 31, 47, 63];
+    var countStageActive = GetCountStageActiveMinigame(Model.Matches);
+    var countStageEnd = GetCountStageEndMinigame(Model.Matches);
+    List<string> startStages =
+    [
+        WorldCup2022.TimestampMinigameStage01Start,
+        WorldCup2022.TimestampMinigameStage02Start,
+        WorldCup2022.TimestampMinigameStage03Start,
+        WorldCup2022.TimestampMinigameStage04Start
+    ];
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+
+    <link rel="stylesheet" href="~/minify/styles/membership-event.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/event/worldcup2022/minigame.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        var checkLogin = '@Model.IsLogin';
+        window.User = '@Model.UserId';
+        window.CountStageActive = '@countStageActive';
+        window.CountStageEnd = '@countStageEnd';
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/minigame-standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/minigame-winner.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/minigame-standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/minigame-winner.chunk.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/js/event/worldcup2022/minigame.js" asp-append-version="true"></script>
+    <script src="~/js/event/worldcup2022/worldcup.js" asp-append-version="true"></script>
+}
+
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-lastest-news ">
+    <div class="wrapper-header">
+        <div class="header-control">
+            <ul>
+                <li><a href="javascript:;" class="btn btn-event" id="btn-guide">Thể Lệ</a></li>
+                <li><a href="#nhap-so-may-man" class="btn btn-event active click-number-event">Tham Gia</a></li>
+            </ul>
+            <p class="btn-standing">
+                <a href="#minigame-standing">Bảng xếp hạng</a>
+            </p>
+        </div>
+        <div class="wave-game"></div>
+    </div>
+
+    <ul class="header-nav-event">
+        <li>
+            <a href="javascript:;" class="btn-home">
+                <i class="icon icon-minigame_home"></i>
+                <span>Sự Kiện</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="click-number-rule btn-nav-guide">
+                <i class="icon icon-minigame_guide"></i>
+                <span>Thể Lệ</span>
+            </a>
+        </li>
+        <li>
+            <a href="#stage-minigame" class="click-list-rigister">
+                <i class="icon icon-minigame_connect"></i>
+                <span>Tham Gia Dự Đoán</span>
+            </a>
+        </li>
+        @{
+            if (Model.IsLogin)
+            {
+                <li>
+                    <a href=@Url.Action("MinigameProfile", "WorldCup2022") class="click-my-prediction">
+                        <i class="icon icon-minigame_my_fav"></i>
+                        <span>Dự Đoán Của Tôi</span>
+                    </a>
+                </li>
+            }
+            if (countStageActive > 0)
+            {
+                <li>
+                    <a href="#minigame-standing" class="click-list-standing">
+                        <i class="icon icon-minigame_standing"></i>
+                        <span>Bảng Xếp Hạng</span>
+                    </a>
+                </li>
+            }
+            if (countStageEnd > 0)
+            {
+                <li>
+                    <a href="#minigame-winners" class="click-list-result">
+                        <i class="icon icon-minigame_list_user"></i>
+                        <span>Danh Sách Trúng Thưởng</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+    <div id="stage-minigame" class="section-stage">
+        <div class="container-stage">
+            <div class="minigame-title">
+                <h1 class="text">
+                    Dự đoán đội chiến thắng trong mỗi trận đấu để nhận điểm và có cơ
+                    hội giành được những giải thưởng hấp dẫn!
+                </h1>
+                <div class="dots-parent">
+                    <ul>
+                        <li class="dots-small"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-parent-center"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-small"></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="main-stage">
+                <div class="row-stage">
+                    @{
+                        for (var i = 0; i < 4; i++)
+                        {
+                            var status = GetStatusStage(Model.Matches, i + 1);
+                            var icon = GetIconStage(status);
+                            var isActive = CheckActive(status);
+
+                            <div id="boxStage@(i+1)" class="stage-items stage-items-1 @(status == WorldCup2022.OnEndStage ? "end-stage" : "")
+                                            @(status != WorldCup2022.LockStage && status != WorldCup2022.OnEndStage && status != WorldCup2022.BeforeStartedStage ?
+                                        "stage-votes" : "")" data-stage="@(i+1)" data-timeendstage="@Model.Matches[indexMatches[i]].StartTime.AddHours(7)">
+                                <a class="icon-stage @(string.IsNullOrEmpty(icon) ? "disable-background": "")"><i class="@icon"></i></a>
+                                <div data-stage="@(i+1)" class="stage-round  @(status != WorldCup2022.LockStage && status != WorldCup2022.OnEndStage && status != WorldCup2022.BeforeStartedStage ?
+                                        "stage-votes-round" : "") @(isActive ? "active" : "")">
+                                    <h2>Giai Đoạn @(i + 1)</h2>
+                                </div>
+                                <ul class="count-and-time">
+                                    @if (status != WorldCup2022.LockStage)
+                                    {
+                                        <li id="stage@(i+1)" class="status-stage-time" data-timeCountDown="@GetCountDownStage(status,Model.Matches, i)">
+                                            @status
+                                            @if (status != WorldCup2022.OnStartedStage && status != WorldCup2022.OnEndStage)
+                                            {
+                                                <span id="hours@(i+1)" style="margin-left : 5px"></span>
+                                                <span id="minutes@(i+1)"></span>
+                                                <span id="seconds@(i+1)"></span>
+                                            }
+                                        </li>
+                                    }
+                                    @if (Model.IsLogin && status != WorldCup2022.LockStage)
+                                    {
+                                        <li class="font-weight-bold">Số trận dự đoán: @GetCountVotesStage(Model.Votes, i + 1)/16</li>
+                                    }
+                                    @if (status == WorldCup2022.LockStage)
+                                    {
+                                        <li class="font-weight-bold">Thời gian bắt đầu</li>
+                                        <li class="font-weight-bold">@startStages[i]</li>
+                                    }
+                                </ul>
+                                <img src="~/images/worldcup/minigame/bg-items.png" alt="Alternate Text" class="bg-items" />
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="sticky_icon">
+                    <img src="~/images/worldcup/minigame/bxh_stick_1.svg" alt="Alternate Text" class="right-top" />
+                    <img src="~/images/worldcup/minigame/icon_1.svg" alt="Alternate Text" class="left-bottom" />
+                </div>
+            </div>
+        </div>
+        <div class="bg-stage"></div>
+    </div>
+    <div id="minigame-standing"></div>
+    <div id="minigame-winners"></div>
+</section>
+
+
+<div class="auth-form  modal-game">
+    <div class="modal is-login" id="joining" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body field-number field-number-validate">
+                    <div class="modal-is-login">
+                        <div class="warning-event">
+                            Vui lòng đăng nhập hoặc đăng ký để tham gia
+                        </div>
+                        <ul class="flex-btn auth-input">
+                            <li><a href="javascript:;" class="btn btn-modal-minigame auth-login">Đăng nhập</a></li>
+                            <li><a href="javascript:;" class="btn btn-modal-minigame auth-login" data-form="register">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Views/Event/WorldCup2022/Minigame/_Guide.cshtml")

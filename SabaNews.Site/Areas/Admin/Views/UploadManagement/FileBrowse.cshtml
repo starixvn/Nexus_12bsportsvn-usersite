@@ -1,0 +1,42 @@
+﻿
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/ckeditor4/ckeditor.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var funcNum = @(Context.Request.Query["CKEditorFuncNum"] + ";");
+		var baseUrl = '@(Model.BaseUrl)';
+		$('.crop').on('click', function () {
+			var fileUrl = baseUrl + 'uploads/' + $(this).attr('title');
+			window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+			window.close();
+		}).hover(function () {
+			$(this).css('cursor', 'pointer')
+		});
+
+	});
+</script>
+
+<style>
+	body {
+		padding: 0;
+		margin: 0;
+	}
+
+	.crop {
+		display: inline-block;
+		width: 180px;
+		height: 200px;
+		background-position: center center;
+		background-size: cover;
+		border: 1px solid #000;
+	}
+</style>
+
+<div id="fileExplorer">
+	@foreach (var fileInfo in Model.FileInfos)
+	{
+		<span class="crop" title="@fileInfo.Name" style="height:100px;background-image:url('@Model.BaseUrl/uploads/@fileInfo.Name')"></span>
+	}
+
+
+</div>

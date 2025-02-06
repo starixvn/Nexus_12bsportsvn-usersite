@@ -1,0 +1,57 @@
+﻿@import '../../abstracts/variables';
+
+.pagination {
+    height: 4.1rem;
+    border-bottom: 1px solid $border-table;
+    border-left: 1px solid $border-table;
+    border-right: 1px solid $border-table;
+    justify-content: center;
+    padding: 0;
+    background-color: $bg-table;
+    position: relative;
+
+    .page-size {
+        position: absolute;
+        //top: .7rem;
+        display: flex;
+        align-items: center;
+        left: 0;
+        font-size: 1.4rem;
+
+        .label-admin {
+            margin: 0 1rem;
+        }
+
+        #page-size {
+            height: 2.8rem;
+            border-radius: 2px;
+            border: 1px solid #C4C4C4;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .icon-pagination {
+        &:before {
+            color: #444444;
+        }
+
+        &.disabled {
+            opacity: .5;
+        }
+    }
+
+    .main-pagination {
+        .items-pagination {
+            .item {
+                color: #444444;
+            }
+        }
+
+        .active {
+            background-color: #E0E1F0;
+        }
+    }
+}

@@ -1,0 +1,625 @@
+﻿@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+@import '../../../base/base';
+@import '../../../components/block-extension';
+@import '../../../components/container';
+@import '../../../components/league-header-detail';
+@import '../../../components/duel-participant';
+@import '../../../components/statistices';
+@import '../../../components/detail-bar';
+@import '../../../components/soccer-staus';
+@import '../../../components/line-up';
+@import '../../../components/block-line-up';
+@import '../../../components/time-line-livescore';
+@import '../../../components/soccer-item';
+@import '../../../components/head-to-head';
+@import '../../../components/tile-custom';
+@import '../../../components/search-bar';
+@import '../../../components/dot_live';
+@import '../../../components/tooltip';
+@import '../../../components/breadcrumb';
+@import '../../../components/modal';
+@import '../../../components/text-document';
+@import '../../../components/nav-tab';
+
+//wc
+@import './world-cup/components/wc-date-bar';
+.document-text{
+    margin-bottom: 1.2rem;
+}
+
+.active-scroll{
+    .document-text{
+        @include Mobile{
+            margin: 1.2rem;
+        }
+    }
+    .none-livescore {
+        margin: 1rem 0;
+        @include Mobile{
+            margin: 1rem 1.2rem;
+        }
+    }
+}
+
+.livescore-soccer {
+    padding-bottom: 5rem;
+
+    .livescore-league-header-detail {
+        margin-bottom: 1.2rem;
+    }
+
+    .icon-live-start, .icon-favourite-outline {
+        font-size: 2rem;
+        cursor: pointer;
+
+        @include Mobile {
+            font-size: 2rem;
+        }
+    }
+
+    .soccer-team-status {
+        margin-bottom: 1.8rem;
+    }
+}
+
+.group-searchbar {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    margin-top: 0;
+
+    i {
+        margin-left: 0;
+    }
+
+    .livescore-like {
+        width: 100%;
+        width: 3rem;
+    }
+}
+
+.livescore-league-header-detail {
+    justify-content: space-between;
+}
+
+.sticky-header {
+    opacity: 1;
+
+    &.active-scroll {
+        opacity: 0;
+    }
+}
+
+.live {
+    .soccer-match-stage {
+        span {
+            font-size: 1.5rem;
+
+            @include Mobile {
+                font-size: 1.1rem;
+            }
+
+            &:before {
+                left: -15px;
+                top: 8px;
+
+                @include Mobile {
+                    top: 5px;
+                }
+            }
+
+            &:after {
+                left: -19px;
+                top: 4px;
+
+                @include Mobile {
+                    top: 1px;
+                }
+            }
+        }
+    }
+}
+
+.live-middle {
+    .soccer-match-stage {
+        span {
+            font-size: 1.2rem;
+
+            @include Mobile {
+                font-size: .8rem;
+            }
+
+            &:before {
+                left: -15px;
+                top: 5px;
+
+                @include Mobile {
+                    top: 2px;
+                }
+            }
+
+            &:after {
+                left: -19px;
+                top: 1px;
+
+                @include Mobile {
+                    top: -2px;
+                }
+            }
+        }
+    }
+}
+
+.detail-fixed {
+    position: fixed;
+    top: 4.9rem;
+    z-index: -1;
+    background: $primary-bg;
+    width: 100%;
+    opacity: 0;
+    @include tableMobile {
+        position: fixed;
+        top: 3.9rem;
+        left: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+
+    &.active-scroll {
+        opacity: 1;
+        transition: .2s all ease;
+        z-index: 80;
+    }
+
+
+    .duel-participant .icon-live-start, .duel-participant .icon-favourite-outline {
+        top: 3px;
+        right: 3px;
+    }
+
+    .sticky-header-scroll {
+        .breadcrumb {
+            margin-top: 1.3rem;
+
+            @include tableMobile {
+                padding: 0 1.2rem;
+                margin-top: 1.3rem;
+            }
+        }
+
+        .group-searchbar {
+            margin-right: 1.2rem;
+        }
+
+        .livescore-league-header-detail {
+            @include tableMobile {
+                margin-bottom: .5rem;
+                margin-left: 1.2rem;
+            }
+        }
+
+        .sticky-position {
+            display: none;
+        }
+
+        .detail-function-bar {
+            padding-top: .4rem;
+            margin-bottom: 0;
+
+            @include tableMobile {
+                margin: 0 1.2rem;
+            }
+        }
+
+        .duel-participant {
+            padding: .6rem;
+
+            @include tableMobile {
+                margin: 0 1.2rem;
+            }
+
+            .flex-league {
+                margin-bottom: .6rem;
+                align-items: center;
+
+                @include Mobile {
+                    margin-bottom: .6rem;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(3) {
+                    margin-bottom: 0;
+                }
+
+                .column-center {
+                    @include Mobile {
+                        margin: 0 .8rem;
+                    }
+                }
+
+                .home-team {
+                    .team-logo {
+                        @include Mobile {
+                            order: 2;
+                        }
+                    }
+
+                    .team-name {
+                        font-size: 1.6rem;
+
+                        @include Mobile {
+                            text-align: right;
+                            margin-right: .6rem !important;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                .away-team {
+                    .team-name {
+                        font-size: 1.6rem;
+
+                        @include Mobile {
+                            text-align: left;
+                            margin-left: .6rem !important;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                .team {
+                    align-items: center;
+
+                    @include Mobile {
+                        flex-wrap: nowrap;
+                    }
+
+                    &-logo {
+                        width: 2.8rem;
+                        height: 2.8rem;
+                        @include Mobile {
+                            width: 2rem;
+                            height: 2rem;
+                        }
+                        img{
+                            width: 2.8rem;
+                            height: 2.8rem;
+                            @include Mobile {
+                                width: 2rem;
+                                height: 2rem;
+                            }
+                        }
+                    }
+
+                    &-name {
+                        @include Mobile {
+                            max-width: 9rem;
+                        }
+                    }
+                }
+
+                .detail-score-wrapper {
+                    font-size: 2.4rem;
+                    padding: .4rem 1.4rem;
+                    border-radius: 5px;
+
+                    @include Mobile {
+                        padding: .4rem .8rem;
+                        font-size: 1.6rem;
+                        line-height: 2.4rem;
+                    }
+                }
+
+                .soccer-match-stage {
+                    @include Mobile {
+                        line-height: 1;
+                    }
+                }
+                .detail-score-status{
+                    display: none;
+                }
+            }
+        }
+
+        .duel-participant {
+            .flex-league {
+                .column {
+                    .team {
+                        &-logo {
+                            @include Mobile {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.soccer-match-item{
+    justify-content : space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//worldcup
+.match-detail-world-cup{
+    grid-template-columns: 61%;
+    justify-content: center;
+    @include tableMobile{
+        margin-top: 2rem;
+    }
+
+    .document-text{
+        display: none;
+    }
+
+    .sticky-header{
+        position: relative;
+    }
+    .detail-fixed{
+        top: 50px;
+        @include tableMobile{
+            top: 40px;
+        }
+        &.active-scroll{
+            background: #eeeee4;
+            .livescore-league-header-detail{
+                position: relative;
+                margin-bottom: 0;
+                &:after{
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 4rem;
+                    background: #eeeee4;
+                }
+                &-group{
+                    top: 100%;
+                    width: 100%;
+                    right: 50%;
+                    transform: translate(50%,-50%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .title-section{
+                        padding: 0;
+                        height: 5.3rem;
+                        h2{
+                            font-size: 1.4rem;
+                            line-height: 1.9rem;
+                        }
+                        p{
+                            font-size: 1.3rem;
+                            line-height: 1.8rem;
+                        }
+                    }
+                }
+            }
+        }
+        .sticky-header-scroll {
+            .duel-participant{
+                padding: 3rem .6rem .6rem;
+            }
+        }
+    }
+    .duel-participant{
+        background: #FFFFF5;
+        border: 1px solid #540F1F;
+        padding: 4.5rem 1.2rem 1.7rem;
+        .flex-league {
+            .column-center{
+                margin: 0 1.6rem;
+                width: 12.4rem;
+                &.result-league{
+                    .detail-score-wrapper{
+                        border-radius: 0;
+                        background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+                        clip-path: polygon(90% 0,100% 50%,90% 100%,10% 100%,0 50%,10% 0);
+                        padding: .8rem 1rem;
+                        span{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .team-name{
+                color: #720E2D;
+            }
+        }
+    }
+    .block-line-up{
+        margin-top: 2.1rem;
+        &-main{
+            margin-top: 0 !important;
+        }
+        &-body{
+            background: #FFFFF5;
+        }
+        &-title{
+            background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+            border-radius: 3px 3px 0px 0px;
+            color: #fff;
+            border-bottom: none;
+            position: relative;
+            z-index: 9;
+        }
+    }
+    .title-custom{
+        background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+        border-radius: 3px;
+        color: #fff;
+        border: none;
+    }
+        
+    .detail-function-bar{
+        background: #eeeee4;
+        padding-top: 2rem !important;
+        margin-bottom: 0;
+        @include tableMobile{
+            padding-top: .4rem !important;
+        }
+        ul{
+            li{
+                a{
+                    margin-right: 4rem;
+                    color: #9D9D9D;
+                    @include tableMobile{
+                        margin-right: 0;
+                    }
+                    
+                }
+                .disabled{
+                    color: #9D9D9D;
+                    &:hover{
+                        color: #9D9D9D;
+                    }    
+                }
+                .active{
+                    color:#48041A;
+                    &:after{
+                        background : #48041A;
+                    }
+                }
+                &:last-child{
+                    a{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+    .livescore-league-header-detail{
+        justify-content: center;
+        margin-bottom: 0;
+        &-group{
+            position: absolute;
+            top: -33px;
+            z-index: 9;
+            @include tableMobile{
+                top: -25px;
+            }
+            .title-section {
+                background: linear-gradient(162deg, #FFD68F 0%, #C2A97D 99.91%);
+                margin-bottom: 0;
+                clip-path: polygon(93% 0,100% 50%,93% 100%,7% 100%,0 50%,7% 0);
+                width: 26.6rem;
+                height: 6.6rem;
+                @include tableMobile{
+                    height: 5rem;
+                    width: 20rem;
+                }
+                h2{
+                    text-align: center;
+                    text-transform: inherit;
+                    font-weight: 700;
+                    font-size: 2rem;
+                    line-height: 2.7rem;
+                    color: #510D1D;
+                    margin: 0;
+                    @include tableMobile{
+                        font-size: 1.4rem;
+                        line-height: 1.9rem;
+                    }
+                    p{
+                        margin-top: .4rem;
+                        font-weight: 600;
+                        font-size: 1.6rem;
+                        line-height: 2.2rem;
+                        font-weight: 600;
+                        color: #510D1D;
+                        @include tableMobile{
+                            font-size: 1.3rem;
+                            line-height: 1.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+    .dots {
+        span{
+            height: 0.7rem;
+        }
+        .dots-items{
+            height: 1rem;
+        }
+    }
+    .head-top-team{
+        clip-path: polygon(92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%, 8% 0);
+        background: #DDDDBF;
+        position: relative;
+        &::after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            right: 1px;
+            bottom: 1px;
+            background: #EDEDD5;
+            clip-path: polygon(93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%, 7% 0);
+            z-index: -1;
+        }
+        .time-event-title,.time-event-score{
+            color: #720E2D;
+        }
+    }
+    .statistices-barBg.statistices-home.short div,.statistices-barBg.statistices-away.short div{
+        background-color: #4D0662;
+    }
+}
+
+.worldcup-match-detail{
+    .banner-change-domain, .skeleton-banner-align {
+        top: 25.2rem;
+        &.banner-left, &.skeleton-banner-align-left {
+            margin-right: 37rem;
+        }
+        
+        &.banner-right, &.skeleton-banner-align-right {
+            margin-left: 37rem;
+        }
+    }
+    @include Mobile{
+        .swiper{
+            overflow-x: hidden !important;
+        }
+    }
+}
+
+.first-pen{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    margin: 1.2rem 0;
+    color: #324A75;
+    @include Mobile{
+        font-size: 1.2rem;
+    }
+}
+
+.worldcup-match-detail{
+    .first-pen{
+        color: #720E2D;
+    }
+}
+

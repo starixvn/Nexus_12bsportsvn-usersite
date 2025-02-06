@@ -1,0 +1,231 @@
+@import '../abstracts/placeholders';
+@import '../abstracts/variables';
+@import '../abstracts/_mixins.scss';
+
+.main-social {
+    @include flex(center, nowrap, space-between, row);
+    &.fixed-social{
+        .social {
+            margin: 5rem 0 1.6rem 0;
+        }
+    }
+    .social {
+        padding: 0;
+        list-style: none;
+        @include flex(center, nowrap, center, row);
+        margin: 1.6rem 0 1.6rem 0;
+        .item-social {
+            margin-right: 1rem;
+
+            &:first-child {
+                font-size: 1.6rem;
+                line-height: 2.4rem;
+                color: $text-social;
+            }
+
+            .item {
+                text-decoration: none;
+                color: $text-social;
+                font-size: 1.5rem;
+
+                .icon-social {
+                    font-size: 2.4rem;
+                }
+            }
+        }
+    }
+
+    .left-social {
+        .item-social {
+            &:last-child {
+                border: 1px solid $border-social;
+                box-sizing: border-box;
+                border-radius: 5px;
+                padding: .4rem 1rem .4rem .8rem;
+
+                &:hover {
+                    .svg-bookmark {
+                        path {
+                            stroke: $bookmark;
+                            fill: $bookmark;
+                        }
+                    }
+                }
+            }
+
+            .intent {
+                display: flex;
+                align-items: center;
+
+                .svg-bookmark {
+                    margin-right: .8rem;
+                }
+            }
+        }
+    }
+}
+
+.icon-social {
+    &:before {
+        color: $color-datetime;
+    }
+}
+
+.fixed-social {
+    position: sticky;
+    top: 8rem;
+    display: table;
+    width: 4rem;
+    text-align: center;
+    opacity: 1;
+    transition: .3s all ease-in-out;
+    visibility: visible;
+
+    @include tableMobile {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        background: $bg-nav;
+        height: 4.4rem;
+        top: 0;
+        z-index: 999999;
+        box-shadow: (0px 4px 5px rgba(0, 0, 0, 0.16));
+        display: none;
+    }
+
+    .social {
+        display: inherit;
+
+        @include tableMobile {
+            margin: 0 !important;
+        }
+
+        .item-social {
+            margin-right: 0;
+            padding-bottom: 1.2rem;
+
+            &:nth-child(3) {
+                border-top: 1px solid #999999;
+                padding-top: 2rem;
+
+                @include tableMobile {
+                    border-top: none;
+                }
+            }
+        }
+
+        .icon-mobile {
+            @include tableMobile {
+                margin-right: 1rem;
+                padding: 0 !important;
+
+                a {
+                    width: 3.2rem;
+                    height: 3.2rem;
+                    border: 1px solid $separator-color;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+
+                    .icon-social {
+                        &:before {
+                            font-size: 2rem;
+                        }
+                    }
+
+                    .icon-back {
+                        border: none;
+                    }
+
+                    svg {
+                        @include tableMobile {
+                            width: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.active-scroll-mobile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.active-nav-socical {
+    opacity: 0;
+    transition: .3s all ease-in-out;
+    visibility: hidden;
+}
+
+.active {
+    .svg-bookmark {
+        path {
+            stroke: $bookmark;
+            fill: $bookmark;
+        }
+    }
+}
+
+
+
+
+.icon-social {
+    &.icon-detail_facebook {
+        &:hover {
+            &:before {
+                color: $facebook;
+            }
+        }
+    }
+
+    &.icon-link {
+        &:hover {
+            &:before {
+                color: $link-icon;
+            }
+        }
+    }
+
+
+    &.icon-back {
+        width: 3.2rem;
+        height: 3.2rem;
+        @include flex(center, nowrap, center, row);
+        border: 1px solid $border-social;
+        border-radius: 50%;
+
+        &:hover {
+            background: #076DB6;
+            border: 1px solid $color-fff;
+
+            &:before {
+                color: $color-fff;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .svg-bookmark, .svg-email {
+        &:hover {
+            path {
+                stroke: $bookmark;
+                fill: $bookmark;
+            }
+        }
+    }
+
+    .svg-comment {
+        &:hover {
+            path {
+                stroke: $comment;
+                fill: $comment;
+            }
+        }
+    }
+}
+

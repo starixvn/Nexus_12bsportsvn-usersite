@@ -1,0 +1,119 @@
+﻿@import '../../abstracts/variables';
+
+.modal {
+    .modal-content {
+        border: none;
+        border-radius: 0;
+        max-width: 60rem;
+        margin: 0 auto;
+        top: 10rem;
+        box-shadow: 0px 7px 25px rgba(0, 0, 0, 0.25);
+
+        .modal-title {
+            background-color: $bg-header-admin;
+            color: $color-fff;
+            padding: 0 1.6rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.title-success {
+                background-color: #2270CE;
+            }
+
+            &.title-warning {
+                background-color: #A59A39;
+            }
+
+            &.title-error {
+                background-color: #FF5757;
+            }
+
+            .icon-title {
+                margin-right: 1.2rem;
+            }
+
+            .title {
+                color: $color-fff;
+                font-size: 1.6rem;
+                margin-bottom: 0;
+                text-transform: uppercase;
+                line-height: 1;
+            }
+
+            .close-login {
+                cursor: pointer;
+                background-color: transparent;
+                line-height: 1;
+
+                &:focus {
+                    outline: none;
+                }
+
+                .icon-close {
+                    &:before {
+                        color: $color-fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 2.4rem 1.6rem;
+
+        p {
+            margin: 0;
+        }
+
+        .custom-input {
+            border: 1px solid #DDDDDD;
+        }
+
+        .user_list {
+            margin-bottom: 1.6rem;
+        }
+
+        .form-radio {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            margin-bottom: 1.6rem;
+
+            .raido-custom {
+                width: 5.5rem;
+                display: flex;
+                align-items: center;
+                margin-right: 1rem;
+                margin-bottom: 0;
+                margin-top : 0;
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                input[type=radio] {
+                    margin-right: .4rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .button-confirm {
+        padding: 0 1.6rem 2.4rem 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .confirm-action {
+            margin-right: 1rem;
+        }
+    }
+}
+#TestSendEmail{
+    .button-confirm {
+        padding : 0;
+    }
+}
+

@@ -1,0 +1,43 @@
+﻿@using SabaNews.Resources;
+@{ var count = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize; }
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.Username</th>
+                <th>@ViewResources.Email</th>
+                <th>@ViewResources.Point</th>
+                <th>Last Edit</th>
+                <th>First Selection<i class="icon-sort-admin" id="btn-sort-date" sort-type="@Model.DateSort"></i></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model.MiniGames)
+                {
+                    count++;
+                    <tr>
+                        <td class="text-center" width="5%">@count</td>
+                        <td class="text-left" width="22%">@user.UserName</td>
+                        <td class="text-left" width="22%">@user.Email</td>
+                        <td class="text-center" width="10%">@user.Point</td>
+                        <td class="text-center" width="17%">@SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(user.UpdatedDate, "dd/MM/yyyy, HH:mm:ss")</td>
+                        <td class="text-center" width="17%">@SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(user.CreatedDate, "dd/MM/yyyy, HH:mm:ss")</td>
+                        <td class="text-center" width="6%"><i class="icon-page icon-list_alt-admin btn-detail" 
+                            data-rank='@count' data-totalpoint='@user.Point' data-userid='@user.UserId' data-username="@user.UserName" data-email="@user.Email"></i></td>
+                    </tr>
+                }
+            }
+            @if (Model.MiniGames.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

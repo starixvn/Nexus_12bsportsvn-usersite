@@ -1,0 +1,90 @@
+﻿
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/detail.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/detail.chunk.css" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <script>
+        window.selectedMatchId = @Model.Match.MatchId;
+    </script>
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/detail.chunk.js" asp-append-version="true"></script>
+    </environment>
+}
+
+@{
+    var isLiveMatch = IsLiveMatch(Model.Match.Status);
+    var isPreMatch = IsPreMatch(Model.Match.Status);
+    var startTime = SabaNews.Core.Helper.DateTimeUtilize.ConvertToClient(Model.Match.StartTime);
+    var dateShow = startTime.ToString("dd/MM/yyyy");
+    var homeTeamName = GetTeamName(Model.Match.HomeTeam);
+    var awayTeamName = GetTeamName(Model.Match.AwayTeam);
+    var leagueName = GetLeagueName(Model.Match.League);
+    var seasonYear = Model.Match.League.Season?.Year;
+    var matchScore = "";
+    string matchStatus;
+    string description;
+    if(isPreMatch)
+    {
+        matchScore = "vs";
+    }
+    else
+    {
+        var score = $"{GetMatchTotalScore(Model.Match, true)}-{GetMatchTotalScore(Model.Match, false)}";
+        matchScore = score;
+        if (Model.Match.HomeTeamPenaltyScore > 0 || Model.Match.AwayTeamPenaltyScore > 0)
+        {
+            matchScore = $"{score} (PEN: {Model.Match.HomeTeamPenaltyScore}-{Model.Match.AwayTeamPenaltyScore})";
+        }
+        if (Model.Match.IsSecondLeg  && (Model.Match.HomeTeamAggregateScore > 0 || Model.Match.AwayTeamAggregateScore > 0))
+        {
+            matchScore = $"{score} (AGG: {Model.Match.HomeTeamAggregateScore}-{Model.Match.AwayTeamAggregateScore})";
+        }
+    }
+
+    if(isPreMatch)
+    {
+        matchStatus = "Lịch thi đấu";
+        description = $"Xem lịch thi đấu bóng đá Đội {homeTeamName} vs Đội {awayTeamName} {dateShow} mới nhất. Cập nhật LTĐ đội {homeTeamName} vs đội {awayTeamName} chính xác nhất trên SABA VN.";
+    }
+    else if(isLiveMatch)
+    {
+        matchStatus = "Trực tiếp";
+        description = $"Xem trực tiếp đội {homeTeamName} vs đội {awayTeamName} {leagueName} {seasonYear} mùa giải mới nhất. Link xem đội {homeTeamName} vs đội {awayTeamName} online HD, cập nhật liên tục trên SABA VN.";
+    }
+    else
+    {
+        matchStatus = "Kết quả";
+        description = $"Kết quả trận đấu {homeTeamName} vs {awayTeamName} {dateShow} {leagueName} {seasonYear}. Xem kết quả trực tuyến trận {homeTeamName} vs {awayTeamName} chính xác nhất trên SABA VN";
+    }
+    var title = $"{matchStatus} {homeTeamName} {matchScore} {awayTeamName} - {leagueName} - {dateShow}";
+}
+
+@section Metadata {
+    <meta name="robots" content="noindex, follow,noarchive,max-image-preview:large" />
+    <link rel="canonical" href="@Model.Url" />
+    <meta name="description" content="@description" />
+}
+@section Title{
+    @title
+}
+@(await Component.InvokeAsync("Menu", new { page = "home-page" }))
+<h1 style="display: none;">@title</h1>
+<div id="app-container"></div>
+@await Html.PartialAsync(ViewResources.SidebarBannerView)

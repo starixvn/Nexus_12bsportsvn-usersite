@@ -1,0 +1,94 @@
+@using SabaNews.Resources
+@{
+    var ListColors = new string[] { "#25A3B5", "#E1C0BF", "#CB2723", "#CB2723", "#2AD8C4" };
+    var colorIndex = -1;
+}
+
+
+<div class="poll poll-main @(Model.IsUserVoted ? "hide-poll": "show-poll")">
+    <div class="group-poll-title">
+        <span class="poll-left">Bình</span>
+        <span class="poll-right">Chọn</span>
+    </div>
+    <div class="poll-content">
+        <p class="poll-slogan">@Model.Question.Question</p>
+        @{
+            var i = 0;
+        }
+        <div class="choose-poll">
+            @foreach (var poll in Model.Polls)
+            {
+                var voted = Model.UserVote?.Answer == poll.AnswerName ? "checked" : "";
+                i++;
+                <div class="poll-element @Model.UserVote?.Answer @voted">
+                    <input type=radio id="poll-radio-@poll.AnswerName" class="radio-input"
+                        name="poll-radio-@Model.Question.Id" value="@poll.AnswerName" @voted>
+                    <label for="poll-radio-@poll.AnswerName" class="radio-label"> <span class="radio-border"></span>
+                        @poll.Answer </label>
+                </div>
+            }
+        </div>
+        <div class="poll-action">
+            <button data-questid="@Model.Question.Id" class="btn-vote vote-answer @(Model.IsUserVoted ? "" : "disabled")">@ViewResources.Vote</button>
+            <button data-questid="@Model.Question.Id" class="btn-result view-result">@ViewResources.ViewResult</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="poll poll-result poll-main @(Model.IsUserVoted ? "show-poll" : "hide-poll")">
+    <div class="group-poll-title">
+        <span class="poll-left">Bình</span>
+        <span class="poll-right">Chọn</span>
+    </div>
+    <div class="poll-content">
+        <p class="poll-slogan">@Model.Question.Question</p>
+        @foreach (var poll in Model.Polls)
+        {
+            colorIndex++;
+            if (colorIndex > ListColors.Length - 1)
+            {
+                colorIndex = 0;
+            }
+            var percent = Model.TotalVotes > 0 ? Math.Round(poll.Vote * 100.0 / Model.TotalVotes, 2) : 0;
+            <div class="list-result">
+                <div class="result-element">
+                    <div class="top-result">
+                        <span class="country-list">@poll.Answer</span>
+                        <span class="percent">@(percent + "% (" + poll.Vote + " phiếu)")</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-inner" style="width:@(percent + "%")"></div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="total-result">
+            <div class="total-count">
+                <p>@ViewResources.Sum: </p>
+                <p>@(Model.TotalVotes + " Phiếu")</p>
+            </div>
+            <div class="total-date">
+                <p>@ViewResources.UpdateTime: @SabaNews.Core.Helper.DateTimeUtilize.FormatDateTime(DateTime.UtcNow,
+                    "dd/MM/yyyy HH:mm:ssss")</p>
+            </div>
+            <div>
+            </div>
+
+            @if (Model.IsUserVoted)
+            {
+                <div class="poll-action">
+                    <button data-questid="@Model.Question.Id" class="btn-vote-retry vote-section">Bình chọn lại</button>
+                </div>
+            }
+            else
+            {
+                <div class="poll-action">
+                    <button data-questid="@Model.Question.Id" class="btn-vote vote-section">@ViewResources.Vote</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

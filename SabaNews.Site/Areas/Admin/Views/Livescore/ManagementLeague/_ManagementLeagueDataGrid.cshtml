@@ -1,0 +1,60 @@
+﻿@using SabaNews.Resources;
+@using SabaNews.Site.Extensions;
+@using SabaNews.Core.Helper;
+@{ var count = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize; }
+<div class="table-admin">
+    <table class="data-grid" id="tblLocations">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.LeagueFullNameEN</th>
+                <th>@ViewResources.LeagueNameVN</th>
+                <th>League Icon</th>
+                <th>@ViewResources.Country</th>
+                <th>@ViewResources.CountryVN</th>
+                <th>Country Icon</th>
+                <th>@ViewResources.CreatedDate<i class="icon-sort-admin" id="btn-sort-createdDate"></i></th>
+                <th>@ViewResources.Hot</th>
+                <th>@ViewResources.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var league in Model.Leagues)
+                {
+                    var iconCountry = league.CountryIconVN ?? league.CountryLogo;
+                    var iconLeague = league.IconVN ?? league.Icon;
+                    count++;
+                        <tr>
+                            <td class="text-center" width="5%">@count</td>
+                            <td class="text-left" width="18%">@league.LeagueFullNameEN</td>
+                            <td class="text-left" width="18%">@league.LeagueNameVN</td>
+                            <td class="text-center" width="8%"><img src="@(LivescoreHelper.GetTeamIcon(iconLeague))" width="30"></td>
+                            <td class="text-left" width="10%">@league.CountryEN</td>
+                            <td class="text-left" width="10%">@league.CountryVN</td>
+                            <td class="text-center" width="8%"><img src="@(iconCountry ?? LivescoreHelper.GetTeamIcon(iconCountry))" width="30"></td>
+                            <td class="text-center" width="12%">@DateTimeUtilize.ChangeTimeZoneToClient(league.CreatedDate)</td>
+                            <td class="text-center" width="5%">
+                                <input type="checkbox" @(league.IsMajor == true ? "checked" : "")
+                                       data-url="@Url.Action("UpdateLeagueExtra", "ManagementLeague", new { leagueId = league.LeagueId, priority = league.Priority })"
+                                       class="isMajorLeague" id="checkMajor" />
+                            </td>
+                            <td class="text-center" width="6%">
+                            <i class="icon icon-edit-admin btn-Edit" title="Edit" data-name="@league.LeagueFullNameEN"
+                                   data-url="@Url.Action("EditLeague", "ManagementLeague", new { leagueId = league.LeagueId})"></i>
+                                <i class="icon icon-delete-admin btn-Delete" title="Delete"
+                                   data-url="@Url.Action("RemoveLeagueExtra", "ManagementLeague", new { leagueId = league.LeagueId})"></i>
+                            </td>
+                        </tr>
+                }
+            }
+            @if (Model.Leagues.Count == 0)
+            {
+                <tr>
+                    <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

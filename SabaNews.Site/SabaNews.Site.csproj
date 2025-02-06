@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <CodeAnalysisRuleSet>SabaNews.Site.ruleset</CodeAnalysisRuleSet>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>7bd90000-e358-45af-8b41-6c80f24f6e42</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>BundleMinify;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="App_Data\SpNames.xml" />
+    <None Remove="Views\Profile\ViewContent.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\admin\admin.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\Euro2020\detail.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\Euro2020\video.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\maintenance.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\membership-event.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles\pages\profile\sendmail_detail.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\sabanews\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <Content Include="App_Data\SpNames.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates\ConfirmEmail.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates\ResetPassword.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Admin\Views\Email\ViewContent.html" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="DeviceDetector.NET" Version="4.3.2" />
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.8" />
+    <PackageReference Include="Fanex.Data.Mysql" Version="4.3.2.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.12" />
+    <PackageReference Include="TimeZoneConverter" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\lib\bootstrap\multiselect\js\bootstrap-multiselect.js" />
+    <None Include="wwwroot\lib\bootstrap\multiselect\js\bootstrap-multiselect.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Livescore\SabaNews.Livescore.Services\SabaNews.Livescore.Services.csproj" />
+    <ProjectReference Include="..\SabaNews.Core\SabaNews.Core.csproj" />
+    <ProjectReference Include="..\SabaNews.Resources\SabaNews.Resources.csproj" />
+    <ProjectReference Include="..\SabaNews.Models\SabaNews.Models.csproj" />
+    <ProjectReference Include="..\SabaNews.Services\SabaNews.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\uploads\DesktopBanner.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="EmailTemplates\SendEDM.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\Event.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\MiniGameWorldCup2022.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\UserReport.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LogFiles\logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LogFiles\LogTrackingSP.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+</Project>

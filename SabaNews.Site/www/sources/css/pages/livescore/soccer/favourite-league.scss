@@ -1,0 +1,45 @@
+@import "../../../abstracts/variables";
+@import "../../../abstracts/mixins";
+@import "../../../base/base";
+@import "../../../components/block-extension";
+@import "../../../components/container";
+@import "../../../components/league-header-detail";
+@import "../../../components/tooltip";
+@import "../../../components/breadcrumb";
+@import "../../../components/modal";
+@import "../../../components/my-league";
+@import "../../../components/fav-search";
+@import "../../../components/recent-post";
+
+.livescore-soccer {
+  .livescore-soccer-search-bar {
+    padding: 0;
+  }
+  .btn-search-match {
+    left: 10px;
+    cursor: pointer;
+  }
+}
+
+.my-league {
+  margin-top: 1.2rem;
+  @include Mobile{
+    margin-top: 1rem;;
+  }
+}
+
+.livescore-league-header-detail {
+  margin-bottom: 1.6rem;
+  @include Mobile{
+    margin-bottom: 1rem;
+  }
+  &-name {
+    text-transform: uppercase;
+  }
+}
+.my-league-item-img{
+  height: 3rem;
+}
+.livescore-recent-post__item{
+  grid-template: "recentPostImg recentPostDescription" auto / 12rem;
+}

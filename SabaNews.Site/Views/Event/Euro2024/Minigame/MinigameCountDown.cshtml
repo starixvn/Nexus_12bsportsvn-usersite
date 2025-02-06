@@ -1,0 +1,86 @@
+﻿@using SabaNews.Core.Constants;
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/minify/styles/euro2024-countdown.min.css" asp-append-version="true">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css"
+            asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css"
+            asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts {
+    <script>
+        window.timeStartStage = [
+            '@Euro2024.TimestampMinigameStage01Start',
+            '@Euro2024.TimestampMinigameStage02Start'
+        ];
+    </script>
+    <environment include="Development">
+        <script src="~/js/event/euro2024/minigame_countdown.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/minify/js/euro-2024-minigame-countdown.min.js" asp-append-version="true"></script>
+    </environment>
+}
+
+
+@(await Component.InvokeAsync("HeaderEuro2024", new { cateSlug = Model.Header.Slug }))
+
+
+<section class="before-event">
+    <h2 class="ready">
+        HÃY SẴN SÀNG
+    </h2>
+
+    <div class="count-day">
+        <div class="wrap-img">
+            <img src="~/images/euro2024/uni-mobile.png" alt="Alternate Text" />
+        </div>
+        <ul class="counter-day">
+            <li class="counter">
+                <div class="clock" id="days">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="hours">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="minutes">
+                </div>
+            </li>
+            <li class="counter">
+                <div class="clock" id="seconds">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="img-man">
+        <div class="img-man-pc">
+            <img src="~/images/euro2024/man-countdown.png" alt="Alternate Text" class="img-res" />
+        </div>
+        <div class="img-man-mobile">
+            <img src="~/images/euro2024/man-countdown-mobile.png" alt="Alternate Text" class="img-res" />
+        </div>
+    </div>
+</section>

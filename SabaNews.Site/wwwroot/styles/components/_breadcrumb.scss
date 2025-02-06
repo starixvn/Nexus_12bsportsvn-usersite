@@ -1,0 +1,40 @@
+.breadcrumb{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    margin-bottom: 1.6rem;
+    @include Mobile{
+        margin-bottom: 1.2rem;
+    }
+    li{
+        a{
+            color: #06C;
+            text-decoration: none;
+            position: relative;
+            font-size: 1.4rem;
+            margin-right: 2.8rem;
+            font-weight: 600;
+            &::before{
+                content: '\e97d';
+                display: inline-block;
+                position: absolute;
+                font-family: 'Fraud-Sensor';
+                top: -1px;
+                right: -25px;
+                color: #888;
+                font-size: 2rem;
+                font-weight: 300;
+            }
+        }
+        &:last-child{
+            a{
+                margin-right: 0;
+                color: #666;
+                &::before{
+                    display: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+﻿.card-horizontal {
+    position: relative;
+    grid-template-columns: 21rem 1fr;
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid #DADACB;
+
+    &__image {
+        border-radius: 5px;
+        height: 12rem;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    @include tableMobile {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        border-radius: 5px;
+
+        &__image {
+            max-height: 25rem;
+            height: 25rem;
+            border-radius: 5px;
+        }
+
+        &__content {
+            position: absolute;
+            bottom: 0;
+            padding: 1.2rem;
+            padding: 6rem 1.2rem 1.2rem 1.2rem;
+            background: linear-gradient(180deg, rgba(72, 4, 26, 0) 0%, $primary-bg 55.21%, $primary-bg 100%);
+            width: 100%;
+            left: 0;
+            border-radius: 0 0 5px 5px;
+
+            .title {
+                margin-bottom: .6rem;
+            }
+
+            .title, .datetime {
+                color: $white-color;
+                font-size: 1.4rem;
+                line-height: 1.9rem;
+            }
+
+            .datetime {
+                display: none;
+            }
+
+            .title {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}

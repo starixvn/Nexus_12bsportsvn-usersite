@@ -1,0 +1,101 @@
+.livescore-recent-post{
+    margin-top: 1.7rem;
+    @include tableMobile {
+        margin-bottom: 0;
+        padding-bottom: 1.6rem;
+    }
+
+    &__title {
+        margin-bottom: 1.3rem;
+        position: relative;
+        padding-left: 1rem;
+        @include tableMobile {
+            margin-bottom: .9rem;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            background: #F12F19;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: .3rem;
+            height: 2rem;
+            z-index: 0;
+        }
+
+        a {
+            font-weight: bold;
+            font-size: 1.6rem;
+            line-height: 2.7rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 9;
+            padding-right: 1rem;
+            line-height: 1;
+            color: #F12F19;
+            &:hover {
+                color: darken(#F12F19, 10%);
+            }
+        }
+    }
+    &__item{
+        display: grid;
+        grid-template: "recentPostImg recentPostDescription" auto / 12rem ;
+        grid-gap: 1.2rem;
+        border-bottom: 1px solid #E9E9E9;
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.2rem;
+        &:last-child{
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .img-item{
+            grid-area: recentPostImg;
+            overflow: hidden;
+            border-radius: 3px;
+            a{
+                display: block;
+            }
+            img{
+                transition: all .5s ease;
+                -webkit-backface-visibility: hidden;
+                -ms-transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0) scale(1, 1);
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -o-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                -ms-interpolation-mode: nearest-neighbor;
+                display: block;
+                height: 8rem;
+                object-fit: cover;
+                width: 100%;
+            }
+            &:hover{
+                img{
+                    transition: all .5s ease;
+                    transform: scale(1.02);
+                }
+            }
+        }
+        .description-item{
+            grid-area: recentPostDescription;
+            a{
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: #333333;
+                font-weight: 600;
+                transition: all .5s ease;
+                &:hover{
+                    color: #F12F19;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,69 @@
+@using SabaNews.Resources
+@using SabaNews.Core.Constants;
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.MinigameWorldCup2022
+}
+
+@section Title{
+    @ViewResources.MinigameWorldCup2022
+}
+
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.Euro2024Management" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/euro-2024/admin-minigame.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <div class="form-horizontal navigation">
+        <p class="label label-blue item-navigation"><a href="@Url.Action("Poll", "Euro2024Management")">Poll</a></p>
+        <p class="label label-blue item-navigation"> <a href="@Url.Action("Team", "Euro2024Management")">Team</a></p>
+        <p class="label label-blue item-navigation active"> Minigame</p>
+    </div>
+    <div class="form-filter" style="margin-bottom: 2rem">
+        <form class="form-horizontal">
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.Stage</p>
+                <select class="custom-input list-input stage-select">
+                    @for(var i = 1; i <= Euro2024.maxCountStage; i++){
+                        <option value="@i" data-stage="@i">Giai Đoạn @i</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-input">
+                <button type="button" class="reset-grid btn-custom-admin">Reset Grid</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content">
+        <div class="data-grid" id="data-grid"></div>
+    </div>
+
+    <div class="modal modal-detail-center" id="DetailPlayerContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script src="~/js/admin/euro2024/admin_minigame.js" asp-append-version="true"></script>
+}

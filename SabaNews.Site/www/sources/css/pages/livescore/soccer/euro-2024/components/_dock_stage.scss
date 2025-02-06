@@ -1,0 +1,62 @@
+.statistic{
+    width: 22rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 9rem;
+    @include tableMobile{
+        position: unset;
+        text-align: center;
+        margin: 0 auto;
+    }
+    @include Mobile{
+        margin-bottom: 1rem;
+    }
+    &-sticky{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 9rem;
+        border: 1px solid #FFCA00;
+        border-radius: 5px;
+        @include tableMobile{
+            top: 5rem;
+        }
+    }
+    &_stage{
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 2.8rem;
+        color: #222;
+        text-transform: uppercase;
+        padding: .4rem 0;
+        text-align: center;
+        background: #FFCA00;
+    }
+    &_round{
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        color: #FFCA00;
+        padding: .5rem 1rem;
+        text-align: center;
+        @include tableMobile{
+            font-size: 1.6rem;
+        }
+        .number-big{
+            font-size: 2rem;
+            font-weight: 700;
+            @include tableMobile{
+                font-size: 1.8rem;
+            }
+        }
+    }
+}
+
+.dock-stage-icon {
+    position: fixed;
+    top: 50%;
+    right: 50px;
+    transform: translate(50%,-50%);
+    @include tableMobile{
+        display: none;
+    }
+}

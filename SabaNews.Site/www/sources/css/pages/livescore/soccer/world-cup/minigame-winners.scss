@@ -1,0 +1,132 @@
+@import './../../../../abstracts/mixins';
+@import './components/minigame_control';
+@import './components/input-custom';
+
+.wrapper-scroll {
+    &-winner{
+        &::-webkit-scrollbar-thumb {
+            background: #9B3F52;
+        }
+    }
+}
+
+.minigame-winner{
+    position: relative;
+    @include Mobile{
+        padding: 5rem 1rem 5rem 1rem;
+    }
+    .wraper-minigame-table{
+        background: linear-gradient(180deg, #8F1830 3.56%, #5A0F22 92.88%);
+        .text{
+            color: #E8E8D6;
+        }
+        .dots-parent{
+            height: 0;
+            &::before,&::after{
+                background: #E8E8D6;
+            }
+            .dots{
+                background: transparent;
+                li{
+                    background: #E8E8D6;
+                }
+            }
+            .line{
+                background: #E8E8D6;
+                height: 2px;
+                display: block;
+                width: 37%;
+                position: absolute;
+                @include Mobile{
+                    width: 30%;
+                }
+                &-left{
+                    left: 0;
+                }
+                &-right{
+                    right: 0;
+                }
+            }
+        }
+    }
+}
+.table-winner{
+    background: #8A172F;
+    border-top: none;
+    .minigame-table-flex {
+        &.minigame-table-header {
+            background: #631122;
+            border: 1px solid #E8E8D6;
+        }
+    }
+    .table-row{
+        color: #E8E8D6;
+        i{
+            &::before{
+                color: #E8E8D6;
+            }
+        }
+    }
+    .table-user{
+        .user-avatar{
+            border: 1px solid #833D55;
+            background: #E8E8D6;
+            color: #8A2745;
+        }
+    }
+    .minigame-table-items{
+        border: 1px solid #E8E8D6;
+        border-bottom: none;
+    }
+    .table-dropdown{
+        border: 1px solid #E8E8D6;
+        border-bottom: none;
+        background: #530C1C;
+        &-header{
+            border-bottom: 1px solid #8A172F;
+        }
+        &-row{
+            border-top: 1px solid #8A172F;
+            &:first-child{
+                border-top: none;
+            }
+        }
+        &-column{
+            color: #E8E8D6;
+        }
+    }
+    .minigame-table-body{
+        border-bottom: 1px solid #E8E8D6;    
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border: 1px solid #E8E8D6;
+            border-left: none;
+            border-top: none;
+            border-bottom: none;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: rgba($color: #9B3F52, $alpha: .4);
+            border-radius: 0;
+        }
+    }
+}
+
+
+.winner-icon{
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translate(50%, -50%);
+    @include tableMobile{
+        display: none;
+    }
+}
+
+
+.minigame-winner{
+    .custom-select{
+        border: 1px solid #E8E8D6;   
+        color: #E8E8D6;   
+    }
+}

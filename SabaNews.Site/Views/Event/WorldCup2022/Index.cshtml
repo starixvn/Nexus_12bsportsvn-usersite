@@ -1,0 +1,342 @@
+﻿@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@section Title {
+    @Model.Header.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/minify/js/worldcup2022.min.js" asp-append-version="true"></script>
+    <script>
+
+
+
+
+    </script>
+}
+
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-main">
+   
+    <div class="banner-euro-mobile banner-mobile-top"></div>
+    
+    <div id="worldcup-fixture">
+
+    </div>
+
+
+    <div class="wc-main">
+        <div class="wc-block-hotnews">
+            <div class="container">
+                <div class="title-section">
+                    <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                    <h2><a href="@Url.Action("LastestNews", "WorldCup2022")">Tin Mới Nhất</a></h2>
+                    <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+                </div>
+                <div class="gird-hot-news">
+                    @if (Model.LastestNews.Count > 0)
+                    {
+                        var firstPost = Model.LastestNews[0];
+                        <div class="post-items post-items-1 post-hot">
+                            <div class="hover-image">
+                                <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = firstPost.Slug })">
+                                    <img src=@firstPost.FeatureImage alt=@firstPost.PostTitle class="img-res" asp-append-version="true" loading="lazy" />
+                                </a>
+                                <div class="title-hot">
+                                    <h1><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = firstPost.Slug })">@firstPost.PostTitle</a></h1>
+                                    <p class="home-excerpt"><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = firstPost.Slug })">@firstPost.PostExcerpt</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @{
+                        var lastestPostIndex = 0;
+                        foreach (var post in Model.LastestNews)
+                        {
+                            {
+                                lastestPostIndex++;
+                                if (lastestPostIndex <= 1)
+                                {
+                                    continue;
+                                }
+                            }
+                            <div class="post-items post-items-@lastestPostIndex">
+                                <div class="hover-image">
+                                    <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })"><img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" /></a>
+                                </div>
+                                <div class="title">
+                                    <h2><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })">@post.PostTitle</a></h2>
+                                    @if (lastestPostIndex == 2)
+                                    {
+                                        <p>@post.PostExcerpt</p>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="view-more">
+                    <a href="@Url.Action("LastestNews", "WorldCup2022")">Xem thêm <i class="icon-next-wc"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="banner-mobile banner-mobile-center"></div>
+        
+        <div class="wc-block wc-block-bxh" id="home-standing"></div>
+
+
+
+        <div class="wc-block wc-block-group">
+            <div class="container mb-container">
+                <div class="grid-section-group">
+                    <div class="guess">
+                        <div class="title-section">
+                            <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                            <h2>
+                                <a href="@Url.Action("CommentaryNews", "WorldCup2022")" class="title-pc">Nhận định - Dự đoán</a>
+                                <a href="@Url.Action("CommentaryNews", "WorldCup2022")" class="title-mb">Nhận định <br /> Dự đoán</a>
+                            </h2>
+                            <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+                        </div>
+                        <div class="swiper swipper-guess">
+                            <div class="swiper-wrapper scroll-snap">
+                                @foreach (var post in Model.Commentary)
+                                {
+                                    <div class="post-items swiper-slide scroll-snap-items post-hot">
+                                        <div class="hover-image">
+                                            <a href=@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })>
+                                                <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" loading="lazy" />
+                                            </a>
+                                            <div class="title-hot">
+                                                <h3><a href=@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })>@post.PostTitle</a></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="swiper-button-next guess-next"><i class="icon-chevron-right"></i></div>
+                            <div class="swiper-button-prev guess-prev"><i class="icon-chevron-left"></i></div>
+                        </div>
+                        <div class="view-more">
+                            <a href="@Url.Action("CommentaryNews", "WorldCup2022")">Xem thêm <i class="icon-next-wc"></i></a>
+                        </div>
+                    </div>
+                    <div id="topScorersWC">
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="wc-block wc-block-video">
+            <div class="container mb-container">
+                <div class="title-section">
+                    <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                    <h2><a href=@Url.Action("Video", "WorldCup2022")>Video</a></h2>
+                    <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+                </div>
+                <div class="wrapper-arrow">
+                    <div class="swiper swipper-video">
+                        <div class="swiper-wrapper scroll-snap">
+                            @foreach (var video in Model.Videos)
+                            {
+                                <div class="post-items swiper-slide scroll-snap-items video-items post-items-2">
+                                    <div class="hover-image">
+                                        <a href="#"><img src=@video.FeatureImage alt=@video.PostTitle class="img-res" loading="lazy" /></a>
+                                        <div class="icon-play-video">
+                                            <i class="icon-play"></i>
+                                            <input type="hidden" value="@video.PostContent" name="content" />
+                                            <input type="hidden" value="@video.PostTitle" name="title" />
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <h2><a href=@Url.Action("PostDetailWC", "WorldCup2022", new { slug = video.Slug })>@video.PostTitle</a></h2>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="swiper-button-next video-next"><i class="icon-chevron-right"></i></div>
+                    <div class="swiper-button-prev video-prev"><i class="icon-chevron-left"></i></div>
+                </div>
+                <div class="show-iframe">
+
+                </div>
+
+                <div class="img-section">
+                    <img src="~/images/worldcup/section-3-items.svg" alt="Alternate Text" loading="lazy" />
+                </div>
+
+                <div class="view-more">
+                    <a href="@Url.Action("Video", "WorldCup2022")">Xem thêm <i class="icon-next-wc"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wc-block wc-block-stories-post">
+            <div class="container mb-container">
+                <div class="title-section">
+                    <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                    <h2><a href="@Url.Action("StoryPost", "WorldCup2022")">Khoảnh Khắc</a></h2>
+                    <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+                </div>
+                <div class="grid-stories-post scroll-snap">
+                    @foreach (var story in Model.StoryPost)
+                    {
+                        <div class="post-items scroll-snap-items post-hot">
+                            <div class="hover-image">
+                                <a href=@Url.Action("StoryPostDetail", "WorldCup2022", new { slug = story.Slug })>
+                                    <img src=@story.FeatureImage alt=@story.PostTitle class="img-res" loading="lazy"  />
+                                </a>
+                                <div class="title-hot">
+                                    <p>@story.PostTitle</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="view-more">
+                    <a href=@Url.Action("StoryPost", "WorldCup2022")>Xem thêm <i class="icon-next-wc"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wc-block wc-block-all">
+            <div class="container">
+                <div class="title-section">
+                    <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                    <h2><a>Tổng quan</a></h2>
+                    <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+                </div>
+                <div class="grid-all">
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/thong-tin-nuoc-chu-nha-world-cup-2022-qatar">
+                                <img src="~/images/worldcup/section-4-items-1.png" alt="Alternate Text" class="img-res" loading="lazy" />
+                            </a>
+                            <div class="title-hot">
+                                <h2>Nước chủ nhà</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/cac-svd-world-cup-2022">
+                                <img src="~/images/worldcup/section-4-items-2.png" alt="Alternate Text" class="img-res" loading="lazy" />
+                            </a>
+                            <div class="title-hot">
+                                <h2>Sân vận động</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/bong-thi-dau-world-cup-2022">
+                                <img src="~/images/worldcup/section-4-items-3.png" alt="Alternate Text" class="img-res" loading="lazy" />
+                            </a>
+                            <div class="title-hot">
+                                <h2>Bóng thi đấu</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/linh-vat-world-cup-2022">
+                                <img src="~/images/worldcup/section-4-items-4.png" alt="Alternate Text" class="img-res" loading="lazy" />
+                            </a>
+                            <div class="title-hot">
+                                <h2>Linh Vật</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/nhung-doi-vo-dich-world-cup">
+                                <img src="~/images/worldcup/section-4-items-5.png" alt="Alternate Text" class="img-res" loading="lazy" />
+                            </a>
+                            <div class="title-hot">
+                                <h2>Nhà vô địch</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href="https://www.sabavn.net/world-cup-2022/top-cau-thu-ghi-ban-nhieu-nhat-world-cup-trong-lich-su">
+                                <img src="~/images/worldcup/section-4-items-6.png" alt="Alternate Text" class="img-res" loading="lazy"/>
+                            </a>
+                            <div class="title-hot">
+                                <h2>Vua Phá Lưới</h2>
+                                <div class="dots">
+                                    <span></span><span></span><span class="dots-items"></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+@await Html.PartialAsync(ViewResources.SidebarBannerView)
+
+<div class="auth-form wc-modal">
+    <div class="modal" id="PlayIframeVideo" style="display: none">
+        <div class="modal-content modal-auth">
+            <button type="button" class="close-wc" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="tab-content">
+                <div class="if-content"></div>
+                <div class="if-title"></div>
+            </div>
+        </div>
+    </div>
+</div>

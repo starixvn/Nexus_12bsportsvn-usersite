@@ -1,0 +1,29 @@
+﻿<div class="form-section">
+    <form id="updateMatch">
+        <div class="form-input">
+            <span class="left-section">Order</span>
+            <div class="right-section">
+                <input class="form-control input-custom input-number order" type="number" name="order" id="order" value="@Model.Fixture.Order" max="@Model.MaxPriority"  />
+                <p class="error-input order-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">League Full Name</span>
+            <div class="right-section">
+                <input class="form-control input-custom" type="text" readonly value="@Model.League.LeagueFullNameEN" id="leagueId" />
+                <p class="error-input league-error"></p>
+            </div>
+        </div>
+        <div class="form-input">
+            <span class="left-section">League Name VN</span>
+            <div class="right-section">
+                <input class="form-control input-custom" type="text" readonly value="@Model.League.LeagueNameVN" id="leagueId" />
+                <p class="error-input league-error"></p>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button class="btn-custom-admin btn-btn-save" type="button" id="btn-save">Save</button>
+            <button class="btn-custom-admin btn-btn-cancel" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+    </form>
+</div>

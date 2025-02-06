@@ -1,0 +1,203 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/title-section';
+@import './components/wc-block';
+@import './components/table';
+@import './components/title-items';
+@import './components/container';
+@import './components/dots-post';
+@import './components/wc-modal';
+@import './components/ads';
+
+
+#detail-standing {
+    padding: 0 1.2rem;
+
+    @include tableMobile {
+        margin-top: 3rem;
+        padding : 0 .8rem;
+    }
+}
+
+.king-soccer {
+    margin-bottom: 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+
+    .wc-table {
+        background: #FAFAED;
+        color: #2F2F2F;
+        font-weight: 400 !important;
+        overflow: unset;
+        margin-bottom: 3rem;
+
+        @include tableMobile {
+            margin-bottom: 2.5rem;
+        }
+
+        &-header {
+            box-shadow: none !important;
+            background: linear-gradient(180deg, #67182B 0%, #470817 100%) !important;
+            color: #fff;
+            border-radius: 5px 5px 0px 0px;
+            height: 7rem !important;
+            padding: 1rem 1.2rem 0 1.2rem !important;
+
+            @include tableMobile {
+                height: 4rem !important;
+            }
+
+            .cell-rank {
+                color: $white-color !important;
+                font-weight: 700 !important;
+            }
+        }
+
+        &-body {
+            border: 1px solid #631628;
+            overflow: hidden;
+            border-radius: 0px 0px 5px 5px;
+            background: #FFFFF8;
+            font-size : 1.4rem;
+            margin : 0 !important;
+            .wc-table-row {
+                border-bottom: 1px solid #C8C8B0;
+                margin: 0 1.2rem;
+                padding: 1rem 0;
+
+                @include tableMobile {
+                    margin: 0;
+                    padding: 1rem 1rem;
+                }
+
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+
+        .cell-rank {
+            color: #2F2F2F;
+            font-weight: 500;
+            font-size : 1.4rem;
+            @include tableMobile {
+                font-size: 1.2rem;
+            }
+
+            &.first-width {
+                width: 4rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            span {
+                width: 2rem;
+                height: 2rem;
+                text-align: center;
+            }
+
+            .first-width-number {
+                background: #5C1224;
+                border-radius: 3px;
+                color: $white-color;
+                display: block;
+            }
+        }
+
+        .cell-participant {
+            @include tableMobile {
+                font-size: 1.2rem;
+            }
+        }
+
+        .title-items {
+            @include tableMobile {
+                width: 10rem;
+                height: 2.6rem;
+                font-size: 1.4rem;
+            }
+        }
+
+        .points-table {
+            font-weight: 700;
+        }
+
+        .team-logo {
+            border: 1px solid #5D1324;
+        }
+    }
+}
+
+.live-score-nav {
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 0.4rem;
+    max-width: 102rem;
+    margin: 4rem auto;
+
+    @include tableMobile {
+        margin: 2rem auto;
+        border-bottom: none;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+
+        @include tableMobile {
+            justify-content: flex-start;
+            padding: 0 .8rem;
+        }
+
+        li {
+            a {
+                color: #9D9D9D;
+                margin-right: 4rem;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 1.4rem;
+                line-height: 1.9rem;
+                text-transform: uppercase;
+                position: relative;
+                padding-bottom: 0.7rem;
+
+                @include tableMobile {
+                    margin-right: 1rem;
+                    background: #FAFAED;
+                    border: 1px solid #C8C8B0;
+                    border-radius: 5px;
+                    padding: 0.5rem 1rem;
+                    font-weight: 700;
+                    font-size: 1.2rem;
+                    line-height: 1.6rem;
+                }
+
+                &.active {
+                    color: $primary-bg;
+
+                    &:after {
+                        content: "";
+                        display: block;
+                        width: 100%;
+                        height: 0.2rem;
+                        background: $primary-bg;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+
+                        @include tableMobile {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

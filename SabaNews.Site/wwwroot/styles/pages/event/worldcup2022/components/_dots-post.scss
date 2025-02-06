@@ -1,0 +1,18 @@
+﻿.dots {
+    display: flex;
+    align-items: center;
+    justify-content : center;
+    span {
+        display: block;
+        background: $title-color;
+        width: .7rem;
+        height: .7rem;
+        margin: 0 .2rem;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+
+        &.dots-items {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}

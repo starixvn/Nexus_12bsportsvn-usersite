@@ -1,0 +1,149 @@
+@using SabaNews.Resources
+@using SabaNews.Core.Constants;
+@model SabaNews.Models.Categories.CateLivescoreManageViewModel;
+@using System.Linq;
+@using SabaNews.Models.Categories;
+@using SabaNews.Models
+
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.CategoryManagement
+}
+
+@section Title{
+    @ViewResources.CategoryManagement
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.CategoryManagement" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/category/index.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/jquery-ui.css" asp-append-version="true">
+}
+
+@{
+    var menus = Model.Menus.Where(item => item.CateSlug != null);
+}
+<section class="page-content">
+
+<div class="content">
+        <div class="data-grid" id="data-grid">
+            <div class="table-admin">
+                <table class="data-grid">
+                    <thead>
+                        <tr>
+                            <th width="2%">#</th>
+                            <th width="15%">Category</th>
+                            <th width="20%">League</th>
+                            <th width="7%">League Icon</th>
+                            <th width="5%">Display</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var count = 0;
+                            foreach (var menu in menus.Where(item => item.ParentId == 0))
+                            {
+                                count++;
+                                var subMenus = menus.Where(item => item.ParentId == menu.PostId).ToList();
+                                renderRow(menu, subMenus, count, true);
+                                @foreach (var subMenu in subMenus)
+                                {
+                                    var subMenus1 = menus.Where(item => item.ParentId == subMenu.PostId).ToList();
+                                    renderRow(subMenu, subMenus1, 0);
+                                    @foreach (var sub in subMenus1)
+                                    {
+                                        var subMenus2 = menus.Where(item => item.ParentId == sub.PostId).ToList();
+                                        renderRow(sub, subMenus2, -1);
+                                    }
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@functions {
+    private (string, CateLivescore, bool) GetLeagueData(List<CateLivescore> cates, long cateId)
+    {
+        var cate = cates.FirstOrDefault(item => item.CateId == cateId);
+        var display = false;
+        var league = "";
+        long leagueId = 0;
+        if (cate != null)
+        {
+            display = cate.Status == CategoryKey.ShowLivescore;
+            leagueId = cate.LeagueId;
+            if(cate.LeagueId != 0)
+            {
+                league = GetGeneralName(cate.LeagueNameEN, cate.LeagueFullNameEN, cate.LeagueNameVN);
+            }
+        }
+        return (league, cate, display);
+    }
+
+    void renderRow(Menu menu, List<Menu> subMenus, int count, bool isParent = false)
+    {
+        var (league, cate, display) = GetLeagueData(Model.Cates.ToList(), menu.CateId);
+        var isFoolball = menu.CateSlug == Constants.FootballSlug;
+        var parent = Model.Menus.FirstOrDefault(item => item.PostId == menu.ParentId);
+        <tr class=" @(count > 0 ? "league-level2":"") @(isParent ? "" : "child parent-" + parent?.CateId)"  data-id=@menu.CateId>
+            @if(isFoolball)
+            {
+                <td class="text-left" colspan="2">@menu.MenuTitle</td>
+            }
+            else
+            {
+                <td class="text-center">@(count > 0 ? count : "" )</td>
+                <td class="text-left league-name @(subMenus.Count > 0 ? "has-child": "") @(count == -1 ? "pl50" : "")" >@menu.MenuTitle</td>
+            }
+            <td class="text-center">
+                <select class="form-control input-custom league-select" style="width:100%">
+                <option value="0">-------</option>
+                    @foreach (var item in Model.Leagues)
+                    {
+                        <option value="@item.LeagueId" data-season="@item.CurrentSeasonId" data-icon="@(item.IconVN ?? GetTeamIcon(item.Icon))"
+                            @(item.LeagueId == cate?.LeagueId ? "selected" : "")>@GetLeagueName(item)</option>
+                    }
+                </select>
+            </td>
+            <td class="league-icon">
+                @if(cate != null && cate.LeagueId != 0)
+                {
+                    <img src="@(cate.IconVN ?? GetTeamIcon(cate.Icon))">
+                }
+            </td>
+            <td class="text-center"><input class="cate-status" type="checkbox" @(display ? "checked" : "")/></td>
+        </tr>
+    }
+}
+@section Scripts {
+    <script src="~/js/select2.min.js" asp-append-version="true"></script>
+    <script src="~/js/admin/category/index.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,169 @@
+@using static SabaNews.Site.Extensions.DeviceHelper;
+@using SabaNews.Core.Constants;
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/swipper/css/swiper.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/euro2024-video.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/fixture.chunk.css"
+            asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/fixture.chunk.css"
+            asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts {
+    <script>
+        window.slug = '@Euro2024.VideoSlug';
+        window.paging = {
+            page: '@Model.Paging.CurrentPage',
+            pageSize: '@Model.Paging.PageSize',
+            totalPages: '@Model.Paging.TotalPages'
+        };
+        window.isVideo = true;
+        window.type = '@Model.Header.Controller';
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/swiper.min.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/scroll.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/euro2024.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/video.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/swiper.min.js" asp-append-version="true"></script>
+        <script src="~/minify/js/euro-2024-video.min.js" asp-append-version="true"></script>
+    </environment>
+}
+@(await Component.InvokeAsync("HeaderEuro2024", new { cateSlug = Model.Header.Slug }))
+<section class="euro-video">
+    <div id="euro-fixture"></div>
+    <div class="euro-page-main">
+        <div class="container">
+            <div class="page-grid">
+                <div class="page-items-left">
+                    <div class="block-heading">
+                        <h2 class="block-heading-text">
+                            @Euro2024.Video
+                        </h2>
+                    </div>
+                    @if (Model.Videos.Count > 0)
+                    {
+                        <div class="block-items block-items-vertical block-items-vertical-hot">
+                            <div class="block-items-img hover-image">
+                                <input type="hidden" name="iframe_value" value="@Model.Videos[0].PostContent" />
+                                <picture>
+                                    <source srcset="@Url.Content(Model.Videos[0].FeatureImage)" type="image/webp">
+                                    <source srcset="@Url.Content(Model.Videos[0].FeatureImage)" type="image/jpeg">
+                                    <img asp-append-version="true" loading="lazy"
+                                        src="@Url.Content(Model.Videos[0].FeatureImage)" alt="@Model.Videos[0].PostTitle">
+                                </picture>
+                                <div class="euro-play-video" post-id="@Model.Videos[0].ID">
+                                    <span class="icon-play"></span>
+                                </div>
+                            </div>
+                            <div style="display: none;" class="play_video"></div>
+                            <div class="group-title-hot">
+                                <h2 class="block-items-heading">
+                                    <a
+                                        href="@Url.Action("Article", "Euro2024", new { slug = Model.Videos[0].Uri })">@Model.Videos[0].PostTitle</a>
+                                </h2>
+                                <p class="block-heading-description"> @Model.Videos[0].PostExcerpt</p>
+                            </div>
+                        </div>
+                    }
+                    <div class="page-main">
+                        <div class="video-grid" id="news-grid">
+                            @{
+                                var postIndex = 0;
+                                foreach (var post in Model.Videos)
+                                {
+                                    {
+                                        postIndex++;
+                                        if (postIndex <= 1)
+                                        {
+                                            continue;
+                                        }
+                                    }
+                                    if (postIndex == 6 && isMobile)
+                                    {
+                                        <div class="ishow-mobile">
+                                            <div data-ismobile="@isMobile" class="euro-top-standing sticky-box"></div>
+                                        </div>
+                                    }
+                                    <div class="block-items block-items-vertical">
+                                        <div class="block-items-img hover-image">
+                                            <a href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">
+                                                <img asp-append-version="true" loading="lazy"
+                                                    src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle"
+                                                    class="img-res lazy">
+                                            </a>
+                                            <span class="icons-child-video">
+                                                <img src="~/images/euro2024/child-icon-video.svg" alt="child-icon-video">
+                                                Video
+                                            </span>
+                                        </div>
+                                        <div class="group-title-hot">
+                                            <h2 class="block-items-heading">
+                                                <a
+                                                    href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">@post.PostTitle</a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    if (postIndex == 10 && isMobile)
+                                    {
+                                        <div class="ishow-mobile">
+                                            <div class="euro-top-scorer sticky-box"></div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="loading-page" id="loading-page">
+                            <div class="lds-ellipsis">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-items-right">
+                    <div class="sticky-position ishow-pc">
+                        <div class="sticky-position">
+                            <div data-ismobile="@isMobile" class="euro-top-standing sticky-box">
+                            </div>
+                            <div class="euro-top-scorer sticky-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-match-detail.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/match-detail.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/match-detail.chunk.css" asp-append-version="true" />
+
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        window.selectedMatchId = @Model.MatchId;
+        window.isEventPage = true;
+    </script>
+    <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/match-detail.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/match-detail.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/minify/js/worldcup2022-match.min.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("HeaderEuro2024", new { cateSlug = Model.Header.Slug }))
+<section class="euro-match-detail">
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+    <div id="euro-fixture"></div>
+    <div class="euro-page-main">
+        <div id="euro-match-detail" class="container-match-detail"></div>
+    </div>
+</section>

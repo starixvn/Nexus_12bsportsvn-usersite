@@ -1,0 +1,62 @@
+﻿@using SabaNews.Resources
+@using SabaNews.Site.Extensions;
+
+<div class="table-admin">
+    @foreach (var group in Model.Groups)
+    {
+        var count = 0;
+        var groupName = "";
+        @if (Model.Groups.Count > 1)
+        {
+            
+            groupName = $"{ViewResources.Board} {group.GroupName.Substring(0, 1)}";
+            <div class="name-bxh title-items">@groupName</div>
+        }
+        
+        <table class="data-grid">
+            <thead>
+                <tr>
+                    <th width="2%">#</th>
+                    <th width="8%">@ViewResources.TeamIcon</th>
+                    <th width="8%">@ViewResources.TeamName</th>
+                    <th width="7%">@ViewResources.Played</th>
+                    <th width="7%">@ViewResources.Won</th>
+                    <th width="7%">@ViewResources.Drawn</th>
+                    <th width="7%">@ViewResources.Lost</th>
+                    <th width="7%">@ViewResources.GoalsFor</th>
+                    <th width="7%">@ViewResources.GoalsAgainst</th>
+                    <th width="7%">@ViewResources.GoalsDiff</th>
+                    <th width="7%">@ViewResources.Points</th>
+                    <th>@ViewResources.Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var standing in group.Standings)
+                    {
+                        count++;
+                                <tr>
+                                    <td class="text-center">@standing.Position</td>
+                                    <td class="text-center"><img src="@(standing.IconVN ?? LivescoreHelper.GetTeamIcon(standing.Icon))" width="100"></td>
+                                    <td class="text-center">@LivescoreHelper.GetStandingTeamName(standing)</td>
+                                    <td class="text-center">@standing.Total</td>
+                                    <td class="text-center">@standing.Won</td>
+                                    <td class="text-center">@standing.Draw</td>
+                                    <td class="text-center">@standing.Loss</td>
+                                    <td class="text-center">@standing.Goals</td>
+                                    <td class="text-center">@standing.GoalsAgainst</td>
+                                    <td class="text-center">@standing.GoalDiff</td>
+                                    <td class="text-center">@standing.Points</td>
+                                    <td class="text-center">
+                                        <i class="icon icon-edit-admin btn-Edit" title="Edit" data-team="@LivescoreHelper.GetStandingTeamName(standing)" data-group="@groupName"
+                                           data-url="@Url.Action("EditStanding", "StandingManagement", new { seasonId = Model.SeasonId, stageId = standing.StageId, teamId = standing.TeamId, leagueId = Model.LeagueId})">
+                                        </i>
+                                    </td>
+                                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

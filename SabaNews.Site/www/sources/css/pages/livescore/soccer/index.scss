@@ -1,0 +1,146 @@
+﻿@import '~react-loading-skeleton/dist/skeleton.css';
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+@import '../../../base/base';
+@import '../../../components/block-extension';
+@import '../../../components/container';
+@import '../../../components/date-bar';
+@import '../../../components/search-bar';
+@import '../../../components/soccer-item';
+@import '../../../components/date-picker';
+@import '../../../components/tooltip';
+@import '../../../components/breadcrumb';
+@import '../../../components/modal';
+@import '../../../components/text-document';
+//test
+
+
+body {
+    font-size: 1.4rem;
+}
+.livescore-soccer {
+    .icon-live-realtime {
+        @include tableMobile {
+            font-size: 1.2rem;
+        }
+
+        @include iphone5 {
+            font-size: 1rem;
+        }
+    }
+
+    .none-livescore {
+        margin-top: 1.2rem;
+        margin: 1.2rem 0;
+        font-size: 1.4rem;
+    }
+}
+
+
+
+.count-start {
+    .icon-live-start {
+        @include Mobile {
+            font-size: 2rem;
+        }
+    }
+}
+
+.livescore-like {
+    @include tableMobile {
+        width: 4rem !important;
+    }
+}
+
+
+.livescore-soccer-main{
+    margin-bottom: 3.2rem;
+}
+.ads-insite{
+    margin: .8rem 0;
+    @include Mobile{
+        margin-top: .8rem;
+        margin-bottom: .8rem;
+        margin-left: -1.2rem;
+        margin-right: -1.2rem;
+    }
+}
+
+.soccer-match-grid{
+    .ads-insite{
+        min-height: 11.6rem;
+        @include Mobile{
+            min-height: 24rem;
+        }
+    }
+}
+
+.livescore-soccer-extension{
+    .ads-insite{
+        min-height: 42rem;
+        @include Mobile{
+            min-height: 24rem;
+        }
+    }
+}
+
+.block__title{
+    margin-bottom: .8rem;
+}
+
+.about-livescore{
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    padding: 1.6rem ;
+    background: #F5F6F7;
+    border: 1px solid #E9E9E9;
+    border-radius: 3px;
+    .heading-about-livescore{
+        font-size: 1.4rem;
+        font-style: bold;
+        margin-bottom: .8rem;
+    }
+    .about-livescore-text {
+        margin-bottom: 1rem;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
+
+.livescore-news{
+    margin-top: 2rem;
+    @include Mobile{
+        margin-top: 1.2rem;
+    }
+    .card-horizontal{
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.2rem;
+        grid-template-columns: 21.3rem 1fr;
+        @include Mobile{
+            grid-template-columns: 13rem 1fr;
+        }
+        &__image{
+            cursor: pointer;
+            @include Mobile{
+                height: 8rem;
+            }
+        }
+    }
+    .block__title{
+        margin-bottom: 1.2rem;
+        @include Mobile{
+            margin-bottom: 1rem;
+        }
+    }
+    .title{
+        cursor: pointer;
+        @include Mobile{
+            font-size: 1.5rem;
+            line-height: 2.4rem;
+        }
+    }
+}
+
+

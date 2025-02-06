@@ -1,0 +1,125 @@
+﻿@using SabaNews.Resources;
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.ListDetailElectronicDirectMail
+}
+
+@section Title{
+    @ViewResources.ListDetailElectronicDirectMail
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/admin_email.min.css" asp-append-version="true">
+}
+
+
+
+@section Scripts{
+    <script src="~/minify/js/admin_email_detail.min.js" asp-append-version="true"></script>
+}
+
+
+<section class="page-content">
+    <p class="back-parent-page">
+        <a href="@Url.Action("Index", "Email")">
+            <i class="icon-arrow-left"></i>
+            <span>@ViewResources.BackToEmailList</span>
+        </a>
+    </p>
+    <div class="page-table-control">
+        <div class="form-horizontal">
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.Email</p>
+                <input class="custom-input list-input" name="search" value="" placeholder="Search Email..." type="text" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">User Interaction</p>
+                <select class="custom-input list-input" name="filterClicked">
+                    <option value="-1">All</option>
+                    <option value="0">None</option>
+                    <option value="1">Clicked</option>
+                </select>
+            </div>
+
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.Status</p>
+                <select class="custom-input list-input" name="status">
+                    <option value="-1">All</option>
+                    <option value="2">New</option>
+                    <option value="0">Successful</option>
+                    <option value="1">Failed</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn-custom-admin search_email_detail">@ViewResources.Submit</button>
+        </div>
+    </div>
+    <div class="detail-header">
+        <h3 class="txt-content">Title: @Model.Email.EmailTitle</h3>
+        <h3 class="txt-content">Created Date: @SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(Model.Email.CreatedDate)</h3>
+        <p class="txt-content">Content: <a class="label label-blue" data-toggle="modal" data-target="#ViewEmailContent" href="javascript:;">View</a></p>
+        @if (Model.NumberEmailFailed > 0)
+        {
+            <div class="resend-all-email"><button class="label label-blue resend-all">Resend all</button></div>
+        }
+
+    </div>
+    <div class="list_detail_content"></div>
+    <div class="modal" id="ViewEmailContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@Model.Email.EmailTitle</h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                    @Html.Raw(Model.Email.EmailContent)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Announcement</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+	var eId = '@Model.Email.Id';
+</script>

@@ -1,0 +1,127 @@
+﻿@using SabaNews.Resources;
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.ListElectronicDirectMail
+}
+
+
+@section Title{
+    @ViewResources.ListElectronicDirectMail
+}
+
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.EDMList" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/admin_email.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+    <script src="~/minify/js/admin_email.min.js" asp-append-version="true"></script>
+}
+
+
+<section class="page-content">
+    <div class="page-table-control">
+        <div class="form-horizontal">
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.Subject</p>
+                <input class="custom-input list-input" name="search" value="" placeholder="Search subject..." type="text" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.From</p>
+                <input class="custom-input" type="date" id="fromDate" name="fromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.To</p>
+                <input class="custom-input" type="date" id="toDate" name="toDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.To</p>
+                <input class="custom-input" type="datetime-local" id="toDate" name="toDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.Status</p>
+                <select class="custom-input list-input" name="status" id="status">
+                    <option value="-1">@ViewResources.All</option>
+                    <option value="0">@ViewResources.Sent</option>
+                    <option value="1">@ViewResources.New</option>
+                </select>
+            </div>
+            <div class="form-input">
+                <p class="label-admin">@ViewResources.CreatedBy</p>
+                <select class="custom-input list-input" name="createdBy">
+                    <option value="-1">@ViewResources.All</option>
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Name</option>
+                    }
+                </select>
+            </div>
+
+            <button type="button" class="btn-custom-admin search_list_email">Submit</button>
+        </div>
+        <div class="list_email_block"></div>
+    </div>
+
+    <div class="modal" id="ViewEmailContent" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

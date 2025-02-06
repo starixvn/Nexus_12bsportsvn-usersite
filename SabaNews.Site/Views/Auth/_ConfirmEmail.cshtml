@@ -1,0 +1,20 @@
+﻿<div class="modal auth-login  authModal" id="modal-confirmEmail" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-content modal-auth" >
+        <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body modal-resetpass">
+            <div class="form-resetpass">
+                <h3 class="heading-resetpass">@ViewResources.ResetPassword</h3>
+                <p class="form-title">@ViewResources.InputEmailForResetPassword</p>
+                <form id="form-confirm-email" class="mb-3">
+                    <p class="error summary-eror"></p>
+                    <div class="form-modal">
+                        <input type="email" name="email" class="input-form" placeholder="Nhập email" required>
+                    </div>
+                    <button type="submit" class="btn-confirm-email">@ViewResources.ResetPassword</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

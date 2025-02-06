@@ -1,0 +1,49 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper
+
+
+<div class="king-soccer-header">
+    <h2 class="king-soccer-header-text">
+        Vua phá lưới
+    </h2>
+</div> 
+<div class="border-top-scorer">
+    <div class="king-soccer">
+        <div class="wc-table wc-table-king-soccer" id="Hidden1">
+            <div class="wc-table-header">
+                <div class="wc-table-cell cell-participant">TOP 10</div>
+                <div class="wc-table-cell cell-rank">Bàn thắng</div>
+                <div class="wc-table-cell cell-rank">Kiến tạo</div>
+            </div>
+
+            <div class="wc-table-body top-scorer-table">
+                @{
+                    var count = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    count++;
+                    var oriLogo = GetTeamIcon(item.TeamLogo);
+                    var playerName = GetTopScorersPlayerName(item);
+                    var teamName = GetGeneralName(item.TeamNameEN, item.TeamFullNameEN, item.TeamNameVN);
+                    <div class="wc-table-row ">
+                        <div class="wc-table-cell cell-participant">
+                            <ul class="team">
+                                <li class="number">@count </li>
+                                <li class="team-logo"><img src="@(item.TeamLogoVN ?? oriLogo)" alt="@teamName" /></li>
+                                <li class="team-name">
+                                    <span class="player-name" tabindex="0" data-toggle="tooltip" title="@playerName">@playerName
+                                    </span>
+                                    <span class="team">@teamName</span>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="wc-table-cell cell-rank">@item.Goals</div>
+                        <div class="wc-table-cell cell-rank">@item.Assists</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

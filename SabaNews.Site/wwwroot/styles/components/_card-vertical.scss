@@ -1,0 +1,153 @@
+.card-vertical {
+    padding-bottom: 1.6rem;
+
+    &.card-vertical-highlight {
+        [class*="card-vertical__"]:not(.card-vertical__image) {
+            padding: 0 $padding-main;
+
+            @include Mobile {
+                padding: 0 .8rem;
+            }
+        }
+    }
+
+    &__image {
+        margin-bottom: .8rem;
+        overflow: hidden;
+        display: block;
+        position: relative;
+        height: 15rem;
+
+        @include tableMobile {
+            margin-bottom: .5rem;
+            height: 11rem;
+        }
+    }
+
+    &__title {
+        color: $color-title;
+        font-weight: bold;
+        font-size: $font-size-title;
+        letter-spacing: -0.02rem;
+        text-decoration: none;
+        transition: color .3s ease;
+        display: initial;
+        line-height: 2rem;
+
+        &:hover {
+            color: $color-title-hover;
+        }
+    }
+
+    &__datetime {
+        font-size: $font-size-datetime;
+        color: $color-datetime;
+
+        @include tableMobile {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__description {
+        margin: .3rem 0;
+        line-height: 1.9rem;
+        font-weight: 500;
+        @include tableMobile {
+            font-size: 1.2rem;
+            line-height: 2rem;
+        }
+    }
+}
+.comment {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 1rem;
+    vertical-align: middle;
+    text-decoration: none !important;
+
+    .icon-mode_comment_full {
+        font-size: 1.6rem;
+    }
+
+    .number {
+        color: #2B89CC;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 1.3rem;
+        margin-left: .3rem;
+    }
+}
+
+
+
+.box-vertical{
+    &-image{
+        display: block;
+    }
+    &-content{
+        margin-top: 1.2rem;
+        @include Mobile{
+            margin-top: 1rem;
+        }
+        h1,.heading-hight-light{
+            font-weight: 700;
+            font-size: 2.4rem;
+            line-height: 3.3rem;
+            margin: 0;
+            @include Mobile{
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+        }
+        h3,h2{
+            font-weight: 700;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+        }
+        h4{
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 3rem;
+        }
+        a{
+            text-decoration: none;
+            color: $color-title;
+            transition: color .3s ease;
+            &:hover{
+                color: #eb5342;
+            }
+        }
+        p{
+            margin-top: .8rem;
+            margin-bottom: 0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: $color-title;
+        }
+        .heading-box-content{
+            font-weight: 700;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+        }
+    }
+    &.box-vertical-hightlight{
+        .box-vertical-image{
+            height: 35rem;
+            @include Mobile{
+                height: 23rem;
+                margin-left: -1.2rem;
+                margin-right: -1.2rem;
+                border-radius: 0;
+            }
+        }
+        .box-vertical-content{
+            margin-top: 1.6rem;
+            @include Mobile{
+                margin-top: 1rem;
+            }
+        }
+    }
+    .box-video{
+        position: relative;
+    }
+}

@@ -1,0 +1,20 @@
+﻿@section Title{
+    Maintenance
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/vendor/icomoon/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles//maintenance.min.css" asp-append-version="true">
+
+}
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="container">
+        <div class="block block-main">
+            <img src="~/images/maintain.svg" alt="saba-sport" asp-append-version="true" class="img-res">
+            <h2 class="block__heading">Đang bảo trì!</h2>
+            <p class="block__desc">Trang bạn muốn tìm hiện đang được bảo trì. Xin vui lòng quay lại sau!</p>
+        </div>
+    </div>
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>

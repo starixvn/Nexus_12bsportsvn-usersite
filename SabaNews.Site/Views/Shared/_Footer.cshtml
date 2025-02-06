@@ -1,0 +1,93 @@
+@using SabaNews.Core.Constants;
+
+<section class="footer">
+    <div class="container">
+        <div class="footer-item">
+            <div class="footer-item-block">
+                <div class="heading-footer-list"><a href="">Trang Chủ</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.NewPostSlug + CategoryKey.Suffix })">Tin mới nhất</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.GuessSlug + CategoryKey.Suffix })">Nhận định</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.BackstageSlug + CategoryKey.Suffix })">Hậu trường</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.TransferSlug + CategoryKey.Suffix })">Chuyển nhượng</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.VideoSlug + CategoryKey.Suffix })">Video</a></div>
+            </div>
+            <div class="footer-item-block">
+                <div class="heading-footer-list"><a href="/tag/lich-thi-dau-hom-nay">LTĐ hôm nay</a></div>
+                <div class="heading-footer-list"><a href="/lich-thi-dau/bong-da/truc-tiep">Trực tiếp</a></div>
+                <div class="heading-footer-list"><a href="/tag/ket-qua-bong-da-hom-nay">Kết quả</a></div>
+                <div class="heading-footer-list"><a href="/tag/diem-tin-bong-da-hom-nay">Tin nóng</a></div>
+            </div>
+            <div class="footer-item-block">
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.VNFootballSlug + CategoryKey.Suffix })">Bóng đá VN</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.England + CategoryKey.Suffix })">Bóng đá Anh</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.TBN + CategoryKey.Suffix })">Bóng đá TBN</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.Italia + CategoryKey.Suffix })">Bóng đá Ý</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.Germany + CategoryKey.Suffix })">Bóng đá Đức</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.France + CategoryKey.Suffix })">Bóng đá Pháp</a></div>
+            </div>
+            <div class="footer-item-block">
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.ClubSlug + CategoryKey.Suffix })">Giải đấu cấp CLB</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.CountrySlug + CategoryKey.Suffix })">Đội tuyển</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.AreaSlug + CategoryKey.Suffix })">Bóng đá khu vực</a></div>
+                <div class="heading-footer-list"><a href="@Url.Action("Category", "Home", new { slug = CategoryKey.OtherPostSlug + CategoryKey.Suffix })">Thể thao</a></div>
+            </div>
+            <div class="footer-item-block show-pc">
+                <div class="footer-logo">
+                    <a href="/">
+                    <img src="~/images/logo-footer.png" alt="logo" class="img-res" asp-append-version="true"  width="88" height="46" loading="lazy"/>
+                    </a>
+                </div>
+                <p class="text-follow">Theo dõi SABA Sports trên</p>
+                <div class="follow">
+                    <a class="icon-social-facebook" href="https://www.facebook.com/sabasportsvietnam"></a>
+                    <a class="icon-social-youtube" href="https://www.youtube.com/SABASportsVietnam"></a>
+                    <a class="icon-tiktok" href="https://www.tiktok.com/@@sabasportsvietnam"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-info">
+            <div class="footer-logo show-mb">
+                <a href="/">
+                 <img src="~/images/logo-footer.png" alt="logo" class="img-res" asp-append-version="true"  width="88" height="46" loading="lazy"/>
+                </a>
+            </div>
+
+            <div class="footer-info-main">
+                <ul class="footer-list-service">
+                    <li><a data-section="#thu-thap" href="/policy/#thu-thap">Thu thập và sử dụng thông tin</a></li>
+                    <li><a data-section="#luu-tru" href="/policy/#luu-tru">Lưu trữ thông tin cá nhân</a></li>
+                    <li><a data-section="#cookie" href="/policy/#cookie">Cookie</a></li>
+                    <li><a data-section="#tiet-lo" href="/policy/#tiet-lo">Tiết lộ thông tin cá nhân</a></li>
+                    <li><a data-section="#quang-cao" href="/policy/#quang-cao">Quảng cáo bên thứ ba</a></li>
+                    <li><a data-section="#bao-mat" href="/policy/#bao-mat">Bảo mật và An ninh</a></li>
+                </ul>
+                <div class="copy-right">
+                    <div class="copy-right-info">
+                        © @DateTime.Now.Year Bản quyền thuộc về SABA Sports
+                        <div class="ex">
+                            <a href="//www.dmca.com/Protection/Status.aspx?ID=f936b4b7-f675-4399-9627-694869ab0664"
+                                title="DMCA.com Protection Status" class="dmca-badge"> <img width="120" height="21"
+                                    loading="lazy"
+                                    src="https://images.dmca.com/Badges/dmca_protected_sml_120b.png?ID=f936b4b7-f675-4399-9627-694869ab0664"
+                                    alt="DMCA.com Protection Status" /></a>
+                            <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-us show-mb">
+                    <p class="text-follow">Theo dõi SABA Sports trên</p>
+                    <div class="follow show-mb">
+                        <a class="icon-social-facebook" href="https://www.facebook.com/sabasportsvietnam"></a>
+                        <a class="icon-social-youtube" href="https://www.youtube.com/SABASportsVietnam"></a>
+                        <a class="icon-tiktok" href="https://www.tiktok.com/@@sabasportsvietnam"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-top-box">
+        <div class="back-to-top"><span class="icon-chevron-right"></span></div>
+    </div>
+</section>

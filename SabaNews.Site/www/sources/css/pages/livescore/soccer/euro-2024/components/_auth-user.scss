@@ -1,0 +1,34 @@
+.auth-minigame{
+    padding: 0;
+    margin-bottom: 1rem;
+    cursor: inherit;
+    .avatar-user{
+        width: 5rem;
+        height: 5rem;
+        background: #FFCA00 !important;
+        border-radius: 5px;
+        color: #222222 !important;
+        border: 2px solid #fff !important;
+        font-weight: 800;
+        font-size: 3rem;
+        line-height: 2.8rem;
+        margin-right: 1rem;
+        text-transform: uppercase;
+        @include Mobile{
+            width: 4rem;
+            height: 4rem;
+            font-size: 2.6rem;
+        }
+    }
+    .auth-displayname{
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        color: #fff;
+        display: block !important;
+        text-transform : capitalize;
+        &::after{
+            display: none;
+        }
+    }
+}

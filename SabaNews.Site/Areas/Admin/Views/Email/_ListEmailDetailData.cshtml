@@ -1,0 +1,92 @@
+﻿@using SabaNews.Resources;
+@using SabaNews.Core.Constants;
+<table class="custom-table detail-table text-center">
+    <tr>
+        <th width="3%">@ViewResources.STT</th>
+        <th width="15%">@ViewResources.Username</th>
+        <th>@ViewResources.Email</th>
+        <th>@ViewResources.Content</th>
+        <th width="15%">@ViewResources.SentDate</th>
+        <th width="15%">@ViewResources.UserInteraction</th>
+        <th width="15%">@ViewResources.Status</th>
+        <th width="15%">@ViewResources.Action</th>
+    </tr>
+	@{ var stt = 0; }
+	@foreach (var detail in Model.ListEmailDetails)
+	{
+		var sendDate = detail.SendTime == DateTime.MinValue ? "None" : SabaNews.Core.Helper.DateTimeUtilize.ChangeTimeZoneToClient(detail.SendTime);
+		stt++;
+		<tr>
+			<td>@stt</td>
+			<td class="text-left">@detail.Username</td>
+			<td class="text-left">@detail.EmailAddress</td>
+            <td>
+                <input value="@detail.EmailContent" type="hidden" class="email_content" />
+                <input value="@detail.EmailTitle" type="hidden" class="email_title" />
+                <a href="javascript:;" class="label label-blue email view_content">View</a>
+            </td>
+			<td>@sendDate</td>
+			<td>@Html.Raw(detail.IsUserClicked == 1 ? "<b>Clicked</b>" : "None")</td>
+            <td>
+                @if (detail.Status == EDMStatus.EmailDetailSentSuccessful)
+				{
+					@ViewResources.Successful
+                }
+				else if (detail.Status == EDMStatus.EmailDetailSentFailed)
+				{
+					@ViewResources.Failed
+                } 
+				else if (detail.Status == EDMStatus.EmailDetailNew)
+				{
+					@ViewResources.New
+                }
+            </td>
+            <td>
+                @if (detail.Status == EDMStatus.EmailDetailNew)
+                {
+                    <p class="table-control">
+                        <a href="@Url.Action("EditDetail", "Email", new { emailId = detail.EmailId, userId = detail.UserId })" class="action action-edit edit-email" data-emailid="@detail.EmailId">
+                            <i class="icon-edit-admin"></i>
+                            <span class="tooltip-menu">
+                                Edit
+                            </span>
+                        </a>
+
+                        <a href="javascript:;" class="action action-delete delete-detail" data-emailid="@detail.EmailId" data-userid="@detail.UserId">
+                            <i class="icon-delete-admin"></i>
+                            <span class="tooltip-menu">
+                                Delete
+                            </span>
+                        </a>
+                        <a href="javascript:;" class="action action-resend resend-email" data-emailid="@detail.EmailId" data-userid="@detail.UserId">
+                            <i class="icon-send-admin"></i>
+                            <span class="tooltip-menu">
+                                Send
+                            </span>
+                        </a>
+                    </p>
+                }
+                else if (detail.Status == EDMStatus.EmailDetailSentFailed)
+                {
+                    <p class="table-control">
+                        <a href="javascript:;" class="action action-resend resend-email" data-emailid="@detail.EmailId" data-userid="@detail.UserId">
+                            <i class="icon-resend-admin"></i>
+                            <span class="tooltip-menu">
+                                Resend
+                            </span>
+                        </a>
+                    </p>
+                }
+            </td>
+		</tr>
+	}
+	@if (Model.ListEmailDetails.Count == 0)
+	{
+		<tr>
+			<th class="nodata_table" colspan="6">@ViewResources.EmptyData</th>
+		</tr>
+	}
+
+</table>
+
+@(await Component.InvokeAsync("Paging", new { model = Model.Paging }))

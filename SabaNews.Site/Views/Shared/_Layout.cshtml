@@ -1,0 +1,165 @@
+﻿@using Microsoft.Extensions.Configuration;
+@inject IConfiguration configuration
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    @{
+        if (configuration.GetValue<bool>("IsShowGoogleAnalytics"))
+        {
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-PNXJEXJQBL"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-PNXJEXJQBL');
+            </script>
+
+            <!-- Google Tag Manager -->
+            <script>
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || []; w[l].push({
+                        'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'
+                    }); var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-TBMWSGP');
+            </script>
+            <!-- End Google Tag Manager -->
+
+
+        }
+    }
+    @RenderSection("Schema", false)
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=5 user-scalable=no">
+    <title>@RenderSection("Title", false)</title>
+    @RenderSection("Metadata", false)
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="preload stylesheet">
+    <link rel="preconnect" href="https://www.googleadservices.com/">
+    <link rel="preload" href="~/styles/vendor/icomoon/fonts/icomoon.ttf?284o61" as="font" crossorigin="anonymous">
+    <link href="~/images/favicon/app_57x57.png" rel="apple-touch-icon" sizes="57x57" />
+    <link href="~/images/favicon/app_60x60.png" rel="apple-touch-icon" sizes="60x60" />
+    <link href="~/images/favicon/app_72x72.png" rel="apple-touch-icon" sizes="72x72" />
+    <link href="~/images/favicon/app_76x76.png" rel="apple-touch-icon" sizes="76x76" />
+    <link href="~/images/favicon/app_114x114.png" rel="apple-touch-icon" sizes="114x114" />
+    <link href="~/images/favicon/app_120x120.png" rel="apple-touch-icon" sizes="120x120" />
+    <link href="~/images/favicon/app_144x144.png" rel="apple-touch-icon" sizes="144x144" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/images/favicon/android-icon-192x192.png">
+    <link rel="shortcut icon" href="~/images/favicon/sabav1/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#333333">
+    <meta name="msapplication-TileImage" content="~/images/favicon/app_144x144.png">
+    <meta name="theme-color" content="#fffdf9">
+    <link rel="stylesheet" href="~/minify/styles/site.min.css" asp-append-version="true">
+
+    @RenderSection("Styles", false)
+</head>
+
+<body>
+    @{
+        if (configuration.GetValue<bool>("IsShowGoogleAnalytics"))
+        {
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBMWSGP" height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+            <!-- TikTok Pixel Code Start -->
+            <script>
+                !function (w, d, t) {
+                    w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                        for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++
+                        )ttq.setAndDefer(e, ttq.methods[n]); return e
+                    }, ttq.load = function (e, n) { var i = "https://analytics.tiktok.com/i18n/pixel/events.js"; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script"); n.type = "text/javascript", n.async = !0, n.src = i + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e) };
+
+
+                    ttq.load('C34TFOFG09FF9DMC5C2G');
+                    ttq.page();
+                }(window, document, 'ttq');
+            </script>
+            <!-- TikTok Pixel Code End -->
+        }
+    }
+
+
+    <div class="wapper">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <div class="auth-form" id="auth-form">
+            @await Html.PartialAsync("~/Views/Auth/_Login.cshtml")
+            @await Html.PartialAsync("~/Views/Auth/_Register.cshtml")
+            @await Html.PartialAsync("~/Views/Auth/_ForgotPassword.cshtml")
+            @await Html.PartialAsync("~/Views/Auth/_Notification.cshtml")
+        </div>
+
+        @await Html.PartialAsync("_Footer.cshtml")
+    </div>
+    <div class="auth-form event-modal-home">
+        <div class="modal" id="main-popup" style="display:none">
+            <div class="modal-content modal-auth event-modal-home">
+                <div class="modal-warning">
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body">
+                        <div class="img-event">
+                            <img data-original="/images/banner/domain.webp" src="/images/banner/domain.webp" width="500"
+                                height="334" asp-append-version="true" alt="Saba euro Popup" class="img-res lazy" />
+                        </div>
+                    </div>
+                </div>
+                <div class="wraper-checkbox">
+                    <label class="custom-checkbox-container">
+                        <input type="checkbox" id="isHidePopupChangeDomain" />
+                        <span class="checkmark"></span>
+                        Không hiển thị nữa
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-form"></div>
+    <input type="hidden" id="RootUrl" value="@Url.Content("~/")" />
+    @Html.AntiForgeryToken()
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js" ," asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap-modal.js" ," asp-append-version="true"></script>
+        <script src="~/js/auth/auth.js" ," asp-append-version="true"></script>
+        <script src="~/js/common.js" ," asp-append-version="true"></script>
+        <script src="~/js/site.js" ," asp-append-version="true"></script>
+        <script src="~/js/all.js" ," asp-append-version="true"></script>
+        <script src="~/js/post/load-component.js" ," asp-append-version="true"></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async
+            defer></script>
+
+    </environment>
+    <environment exclude="Development">
+        <script src="~/minify/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/lib/jquery.lazyload.min.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async
+            defer></script>
+    </environment>
+    <script>
+        window.currentTime = new Date('@SabaNews.Core.Helper.DateTimeUtilize.FormatDateTime(DateTime.UtcNow, "yyyy-MM-dd HH:mm:ss")');
+    </script>
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

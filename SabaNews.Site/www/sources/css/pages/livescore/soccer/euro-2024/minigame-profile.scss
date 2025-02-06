@@ -1,0 +1,39 @@
+@import './../../../../abstracts/mixins';
+@import './components/dock_stage';
+@import './components/auth-user';
+@import './components/minigame-section';
+@import './components/minigame-table';
+
+.statistic-grid {
+    @include Mobile{
+        margin-bottom: 10rem;
+    }
+}
+
+.overflow-modal{
+    padding-right: 0 !important;
+}
+
+body{
+    background: url('../../../../../../images/euro2024/minigame/bg-standing.png') , linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.minigame-section{
+    padding: 4rem 0;
+    @include Mobile{
+        padding: 1rem;
+    }
+}
+
+.minigame-table {
+    .table-row{
+        @include Mobile{
+            font-size: 1.3rem;
+        }
+    }
+    .view-minigame-detail{
+        cursor: pointer;
+    }
+}

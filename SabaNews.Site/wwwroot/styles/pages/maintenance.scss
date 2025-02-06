@@ -1,0 +1,59 @@
+﻿@import '../abstracts/variables';
+@import '../abstracts/mixins';
+@import '../base/base';
+@import '../components/fonts';
+@import '../components/container';
+
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+.primary-heading {
+    color: #F12F19;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    margin-bottom : 1.2rem;
+}
+
+.content-page {
+    color: #4F4F4F;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+
+    a {
+        color: #2560EA;
+    }
+}
+
+.grid-maintain {
+    padding-top: 15rem;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 2.4rem;
+    justify-content: center;
+    align-items: center;
+
+    @include tableMobile {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .items {
+        &-left {
+            @include tableMobile {
+                order: 2;
+            }
+        }
+
+        &-right {
+            @include tableMobile {
+                order: 1;
+            }
+        }
+    }
+}

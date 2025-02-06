@@ -1,0 +1,34 @@
+.auth-minigame{
+    max-width: 67rem;
+    margin: 0 auto;
+    padding: 0 0 1rem 0;
+    @include Mobile{
+        padding: 0 0 .6rem 0;
+    }
+    .avatar-user{
+        width: 5rem;
+        height: 5rem;
+        background: #E8E8D6 !important;
+        border: 1px solid #7A142B;
+        border-radius: 5px;
+        color: #7A142B !important;
+        font-weight: 800;
+        font-size: 3.2rem;
+        line-height: 2.8rem;
+        margin-right: 1rem;
+        @include Mobile{
+            width: 4rem;
+            height: 4rem;
+            font-size: 2.6;
+        }
+    }
+    .auth-displayname{
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        color: #833D55;
+        &::after{
+            display: none;
+        }
+    }
+}

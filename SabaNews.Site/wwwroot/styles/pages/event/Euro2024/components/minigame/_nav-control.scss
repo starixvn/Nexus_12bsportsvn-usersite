@@ -1,0 +1,107 @@
+.header-nav-event {
+    border-radius: 5px;
+    border: 1px solid #4359AF;
+    background: #0D1E62;
+    width: 5.6rem;
+    left: 4rem;
+    top: 12rem;
+    z-index: 9999;
+    position: fixed;
+    transition: all ease-in-out .3s;
+    list-style: none;
+    padding: 1.6rem;
+    @include tableMobile {
+        transform: inherit;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        border-radius: 0;
+        min-height: 5.6rem;
+        background: #143CDB;
+        border: none;
+
+        &:hover {
+            width: 100% !important;
+        }
+
+        &.active {
+            transform: translateY(100%);
+        }
+    }
+
+    li {
+        margin-bottom: 1.6rem;
+        @include tableMobile{
+            margin-bottom: 0;
+        }
+        &:last-child{
+            margin-bottom: 0;
+        }
+        a {
+            margin-left: 0;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            padding: 0;
+            &:after {
+                display: none;
+            }
+
+            span {
+                left: 35px;
+                margin-left: 0;
+                top: 5px;
+                font-weight: 700;
+                font-size: 1.6rem;
+                line-height: 1.9rem;
+                color: rgba(255, 255, 255, 0.75);
+                width: 22rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all ease-in-out .1s !important;
+                position: absolute;
+                @include tableMobile {
+                    display: none;
+                }
+            }
+
+            .icon {
+                &:before {
+                    font-size: 2.4rem;
+                    color: rgba(255, 255, 255, 0.75);
+                    transition: all ease-in-out .2s !important;
+                    @include Mobile{
+                        font-size: 2.6rem;
+                    }
+                }
+            }
+
+            &.active, &:hover {
+                color: #FFCA00!important;
+
+                .icon {
+                    &:before {
+                        color: #FFCA00 !important;
+                    }
+                }
+
+                span {
+                    color: #FFCA00 !important;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        width: 26.6rem;
+
+        span {
+            opacity: 1;
+            visibility: visible;
+            transition: all ease-in-out .1s !important;
+        }
+    }
+}

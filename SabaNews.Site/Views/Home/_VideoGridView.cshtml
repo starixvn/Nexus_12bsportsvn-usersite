@@ -1,0 +1,36 @@
+﻿@{
+    var postIndex = 0;
+    foreach (var post in Model)
+    {
+        {
+            postIndex++;
+        }
+        <div class="post card-vertical card-vertical-highlight paging-@ViewBag.CurrentPage">
+            <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="card-vertical__image hover-image thumb">
+                <picture>
+                    <source srcset="@Url.Content(post.FeatureImage)" type="image/webp" class="img-res">
+                    <source srcset="@Url.Content(post.FeatureImage)" type="image/jpeg" class="img-res">
+                    <img asp-append-version="true" data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                    <noscript>
+                        <img asp-append-version="true" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                    </noscript>
+                </picture>
+            </a>
+            <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="card-vertical__title text-description">@post.PostTitle</a>
+            <p class="card-vertical__datetime">
+                <span>
+                    @post.PostTime
+                    @if (post.CommentCount > 0)
+                    {
+                        <a href="@Url.Action("Single", "Post", new { slug =  post.Uri})#comment" class="comment"><i class="icon-mode_comment"></i> <i class="number">@post.CommentCount</i></a>
+                    }
+                </span>
+            </p>
+        </div>
+
+        @if(postIndex == 3)
+        {
+            <div class="grid-ads ads-insite show-mobile banner-category-scroll"></div>
+        }
+    }
+}

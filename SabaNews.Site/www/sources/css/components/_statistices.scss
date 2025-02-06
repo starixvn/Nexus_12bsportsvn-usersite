@@ -1,0 +1,87 @@
+﻿.statistices {
+    padding: 0 1.3rem 2.4rem;
+
+    &-category {
+        display: flex;
+        flex-flow: row nowrap;
+        padding-bottom: .9rem;
+        color: $color-detail-league;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+        justify-content: space-between;
+
+        @include Mobile {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+        }
+    }
+
+    &-bar {
+        display: flex;
+        height: .6rem;
+    }
+
+    &-items {
+        margin-top: 2rem;
+
+        &:first-child {
+            padding-top: 2.6rem;
+            margin-top: 0;
+            
+        }
+
+        .statistices-category {
+            font-weight: 600;
+
+            .win {
+                font-weight: 700;
+            }
+        }
+    }
+
+    &-barBg {
+        background-color: $bg-table-title-grey;
+        display: flex;
+        margin: 0 1px;
+        width: 100%;
+
+        &.statistices-home {
+            justify-content: flex-end;
+
+            div {
+                background-color: $color-active-icon;
+            }
+
+            &.short {
+                div {
+                    background-color: $color-title;
+                }
+            }
+
+            &.long {
+                div {
+                    background-color: $color-active-icon;
+                }
+            }
+        }
+
+        &.statistices-away {
+            div {
+                background-color: $color-title;
+            }
+
+            &.short {
+                div {
+                    background-color: $color-title;
+                }
+            }
+
+            &.long {
+                div {
+                    background-color: $color-active-icon;
+                }
+            }
+        }
+    }
+}

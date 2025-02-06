@@ -1,0 +1,54 @@
+﻿@if (Model.Count > 0)
+{
+    <div class="block-related">
+        <div class="block-heading">
+            <h3 class="block-heading-text">
+                <a>
+                    Xem nhiều nhất
+                </a>
+            </h3>
+        </div>
+        <div class="block-body">
+            @{
+                var postIndex = 0;
+                var firstPost = Model[0];
+                <div class="block-items block-items-vertical">
+                    <div class="block-items-img hover-image">
+                        <a href="@Url.Action("Article", "Euro2024", new { slug = @firstPost.Uri })">
+                            <img src=@firstPost.FeatureImage alt=@firstPost.PostTitle class="img-res" loading="lazy" />
+                        </a>
+                    </div>
+                    <div class="group-title-hot">
+                        <h4 class="block-items-heading">
+                            <a href="@Url.Action("Article", "Euro2024", new { slug = @firstPost.Uri })">@firstPost.PostTitle</a>
+                        </h4>
+                        <div class="block-items-date">
+                            @firstPost.PostTime
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var post in Model)
+            {
+                string featureImg = post.FeatureImage;
+                {
+                    postIndex++;
+                    @if (postIndex <= 1)
+                    {
+                        continue;
+                    }
+                }
+                <div class="block-items-text">
+                    <div class="block-items-group">
+                        <a class="block-items-heading"
+                            href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">@post.PostTitle</a>
+                        <div class="block-items-date">
+                            @post.PostTime
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

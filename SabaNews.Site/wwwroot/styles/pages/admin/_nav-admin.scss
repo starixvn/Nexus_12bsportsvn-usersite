@@ -1,0 +1,62 @@
+﻿@import '../../abstracts/variables';
+.slide-nav {
+    position: fixed;
+    z-index: 9999;
+    background: $bg-nav-admin;
+    height: 100%;
+    min-height: 100vh;
+    top: 0;
+    width: 27rem;
+
+    .logo-admin {
+        padding: 2.4rem 0 4rem 2.4rem;
+    }
+
+    .menu-slide {
+        list-style: none;
+        padding-left: 2.7rem;
+        overflow: auto;
+        height: calc(100% - 10rem);
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        .menu-item {
+            padding: 2rem 0;
+
+            a {
+                text-decoration: none;
+                color: $color-icon;
+                font-weight: bold;
+                font-size: 1.7rem;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    color: $color-fff;
+
+                    .icon-page {
+                        &:before {
+                            color: $color-fff;
+                        }
+                    }
+                }
+
+                .icon-page {
+                    margin-right: 1.5rem;
+                }
+            }
+        }
+
+        .active {
+            a {
+                color: $color-fff;
+
+                .icon-page {
+                    &:before {
+                        color: $color-fff;
+                    }
+                }
+            }
+        }
+    }
+}

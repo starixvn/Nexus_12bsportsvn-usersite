@@ -1,0 +1,137 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+@import '../base/base';
+
+@import '../layout/footer';
+@import '../layout/header';
+@import '../layout/block-extension';
+
+@import '../components/fonts';
+@import '../components/block';
+@import '../components/buttons';
+@import '../components/container';
+@import '../components/img';
+@import '../components/pagination';
+
+@import '../components/list-content';
+
+@import '../components/tag';
+@import '../components/socical';
+@import '../components//card-vertical';
+@import '../components/sub-structure';
+@import '../components/ads';
+@import '../components/_popup-event';
+
+html {
+    overflow-x: unset;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.main {
+    @include tableMobile {
+        position: relative;
+        overflow-x: hidden;
+    }
+}
+
+
+.block-list{
+    margin: 4rem 0;
+    @include tableMobile{
+        margin: 2rem 0;
+    }
+}
+
+
+.tag-post {
+    margin-bottom: 6rem;
+
+    @include tableMobile {
+        margin-bottom: 3rem;
+    }
+}
+
+.title-care{
+    padding-top: 3rem;
+    border-top: 1px solid $color-input;
+    &::after{
+        display: none;
+    }
+}
+.block__video{
+    @include grid(repeat(4, 1fr), unset, #{$column-gap} #{$column-gap});
+    @include tableMobile{
+        @include grid(repeat(2, 1fr), unset, #{$column-gap-tablet} #{$column-gap-tablet});
+    }
+    .card-vertical__image{
+        margin-bottom: 1rem;
+        max-height: 10rem;
+        @include tableMobile{
+            max-height: 13rem;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .hidden-body .top-header {
+        top: 44px;
+    }
+}
+
+.wapper.active-fixed, .wapper.active-fixed {
+    .fixed-social {
+        @include Mobile {
+            z-index: 10008;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    .top-header {
+        position: fixed;
+        z-index: 10005;
+        top: 0;
+    }
+}
+
+.hidden-detail {
+    .fixed-social {
+        @include Mobile {
+            z-index: 10008;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    .top-header {
+        position: fixed;
+        z-index: 10005;
+        top: 0;
+
+        .main-menu {
+            display: flex;
+        }
+    }
+}
+
+.wrapper-embed {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 56.25%;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}

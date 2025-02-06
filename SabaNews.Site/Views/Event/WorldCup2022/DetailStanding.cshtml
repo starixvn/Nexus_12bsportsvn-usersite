@@ -1,0 +1,191 @@
+﻿@using DeviceDetectorNET;
+@using SabaNews.Resources
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/detailstanding.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/standing-playoff.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/standing-playoff.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <environment include="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/standing-playoff.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/standing-playoff.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+        window.isKnockout = '@Model.IsKnockoutStage'
+    </script>
+    <script src="~/minify/js/standingworldcup2022.min.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-detail-standing">
+    <div id="worldcup-fixture"></div>
+    <div class="wc-page-main">
+        <div class="title-section">
+            <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+            <h2>Bảng Xếp hạng</h2>
+            <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+        </div>
+
+
+        <div class="live-score-nav">
+            <ul>
+                <li>
+                    <a href="#vong-bang" class="active" id="btn-detail-standing">Vòng bảng</a>
+                </li>
+                <li>
+                    <a href="#knock-out" id="btn-knock-out">Knock-out</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="pages-detail-standing">
+            <div id="detail-standing">
+                @{if (isDesktop)
+                    {
+                        @foreach (var standing in Model.StandingsViewModel)
+                        {
+                            var count = 0;
+                            <div class="king-soccer">
+                                <div class="wc-table wc-table-king-soccer scroll-snap-items">
+                                    <div class="name-bxh title-items">@ViewResources.Board @standing.GroupName.Substring(0, 1)</div>
+                                    <div class="wc-table-header">
+                                        <div class="wc-table-cell cell-rank first-width">#</div>
+                                        <div class="wc-table-cell cell-participant">
+                                            Đội
+                                        </div>
+                                        <div class="wc-table-cell cell-rank">Trận</div>
+                                        <div class="wc-table-cell cell-rank">Thắng</div>
+                                        <div class="wc-table-cell cell-rank">Hòa</div>
+                                        <div class="wc-table-cell cell-rank">Thua</div>
+                                        <div class="wc-table-cell cell-rank">Bàn thắng</div>
+                                        <div class="wc-table-cell cell-rank">Bàn thua</div>
+                                        <div class="wc-table-cell cell-rank">+/-</div>
+                                        <div class="wc-table-cell cell-rank">Điểm</div>
+                                    </div>
+
+                                    <div class="wc-table-body">
+                                        @foreach (var item in standing.Standings)
+                                        {
+                                            count++;
+                                            var teamIcon = @GetTeamIcon(item.Icon);
+                                            <div class="wc-table-row">
+                                                <div class="wc-table-cell cell-rank first-width">
+                                                    <span class="@(count <= 2 ? "first-width-number" : "")">
+                                                        @count
+                                                    </span>
+                                                </div>
+                                                <div class="wc-table-cell cell-participant">
+                                                    <ul class="team">
+                                                        <li class="team-logo">
+                                                            <img src="@(string.IsNullOrEmpty(item.IconVN) ? teamIcon : item.IconVN)" />
+                                                        </li>
+                                                        <li class="team-name"> @GetStandingTeamName(item)</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="wc-table-cell cell-rank">@item.Total</div>
+                                                <div class="wc-table-cell cell-rank">@item.Won</div>
+                                                <div class="wc-table-cell cell-rank">@item.Draw</div>
+                                                <div class="wc-table-cell cell-rank">@item.Loss</div>
+                                                <div class="wc-table-cell cell-rank">@item.Goals</div>
+                                                <div class="wc-table-cell cell-rank">@item.GoalsAgainst</div>
+                                                <div class="wc-table-cell cell-rank">@item.GoalDiff</div>
+                                                <div class="wc-table-cell cell-rank points-table">@item.Points</div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var standing in Model.StandingsViewModel)
+                        {
+                            var count = 0;
+                            <div class="king-soccer">
+                                <div class="wc-table wc-table-king-soccer scroll-snap-items">
+                                    <div class="name-bxh title-items">@ViewResources.Board @standing.GroupName.Substring(0, 1)</div>
+                                    <div class="wc-table-header">
+                                        <div class="wc-table-cell cell-rank first-width">#</div>
+                                        <div class="wc-table-cell cell-participant">
+                                            Đội
+                                        </div>
+                                        <div class="wc-table-cell cell-rank">Trận</div>
+                                        <div class="wc-table-cell cell-rank">+/-</div>
+                                        <div class="wc-table-cell cell-rank">Điểm</div>
+                                    </div>
+
+                                    <div class="wc-table-body">
+                                        @foreach (var item in standing.Standings)
+                                        {
+                                            var teamIcon = @GetTeamIcon(item.Icon);
+                                            count++;
+                                            <div class="wc-table-row">
+                                                <div class="wc-table-cell cell-rank first-width">
+                                                    <span class="@(count <= 2 ? "first-width-number" : "")">
+                                                        @count
+                                                    </span>
+                                                </div>
+                                                <div class="wc-table-cell cell-participant">
+                                                    <ul class="team">
+                                                        <li class="team-logo"><img src="@(string.IsNullOrEmpty(item.IconVN) ? teamIcon : item.IconVN)" /></li>
+                                                        <li class="team-name"> @GetStandingTeamName(item)</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="wc-table-cell cell-rank">@item.Total</div>
+                                                <div class="wc-table-cell cell-rank">@item.GoalDiff</div>
+                                                <div class="wc-table-cell cell-rank points-table">@item.Points</div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <div id="knock-out">
+                <div id="world-full-playoff-standing"></div>
+            </div>
+        </div>
+    </div>
+</section>

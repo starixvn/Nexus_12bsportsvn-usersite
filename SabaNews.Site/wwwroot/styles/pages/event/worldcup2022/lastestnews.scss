@@ -1,0 +1,191 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/title-section';
+@import './components/hover-img-item';
+@import './components/post-items';
+@import './components/post-hot';
+@import './components/view-more';
+@import './components/scroll-snap';
+@import './components/table';
+@import './components/title-items';
+@import './components/container';
+@import './components/dots-post';
+@import './components/wc-modal';
+@import './components/wc-card-horizontal';
+@import './components/tooltip';
+@import '../../../components/_loading';
+@import './components/ads';
+
+
+.pages-main-hot {
+    display: grid;
+    grid-template-columns: 55rem auto;
+    grid-gap: 2rem;
+    margin-bottom: 2rem;
+
+    @include tableMobile {
+        display: unset;
+    }
+
+    .page-items-hot {
+        max-height: 40rem;
+        height: 40rem;
+
+        @include tableMobile {
+            max-height: 25rem;
+            height: 25rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-hot {
+            .hover-image {
+                height: 40rem;
+
+                @include tableMobile {
+                    height: 30rem;
+                }
+
+                @include Mobile {
+                    height: 40rem;
+                }
+            }
+        }
+    }
+
+    .page-hot-right {
+        .card-horizontal {
+            grid-template-columns: 14rem 1fr;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            grid-gap: .6rem 1.2rem;
+
+            @include tableMobile {
+                padding-bottom: 0;
+                margin-bottom: 2rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            &__image {
+                height: 8rem;
+                max-height: 8rem;
+
+                @include tableMobile {
+                    max-height: 25rem;
+                    height: 25rem;
+                }
+            }
+
+            .title {
+                grid-column: 1/3;
+                grid-row: 1;
+                color: #333;
+                font-weight: bold;
+                font-size: 1.6rem;
+                letter-spacing: -.02rem;
+                text-decoration: none;
+                transition: color .3s ease;
+
+                @include tableMobile {
+                    color: $white-color;
+                }
+
+                &.ishow-pc {
+                    display: block;
+
+                    @include tableMobile {
+                        display: none;
+                    }
+                }
+
+                &.ishow-mobile {
+                    display: none;
+
+                    @include tableMobile {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#standingWC {
+    .wc-table {
+        @include tableMobile {
+            &:last-child {
+                margin-right: 1.2rem !important;
+            }
+        }
+    }
+}
+
+
+.page-grid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 2rem !important;
+    border-top: 1px solid #DADACB;
+
+    @media (min-width : 1280px) {
+        max-width: 115rem !important;
+    }
+
+    .card-horizontal {
+        @include tableMobile {
+            margin: 0 1.2rem 2rem 1.2rem;
+        }
+    }
+
+    #topScorersWC {
+        @include tableMobile {
+            padding: 0 1.2rem;
+            margin: 3rem 0;
+        }
+    }
+}
+
+
+
+
+#topScorersWC{
+    @include tableMobile {
+        margin-bottom : 3rem;
+    }
+}
+
+.view-more {
+    margin-bottom: 3rem;
+
+    @include tableMobile {
+        margin-right: 1.2rem;
+    }
+}
+
+.load-more-page {
+    text-align: center;
+    button {
+        border: 1px solid #EF4300;
+        background: #EF4300;
+        width: 13.5rem;
+        height: 4.2rem;
+        margin: 0.4rem auto;
+        color: #FFFFFF;
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+}
+.banner-mobile {
+    @include Mobile {
+        margin-left: -1.2rem;
+        margin-right: -1.2rem;
+    }
+}

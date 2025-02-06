@@ -1,0 +1,255 @@
+﻿.livescore-soccer-date-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+
+    @include tableMobile {
+        justify-content: space-between;
+    }
+
+    .livescore-soccer-week-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+
+        @include tableMobile {
+            justify-content: space-between;
+            width: 60%;
+        }
+
+        @include Mobile {
+            width: 75%;
+            justify-content: space-around;
+        }
+
+
+        .week-date {
+            margin: 0 1.4rem;
+            text-align: center;
+            cursor: pointer;
+
+            @include tableMobile {
+                margin: 0 .3rem;
+                width: auto;
+            }
+
+            @include Mobile {
+                width: 3.8rem;
+            }
+
+            @include iphone5 {
+                margin: 0 .3rem;
+            }
+
+            .day-of-week {
+                line-height: 1;
+                margin-bottom: .2rem;
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+                text-transform: uppercase;
+
+                @include tableMobile {
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    line-height: 1.2rem;
+                }
+
+                @include Mobile {
+                    font-weight: 600;
+                    font-size: .9rem;
+                    line-height: 1.2rem;
+                }
+            }
+
+            .date {
+                line-height: 1;
+                font-weight: bold;
+                width: 4.4rem;
+                font-size: 1.3rem;
+                line-height: 1.8rem;
+                margin: 0 auto;
+                padding: 0.3rem 0.4rem;
+
+                @include tableMobile {
+                    font-size: 1.2rem;
+                    line-height: 1.6rem;
+                    font-weight: 700;
+                }
+
+                @include Mobile {
+                    font-size: 1rem;
+                    padding: 0 .3rem;
+                    width: auto;
+                }
+            }
+
+            &.today {
+                .date {
+                    background: $bg-today;
+                    border: 1px solid $border-today;
+                    border-radius: 5px;
+                }
+            }
+
+            &.active {
+                .day-of-week {
+                    color: $color-title;
+                    font-weight: 700;
+                }
+
+                .date {
+                    background: $color-title;
+                    border: 1px solid $color-title;
+                    border-radius: 5px;
+                    color: $white;
+                }
+            }
+        }
+
+        .btn-prev-date, .btn-next-date {
+            background: transparent;
+            cursor: pointer;
+
+            @include Mobile {
+                display: none;
+            }
+
+            .icon-livescore {
+                &:before {
+                    color: #7C7C7C;
+                }
+
+                &:hover {
+                    &:before {
+                        color: #223453;
+                    }
+                }
+            }
+
+            &:disabled, &[disabled] {
+                cursor: not-allowed;
+            }
+        }
+
+        .btn-prev-date {
+            margin-right: 1rem;
+
+            @include tableMobile {
+                margin-right: 0;
+            }
+        }
+
+        .btn-next-date {
+            margin-left: 1rem;
+
+            @include tableMobile {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .btn-live, .date-picker {
+        text-align: center;
+        width: 20%;
+    }
+
+    .btn-live {
+        text-align: center;
+        width: 16%;
+        cursor: pointer;
+        padding: .6rem;
+        @include tableMobile {
+            padding: .8rem .5rem;
+            width: 20%;
+        }
+
+        @include Mobile {
+            padding: 0 .5rem .5rem;
+            width: 15%;
+            background: none;
+            border: none;
+            border-radius: 0;
+        }
+
+        .btn-live-realtime {
+            background: #E13C29;
+            border: 1px solid #E13C29;
+            border-radius: 5px;
+            line-height: 1;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: $primary-bg;
+            padding: .4rem 0;
+            font-weight: 700;
+
+            @include tableMobile {
+                font-size: 1.1rem;
+                line-height: .9rem;
+                padding: .6rem 0;
+            }
+
+            @include Mobile {
+                font-size: .8rem;
+                line-height: .9rem;
+                padding: .3rem 0;
+                line-height: 1;
+            }
+
+            @include iphone5 {
+                font-size: .8rem;
+            }
+
+            .badge-live {
+                display: inline-block;
+                background: $primary-bg;
+                color: $color-active-icon;
+                padding: .1rem .4rem;
+                border-radius: 3px;
+                font-weight: bold;
+                margin-left: .4rem;
+
+                @include Mobile {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .date-picker {
+        width: 7%;
+
+        @include tableMobile {
+            width: 10%
+        }
+
+        .icon-live-calender {
+            font-size: 2rem;
+
+            @include iphone5 {
+                font-size: 1.6rem;
+            }
+
+            &:before {
+                color: $color-title;
+            }
+
+            &:hover {
+                &:before {
+                    color: $color-active-icon;
+                }
+            }
+
+            &.active {
+                &:before {
+                    color: $color-active-icon;
+                }
+            }
+        }
+    }
+}
+.react-datepicker__input-container{
+    text-align : center;
+}

@@ -1,0 +1,42 @@
+@using SabaNews.Resources
+<div class="table-admin">
+                <table class="data-grid">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="13%">Player Name</th>
+                            <th width="13%">Logo</th>
+                            <th width="13%">Birthday</th>
+                            <th width="13%">ShirtNumber</th>
+                            <th width="13%">ClubName</th>
+                            <th width="13%">Position</th>
+                            <th>@ViewResources.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var count = 0;
+                            foreach (var item in Model)
+                            {
+                                count++;
+                                var position = SabaNews.Core.Constants.Livescore.MatchConstants.ListPlayerPosition.FirstOrDefault(p => p.Id == item.Position);
+                                <tr>
+                                    <td class="text-center">@count</td>
+                                    <td class="text-left">@item.PlayerName</td>
+                                    <td class="text-center"><img src="@item.Icon" width="100"></td>
+                                    <td class="text-center">@item.Birthday.ToString("dd-MM-yyyy")</td>
+                                    <td class="text-center">@item.ShirtNumber</td>
+                                    <td class="text-center">@item.ClubName</td>
+                                    <td class="text-center">@position?.Name</td>
+                                    <td class="text-center">
+                                        <i class="icon icon-edit-admin btn-Edit" title="Edit"
+                                            data-playerId="@item.PlayerId"></i>
+                                        <i class="icon icon-delete-admin btn-delete" title="Delete"
+                                            data-playerId="@item.PlayerId"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>

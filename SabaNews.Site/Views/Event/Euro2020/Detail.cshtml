@@ -1,0 +1,260 @@
+﻿@using SabaNews.Core.Constants;
+@using DeviceDetectorNET;
+@using SabaNews.Models.ViewModel.Posts
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+    var isTablet = detector.IsTablet();
+}
+
+@section Metadata {
+    <meta name="description" content='@(Model.SinglePost.PostExcerpt != "" ? Model.SinglePost.PostExcerpt :  "&nbsp;" )' />
+    <meta property="og:description" content="&nbsp;" />
+    <meta property="og:title" content='@Model.SinglePost.PostTitle' />
+    <meta property="og:image" content='@Model.SinglePost.FeatureImage' />
+    <link rel="canonical" href="@ViewData[Constants.ViewUrl]" />
+    <link rel="alternate" href="@ViewData[Constants.ViewUrl]" hreflang="vi-vn" />
+}
+
+@section Title{
+    @Model.SinglePost.PostTitle
+}
+
+@section Scripts{
+    <script src="~/minify/js/single.min.js" asp-append-version="true"></script>
+}
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2020_detail.min.css" asp-append-version="true">
+
+}
+
+@{
+    var absoluteLink = ViewData["BaseUrl"] + Url.Action("Single", "Post", new { slug = @Model.SinglePost.Uri });
+    var linkReturn = Url.Action("Category", "Home", new { slug = ViewData["cateSlug"] });
+    var cateSlug = ViewData["cateSlug"].ToString().Trim();
+    if (cateSlug.Contains("euro-2020"))
+    {
+        ViewData["cateName"] = Constants.Euro2020;
+        ViewData["controller"] = Constants.Euro2020Controller;
+    }
+    if (cateSlug == Constants.Euro2020Slug)
+    {
+        cateSlug = "";
+    }
+    if (ViewData["controller"].ToString() == Constants.Euro2020Controller)
+    {
+        linkReturn = "/euro-2020/" + cateSlug;
+    }
+    var isVideoReturn = Convert.ToBoolean(ViewData["video"]) && ViewData["controller"].ToString() == "Home";
+}
+@(await Component.InvokeAsync("HeaderEvent"))
+<section class="main">
+    <div class="container detail-container">
+        <div class="main-social fixed-social">
+            <ul class="social">
+                <li class="item-social icon-mobile">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=@absoluteLink"
+                       data-count="facebook" target="_blank"
+                       rel="nofollow"
+                       class="item intent facebook"
+                       title="@ViewResources.ShareFacebook">
+                        <i class="icon-social icon-detail_facebook"></i>
+                    </a>
+                </li>
+                <li class="item-social icon-mobile">
+                    <a href="javascript:;"
+                       rel="nofollow"
+                       class="item intent copy-clipboard"
+                       title="@ViewResources.CopyLink">
+                        <i class="icon-social icon-link"></i>
+                    </a>
+                    <span class="tip">@ViewResources.CopyClipBoardSuccessfully</span>
+                </li>
+                <li class="item-social icon-mobile">
+                    <a href="javascript:;" class="item intent save_post @(Model.SavePost != null ? "active" : "")" title="@ViewResources.SavePost">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-bookmark">
+                            <path d="M1.01 2.00062V2C1.01 1.44575 1.4588 1 2 1H12C12.5477 1 13 1.45228 13 2V16.4835L7.39392 14.0809L7 13.912L6.60608 14.0809L1.00095 16.4831L1.01 2.00062Z" stroke="#999999" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="item-social icon-mobile">
+                    <a href="#comment"
+                       class="item intent"
+                       title="@ViewResources.Comment">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-comment">
+                            <path d="M16.991 1.8V1.80056L16.9987 15.5844L15.1071 13.6929L14.8142 13.4H14.4H1.8C1.36228 13.4 1 13.0377 1 12.6V1.8C1 1.36228 1.36228 1 1.8 1H16.2C16.6312 1 16.991 1.35575 16.991 1.8Z" stroke="#999999" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="item-social icon-mobile">
+                    @if (isVideoReturn)
+                    {
+                        <a href="@Url.Action("Video", "Home")"
+                           class="item intent"
+                           title="@ViewResources.Back @ViewResources.Video">
+                            <i class="icon-social icon-back"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@linkReturn"
+                           class="item intent"
+                           title="@ViewResources.Back @ViewData["cateName"]">
+                            <i class="icon-social icon-back"></i>
+                        </a>
+                    }
+                </li>
+            </ul>
+        </div>
+        <div class="block block-main">
+            <div class="card-vertical card-vertical-highlight">
+                <div class="single card-vertical__video">
+                    @if (Convert.ToBoolean(ViewData["video"]))
+                    {
+                        <input type="hidden" name="iframe_value" value="@Model.SinglePost.PostContent" />
+                        <picture>
+                            <source srcset="@Url.Content(Model.SinglePost.FeatureImage)" type="image/webp" class="img-res">
+                            <source srcset="@Url.Content(Model.SinglePost.FeatureImage)" type="image/jpeg" class="img-res">
+                            <img loading="lazy" src="@Url.Content(Model.SinglePost.FeatureImage)" alt="@Model.SinglePost.PostTitle" class="img-res img-block">
+                        </picture>
+                        <div class="btn-play-video">
+                            <span class="icon-play"></span>
+                        </div>
+                    }
+                </div>
+                <div class="single play_video"></div>
+                <a class="card-vertical__title">@Model.SinglePost.PostTitle</a>
+                <p class="card-vertical__datetime">@Model.SinglePost.PostTime</p>
+            </div>
+            @if (!Convert.ToBoolean(ViewData["video"]))
+            {
+                <div class="content">
+                    @Html.Raw(Model.SinglePost.PostContent)
+                </div>
+            }
+
+            <div class="main-social">
+                <ul class="social left-social">
+                    <li class="item-social">
+                        @if (isVideoReturn)
+                        {
+                            <a href="@Url.Action("Video", "Home")"
+                               class="item intent"
+                               title="@ViewResources.Back @ViewResources.Video">
+                                <i class="icon-social icon-back"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@linkReturn"
+                               class="item intent"
+                               title="@ViewResources.Back @ViewData["cateName"]">
+                                <i class="icon-social icon-back"></i>
+                            </a>
+                        }
+                    </li>
+                    <li class="item-social">
+                        <a href="javascript:;" class="item intent save_post @(Model.SavePost != null ? "active" : "")">
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-bookmark">
+                                <path d="M0.51 2.00031V2C0.51 1.17287 1.1794 0.5 2 0.5H12C12.8239 0.5 13.5 1.17614 13.5 2V17.2417L7.19696 14.5404L7 14.456L6.80304 14.5404L0.500474 17.2415L0.51 2.00031Z" fill="none" stroke="#999999" />
+                            </svg>
+                            Lưu Tin
+                        </a>
+                    </li>
+                </ul>
+                <ul class="social right-social">
+                    <li class="item-social">Chia sẻ:</li>
+                    <li class="item-social">
+                        <a href="http://www.facebook.com/sharer/sharer.php?u=@absoluteLink"
+                           data-count="facebook" target="_blank"
+                           rel="nofollow"
+                           class="item intent facebook"
+                           title="@ViewResources.ShareFacebook">
+                            <i class="icon-social icon-detail_facebook"></i>
+                        </a>
+                    </li>
+                    <li class="item-social">
+                        <a href="javascript:;"
+                           onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&su=@Model.SinglePost.PostTitle&body=@absoluteLink', '_blank')"
+                           rel="nofollow" class="item"
+                           title="@ViewResources.ShareMail">
+                            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-email">
+                                <path d="M16.2 0H1.8C0.81 0 0.00899999 0.7875 0.00899999 1.75L0 12.25C0 13.2125 0.81 14 1.8 14H16.2C17.19 14 18 13.2125 18 12.25V1.75C18 0.7875 17.19 0 16.2 0ZM16.2 3.5L9 7.875L1.8 3.5V1.75L9 6.125L16.2 1.75V3.5Z" fill="#999999" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="item-social">
+                        <a href="javascript:;"
+                           rel="nofollow"
+                           class="item intent copy-clipboard"
+                           title="@ViewResources.CopyLink">
+                            <i class="icon-social icon-link"></i>
+                        </a>
+                        <span class="tip">@ViewResources.CopyClipBoardSuccessfully</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tag-post">
+                @if (Model.SinglePost.Tags != null && Model.SinglePost.TagsSlug != null)
+                {
+                    var tags_slug = Model.SinglePost.TagsSlug.Split(',');
+                    var tags = Model.SinglePost.Tags.Split(',');
+                    @for (var i = 0; i < tags.Length; i++)
+                    {
+                        <h3 class="tag-item"><a href="@Url.Action("Tag", "Home", new { tagname = tags_slug[i].Trim() })" class="tag">@tags[i]</a></h3>
+                    }
+                }
+            </div>
+            <input name="postID" id="postID" type="hidden" value="@Model.SinglePost.ID" />
+            <input name="isLogin" id="isLogin" type="hidden" value="@Model.IsLogin.ToString()" />
+            <div class="comment-post" id="comment">
+            </div>
+            <h2 class="block__title"><a>@ViewResources.RelatedPosts</a></h2>
+            @await Html.PartialAsync(ViewResources.RelatedPostView, new PostComponentViewModel { PostId = Model.SinglePost.ID, CateSlug = Constants.Euro2020Slug })
+        </div>
+        <div class="block block-extension">
+            @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel { PostId = Model.SinglePost.ID, CateSlug = ViewData["cateSlug"].ToString() })
+        </div>
+    </div>
+</section>
+<div class="auth-form">
+    <div class="modal" id="requestLogin">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="tab-content" id="nav-tabContent">
+                    <h3 class="heading-warning">@ViewResources.Message</h3>
+                    <hr />
+                    <h3 class="slogan">@ViewResources.MessageRequestLogin</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var checkScroll = function () {
+        var el = document.querySelector('#comment');
+        var main = document.querySelector('.fixed-social');
+        var hambuger = document.querySelector('.button-mobile');
+        if (el !== null) {
+            var top_of_obj = el.offsetTop - 600;
+            var top_of_window = window.scrollY;
+            if (top_of_window > top_of_obj) {
+                main.classList.add('active-nav-socical');
+                hambuger.classList.add('active-nav-socical');
+            } else {
+                main.classList.remove('active-nav-socical');
+                hambuger.classList.remove('active-nav-socical');
+            }
+        }
+    }
+    if (window.innerWidth > 1024) {
+        window.addEventListener('scroll', function () { checkScroll() })
+    }
+</script>

@@ -1,0 +1,170 @@
+﻿[
+  {
+    "outputFile": "wwwroot/styles/pages/detailnews.css",
+    "inputFile": "wwwroot/styles/pages/detailnews.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/home.css",
+    "inputFile": "wwwroot/styles/pages/home.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/news.css",
+    "inputFile": "wwwroot/styles/pages/news.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/notfound.css",
+    "inputFile": "wwwroot/styles/pages/notfound.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/video.css",
+    "inputFile": "wwwroot/styles/pages/video.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/detailvideo.css",
+    "inputFile": "wwwroot/styles/pages/detailvideo.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/maintenance.css",
+    "inputFile": "wwwroot/styles/pages/maintenance.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/auth.css",
+    "inputFile": "wwwroot/styles/pages/auth.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/profile.css",
+    "inputFile": "wwwroot/styles/pages/profile.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/euro2020.css",
+    "inputFile": "wwwroot/styles/pages/euro2020.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/home.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/home.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/layout/Euro2020/_header.css",
+    "inputFile": "wwwroot/styles/layout/Euro2020/_header.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/team.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/team.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/video.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/video.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/schedule.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/schedule.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/category.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/category.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/ranking.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/ranking.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/Euro2020/detail.css",
+    "inputFile": "wwwroot/styles/pages/Euro2020/detail.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/admin.css",
+    "inputFile": "wwwroot/styles/pages/admin/admin.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/email/index.css",
+    "inputFile": "wwwroot/styles/pages/admin/email/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/email/create.css",
+    "inputFile": "wwwroot/styles/pages/admin/email/create.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/email/update.css",
+    "inputFile": "wwwroot/styles/pages/admin/email/update.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/profile/profile.css",
+    "inputFile": "wwwroot/styles/pages/profile/profile.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/banner/index.css",
+    "inputFile": "wwwroot/styles/pages/admin/banner/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/membership-event.css",
+    "inputFile": "wwwroot/styles/pages/membership-event.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/event/membership-event.css",
+    "inputFile": "wwwroot/styles/pages/admin/event/membership-event.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/managementleague/managementleague.css",
+    "inputFile": "wwwroot/styles/pages/admin/managementleague/managementleague.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/topscorers/topscorers.css",
+    "inputFile": "wwwroot/styles/pages/admin/topscorers/topscorers.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/index.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/index.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/lastestnews.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/lastestnews.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/fixture.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/fixture.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/detailstanding.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/detailstanding.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/video.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/video.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/postdetail-wc.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/postdetail-wc.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/story-post-detail.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/story-post-detail.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/story-post.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/story-post.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/event/worldcup2022/minigame.css",
+    "inputFile": "wwwroot/styles/pages/event/worldcup2022/minigame.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/livescore/match-management/match-management.css",
+    "inputFile": "wwwroot/styles/pages/admin/livescore/match-management/match-management.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/minigameworldcup/minigame.css",
+    "inputFile": "wwwroot/styles/pages/admin/minigameworldcup/minigame.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/homepage/fixture.css",
+    "inputFile": "wwwroot/styles/pages/admin/homepage/fixture.scss"
+  },
+  {
+    "outputFile": "wwwroot/styles/pages/admin/footballnews/footballnews.css",
+    "inputFile": "wwwroot/styles/pages/admin/footballnews/footballnews.scss"
+  }
+]

@@ -1,0 +1,60 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper
+@using DeviceDetectorNET;
+@{
+    var standingNum = 1;
+    var total = ViewBag.Total != null ? ViewBag.Total : 0;
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+}
+
+<div class="title-section">
+    <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+
+    <h2><a href="@Url.Action("Standing", "WorldCup2022")">Bảng Xếp Hạng</a></h2>
+    <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+</div>
+<div class="king-soccer scroll-snap">
+    @foreach (var group in Model)
+    {
+        var count = 0;
+
+        <div class="wc-table wc-table-king-soccer scroll-snap-items" id="standing-@standingNum">
+            <div class="wc-table-header">
+                <div class="wc-table-cell cell-participant">
+                    <i class="@(isMobile ? "":"icon-chevron-left btn-back-standing ") @(group.GroupName == Model[0].GroupName ? "button-stop" : "")"></i>
+                    @ViewResources.Board @group.GroupName.Substring(0, 1)
+                    <i class="@(isMobile ? "":"icon-chevron-right btn-next-standing") @(group.GroupName == Model[Model.Count - 1].GroupName ? "button-stop" : "")" data-total="@total"></i>
+                </div>
+                <div class="wc-table-cell cell-rank">@ViewResources.Battle</div>
+                <div class="wc-table-cell cell-rank">@ViewResources.FairPlay</div>
+                <div class="wc-table-cell cell-rank">@ViewResources.Point</div>
+            </div>
+
+            <div class="wc-table-body">
+                @foreach (var item in group.Standings)
+                {
+                    var teamName = GetStandingTeamName(item);
+                    var teamIcon = @GetTeamIcon(item.Icon);
+                    count++;
+                    <div class="wc-table-row">
+                        <div class="wc-table-cell cell-participant">
+                            <ul class="team">
+                                <li class="team-logo"><img src="@(string.IsNullOrEmpty(item.IconVN) ? teamIcon : item.IconVN)" /></li>
+                                <li class="team-name" tabindex="0" data-toggle="tooltip" title="@(teamName.Length > (isMobile? 15 : 20) ? teamName : "")">@teamName</li>
+                            </ul>
+                        </div>
+                        <div class="wc-table-cell cell-rank">@item.Total</div>
+                        <div class="wc-table-cell cell-rank">@item.GoalDiff</div>
+                        <div class="wc-table-cell cell-rank">@item.Points</div>
+                    </div>
+                }
+            </div>
+        </div>
+        standingNum++;
+    }
+</div>
+<div class="view-more">
+    <a href="@Url.Action("Standing", "WorldCup2022")">Chi tiết <i class="icon-next-wc"></i></a>
+</div>

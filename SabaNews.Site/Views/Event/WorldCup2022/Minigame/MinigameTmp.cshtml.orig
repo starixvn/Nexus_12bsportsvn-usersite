@@ -1,0 +1,358 @@
+﻿@using System.Text;
+@using SabaNews.Core.Constants;
+@using static SabaNews.Site.Extensions.LivescoreHelper
+@using SabaNews.Site.Extensions;
+@using DeviceDetectorNET;
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+    @{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    bool isMobile = detector.IsMobile();
+    bool isDesktop = detector.IsDesktop();
+    List<int> indexMatches = new() { 15, 31, 47, 63 };
+    var countStageActive = GetCountStageActiveMinigame(Model.Matches);
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+
+    <link rel="stylesheet" href="~/minify/styles/membership-event.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/event/worldcup2022/minigame.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/minigame-standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/minigame-winner.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/minigame-standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/minigame-winner.chunk.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+        var checkLogin = '@Model.IsLogin';
+        window.User = '@Model.UserId';
+        window.CountStageActive = '@countStageActive';
+    </script>
+    <script src="~/js/event/worldcup2022/minigame.js" asp-append-version="true"></script>
+    <script src="~/js/event/worldcup2022/worldcup.js" asp-append-version="true"></script>
+}
+
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-lastest-news">
+    <div class="wrapper-header">
+        <div class="header-control">
+            <ul>
+                <li><a href="javascript:;" class="btn btn-event" id="btn-guide">Thể Lệ</a></li>
+                <li><a href="#nhap-so-may-man" class="btn btn-event active click-number-event">Tham Gia</a></li>
+            </ul>
+        </div>
+        <div class="wave-game"></div>
+    </div>
+
+    <ul class="header-nav-event">
+        <li>
+            <a href="javascript:;" class="active btn-home">
+                <i class="icon icon-event-home"></i>
+                <span>Sự Kiện</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="click-number-rule btn-nav-guide">
+                <i class="icon icon-field-number"></i>
+                <span>Thể Lệ</span>
+            </a>
+        </li>
+        <li>
+            <a href="#stage-minigame" class="click-list-rigister">
+                <i class="icon icon-list-event"></i>
+                <span>Tham Gia Dự Đoán</span>
+            </a>
+        </li>
+        <li>
+<<<<<<< HEAD
+            <a href=@Url.Action("MinigameProfile", "WorldCup2022") class="click-my-prediction">
+=======
+            <a href="@Url.Action("MinigameProfile", "WorldCup2022")" class="click-my-prediction">
+>>>>>>> 4299bd3ce (feat: check time show stage)
+                <i class="icon icon-list-event"></i>
+                <span>Dự Đoán Của Tôi</span>
+            </a>
+        </li>
+        <li>
+            <a href="#minigame-standing" class="click-list-standing">
+                <i class="icon icon-list-event"></i>
+                <span>Bảng Xếp Hạng</span>
+            </a>
+        </li>
+        <li>
+            <a href="#minigame-winners" class="click-list-result">
+                <i class="icon icon-list-event"></i>
+                <span>Danh Sách Trúng Thưởng</span>
+            </a>
+        </li>
+    </ul>
+    <div id="stage-minigame" class="section-stage">
+        <div class="container-stage">
+            <div class="minigame-title">
+                <h1 class="text">
+                    Dự đoán đội chiến thắng trong mỗi trận đấu để nhận điểm và có cơ
+                    hội giành được những giải thưởng hấp dẫn!
+                </h1>
+                <div class="dots-parent">
+                    <ul>
+                        <li class="dots-small"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-parent-center"></li>
+                        <li class="dots-regular"></li>
+                        <li class="dots-small"></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="main-stage">
+                <div class="row-stage">
+                    @{
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var status = GetStatusStage(Model.Matches, i);
+                            var icon = GetIconStage(status);
+                            var isActive = CheckActive(status);
+
+                            <div id="boxStage@(i+1)" class="stage-items stage-items-1 @(status != WorldCup2022.LockStage ? "stage-votes" : "")" data-stage="@(i+1)" data-timeendstage="@Model.Matches[indexMatches[i]].StartTime">
+                                <a class="icon-stage @(string.IsNullOrEmpty(icon) ? "disable-background": "")"><i class="@icon"></i></a>
+                                <div class="stage-round @(isActive ? "active" : "")">
+                                    <h2>Giai Đoạn @(i + 1)</h2>
+                                </div>
+                                <ul class="count-and-time">
+                                    @if (Model.IsLogin)
+                                    {
+                                        <li class="font-weight-bold">Số trận dự đoán: @GetCountVotesStage(Model.Votes, i + 1)/16</li>
+                                    }
+                                    @if (status != WorldCup2022.LockStage && status != WorldCup2022.OnEndStage)
+                                    {
+                                        <li id="stage@(i+1)" data-timeCountDown="@GetCountDownStage(status,Model.Matches, i)">
+                                            @GetStatusStage(Model.Matches, i)
+                                            @if (status != WorldCup2022.OnStartedStage)
+                                            {
+                                                <span id="hours@(i+1)" style="margin-left : 5px"></span>
+                                                <span id="minutes@(i+1)"></span>
+                                                <span id="seconds@(i+1)"></span>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                                <img src="~/images/worldcup/minigame/bg-items.png" alt="Alternate Text" class="bg-items" />
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="sticky_icon">
+                    <img src="~/images/worldcup/minigame/bxh_stick_1.png" alt="Alternate Text" class="right-top" />
+                    <img src="~/images/worldcup/minigame/icon_1.png" alt="Alternate Text" class="left-bottom" />
+                </div>
+            </div>
+        </div>
+        <div class="bg-stage"></div>
+    </div>
+    <div id="minigame-standing"></div>
+    <div id="minigame-winners"></div>
+</section>
+
+
+<div class="auth-form">
+    <div class="modal" id="register" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body register">
+                    <div class="heading-modal-event">BẠN ĐÃ DỰ ĐOÁN</div>
+
+                    <ul class="review-number">
+                    </ul>
+
+                    <p class="text-event-modal">Bạn đã chắc chắn chứ?</p>
+                    <ul>
+                        <li><a href="#nhap-so-may-man" class="btn btn-event btn-accept active">ĐỒNG Ý</a></li>
+                        <li><a href="javascript:;" data-dismiss="modal" class="btn btn-event btn-btn-skip btn-reset-number">CHỌN LẠI</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="notice" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body register">
+                    <div class="heading-modal-event">nhập số may mắn</div>
+                    <p class="text-event-modal"></p>
+                    <ul>
+                        <li><a href="javascript:;" data-dismiss="modal" aria-label="Close" class="btn btn-event btn-btn-skip action">đóng</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="success" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body register">
+                    <div class="heading-modal-event">chọn đội vô địch thành công</div>
+                    <p class="text-event-modal">Cảm ơn bạn đã tham gia chương trình.</p>
+                    <ul>
+                        <li><a href="javascript:;" data-dismiss="modal" aria-label="Close" class="btn btn-event btn-btn-skip action">đóng</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="joining" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body field-number field-number-validate">
+                    <div class="validate-vent-input">
+                        <div class="warning-event">
+                            Vui lòng đăng nhập hoặc đăng ký
+                            để tham gia
+                        </div>
+                        <ul class="flex-btn auth-input">
+                            <li><a href="javascript:;" class="btn btn-event auth-login">Đăng nhập</a></li>
+                            <li><a href="javascript:;" class="btn btn-event auth-login active" data-form="register">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                    <span><img src="~/images/event/dot-input.png" /></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="auth-form event-guide">
+    <div class="modal" id="guide" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body guide">
+                    <div class="title-event">
+                        <img src="~/images/event/line.png" class="img-res" />
+                        <span>THÔNG TIN & THỂ LỆ</span>
+                    </div>
+                    <div class="main-guide scooped-corners">
+                        <div class="txt-guide">
+                            <div class="event-txt">
+                                <h2>CHƯƠNG TRÌNH "RƯỚC LỘC TÂN NIÊN"</h2>
+                                <p>
+                                    Kính gửi Quý độc giả,
+                                </p>
+                                <p>
+                                    Nhân dịp năm mới 2022, SABA Sports xin gửi tới Quý độc giả lời chúc năm mới thật nhiều "May Mắn - Sức Khỏe - Thành Đạt" và mong muốn tiếp tục đón nhận sự tin tưởng, đồng hành của Quý độc giả trong thời gian tới. Bên cạnh đó, hòa vào không khí tưng bừng đón xuân Nhâm Dần, chúng tôi chính thức triển khai chương trình minigame “<b>Rước Lộc Tân Niên</b>” dành cho Quý độc giả với nhiều phần thưởng hấp dẫn:
+
+                                </p>
+                                <div class="text-event-section">
+                                    <p class="event-text-header">1. Cơ cấu giải thưởng</p>
+                                    <p>01 Giải Nhất: trị giá <b>2,000,000 VNĐ</b></p>
+                                    <p>02 Giải Nhì: mỗi giải trị giá <b>1,000,000 VNĐ</b></p>
+                                    <p>03 Giải Ba: mỗi giải trị giá <b>500,000 VNĐ</b></p>
+                                </div>
+
+                                <div class="text-event-section">
+                                    <p class="event-text-header">2. Thời gian tham gia</p>
+                                    <p>Từ ngày <b>14/02/2022</b> đến hết ngày <b>27/02/2022</b></p>
+                                    <p>Công bố người trúng thưởng: ngày <b>01/03/2022</b></p>
+                                    <p>Trao giải: ngày <b>15/03/2022</b></p>
+                                </div>
+
+                                <div class="text-event-section">
+                                    <p class="event-text-header">3. Đối tượng và thể lệ tham dự</p>
+                                    <p><u>Đối tượng</u>:</p>
+                                    <p>Chỉ áp dụng cho những độc giả có tài khoản thành viên trên trang Saba.vn. </p>
+                                    <p><u>Thể lệ</u>:</p>
+                                    <p><b>Bước 1</b>: đăng nhập tài khoản trên trang Saba.vn. </p>
+                                    <p><b>Bước 2</b>: chọn một dãy số bất kỳ gồm 3 chữ số (từ 000 - 999). Ví dụ: 789 - Bảy Trăm Tám Mươi Chín.</p>
+                                </div>
+
+                                <div class="text-event-section">
+                                    <p class="event-text-header">4. Cách tính giải thưởng</p>
+                                    <p>
+                                        Chúng tôi sẽ lấy 3 SỐ ĐUÔI CỦA GIẢI ĐẶC BIỆT từ kết quả xổ số miền Bắc ngày <b>28/02/2022</b> để làm căn cứ xác định giải thưởng. Lưu ý, dãy số này sẽ được xem xét là một con số (Ví dụ: 567 - Năm Trăm Sáu Mươi Bảy).
+                                    </p>
+                                    <p>Độc giả có dự đoán CHÍNH XÁC và SỚM NHẤT sẽ có cơ hội trúng thưởng.</p>
+                                    <p>
+                                        Trường hợp không có độc giả nào lựa chọn chính xác số may mắn thì độc giả có bình chọn GẦN ĐÚNG và SỚM NHẤT sẽ nhận được Giải Nhất, tiếp theo là các Giải Nhì, Ba trao cho các độc giả có thời gian dự đoán chậm hơn.
+                                    </p>
+                                </div>
+
+                                <div class="text-event-section">
+                                    <p class="event-text-header">5. Hình thức nhận giải</p>
+                                    <p>
+                                        Chúng tôi sẽ chủ động liên hệ với độc giả may mắn trúng thưởng (qua địa chỉ email đã đăng ký) để trao giải. Trong trường hợp không liên hệ được với độc giả trúng thưởng trong thời gian quy định (7 ngày kể từ ngày có kết quả xổ số) thì xem như độc giả đó từ chối nhận giải thưởng.
+                                    </p>
+                                </div>
+
+                                <div class="text-event-section">
+                                    <p class="event-text-header">***Lưu ý</p>
+                                    <p>- Điều kiện trúng thưởng phải thực hiện đủ 2 bước theo yêu cầu.</p>
+                                    <p>- Mỗi độc giả chỉ được thực hiện dự đoán duy nhất 1 lần trong suốt quá trình diễn ra chương trình. Tài khoản có 2 lượt dự đoán (hoặc nhiều hơn) được xem là không hợp lệ và sẽ bị loại khỏi chương trình minigame.</p>
+                                    <p>- Những dự đoán sau 23:59:59 ngày 27/02/2022 cũng được xem là không hợp lệ.</p>
+                                    <p>- Nếu có bất kỳ sự nghi ngờ nào, chúng tôi cũng có thể tiến hành chứng thực, và từ chối trao giải cho các tài khoản có dấu hiệu gian lận.</p>
+                                    <p>- Saba.vn có toàn quyền tạm dừng hay điều chỉnh thể lệ cho phù hợp với tình hình thực tế vào bất kỳ thời điểm nào trước khi chương trình kết thúc mà không cần thông báo trước.</p>
+                                    <p>- Trong trường hợp phát sinh tranh chấp, khiếu nại liên quan đến chương trình, Saba.vn sẽ đứng ra trực tiếp giải quyết và quyết định của Saba.vn là quyết định cuối cùng.</p>
+                                    <p>- Saba.vn cam kết bảo mật thông tin cá nhân cho độc giả tham gia, không chia sẻ cho bên thứ ba và chỉ sử dụng cho mục đích công bố kết quả trúng thưởng (nếu có).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

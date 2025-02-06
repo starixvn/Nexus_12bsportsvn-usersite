@@ -1,0 +1,217 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './base/base';
+@import './layout/header';
+@import './layout/footer';
+@import './components/container';
+@import './components/minigame/modal';
+@import './components/minigame/block';
+@import './components/minigame/button';
+@import './components/minigame/stage';
+@import './components/minigame/nav-control';
+
+.wave-game{
+    background: url('../../../../images/euro2024/minigame/top-bg.png') , linear-gradient(90deg, #09174D 0%, #061A6B 100%) ;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    @include Mobile{
+        background-position: bottom;
+    }
+    .line-header {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 0;
+        img{
+            display: block;
+        }
+        @include Mobile{
+            display: none;
+        }
+    }    
+}
+
+.main-wave {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5rem;
+    @include Mobile{
+        display: block;
+    }
+    .left-wave{
+        @include Mobile{
+            max-width: 35rem;
+            margin: 0 auto;
+        }
+    }
+    .right-wave{
+        margin-top: 4rem;
+        @include Mobile{
+            max-width: 31.5rem;
+            margin: 0 auto;
+        }
+    }
+}
+
+.header-control{
+    position: relative;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    @include Mobile{
+        gap: 2rem;
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        @include Mobile{
+            gap: 2.4rem;
+        }
+    }
+    .click-number-event{
+        text-align: center;
+    }
+}
+
+.section-stage{
+    background: url('../../../../images/euro2024/minigame/map.png')  #010E46;
+    background-repeat: no-repeat;
+    background-position: top;
+    .wrapper-title-stage{
+        max-width: 74rem;
+        margin: 0 auto;
+        .minigame-title {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.10);
+            gap: 2.4rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            @include Mobile{
+                gap: 1.2rem;
+                padding: 1.2rem;
+            }
+            .icon-gift{
+                width: 11rem;
+                @include Mobile{
+                    width: 6.6rem;
+                }
+                img{
+                    display: block;
+                }
+            }
+            .text{
+                color: #FFC800;
+                font-size: 2.2rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 2.8rem;
+                width: 100%;
+                max-width: 56.6rem;
+                @include Mobile{
+                    max-width: 24rem;
+                    line-height: normal;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+}
+
+.main-stage{
+    max-width: 74rem;
+    margin: 0 auto;
+    .row-stage{
+        display: flex;
+        gap: 2rem;
+        @include Mobile{
+            flex-direction: column;
+        }
+    }
+}
+
+.minigame-block-standing{
+    min-height: 76.2rem;
+    background: url('../../../../images/euro2024/minigame/bg-standing.png') #0D2E83;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    .block-heading-text{
+        color: #fff;
+    }
+    @include Mobile{
+        min-height: 61.7rem;
+    }
+}
+
+.none-stage{
+    .effect-winner{
+        display: none;
+    }
+    .line-winner{
+        &.show-pc,&.show-mobile{
+            display: none;
+        }
+    }
+    .winner-minigame{
+        border: none;
+    }
+}
+
+.minigame-block-winners{
+    min-height: 84rem;
+    background: linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    @include Mobile{
+        min-height: 75rem;
+    }
+    .block-heading-text{
+        color: #fff;
+    }
+    .line-winner {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        img{
+            display: block;
+        }
+    }
+    .effect-winner {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 50%;
+        transform: translate(50%, 0);
+        z-index: 0;
+        @include Mobile{
+            display: none;
+        }
+    }    
+}
+
+
+
+.block-heading{
+    @include Mobile{
+        text-align: left !important;
+        position: relative;
+        z-index: 9;
+        margin-bottom: 1.6rem !important;
+    }
+    &-text{
+        @include Mobile{
+            font-size: 2rem !important;
+        }
+    }
+}

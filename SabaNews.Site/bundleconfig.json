@@ -1,0 +1,739 @@
+[
+    {
+        "outputFileName": "wwwroot/minify/styles/home.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/home.css",
+            "wwwroot/lib/swipper/css/swiper.min.css",
+            "wwwroot/css/pro/pages/livescore/soccer/homepage/fixture.chunk.css",
+            "wwwroot/css/pro/pages/livescore/soccer/homepage/standing.chunk.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/news.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/news.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/notfound.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/notfound.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/profile.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/profile/profile.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/admin_email.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/admin/email/index.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/admin_email_create.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/lib/bootstrap/multiselect/css/bootstrap-multiselect.css",
+            "wwwroot/styles/pages/admin/email/update.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/video.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/video.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/detailnews.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/detailnews.css",
+            "wwwroot/styles/pages/super-web-share-public.css"
+        ]
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/styles/maintenance.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/maintenance.css"
+        ]
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/styles/reset-password.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/reset-password.css"
+        ]
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/styles/profile.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/profile.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/euro2020.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_home.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/home.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_video.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/video.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_category.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/category.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_schedule.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/schedule.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_team.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/team.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_ranking.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/ranking.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2020_detail.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/Euro2020/detail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/membership-event.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/membership-event.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/admin.min.css",
+        "inputFiles": [
+            "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/admin/admin.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/admin_banner.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/admin/banner/index.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/worldcup2022.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper-bundle.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/worldcup2022/index.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/worldcup2022-fixture.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper-bundle.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/worldcup2022/fixture.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/lastestnews.min.css",
+        "inputFiles": [
+            "wwwroot/styles/pages/event/worldcup2022/lastestnews.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/detailstanding.min.css",
+        "inputFiles": [
+            "wwwroot/styles/pages/event/worldcup2022/detailstanding.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/videoworldcup2022.min.css",
+        "inputFiles": [
+            "wwwroot/styles/pages/event/worldcup2022/video.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/postdetail-worldcuop-2022.min.css",
+        "inputFiles": [
+            "wwwroot/styles/pages/event/worldcup2022/postdetail-wc.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/worldcup2022-story-post.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/worldcup2022/story-post.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/worldcup2022-story-post-detail.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/worldcup2022/story-post-detail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-home.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/home.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro-lastestnews.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/lastestnews.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-standing-detail.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/standing-euro.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-post-detail.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/postdetail-euro.css",
+            "wwwroot/lib/swipper/css/swiper.min.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-video.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/video.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-match-detail.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/match-detail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-full-fixture.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/full-fixture.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-team.min.css",
+        "inputFiles": [
+            "wwwroot/lib/swipper/css/swiper.min.css",
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/team.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-minigame.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/minigame.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/euro2024-countdown.min.css",
+        "inputFiles": [
+            "wwwroot/styles/vendor/icomoon/style.css",
+            "wwwroot/styles/pages/event/Euro2024/countdown.css"
+        ]
+    },
+    /*==================================================== Javascript ================================================*/
+    {
+        "outputFileName": "wwwroot/minify/js/site.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery/dist/jquery.min.js",
+            "wwwroot/lib/bootstrap/dist/js/bootstrap-modal.min.js",
+            "wwwroot/js/common.js",
+            "wwwroot/js/site.js",
+            "wwwroot/js/all.js",
+            "wwwroot/js/auth/auth.js",
+            "wwwroot/js/post/load-component.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/swiper.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper.min.js",
+            "wwwroot/js/swiper.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/home.min.js",
+        "inputFiles": [
+            "wwwroot/js/pro/lib/lang-vi-VN.chunk.js",
+            "wwwroot/js/pro/lib/react-vendor.chunk.js",
+            "wwwroot/js/home.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/blog.min.js",
+        "inputFiles": [
+
+            "wwwroot/js/post/blog.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/notfound.min.js",
+        "inputFiles": [
+
+            "wwwroot/js/post/notfound.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/styles/site.min.css",
+        "inputFiles": [
+            "wwwroot/styles/pages/auth.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/reset-password.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+            "wwwroot/js/auth/reset-password.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/js/single.min.js",
+        "inputFiles": [
+            "wwwroot/js/profile/profile.js",
+            "wwwroot/js/comment.js",
+            "wwwroot/js/post/poll.js",
+            "wwwroot/js/post/single.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/update_profile.min.js",
+        "inputFiles": [
+            "wwwroot/js/profile/update_profile.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/membership-event.min.js",
+        "inputFiles": [
+            "wwwroot/js/membership-event/membership-event.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin_statistic_post_view.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery/dist/jquery.min.js",
+            "wwwroot/js/admin/statistic/post-view-statistic.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/js/admin_statistic_view_detail.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery/dist/jquery.min.js",
+            "wwwroot/js/admin/statistic/view-statistic-details.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+
+    {
+        "outputFileName": "wwwroot/minify/js/admin_email.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery-blockUI/jquery.blockUI.js",
+            "wwwroot/js/admin/email/index.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin_email_create.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery-blockUI/jquery.blockUI.js",
+            "wwwroot/js/lib/config_ckeditor.js",
+            "wwwroot/lib/bootstrap/multiselect/js/bootstrap-multiselect.js",
+            "wwwroot/js/admin/email/create.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin_email_detail.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery-blockUI/jquery.blockUI.js",
+            "wwwroot/js/admin/email/details.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery/dist/jquery.min.js",
+            "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+            "wwwroot/js/common.js",
+            "wwwroot/js/admin/admin.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin_user.min.js",
+        "inputFiles": [
+            "wwwroot/js/admin/user/user.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/admin_banner.min.js",
+        "inputFiles": [
+            "wwwroot/js/admin/banner/index.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/worldcup2022.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper-bundle.min.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js",
+            "wwwroot/js/event/worldcup2022/index.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/lastestnews.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/lastestnews.js",
+            "wwwroot/js/event/worldcup2022/scroll.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/worldcup2022-fixture.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper-bundle.min.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/standingworldcup2022.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/Standing.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/videoworldcup2022.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper-bundle.min.js",
+            "wwwroot/js/event/worldcup2022/video.js",
+            "wwwroot/js/event/worldcup2022/scroll.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/worldcup-2022-story-post.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/scroll.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/worldcup-2022-story-post-detail.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/story-post-detail.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/postdetail-worldcup-2022.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/worldcup.js",
+            "wwwroot/js/event/worldcup2022/lastestnews.js",
+            "wwwroot/js/profile/profile.js",
+            "wwwroot/js/comment.js",
+            "wwwroot/js/post/poll.js",
+            "wwwroot/js/post/single.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/minigame-worldcuop-2022.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/worldcup2022/worldcup.js",
+            "wwwroot/js/event/worldcup2022/minigame.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/worldcup2022-match.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper-bundle.min.js",
+            "wwwroot/js/event/worldcup2022/worldcup.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+
+    /*==================== Euro 2024 ==============*/
+
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-home.min.js",
+        "inputFiles": [
+            "wwwroot/lib/swipper/js/swiper-bundle.min.js",
+            "wwwroot/js/event/euro2024/euro2024.js",
+            "wwwroot/js/event/euro2024/home.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-lastestnews.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/euro2024.js",
+            "wwwroot/js/event/euro2024/scroll.js",
+            "wwwroot/js/event/euro2024/lastestnews.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-video.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/euro2024.js",
+            "wwwroot/js/event/euro2024/video.js",
+            "wwwroot/js/event/euro2024/scroll.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-article.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/euro2024.js",
+            "wwwroot/js/event/euro2024/single.js",
+            "wwwroot/js/event/euro2024/poll.js",
+            "wwwroot/js/comment.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-standing.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/standing.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-minigame.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/minigame.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    },
+    {
+        "outputFileName": "wwwroot/minify/js/euro-2024-minigame-countdown.min.js",
+        "inputFiles": [
+            "wwwroot/js/event/euro2024/minigame_countdown.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    }
+
+]

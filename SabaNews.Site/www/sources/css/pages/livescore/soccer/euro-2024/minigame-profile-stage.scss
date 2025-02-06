@@ -1,0 +1,343 @@
+@import './../../../../abstracts/mixins';
+@import './components/dock_stage';
+@import './components/auth-user';
+@import './components/minigame-section';
+@import './components/minigame-table';
+@import './components/minigame_control';
+
+
+
+.statistic-grid {
+    @include Mobile{
+        margin-bottom: 10rem;
+    }
+}
+
+.overflow-modal{
+    padding-right: 0 !important;
+}
+
+body{
+    background: url('../../../../../../images/euro2024/minigame/bg-standing.png') , linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.minigame-section{
+    padding: 4rem 0;
+    @include Mobile{
+        padding: 1rem;
+    }
+}
+.stage-number{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background: #E6EAF8;
+    height: 3.5rem;
+    justify-content: space-between;
+    padding: .8rem 2rem;
+    color: #E8E8D6;
+    margin: 1.2rem 0 .8rem;
+    border-radius: 5px;
+    @include tableMobile{
+        height: 3.2rem;
+        padding: 0 1rem;
+        margin-bottom: .6rem;
+    }
+    li{
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: normal;
+        color: #222;
+        @include Mobile{
+            font-size: 1.3rem;
+        }
+        &:first-child{
+            text-transform: uppercase;
+        }
+        &.detail-choose{
+            font-weight: 700;
+        }
+        &.go-back{
+            font-weight: 600;
+            cursor: pointer;
+        }
+        i{
+            font-size: 2.4rem;
+            margin-left: .4rem;
+            &::before{
+                color: #222;
+            }
+            @include Mobile{
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+
+
+.equal-height-JlocK{
+    display: flex !important;
+    align-items: center;
+    @include Mobile{
+        display:  none !important;
+    }
+}
+
+
+
+
+
+.minigame-table{
+    border-radius: 5px 5px 0 0;
+    .minigame-table-header{
+        padding: 0 1rem;
+        @include Mobile{
+            padding: 0;
+            height: 4.2rem;
+            border-bottom: none;
+            gap: .6rem;
+        }
+    }
+    .minigame-table-body{
+        border-radius: 0;
+        max-height: 36.4rem;
+        @include Mobile{
+            max-height: 47.5rem;
+        }
+        .group-items-table-detial{
+            border-bottom: 1px solid #8F8F8F;
+            &:last-child{
+                border-bottom: none;
+            }
+            &.finish{
+                cursor: no-drop;
+                .minigame-team{
+                    cursor: no-drop;
+                }
+            }
+            .table-row-name_team{
+                color: #143CDB;
+            }
+        }
+        .group-cell-table{
+            display: flex;
+            align-items: center;
+            padding: .6rem 1rem;
+            @include Mobile{
+                padding: .6rem 1.3rem .6rem .6rem;
+                gap: .6rem;
+            }
+            &:last-child{
+                border-bottom: none;
+            }
+        }
+        .table-row{
+            @include Mobile{
+                font-size: 1.1rem !important;
+                &-score{
+                    font-size: 1.3rem !important;
+                }
+            }
+        }
+    }
+    .table-row{
+        width: 10rem;
+        text-align: center;
+        line-height: 3rem;
+        font-weight: 700;
+        @include Mobile{
+            width: 5rem;
+            line-height: 1.8rem !important;
+            font-size: 1.2rem !important;
+            &-name_team {
+                width: 6rem !important;
+            }
+        }
+        &-index {
+            flex: 1 0 38rem;
+            width: auto;
+            @include Mobile{
+                flex: 1 0 0;
+            }
+        }
+        &-score{
+            color: #143CDB;
+            @include Mobile{
+                width: 3.5rem !important;
+            }
+        }
+        &-name_team{
+            width: 20rem;
+        }
+        .team-choose{
+            display: flex;
+            grid-gap: 1rem;
+            @include Mobile{
+                grid-gap: .6rem;
+            }
+            .minigame-team{
+                width: 11rem;
+                min-height: 6rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 5px;
+                background: rgba($color: #222, $alpha: 0.05);
+                border: 2px solid rgba($color: #222, $alpha: 0);
+                cursor: pointer;
+                justify-content: center;
+                @include Mobile{
+                    width: 4.6rem;
+                    min-height: 4.6rem;
+                }
+                img{
+                    width: 2.6rem;
+                    height: 2.6rem;
+                    object-fit: cover;
+                    @include Mobile{
+                        width: 3.2rem;
+                        height: 3.2rem;
+                    }
+                }
+                i{
+                    font-size: 3rem;
+                    @include Mobile{
+                        font-size: 2rem;
+                    }
+                    &::before{
+                        color: #8A1538;
+                    }
+                }
+                .team-name{
+                    font-weight: 700;
+                    font-size: 1.3rem;
+                    line-height: normal;
+                    margin-top: .4rem;
+                    color: #222;
+                    @include Mobile{
+                        display: none;
+                    }
+                }
+
+                .group-bg-logo {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0;
+                    padding-top: .4rem;
+                    @include Mobile{
+                        padding: .5rem;
+                    }
+                    i{
+                        &::before{
+                            color: #222;;
+                        }
+                    }
+                }
+                &.active{
+                    border: 2px solid #143CDB;
+                    background: rgba(20, 60, 219, 0.10);
+                    .team-name{
+                        color: #143CDB;
+                    }
+                    .group-bg-logo {
+                        i{
+                            &::before{
+                                color: #143CDB;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .choose{
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            @include Mobile{
+                width: 1.8rem;
+                height: 1.8rem;
+                i{
+                    &::before{
+                        font-size: 1rem;
+                    }
+                }
+            }
+            &-win{
+                background: #549C2A;
+            }
+            &-lose{
+                background: #D03451;
+            }
+            &-empty{
+                background: #D17A14;
+            }
+        }
+    }
+    
+}
+
+.total-score{
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    background: #E6EAF8;
+    border-radius: 0 0 5px 5px;
+    border-top: 1px solid #8F8F8F;
+    padding: .6rem 0 .6rem 2rem;
+    color: #143CDB;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    justify-content: space-between;
+    @include Mobile{
+        font-size: 1.3rem;
+        padding: .6rem 0 .6rem .6rem;
+    }
+    .latest-score{
+        display: block;
+        width: 11.5rem;
+        text-align: center;
+        @include Mobile{
+            width: 5.8rem;
+            font-size: 1.6rem;
+        }
+    }
+}
+.name-play-mobile{
+    display: none;
+    @include tableMobile{
+        display: block;
+        padding: .6rem 0 0 .6rem;
+        font-size: 1.1rem;
+        line-height: normal;
+        color: #143CDB;
+        font-weight: 600;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

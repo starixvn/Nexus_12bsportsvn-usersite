@@ -1,0 +1,48 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+    var current = DateTime.UtcNow.AddHours(7);
+}
+
+@section TopHeader{
+    @ViewResources.CountUserInteractions
+}
+
+    @section Title{
+    @ViewResources.MinigameWorldCup2022
+}
+
+    @section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.MinigameWorldCup2022" />
+}
+
+    @section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/minigameworldcup/minigame.css" asp-append-version="true">
+}
+
+    <section class="page-content">
+        <div class="form-filter" style="margin-bottom: 2rem">
+            <form class="form-horizontal">
+
+            <div class="form-input">
+                <p class="back-parent-page">
+                        <a href="/Admin/MinigameWorldCup2022/MinigameWorldCup2022">
+                        <i class="icon-arrow-left"></i>
+                        <span>Back Minigame WorldCup</span>
+                    </a>
+                </p>
+                <input class="custom-input" type="date" min='2022-11-16' max='2022-12-18' id="dateSearch" name="dateSearch" value="@current.ToString("yyyy-MM-dd")" />
+            </div>
+        </form>
+    </div>
+
+     <div class="content">
+        <div class="data-grid" id="data-grid"></div>
+    </div>
+
+
+</section>
+
+@section Scripts {
+    <script src="~/js/admin/minigameworldcup2022/count-user.js" asp-append-version="true"></script>
+}

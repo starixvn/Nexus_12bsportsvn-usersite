@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - Nexus / SabaNews Nexcel CSharp" ToolsVersion="16.0">
+  <Include Path="..\.sonarlint\sabanewscsharp.ruleset" Action="Default" />
+  <Include Path="..\.sonarlint\sabasportscsharp.ruleset" Action="Default" />
+</RuleSet>

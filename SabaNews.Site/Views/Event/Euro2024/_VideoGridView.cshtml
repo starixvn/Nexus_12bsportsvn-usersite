@@ -1,0 +1,21 @@
+﻿@{
+    foreach (var post in Model)
+    {
+        <div class="block-items block-items-vertical paging-@ViewBag.CurrentPage">
+            <div class="block-items-img hover-image"> 
+                <a href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">
+                    <img asp-append-version="true" loading="lazy" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy">
+                </a>
+                <span class="icons-child-video">
+                    <img src="~/images/euro2024/child-icon-video.svg" alt="child-icon-video">
+                    Video
+                </span>
+            </div>
+            <div class="group-title-hot">
+                <h2 class="block-items-heading">
+                    <a href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">@post.PostTitle</a>
+                </h2>
+            </div>
+        </div>
+    }
+}

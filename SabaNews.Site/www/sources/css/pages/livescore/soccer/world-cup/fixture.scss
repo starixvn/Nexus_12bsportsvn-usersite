@@ -1,0 +1,55 @@
+@import '~react-loading-skeleton/dist/skeleton.css';
+@import "../../../../abstracts/variables";
+@import "../../../../abstracts/mixins";
+@import "../../../../base/base";
+@import "../../../../components/block-extension";
+@import "../../../../components/container";
+@import "../../../../components/soccer-item";
+@import './components/wc-date-bar';
+
+
+#worldcup-fixture {
+    .group-live-icon{
+        display: flex;
+        align-items: center;
+        i{
+            display: none;
+            font-size: 1.6rem;
+            margin-right: .6rem;
+            &::before{
+                color: #EFF612;
+            }
+        }
+    }
+    .live,.live.live-intermission{
+        .soccer-match-stage{
+            width: auto;
+            margin-top: 0;
+            font-size: 1.3rem !important;
+            span{
+                color: #EFF612 !important;
+                &::before,&::after{
+                    display: none;
+                }
+            }
+        }
+        .group-live-icon{
+            i{
+                display: block;
+            }
+        }
+    }
+    .react-loading-skeleton{
+        --base-color: #8e5063 !important;
+
+        &::after {
+            background: #9f6074 !important;
+        }
+    }
+}
+.overflow-modal{
+    overflow: unset !important;
+}
+
+
+

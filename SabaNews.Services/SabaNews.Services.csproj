@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\.sonarlint\sabanewscsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\sabanews\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Livescore\SabaNews.Livescore.Services\SabaNews.Livescore.Services.csproj" />
+    <ProjectReference Include="..\SabaNews.Core\SabaNews.Core.csproj" />
+    <ProjectReference Include="..\SabaNews.Criteria\SabaNews.Criteria.csproj" />
+    <ProjectReference Include="..\SabaNews.Models\SabaNews.Models.csproj" />
+    <ProjectReference Include="..\SabaNews.Resources\SabaNews.Resources.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="AspNetCore.SEOHelper" Version="1.0.1" />
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.8" />
+  </ItemGroup>
+</Project>

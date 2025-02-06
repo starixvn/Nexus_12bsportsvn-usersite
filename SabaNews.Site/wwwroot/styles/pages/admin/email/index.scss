@@ -1,0 +1,46 @@
+﻿@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+@import '../../../components/buttons';
+@import '../../../components/pagination';
+@import '../../../components/ckeditor-content';
+@import '../custom-input';
+@import '../custom-table';
+@import '../custom-modal';
+
+
+.page-table-control {
+    .list-input {
+        cursor: unset;
+        font-weight: normal;
+        &::placeholder {
+            color: #979797;
+            font-style: italic;
+            font-size: 1.4rem;
+            font-weight: normal;
+        }
+    }
+
+    .list_email_block {
+        margin-top: 2.5rem;
+    }
+}
+
+
+
+//detail
+.detail-header {
+    margin-top: 2.4rem;
+    .txt-content{
+        margin-bottom : 1.6rem;
+        font-size : 1.4rem;
+        color : #424242;
+        font-weight : bold;
+    }
+}
+
+#ViewEmailContent .modal-content 
+{
+    max-width: 100rem;
+}
+
+

@@ -1,0 +1,66 @@
+﻿@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+@import '../../base/base';
+
+@import '../../layout/footer';
+@import '../../layout/block-extension';
+@import '../../layout/Euro2020/_header.scss';
+
+@import '../../components/Euro2020/icon.scss';
+@import '../../components/Euro2020/title.scss';
+@import '../../components/container';
+
+.block__title {
+    margin-bottom: 4rem;
+
+    @include Mobile {
+        margin-bottom: 2rem;
+    }
+}
+
+.block__content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    grid-row-gap: 4.8rem;
+    margin-bottom: 6rem;
+
+    @include Mobile {
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 2.4rem;
+    }
+
+    .team {
+        text-decoration: none;
+        display: grid;
+
+        [class*="flag"] {
+            width: 8rem;
+            height: 8rem;
+            justify-self: center;
+            border: 2px solid #bdbdbd;
+            border-radius: 50%;
+            background-clip: content-box;
+
+            @include Mobile {
+                width: 7rem;
+                height: 7rem;
+            }
+        }
+    }
+
+    .name {
+        display: block;
+        text-align: center;
+        font-size: 1.8rem;
+        color: #081224;
+        margin-top: 2.4rem;
+        text-transform: uppercase;
+
+        @include Mobile {
+            font-size: 1.4rem;
+            margin-top: 1.2rem;
+        }
+    }
+}

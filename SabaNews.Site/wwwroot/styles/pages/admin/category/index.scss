@@ -1,0 +1,86 @@
+
+@import '../custom-modal';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.input-custom {
+    height: 4rem;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    color: #444444;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #DDDDDD;
+}
+
+.table-admin {
+    margin-top: 0;
+
+    .icon-delete-admin:hover {
+        cursor: pointer;
+    }
+
+    .league-level1{ 
+        background: #ffe5de;
+        font-weight: bold;
+    }
+
+    .league-level2{
+        background: #d5e6ff;
+        font-weight: bold;
+    }
+
+    .league-name{
+        position: relative;
+
+        &.has-child::after{
+            position: absolute;
+            content: "";
+            top: 2rem;
+            right: 1rem;
+            border-style: solid;
+            border-color: #888 transparent transparent transparent;
+            border-width: 6px 6px 0 6px;
+        }
+
+        &.active{
+            &::after{
+                border-width: 0 6px 6px 6px;
+                border-color: transparent transparent #888 transparent;
+            }
+        }
+    }
+
+    
+    td img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+    }
+}
+
+.error-input {
+    margin-top: 0.7rem !important;
+    color: red;
+}
+
+.modal-title {
+    .title {
+        text-decoration: none !important;
+    }
+}
+
+.pl50 {
+    padding-left: 5rem !important;
+}

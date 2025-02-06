@@ -1,0 +1,152 @@
+﻿
+.group-searchbar {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: .8rem;
+
+    .livescore-soccer-search-bar {
+        position: relative;
+        margin-right: 0;
+        width: 100%;
+        @include tableMobile {
+            margin-right: 0;
+        }
+
+        .livescore-soccer-searchbox {
+            width: 100%;
+            border: 1px solid $border-color;
+            background: transparent;
+            height: 4rem;
+            padding: 1.2rem 0 1.2rem 3.5rem;
+            border-radius: 3px;
+            font-size: 1.4rem;
+
+            @include Mobile {
+                padding: 1.2rem 0 1.2rem 3rem;
+                height: 3.4rem;
+            }
+
+            &::placeholder {
+                font-style: italic;
+                font-size: 1.4rem !important;
+
+                @include tableMobile {
+                    font-size: 1.2rem !important;
+                }
+            }
+        }
+
+
+
+        .btn-search-match {
+            position: absolute;
+            float: right;
+            left: 10px;
+            cursor: pointer;
+            color: #7e7e7e;
+            top: 10px;
+            @include Mobile{
+                top: 8px;
+            }
+        }
+    }
+
+
+
+    .livescore-like {
+        position: relative;
+        width: 25%;
+        display: flex;
+        cursor: pointer;
+        background: #EDEDED;
+        border: 1px solid #E6E6E6;
+        margin-left: .6rem;
+        border-radius: 3px;
+        align-items: center;
+        justify-content: center;
+        display: none;
+
+        @include tableMobile {
+            width: 3rem;
+            margin-left: .4rem;
+            display: flex;
+            display : none;
+        }
+
+
+        span {
+            margin-right: 1.2rem;
+            font-weight: bold;
+            color: $color-title;
+
+            &:hover {
+                color: $color-active-icon;
+            }
+
+            @include tableMobile {
+                display: none;
+            }
+        }
+
+        .count-start {
+            margin-top: .5rem;
+            /*[data-badge] {
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    right: -7px;
+                    top: -7px;
+                    min-width: 1rem;
+                    min-height: 1rem;
+                    line-height: 1rem;
+                    padding: .3rem;
+                    color: $white;
+                    border: 1px solid #FFFFFF;
+                    background: #E13C29;
+                    font-size: 1rem;
+                    border-radius: 3px;
+                    content: attr(data-badge);
+
+                    @include tableMobile {
+                        right: -2px;
+                        top: -2px;
+                        padding: .2rem;
+                        font-size: .8rem;
+                        line-height: 1;
+                    }
+                }
+            }*/
+
+            .count-number {
+                position: absolute;
+                min-width: 1rem;
+                min-width: 1.4rem;
+                min-height: 1.4rem;
+                padding: .3rem;
+                color: $white;
+                border: 1px solid #FFFFFF;
+                background: #E13C29;
+                font-size: 1rem;
+                border-radius: 3px;
+
+                @include tableMobile {
+                    right: 1px;
+                    top: 1px;
+                    padding: .2rem;
+                    font-size: .8rem;
+                    line-height: 1;
+                    text-align: center;
+                    font-style: normal;
+                }
+            }
+
+            .icon-live-start {
+                &:before {
+                    color: #324A75;
+                }
+            }
+        }
+    }
+}

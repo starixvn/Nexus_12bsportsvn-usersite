@@ -1,0 +1,43 @@
+﻿@keyframes tweet-skeleton {
+    0% {
+      background-color: rgb(209, 209, 209);
+    }
+    100% {
+      background-color: rgb(243, 243, 243);
+    }
+  }
+
+.lazy{
+    background-color: rgb(209, 209, 209);
+    animation: tweet-skeleton 1s linear infinite alternate;
+}
+.thumb {
+    background-color: #cccccc;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.thumb-65 {
+    padding-bottom: 65%;
+}
+
+.thumb-56 {
+    padding-bottom: 56%;
+}
+
+.thumb-50 {
+    padding-bottom: 50%;
+}
+
+.thumb-52 {
+    padding-bottom: 52%;
+}
+
+.thumb-44
+{
+    padding-bottom: 44%;
+}
+.thumb-40 {
+    padding-bottom: 40%;
+}

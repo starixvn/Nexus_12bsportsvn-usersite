@@ -1,0 +1,84 @@
+@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader {
+    @ViewResources.HomepageManagement
+}
+
+@section Title {
+    @ViewResources.HomepageManagement
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.HomepageManagement" />
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/styles/pages/admin/homepage/fixture.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/jquery-ui.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <div class="form-horizontal navigation">
+        <p id="btn_major_league" class="label label-blue item-navigation"><a
+                href="@Url.Action("Fixture", "HomepageManagement")">Fixtures</a></p>
+        <p id="btn_hot_league" class="label label-blue item-navigation"><a
+                href="@Url.Action("Standing", "HomepageManagement")">Standings<a /></p>
+        <p id="btn_category" class="label label-blue item-navigation"><a
+                href="@Url.Action("FootBall", "HomepageManagement")">Category</a></p>
+        <p id="btn_category" class="label label-blue item-navigation active">Poll</p>
+    </div>
+
+    <div class="content">
+        <div class="data-grid form-horizontal filter" id="data-grid">
+            <div class="form-input">
+                <p class="label-admin"><strong>ID</strong></p>
+                <input class="custom-input poll-id" value="@Model.SelectedQuestId" />
+            </div>
+            <div class="form-input select-poll" style="width: 50rem;">
+                <p class="label-admin"><strong>Name</strong></p>
+                <select class="custom-input list-input poll-list" style="width: 100%;">
+                    <option value="0">--------------</option>
+                    @foreach (var item in Model.Polls)
+                    {
+                        var selected = item.Id == Model.SelectedQuestId ? "selected" : "";
+                        <option value="@item.Id" data-question="@item.Question" @selected>@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-input">
+            <p><strong>Question</strong></p>
+            <p class="label-admin poll-question">@Model.SelectedQuest</p>
+        </div>
+        <button class="btn-custom-admin btn-save-poll">Save</button>
+    </div>
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <script>
+        var isFixtureOption = false;
+    </script>
+    <script src="~/js/select2.min.js" asp-append-version="true"></script>
+    <script src="~/js/admin/homepage/poll.js" asp-append-version="true"></script>
+
+}

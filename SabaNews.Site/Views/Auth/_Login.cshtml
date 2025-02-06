@@ -1,0 +1,54 @@
+﻿<div class="modal auth-login  authModal" id="modal-login" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-content modal-auth">
+        <div class="modal-body">
+            <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="main-auth">
+                <a href="#" class="auth-logo">
+                    <img src="/images/sabasports.svg" alt="auth logo" />
+                </a>
+                <div class="login-action">
+                    <div class="group-heading">
+                        <div class="title">Đăng Nhập</div>
+                        <div class="slogan">Chào mừng bạn trở lại SABAVN.NET</div>
+                    </div>
+                    <div class="validate-error summary-eror"></div>
+                    <form id="form-login">
+                        <div class="form-group-auth email">
+                            <label class="label-auth">Email</label>
+                            <div class="group-input-auth">
+                                <input type="text" class="input-auth" placeholder="Nhập email" name="email"  autocomplete="new-email"/>
+                            </div>
+                            <div class="validate-error"></div>
+                        </div>
+                        <div class="form-group-auth password">
+                            <label class="label-auth">Mật khẩu</label>
+                            <div class="group-input-auth">
+                                <input type="password" name="password" class="input-auth" placeholder="Nhập mật khẩu" autocomplete="new-password">
+                                <span class="toggle-pass">
+                                    <i class="icon-form icon-show"></i>
+                                    <i class="icon-form icon-hide" style="display: none"></i>
+                                </span>
+                            </div>
+                            <div class="validate-error"></div>
+                        </div>
+                        <div class="box-auth-child">
+                            <div class="submit-auth  captcha">
+                                <div id="login-captcha" class="g-recaptcha"  data-action="LOGIN"></div>
+                                <div class="validate-error"></div>
+                            </div>
+                        </div>
+                        <a href="#" class="forgot-pass" id="forgot-password">Quên mật khẩu</a>
+                        <div class="submit-auth">
+                            <button class="submit submit-login" type="submit">Đăng nhập</button>
+                        </div>
+                        <div class="group-question">
+                            Bạn chưa có tài khoản? <a href="#" class="register-form-open">Tạo tài khoản ngay</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

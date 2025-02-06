@@ -1,0 +1,33 @@
+.dots-parent {
+    margin-top: 1rem;
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        li {
+            background: #E8E8D6;
+            clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+            margin-right: 5px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.dots-small {
+                width: 6px;
+                height: 6px;
+            }
+
+            &.dots-regular {
+                width: 7px;
+                height: 7px;
+            }
+
+            &.dots-parent-center {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿@using SabaNews.Core.Constants;
+@using static SabaNews.Site.Extensions.DeviceHelper;
+
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+    var titleUrl = Model.IsMostViewPosts ? "javascripts:;" :  Url.Action("Category", "Home", new {slug = Constants.NewPostSlug + CategoryKey.Suffix});
+
+}
+
+
+<div class="block-sticky">
+    <h3 class="block__title @(Model.IsMostViewPosts ? "hotnews-title" : "")">
+        <a href="@titleUrl">@ViewData[ViewResources.ViewDataHeadTitle]</a>
+    </h3>
+    <div class="block__content">
+        <div class="block-item">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="post card-vertical">
+                    @if (Model.Posts.IndexOf(post) == 0)
+                    {
+                        string featureImg = isMobile ? post.GetImageBySize(ImageWidth.Width768) : post.FeatureImage;
+                        <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="card-vertical__image hover-image thumb thumb-65">
+                            <picture>
+                                <source srcset="@Url.Content(featureImg)" type="image/webp" class="img-res">
+                                <source srcset="@Url.Content(featureImg)" type="image/jpeg" class="img-res">
+                                <img asp-append-version="true" data-original="@Url.Content(featureImg)" src="@Url.Content(featureImg)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                <noscript>
+                                    <img asp-append-version="true" src="@Url.Content(featureImg)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                </noscript>
+                            </picture>
+                        </a>}
+                    <h3><a class="card-vertical__title" href="@Url.Action("Single", "Post", new { slug = post.Uri })">@post.PostTitle</a></h3>
+                    <p class="card-vertical__datetime">
+                        <span>@post.PostTime</span>
+                        @if (post.CommentCount > 0)
+                        {
+                            <a href="@Url.Action("Single", "Post", new { slug = post.Uri  })#comment" class="comment"><i class="icon-mode_comment_full"></i> <i class="number">@post.CommentCount</i></a>}
+                    </p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

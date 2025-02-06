@@ -1,0 +1,41 @@
+﻿@using SabaNews.Resources
+@model bool
+
+@section Title{
+	@ViewResources.ConfirmEmail
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/reset-password.min.css" asp-append-version="true">
+}
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="container">
+        <div class="reset-page">
+            <div class="reset-action reset-success">
+                <div class="reset-page-modal">
+                    <div class="reset-page-modal-header">
+                        @if (Model)
+                        {
+                            <h3>@ViewResources.ConfirmEmailSuccessfully</h3>
+                        }
+                        else
+                        {
+                            <h3>@ViewResources.ExpiredLink</h3>
+                        }
+                    </div>
+                    <div class="reset-page-modal-body">
+                        @if (Model)
+                        {
+                            <div class="auth-input">Bấm vào <span class="auth-login" data-returnUrl="/">đây</span> để đăng nhập</div>
+                        }
+                        else
+                        {
+                            <div>@ViewResources.IncorrectLinkForConfirmEmail</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

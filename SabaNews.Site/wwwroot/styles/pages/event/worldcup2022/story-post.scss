@@ -1,0 +1,68 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/title-section';
+@import './components/hover-img-item';
+@import './components/post-items';
+@import './components/post-hot';
+@import './components/view-more';
+@import './components/scroll-snap';
+@import './components/title-items';
+@import './components/container';
+@import './components/dots-post';
+@import './components/ads';
+
+.grid-stories-post {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin-bottom: 3rem;
+
+    @include tableMobile {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.2rem;
+    }
+
+    .hover-image {
+        max-height: 40rem;
+        height: 40rem;
+
+        @include tableMobile {
+            max-height: 24rem !important;
+            height: 24rem !important;
+        }
+
+        .title-hot {
+            text-align: center;
+            padding: 4rem 3.2rem 2rem 3.2rem;
+
+            @include tableMobile {
+                padding: 1rem;
+            }
+
+            p {
+                color: $white-color;
+                font-size: 1.3rem;
+                font-weight: 700;
+
+                @include tableMobile {
+                    font-size: 1.4rem;
+                }
+
+                @include Mobile {
+                    font-size: 1rem
+                }
+            }
+
+            .date-time {
+                font-size: 1.2rem;
+                font-weight: 400;
+                line-height: 2.4rem;
+                @include Mobile {
+                    font-size: 1rem
+                }
+            }
+        }
+    }
+}

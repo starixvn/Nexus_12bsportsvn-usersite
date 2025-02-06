@@ -1,0 +1,156 @@
+﻿@using DeviceDetectorNET;
+@using SabaNews.Core.Constants;
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+    var a = Model;
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/videoworldcup2022.min.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <environment include="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/livescore/livescore.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+        window.slug = '@WorldCup2022.VideoSlug';
+        window.paging = {
+            page: '@Model.Paging.CurrentPage',
+            pageSize: '@Model.Paging.PageSize',
+            totalPages: '@Model.Paging.TotalPages'
+        };
+        window.isVideo = true;
+        window.type = '@Model.Header.Controller';
+    </script>
+    <script src="~/minify/js/swiper.min.js" asp-append-version="true"></script>
+    <script src="~/minify/js/videoworldcup2022.min.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+<section class="worldcup-video">
+    <div class="swiper swipper-mobile-banner">
+        <div class="swiper-wrapper">
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-top"></div>
+            </div>
+            <div class="post-items swiper-slide scroll-snap-items post-hot">
+                <div class="banner-euro-mobile banner-mobile-center"></div>
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-ads-wc"></div>
+    </div>
+    <div id="worldcup-fixture"></div>
+    <div class="wc-page-main">
+        <div class="container">
+            <div class="title-section">
+                <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+                <h2>@WorldCup2022.Video</h2>
+                <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+            </div>
+
+            @if (Model.Videos.Count > 0)
+            {
+                <div class="post swiper-wrapper page-items-hot">
+                    <div class="swiper-slide post-items post-hot video-hot">
+                        <div class="img-item hover-image">
+                            <input type="hidden" name="iframe_value" value="@Model.Videos[0].PostContent" />
+                            <picture>
+                                <source srcset="@Url.Content(Model.Videos[0].FeatureImage)" type="image/webp">
+                                <source srcset="@Url.Content(Model.Videos[0].FeatureImage)" type="image/jpeg">
+                                <img asp-append-version="true" loading="lazy" src="@Url.Content(Model.Videos[0].FeatureImage)" alt="@Model.Videos[0].PostTitle">
+                            </picture>
+                            <div class="title-hot">
+                                <h3><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = Model.Videos[0].Slug })">@Model.Videos[0].PostTitle</a></h3>
+                                <p class="date-time"> @Model.Videos[0].PostTime</p>
+                            </div>
+                            <div class="btn-play-video" post-id="@Model.Videos[0].ID">
+                                <span class="icon-play"></span>
+                            </div>
+                        </div>
+                        <div style="display: none;" class="play_video"></div>
+                    </div>
+                </div>
+            }
+
+            <div class="live-score-nav">
+                <a id="btn-showall" class="active">Tất cả</a>
+                <a id="btn-showhighlight">Highlights</a>
+                <a id="btn-showguess">Dự đoán</a>
+            </div>
+
+            <div class="page-main">
+                <div class="video-grid" id="news-grid">
+                    @{
+                        var postIndex = 0;
+                        foreach (var post in Model.Videos)
+                        {
+                            {
+                                postIndex++;
+                                if (postIndex <= 1)
+                                {
+                                    continue;
+                                }
+                            }
+                            <div class="video-items">
+                                <div class="hover-image">
+                                    <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })" class="card-vertical__title text-description">
+                                        <img asp-append-version="true" loading="lazy" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                    </a>
+                                    <div class="btn-play-video btn-play-orthers" post-id="@Model.Videos[0].ID" data-url ="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })">
+                                        <span class="icon-play play-orthers" data-url ="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })"></span>
+                                    </div>
+                                </div>
+                                <div class="title">
+                                    <h2><a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })" class="card-vertical__title text-description">@post.PostTitle</a></h2>
+                                    <p class="date-time"> @post.PostTime</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                @if (Model.Paging.TotalPages > 1)
+                {
+                    <div class="loading-page" id="loading-page">
+                        <div class="lds-ellipsis">
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+@await Html.PartialAsync(ViewResources.SidebarBannerView)

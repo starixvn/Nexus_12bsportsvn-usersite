@@ -1,0 +1,71 @@
+﻿@section Title{
+    Kích hoạt tài khoản SABA Sports Vietnam
+}
+
+    @section Styles{
+    <link rel="stylesheet" href="~/minify/styles/detailnews.min.css" asp-append-version="true">
+}
+
+    @(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="container">
+        <div class="block block-main">
+            <div class="post card-vertical-highlight">
+                <h1 class="card-vertical__title">
+                    Kích hoạt tài khoản SABA Sports Vietnam
+                </h1>
+                <div class="content">
+                    <p>
+                        Theo mặc định, Google sẽ tự động phân loại email gửi tới hộp thư đến của bạn vào 3 hộp thư có sẵn, bao gồm Chính,
+                        Quảng cáo và Mạng xã hội. Nếu như bạn không tìm thấy email <b>Kích hoạt tài khoản SABA Sports</b> trong hộp thư Chính (Primary)
+                        thì có thể theo dõi bài viết bên dưới để tìm hiểu nhé.
+                    </p>
+                    <div class="euro-detail-title">
+                        <span class="euro-number">#1</span>
+                        <span>Trên máy tính</span>
+                    </div>
+                    <p><strong>Bước 1</strong>: <a href="https://mail.google.com/" class="rank-math-link">Đăng nhập</a> vào tài khoản Gmail của bạn trên máy tính.</p>
+                    <p><strong>Bước 2</strong>: Nhấp vào hộp thư <strong>Quảng Cáo</strong>.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_1.png" alt="content">
+                    </figure>
+                    <p><strong>Bước 3</strong>: Tiếp theo, kéo và thả email <strong>Kích hoạt tài khoản SABA Sports</strong> sang hộp thư <strong>Chính</strong>.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_2.png" alt="content">
+                    </figure>
+                    <p><strong>Bước 4</strong>: Một thông báo sẽ xuất hiện cho bạn biết rằng email đã được chuyển đến hộp thư mới. Hệ thống cũng sẽ hỏi xem bạn có muốn chuyển các email trong tương lai từ SABA Sports sang hộp thư Chính này luôn không. Nhấp vào “<strong>Có</strong>”.</p>
+                    <figure class="wp-block-image size-large">
+                        <img src="~/images/activeAccount/active_3.png" alt="content">
+                    </figure>
+                    <div class="euro-detail-title">
+                        <span class="euro-number">#2</span>
+                        <span>Trên điện thoại</span>
+                    </div>
+                    <p><strong>Bước 1</strong>: <a href="https://mail.google.com/" class="rank-math-link">Đăng nhập</a> vào tài khoản Gmail của bạn trên điện thoại. Sau đó, nhấn vào biểu tượng menu ở góc trái trên cùng màn hình.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_4.jpg" alt="content">
+                    </figure>
+                    <p><strong>Bước 2</strong>: Nhấn vào hộp thư <strong>Quảng Cáo</strong>.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_5.jpg" alt="content">
+                    </figure>
+                    <p><strong>Bước 3</strong>: Mở email <strong>Kích hoạt tài khoản SABA Sports</strong>.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_6.jpg" alt="content">
+                    </figure>
+                    <p><strong>Bước 4</strong>: Làm theo các bước sau để di chuyển email của SABA Sports về hộp thư Chính.</p>
+                    <figure class="wp-block-image">
+                        <img src="~/images/activeAccount/active_7.jpg" alt="content">
+                    </figure>
+                    <figure class="wp-block-image size-large">
+                        <img src="~/images/activeAccount/active_8.jpg" alt="content">
+                    </figure>
+                    <p>Kể từ giờ, tất cả các email từ SABA Sports sẽ tự động được phân loại vào hộp thư Chính. </p>
+                    <p>Bạn hãy vào email <strong>Kích hoạt tài khoản SABA Sports</strong>, nhấn vào đường link để có thể đăng nhập và trải nghiệm những sự kiện tại SABA Sports Vietnam nhé!</p>
+                </div>
+            </div>
+        </div>
+        @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel { CateSlug = "bong-da" })
+    </div>
+    @await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>

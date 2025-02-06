@@ -1,0 +1,84 @@
+﻿@using SabaNews.Resources
+
+<p class="back-parent-page">
+    <a href="~/Admin/Statistic/Index">
+        <i class="icon-arrow-left"></i>
+        <span>@ViewResources.BackToPostStatistic</span>
+    </a>
+</p>
+<div class="card-view">
+    <div class="card-item card-yellow">
+        <div class="card-icon bg-yellow"><i class="icon-page icon-date_range"></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">Date</li>
+            <li class="cart-toal-count date-detail-artical">@Model.CreatedDate.ToString("dd MMM yyyy")</li>
+        </ul>
+    </div>
+    @{
+        var countColor = Model.IsVideo ? "orange" : "pupple";
+        var viewColor = Model.IsVideo ? "blue" : "green";
+        var countIcon = Model.IsVideo ? "icon-video-admin" : "icon-icon-admin";
+        var viewIcon = Model.IsVideo ? "icon-video-view-admin" : "icon-post-view";
+    }
+    <div class="card-item card-@countColor">
+        <div class="card-icon bg-@countColor"><i class="icon-page @countIcon"></i></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@Model.Type</li>
+            <li class="cart-toal-count">@Model.Quantity</li>
+        </ul>
+    </div>
+    <div class="card-item card-@viewColor">
+        <div class="card-icon bg-@viewColor"><i class="icon-page @viewIcon"></i></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@Model.Type Views</li>
+            <li class="cart-toal-count">@Model.TotalView</li>
+        </ul>
+    </div>
+</div>
+
+<div class="table-admin table-detail-view">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@ViewResources.CreatedTime</th>
+                <th>@ViewResources.Title</th>
+				<th>
+					<p class="warning-admin">
+						@ViewResources.Author
+						<i id="author-sort" class="table-sort icon-sort-admin" sort-type="@Model.AuthorSort"></i>
+					</p>
+				</th> 
+                <th>
+                    <p class="warning-admin">
+
+                        @ViewResources.TotalViews
+                        <span class="tooltip-icon">
+                            <i class="icon-error_outline"></i>
+                            <span class="tooltip-content">@Model.Tooltip</span>
+                        </span>
+                        <i id="view-sort" class="table-sort icon-sort-admin" sort-type="@Model.ViewSort"></i>
+                    </p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = (Model.Paging.CurrentPage - 1) * Model.Paging.PageSize + 1;
+
+                foreach (var item in Model.ViewDetails)
+                {
+						<tr>
+							<td class="text-center" width="5%">@i</td>
+							<td class="text-center" width="15%">@item.CreatedDate.ToString("HH:mm")</td>
+							<td class="text-left" width="55%"><a href="~/@item.Slug">@item.Title</a></td>
+							<td class="text-center" width="15%">@item.Author</td>
+							<td class="text-right" width="20%">@item.TotalViews</td>
+						</tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+    @(await Component.InvokeAsync("Paging", new { model = Model.Paging }))
+</div>

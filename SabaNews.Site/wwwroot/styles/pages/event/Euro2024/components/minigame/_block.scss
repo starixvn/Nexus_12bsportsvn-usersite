@@ -1,0 +1,36 @@
+.minigame-block{
+    padding: 4rem 0;
+    @include Mobile{
+        padding: 2rem 0;
+    }
+}
+
+.block-heading{
+    margin-bottom: 1.6rem;
+    @include tableMobile{
+        margin-bottom: 2rem;
+    }
+    @include Mobile{
+        text-align: center;
+    }
+    &-text{
+        @include tableMobile{
+            text-align: center;
+        }
+        color: #143CDB;
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        padding-bottom: .6rem;
+        border-bottom: 4px solid $primary-color;
+        display: inline-block;
+        a{
+            text-decoration: none;
+            color: #143CDB;
+        }
+    }
+    .view-more{
+        color: red;
+    }
+}

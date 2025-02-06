@@ -1,0 +1,11 @@
+﻿<div>
+    <p>Xin chào <strong>{0}</strong>,</p>
+</div>
+<p>
+    Để hoàn tất quá trình khởi tạo tài khoản, vui lòng nhấn vào <a href="{1}">đây</a> để xác thực địa chỉ email này là của bạn.
+    <br />
+    <br />
+    Xin cảm ơn,
+    <br />
+    SABA Sports
+</p>

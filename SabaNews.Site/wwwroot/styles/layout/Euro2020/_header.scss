@@ -1,0 +1,181 @@
+﻿@import '../../abstracts/mixins';
+@import '../../components/popup-event';
+@import '../../components/img';
+@import '../header.scss';
+
+$main-color: #03647B;
+$border-block-color: #4DAEC6;
+.header {
+    @include tableMobile{
+        display: block;
+    }
+    .top-header {
+        background: url(../../images/euro2020/banner-menu.png) #0084a4 top center no-repeat;
+        height: 16rem;
+        box-shadow: none;
+        padding: 0;    
+        @include tableMobile{
+            background: #fffdf9;
+        }
+        .logo-euro {
+            background: url(../../../images/euro2020/logo-euro.svg) no-repeat;
+            height: 16rem;
+            background-position: center 18px;
+
+            @include Mobile {
+                display: none;
+            }
+        }
+    }
+
+    .child-mobile-menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+        top: 19rem;
+        background-color: $main-color;
+
+        @include Mobile {
+            position: relative;
+            top: unset;
+        }
+
+        .icon-arrow {
+            display: none;
+            background-image: url(../../../images/icon/arrow.svg);
+
+            @include Mobile {
+                display: block;
+            }
+        }
+
+        .main-child-menu {
+            border: none;
+            overflow-x: auto;
+            justify-content: center;
+            width: 112rem;
+            margin: 0 auto;
+            background-color: inherit;
+
+            @include Mobile {
+                width: 100%;
+                background-color: #fff;
+                justify-content: flex-start;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        .menu-item {
+            display: inline-block;
+            padding: 11px 30px 9px;
+
+            @include Mobile {
+                padding: 0;
+            }
+
+            &:hover, &.active {
+                background-color: #fff;
+
+                .item {
+                    color: #F12F19;
+                }
+            }
+
+            .item {
+                color: #FFFDF9;
+                font-size: 1.4rem;
+                padding: 0;
+
+                @include Mobile {
+                    color: #4f4f4f;
+                    padding: 0 1.2rem;
+                }
+            }
+        }
+    }
+
+    .header-controls {
+        $languages: en, cn, vn;
+
+        @each $language in $languages {
+            .languages-box .flag-#{$language} {
+                background: url("../../../images/flag/icon-#{$language}.svg") no-repeat;
+            }
+        }
+    }
+
+    .background-euro-mobile {
+        background: url(../../../images/euro2020/banner-euro-mobile.png) #0084A4 top center no-repeat;
+        height: 12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .logo-euro {
+            background: url(../../../images/euro2020/logo-euro.svg) no-repeat;
+            width: 6.8rem;
+            height: 7.8rem;
+        }
+    }
+}
+
+.child-mobile-menu{
+    z-index : 99;
+}
+.main {
+    padding-top: 2rem !important;
+}
+
+
+
+.group-menu{
+    display: none !important;
+    @include tableMobile{
+        display: block !important;
+        .main-menu{
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0 1.2rem;
+            align-items: flex-start;
+            list-style: none;
+            padding: 1.2rem;
+            .menu-item{
+                position: relative;
+                a{
+                    text-decoration: none;
+                    padding: 1.1rem 2rem 1.1rem 0;
+                    margin-right: 0;
+                    display: block;
+                    line-height: normal;
+                    color: #333;
+                    font-weight: 600;
+                }
+                &::after{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    right: 50%;
+                    height: 1px;
+                    background: #e0e0e0;
+                    transform: translate(50%, 0);
+                }
+            }
+        }
+    }
+}
+
+.hidden-body {
+    .top-header{
+        @include tableMobile{
+            width: 100%;
+            z-index: 100;
+            display: block;
+            top: 69px !important;
+            bottom: 0;
+            position: fixed !important;
+            z-index: 10;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using SabaNews.Models.ViewModel.Posts;
+@using SabaNews.Resources;
+@{
+    Layout = "_AdminLayout";
+}
+
+@model bool
+
+@section Title{
+    @ViewResources.ConfirmEmail
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="container">
+        <div class="block block-main">
+            <div class="block__content block__title">
+                <h3>@ViewResources.UnsubscribeSuccessfully</h3>
+            </div>
+        </div>
+        <div class="block block-extension">
+            @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel())
+        </div>
+        
+    </div>
+</section>

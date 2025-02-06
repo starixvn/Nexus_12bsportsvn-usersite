@@ -1,0 +1,115 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper
+@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.MatchManagement
+}
+
+@section Title{
+    @ViewResources.MatchManagement
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.MatchManagement" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/livescore/match-management/match-management.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/styles/pages/select2.min.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <div class="form-horizontal filter">
+        <div class="form-input">
+            <p class="label-admin">@ViewResources.LeagueName</p>
+            <select class="custom-input list-input league-select">
+                @foreach (var league in Model.Leagues)
+                {
+                    var selected = league.LeagueId == Model.LeagueId ? "selected" : "";
+                    <option @selected value="@league.LeagueId" data-season="@league.CurrentSeasonId" data-name="@GetLeagueName(league)">@GetLeagueName(league)</option>
+                }
+            </select>
+        </div>
+        <div class="form-input">
+            <p class="label-admin">Season</p>
+            <div id="seasonFilter">
+                <select class="custom-input list-input" name="season">
+                    <option value="0">0</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-input">
+            <p class="label-admin">Team Name</p>
+            <input type="text" class="custom-input list-input search-team"  placeholder="Enter Team Name..." />
+        </div>
+        <button class="btn-custom-admin" type="submit" id="submit-btn">@ViewResources.Submit</button>
+    </div>
+    <div class="content">
+        <div class="data-grid" id="data-grid"></div>
+    </div>
+
+    <div class="modal" id="NoticeModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title title-success">
+                    <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-edit-center" id="EditMatchModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title"></h2>
+                    <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body ck-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        window.leagueId = '@Model.LeagueId';
+        window.seasonId = '@Model.SeasonId';
+    </script>
+    <script src="~/js/admin/livescore/match-management/match-management.js" asp-append-version="true"></script>
+    <script src="~/js/select2.min.js" asp-append-version="true"></script>
+}

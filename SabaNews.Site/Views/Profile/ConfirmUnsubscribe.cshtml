@@ -1,0 +1,37 @@
+﻿@section Title{
+    @ViewResources.ConfirmEmail
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+
+@section Scripts {
+    <script>
+		var userId = '@Model.UserId';
+		var token = '@Model.Token';
+    </script>
+    <script src="~/js/profile/unsubscribe.js" asp-append-version="true"></script>
+}
+@(await Component.InvokeAsync("Menu"))
+
+<section class="main content">
+</section>
+<div class="auth-form">
+    <div class="modal modal-page" id="ConfirmUnSubscribe" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                    <i class="icon-close"></i>
+                </button>
+                <div class="modal-body modal-body-custom">
+                    <h3 class="heading-modal-page">@ViewResources.ConfirmUnsubscribeUser</h3>
+                    <div class="button-confirm">
+                        <button class="btn-custom-outline unsubscribe" href="javascript:;">Có</button>
+                        <button class="btn-custom-admin" data-dismiss="modal" aria-label="Close">Không</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

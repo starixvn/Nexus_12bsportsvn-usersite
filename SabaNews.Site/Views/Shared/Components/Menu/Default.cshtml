@@ -1,0 +1,390 @@
+﻿@using SabaNews.Core.Constants;
+@using System.Linq;
+@using SabaNews.Models
+@using SabaNews.Resources
+@model MenuViewModel;
+
+<div class="header @Model.Page">
+    <div class="button-mobile">
+        <span class="line-mb"></span>
+        <span class="line-mb"></span>
+        <span class="line-mb"></span>
+    </div>
+    <div class="header-controls">
+        <div class="container padding-mobile-none">
+            <div class="banner-euro-desktop banner-desktop-top"></div>
+            @*<div class="skeleton-desktop skeleton-banner">
+                    <div class="skeleton-banner-euro-desktop"></div>
+                </div>*@
+
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/images/sabasports.svg" alt="SABA Sports, tin bong da, tin the thao, ltd bong da" asp-append-version="true" width="120" height="55">
+                </a>
+            </div>
+            <ul class="header-auth-provider">
+                <li class="item-control languages-box">
+                    <div class="language-select"><span class="flag flag-vn"></span><span class="country">Tiếng Việt</span></div>
+                    <ul class="languages-list">
+                        <li><a class="lang-item" href="https://www.sabasports.com.cn/"><span class="flag flag-cn"></span><span>简体中文</span></a>
+                        <li>
+                            <a class="lang-item" href="https://www.thesabamynews.com/"><span class="flag flag-en"></span><span>English</span></a>
+                        </li>
+                        <li>
+                            <a class="lang-item" href="https://www.sabasports.in/"><span class="flag flag-in"></span><span>India</span></a>
+                        </li>
+                        <li>
+                            <a class="lang-item" href="https://www.thesabasportsindo.com/"><span class="flag flag-ind"></span><span>Indonesia</span></a>
+                        </li>
+                        <li>
+                            <a class="lang-item" href="https://www.sabanews-th.com/"><span class="flag flag-th"></span><span>Thailand</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="item-control search-desktop search-input">
+                    <form action="/Search" method="post" id="search">
+                        <input class="keyword-input search-box" id="search-keyword" type="text" placeholder="Tìm kiếm...">
+                        <button type="submit" class="btn btn-search" aria-label="search">
+                            <i class="icon-search"></i>
+                        </button>
+                    </form>
+                </li>
+
+                <li class="item-control notification-auth">
+                    <span class="bell">
+                        <a href="#" class="auth-bell"><i class="icon-bell"></i></a>
+                        <a href="#" class="number-bell">10</a>
+                    </span>
+                </li>
+
+                <li class="item-control auth-input">
+                    @if (Model.IsAuthenticated)
+                    {
+                        <ul class="auth-provider">
+                            @if (Model.User.Photo == null)
+                            {
+                                <li class="avatar-user">@Model.User.Name.Substring(0, 1)</li>
+                            }
+                            else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                            {
+                                <li class="avatar-user remove-bg"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                            }
+                            else
+                            {
+                                <li class="avatar-user remove-bg"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                            }
+                            <li class="auth-displayname">
+                                <a class="item display-user">@Model.User.Name</a>
+                                <span class="saba-id">ID: @Model.User.Id</span>
+                            </li>
+                        </ul>
+                        <ul class="box-auth">
+                            <li>
+                                <ul class="auth-provider">
+                                    @if (Model.User.Photo == null)
+                                    {
+                                        <li class="avatar-user">@Model.User.Name.Substring(0, 1)</li>
+                                    }
+                                    else if (Model.User.Photo.ToLower().Contains("https://") || Model.User.Photo.ToLower().Contains("http://"))
+                                    {
+                                        <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="avatar-user"><img class="profile_image" alt="@Model.User.Name" loading="lazy" src="/uploads/@Model.User.Photo" width="300" data-name="@Model.User.Name.Substring(0, 1)" /></li>
+                                    }
+                                    <li class="auth-displayname">
+                                        <a class="item display-user">@Model.User.Name</a>
+                                        <span class="saba-id">ID: @Model.User.Id</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="info-user auth-info"><a href="@Url.Action("Index", "Profile")" class="item"><i class="icon-profile icon-profile-circle"></i> @ViewResources.MyAccount</a></li>
+                            <li class="info-user">
+                                <a class="item" href="@Url.Action("ListSavedPosts", "Profile")"><i class="icon-profile icon-Bookmark2"></i> Tin đã lưu</a>
+                            </li>
+                            @if (Model.IsAdmin)
+                            {
+                                <li class="info-user">
+                                    <a class="item" href="~/Admin/Statistic/Index"><i class="icon-profile icon-setting-3"></i> @ViewResources.Administration</a>
+                                </li>
+                            }
+                            <li class="info-user auth-logout"><a href="~/Auth/Logout?returnUrl=@Context.Request.Path" class="item"><i class="icon-profile icon-logout1"></i> @ViewResources.Logout</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="item auth-login" href="javascript:;">@ViewResources.Login</a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@{
+    var popularKeywords = Model.DetailMenu.Where(item => item.ParentId == Model.PopularKeyword?.PostId);
+    var parentDetailMenus = Model.DetailMenu.Where(item => item.ParentId == 0 && item.PostId != Model.PopularKeyword?.PostId);
+    const int firstColumItemNumber = 5;
+}
+<div class="top-header">
+    <div class="container padding-mobile-none">
+        <div class="group-menu">
+            <div class="nav-menu">
+                @* Desktop header menu *@
+                <ul class="main-menu-pc" >
+                    <li class="menu-item hiden-icon-mobile">
+                        <a href="/" class="item @(Model.CategorySlug == "/" ? "active" : "")"><i class="icon-home"></i></a>
+                    </li>
+                    @foreach (var menu in Model.Menus.Where(item => item.ParentId == 0))
+                    {
+                        var slug = menu.CateSlug;
+                        var link = getMenuLink(menu);
+                        var lastestNewClass = menu.CateSlug == CategoryKey.NewPostSlug ? "hide" : "";
+                        if (menu.CateId != Constants.Home)
+                        {
+                            var activeMenu = Model.CategorySlug != null && menu.Slug == Model.CategorySlug ? "active" : "";
+                            var lv2Menus = Model.Menus.Where(item => item.ParentId == menu.PostId);
+                            <li class="menu-item @lastestNewClass">
+                                <a href="@link" class="item @activeMenu"  title="@menu.MenuTitle">@menu.MenuTitle</a>
+                                @{RenderSubMenu(Model.Menus, menu.PostId);}
+                            </li>
+                        }
+                    }
+                    <li class="open-menu-popup">
+                        <i class="icon-menu"></i>
+                    </li>
+                </ul>
+
+                @* End Desktop header menu *@
+
+
+                @* Mobile popup menu *@
+                <div class="main-menu-mobile">
+                    @{
+                        var mobileIndex = firstColumItemNumber;
+                        var half = (parentDetailMenus.Count() + firstColumItemNumber + 2) / 2;
+                        <ul>
+                        @foreach (var menu in parentDetailMenus.Skip(firstColumItemNumber))
+                        {
+                            var link = getMenuLink(menu);
+                            var subMenus = Model.DetailMenu.Where(item => item.ParentId == menu.PostId);
+                            mobileIndex++;
+                            @if(mobileIndex == half) {
+                                @:</ul><ul>
+                            }
+                            @if(mobileIndex == firstColumItemNumber + 1 ){
+                                @foreach (var first in parentDetailMenus.Take(firstColumItemNumber))
+                                {
+                                    <li class="menu-item">
+                                        <a href="@getMenuLink(first)" class="item" title="@first.MenuTitle">@first.MenuTitle</a>
+                                    </li>
+                                }
+                                <li class="right-header-section search-input">
+                                    <form action="/Search" method="post" id="search">
+                                        <input class="keyword-input search-box" id="search-keyword" type="text" placeholder="Tìm kiếm...">
+                                        <button type="submit" class="btn btn-search" aria-label="search">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </form>
+                                </li>
+                            }
+                            <li class="menu-item" >
+                                <a href="@link" class="item">@menu.MenuTitle</a>
+                                @if(subMenus.Count() > 0){
+                                    <ul>
+                                        @foreach (var subMenu in subMenus){
+                                            var subLink = getMenuLink(subMenu);
+                                            <li><a href="@subLink" title="@subMenu.MenuTitle">@subMenu.MenuTitle</a></li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                        </ul>
+                    }
+                </div>
+
+                <div class="keywork">
+                    <div class="keywork-title">Từ khóa phổ biến</div>
+                    <ul class="keywork-list">
+                        @foreach (var keyword in popularKeywords)
+                        {
+                            var link = getMenuLink(keyword);
+                                <li><a href="@link">@keyword.MenuTitle</a></li>
+                        }
+                    </ul>
+                </div>
+
+                @* End Mobile popup menu *@
+            </div>
+        </div>
+
+        @* Desktop popup menu *@
+        <div class="menu-popup hide-popup">
+            <div class="group-column-popup">
+                <ul class="menu-popup-header">
+                    <li class="all-category">Tất cả chuyên mục</li>
+                    <li class="close-popup"><i class="icon-close"></i></li>
+                </ul>
+                <div class="menu-popup-content">
+                    <div class="content-menu">
+                        <div class="block-menu">
+                            @{
+                                var indexItem = 1;
+                                @foreach (var menu in parentDetailMenus.Skip(firstColumItemNumber))
+                                {
+                                    var link = getMenuLink(menu);
+                                    var subMenus = Model.DetailMenu.Where(item => item.ParentId == menu.PostId);
+                                    indexItem++;
+                                    @if(indexItem > 0 && indexItem % 6 == 2) {
+                                        @:</div><div class="block-menu">
+                                    }
+                                    @if(indexItem == 2)
+                                    {
+                                        indexItem++;
+                                         <div class="block-menu-item">
+                                            <ul class="block-menu-list">
+                                                @foreach (var first in parentDetailMenus.Take(firstColumItemNumber))
+                                                {
+                                                    <div class="block-menu-title"><a href="@getMenuLink(first)" title="@first.MenuTitle">@first.MenuTitle</a></div>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                    <div class="block-menu-item">
+                                        <div class="block-menu-title"><a href="@link" title="@menu.MenuTitle">@menu.MenuTitle</a></div>
+                                        <ul class="block-menu-list">
+                                            @foreach (var subMenu in subMenus){
+                                                var subLink = getMenuLink(subMenu);
+                                                <li><a href="@subLink" title="@subMenu.MenuTitle">@subMenu.MenuTitle</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="slide-bar-menu">
+                        <div class="box-slidebar">
+                            <div class="box-slidebar-title">Từ khóa phổ biến</div>
+                            <ul class="box-slidebar-list">
+                                @foreach (var keyword in popularKeywords)
+                                {
+                                    var link = getMenuLink(keyword);
+                                        <li><a href="@link">@keyword.MenuTitle</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* End Desktop popup menu *@
+    </div>
+</div>
+
+
+
+
+@* Mobile header menu *@
+<div class="child-mobile-menu">
+    @{
+        var count = 0;
+        var arrayActiveMenu = new int[] { };
+        if (Model.MenuItems != null && Model.MenuItems.Item1 > 0)
+        {
+            arrayActiveMenu = [Model.MenuItems.Item1, Model.MenuItems.Item2];
+        }
+        arrayActiveMenu = arrayActiveMenu.Where(item => item > 0).ToArray();
+    }
+    <ul class="main-child-menu  @(arrayActiveMenu.Length > 0 ? "multilv-menu-mobile" : "")">
+        <li class="menu-item">
+            <a href="/" class="item @(Model.CategorySlug == "/" ? "active" : "")"><i class="icon-home"></i></a>
+        </li>
+        @foreach (var activeMenu in arrayActiveMenu)
+        {
+            if (activeMenu == 0) break;
+            var menu = Model.DetailMenu.FirstOrDefault(item => item.PostId == activeMenu && item.PostId != Model.PopularKeyword?.PostId);
+            if (menu == null) break;
+            count++;
+            var coMenu = Model.DetailMenu.Where(item => item.ParentId == menu.ParentId && item.PostId != Model.PopularKeyword?.PostId);
+            var active = count == arrayActiveMenu.Length ? "active" : "";
+            <li>
+                <div class="menu-select @active">
+                    <a href="@getMenuLink(menu)">@menu.MenuTitle</a>
+                    <select class="select_ad" onChange="window.location.href=this.value">
+                        @foreach (var item in coMenu)
+                        {
+                            var selected = menu.PostId == item.PostId ? "selected" : "";
+                            <!option class="@selected" @selected value="@getMenuLink(item)">@item.MenuTitle</!option>
+                        }
+                    </select>
+                </div>
+            </li>
+        }
+        @if (arrayActiveMenu.Length == 0)
+        {
+            @foreach (var menu in Model.Menus.Where(item => item.ParentId == 0))
+            {
+                if (menu.CateId != Constants.Home)
+                {
+                    var activeMenu = Model.CategorySlug != null && menu.Slug == Model.CategorySlug ? "active" : "";
+                    <li class="menu-item">
+                        <a href="@getMenuLink(menu)" class="item @activeMenu">@menu.MenuTitle</a>
+                    </li>
+                }
+
+            }
+        }
+
+    </ul>
+    @if (arrayActiveMenu.Length == 0)
+    {
+        <span class="icon-arrow scroll-mobile-menu"></span>
+    }
+</div>
+@* End Mobile header menu *@
+
+@functions {
+    private string getMenuLink(Menu menu)
+    {
+        if (menu == null) return null;
+        var link = Url.Action("Category", "Home", new {slug =  menu.CateSlug + CategoryKey.Suffix});
+        if(!string.IsNullOrEmpty(menu.CustomLink))
+        {
+            link = menu.CustomLink;
+        }
+        else if (menu.PageSlug == Constants.MatchScheduleSlug)
+        {
+            link = "/lich-thi-dau/bong-da";
+        }
+        else
+        {
+            Url.Action("Category", "Home", new {slug = menu.CateSlug + CategoryKey.Suffix });
+        }
+        return link;
+    }
+
+    void RenderSubMenu(IEnumerable<Menu> Menus, Nullable<int> parentID)
+    {
+        var subMenus = Menus.Where(item => item.ParentId == parentID);
+        @if (subMenus.Count() > 0)
+        {
+            <ul>
+                @foreach (var subMenu in subMenus)
+                {
+                    var subLink = getMenuLink(subMenu);
+                    var nextLevelMenu = Menus.Where(item => item.ParentId.Equals(subMenu.PostId)).Count();
+                    <li>
+                        <a href="@subLink">@subMenu.MenuTitle</a>
+                        @if (nextLevelMenu > 0)
+                        {
+                            { RenderSubMenu(Menus, subMenu.PostId); }
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    }
+}

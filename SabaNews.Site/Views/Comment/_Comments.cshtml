@@ -1,0 +1,108 @@
+﻿<div class="heading-post-comment"><h3>@ViewResources.Comment </h3><span class="total-count-comment">  (@Model.CommentTemplate.TotalItems)</span></div>
+<form>
+	<input type="hidden" name="filterType" value="@Model.FilterType" />
+	<div class="comment-content-box">
+		<textarea rows="5" name="comment_value" id="comment_value" placeholder=" Ý kiến của bạn"></textarea>
+		<span class="note-text-count" style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);"><span class="counter_word">0</span> / 1500 ký tự</span>
+	</div>
+    <p class="error"></p>
+	@if (Model.IsLogin)
+	{
+		<input type="button" name="add_comment" class="add_comment" value="Gửi" />
+	}
+
+</form>
+@if (Model.CommentTemplate.Comments.Count > 0)
+{
+	<div class="filter_comment">
+		<a href="javascript:;" class="@(Model.FilterType == "like"? "active" : "")" data-type="like">@ViewResources.CommentMostInterested</a>
+		<a href="javascript:;" class="@(Model.FilterType == "time"? "active" : "")" data-type="time">@ViewResources.CommentMostRecent</a>
+	</div>
+}
+
+@{
+	var count = 0;
+}
+<div class="list_comments">
+	@foreach (var comment in Model.CommentTemplate.Comments)
+	{
+		var getMore = "";
+		if (count >= 5 && Model.GetMore)
+		{
+			getMore = "get_more";
+		}
+		count++;
+		<div class="comment_item @getMore">
+			<!-- new --->
+			<div class="group-comment">
+				<div class="avatar">
+					@if (comment.Photo == null)
+					{
+						<span>@comment.CommentAuthor.Substring(0, 1)</span>
+					}
+					else if (comment.Photo.ToLower().Contains("https://") || comment.Photo.ToLower().Contains("http://"))
+					{
+						<span><img asp-append-version="true" alt="@comment.CommentAuthor" class="profile_image" loading="lazy" src="@comment.Photo" width="50" data-name="@comment.CommentAuthor.Substring(0, 1)" /></span>
+					}
+					else
+					{
+						<span><img asp-append-version="true" alt="@comment.CommentAuthor" class="profile_image" loading="lazy" src="~/uploads/@comment.Photo" width="50" data-name="@comment.CommentAuthor.Substring(0, 1)" /></span>
+					}
+				</div>
+				<div class="user-comment">
+					<span class="nick-name"><a href="javascript:;">@comment.CommentAuthor</a></span>
+					<span class="txt-comment">@Html.Raw(comment.CommentContent)</span>
+					<p class="controls">
+						<span class="controls-comment toggle-like like-comment @(comment.isLiked ? "active-like" : "")"  data-commentid="@comment.CommentID"><a href="javascript:;">@Html.Raw(comment.CommentLikeCount > 0 ? "<span class='total_like'>" + comment.CommentLikeCount + "</span>" : "") <i class="icon-like"></i></a></span>
+
+						<span class="controls-comment reply-comment" data-id="@comment.CommentID" data-parent="@comment.CommentID"><a href="javascript:;">@ViewResources.CommentReply</a></span>
+
+						<span class="controls-comment time-comment"><a href="javascript:;">@comment.CommentTime</a></span>
+					</p>
+					@if (comment.CommentNumberChildren > 0)
+					{
+						<p class="controls">
+							<span class="controls-comment controls-reply"><a href="javascript:;" class="view_all_reply" data-postid="@comment.CommentPostID" data-cmtid="@comment.CommentID"><i class="icon-reply"></i> <span class="num_reply_cmt">@comment.CommentNumberChildren</span> @ViewResources.CommentReply</a></span>
+						</p>
+					}
+
+					<div class="group-sub-comment">
+					</div>
+				</div>
+			</div>
+			<!-- new --->
+		</div>}
+	@{
+		var getMoreClass = "";
+	}
+	@if (Model.GetMore)
+	{
+		getMoreClass = "get_more";
+		<button type="button" class="show_get_more_comment">Xem thêm</button>
+	}
+	@if (Model.Paging.TotalPages > 1)
+	{
+		var prev = Model.Paging.CurrentPage - 1 >= 1 ? Model.Paging.CurrentPage - 1 : 1;
+		var next = Model.Paging.CurrentPage + 1 <= Model.Paging.TotalPages ? Model.Paging.CurrentPage + 1 : Model.Paging.TotalPages;
+		var disabledPrev = Model.Paging.CurrentPage == prev ? "" : "comment-pagination";
+		var disabledNext = Model.Paging.CurrentPage == next ? "" : "comment-pagination";
+		<div class="pagination @getMoreClass" data-total="@Model.Paging.TotalPages" data-current="@Model.Paging.CurrentPage">
+			<a class="@disabledPrev" href="javascript:;" data-page="@prev">❮</a>
+			<input type="text" name="inputPage" class="btn-page type_page paging_folder" value="@Model.Paging.CurrentPage" max-page="@Model.Paging.TotalPages" />
+			<a class="@disabledNext" href="javascript:;" data-page="@next">❯</a>
+		</div>
+	}
+	<div class="clearfix"></div>
+</div>
+<script>
+	var data = {
+		isLogin: '@Model.IsLogin',
+	};
+
+	$('img.profile_image').on('error', function () {
+		if (typeof $(this).data('name') !== "undefined") {
+			$(this).parent().html($(this).data('name'));
+			$(this).remove();
+		}
+	});
+</script>

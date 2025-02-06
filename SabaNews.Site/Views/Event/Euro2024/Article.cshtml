@@ -1,0 +1,308 @@
+@using static SabaNews.Site.Extensions.DeviceHelper;
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Metadata {
+    <meta name="description" content='@(Model.SinglePost.PostExcerpt != "" ? Model.SinglePost.PostExcerpt : "&nbsp;" )' />
+    <meta property="og:url" content='@Model.AbsoluteUrl' />
+    <meta property="og:description" content="&nbsp;" />
+    <meta property="og:title" content='@Model.SinglePost.PostTitle' />
+    <meta property="og:image" content='@Model.SinglePost.FeatureImage' />
+    <link rel="canonical" href="@Model.AbsoluteUrl" />
+    <link rel="alternate" href="@Model.AbsoluteUrl" hreflang="vi-vn" />
+}
+@section Title{
+    @("Euro 2024: " + Model.SinglePost.PostTitle)
+}
+
+
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-post-detail.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+
+    @if (!string.IsNullOrEmpty(Model.MatchId))
+    {
+        <environment include="Development">
+            <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/match-detail-shortcut.chunk.css"  asp-append-version="true" />
+        </environment>
+        <environment exclude="Development">
+            <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/match-detail-shortcut.chunk.css" asp-append-version="true" />
+        </environment>
+    }
+}
+
+
+
+@section Scripts {
+    <script>
+        window.cateSlug = '@Model.CateInfo.Slug';
+        window.postId = '@Model.SinglePost.ID';
+        window.matchId = '@Model.MatchId';
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/single.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/euro2024.js" asp-append-version="true"></script>
+        <script src="~/js/comment.js" asp-append-version="true"></script>
+        <script src="~/js/event/euro2024/poll.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/euro-2024/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/euro-2024-article.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @if (!string.IsNullOrEmpty(Model.MatchId))
+    {
+        <environment include="Development">
+            <script src="~/js/dev/pages/livescore/soccer/match-detail-shortcut.chunk.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="~/js/pro/pages/livescore/soccer/match-detail-shortcut.chunk.js" asp-append-version="true"></script>
+        </environment>
+    }
+
+}
+
+
+@(await Component.InvokeAsync("HeaderEuro2024"))
+<div class="banner-euro-mobile banner-mobile-top"></div>
+<div id="euro-fixture"></div>
+<div class="euro-page-main">
+    <div class="detail-pages euro2024-detail-pages">
+        <div class="container detail-container">
+            <div class="main-social fixed-social">
+                <div class="button-detail-page">
+                    <span class="line-mb"></span>
+                    <span class="line-mb"></span>
+                    <span class="line-mb"></span>
+                </div>
+                <ul class="social">
+                    <li class="item-social icon-mobile">
+                        <a href="http://www.facebook.com/sharer/sharer.php?u=@Model.AbsoluteUrl"
+                           data-count="facebook" target="_blank"
+                           rel="nofollow"
+                           class="item intent facebook"
+                           title="@ViewResources.ShareFacebook">
+                            <i class="icon-social icon-detail_facebook"></i>
+                        </a>
+                    </li>
+                    <li class="item-social icon-mobile">
+                        <a href="javascript:;"
+                           rel="nofollow"
+                           class="item intent copy-clipboard"
+                           title="@ViewResources.CopyLink">
+                            <i class="icon-social icon-link"></i>
+                        </a>
+                        <span class="tip">@ViewResources.CopyClipBoardSuccessfully</span>
+                    </li>
+                    <li class="item-social icon-mobile">
+                        <a href="javascript:;" class="item intent save_post @(Model.SavePost != null ? "active" : "")" title="@ViewResources.SavePost">
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-bookmark">
+                                <path d="M1.01 2.00062V2C1.01 1.44575 1.4588 1 2 1H12C12.5477 1 13 1.45228 13 2V16.4835L7.39392 14.0809L7 13.912L6.60608 14.0809L1.00095 16.4831L1.01 2.00062Z" stroke="#999999" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="item-social icon-mobile">
+                        <a href="#comment"
+                           class="item intent"
+                           title="@ViewResources.Comment">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-comment">
+                                <path d="M16.991 1.8V1.80056L16.9987 15.5844L15.1071 13.6929L14.8142 13.4H14.4H1.8C1.36228 13.4 1 13.0377 1 12.6V1.8C1 1.36228 1.36228 1 1.8 1H16.2C16.6312 1 16.991 1.35575 16.991 1.8Z" stroke="#999999" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="item-social icon-mobile">
+                        @if (Model.IsVideo)
+                        {
+                            <a href="@Url.Action("Video", "Euro2024")"
+                               class="item intent"
+                               title="@ViewResources.Back @ViewResources.Video">
+                                <i class="icon-social icon-back"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Model.CateInfo.Url"
+                               class="item intent"
+                               title="@ViewResources.Back @Model.CateInfo.Name">
+                                <i class="icon-social icon-back"></i>
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </div>
+            <div class="block-main">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/euro-2024">Euro 2024</a></li>
+                    <li><a href="@Model.CateInfo.Url">@Model.CateInfo.Name</a></li>
+                </ul>
+                <div class="post-euro-detail">
+                    @if (Model.IsVideo)
+                    {
+                        <div class="block-items-img hover-image">
+                            <input type="hidden" name="iframe_value" value="@Model.SinglePost.PostContent" />
+                            <a>
+                                <img src=@Url.Content(Model.SinglePost.FeatureImage) alt=@Model.SinglePost.PostTitle class="img-res" loading="lazy" />
+                            </a>
+                            <div class="euro-play-video" post-id="@Model.SinglePost.ID">
+                                <span class="icon-play"></span>
+                            </div>
+                        </div>
+                    }
+                    <div style="display: none;" class="single play_video"></div>
+                    <h1 class="block-items-heading">@Model.SinglePost.PostTitle</h1>
+                    <div class="group-author">
+                        <div class="author-section" style="text-align:right">
+                            <a href="@Url.Action("Author", "Home", new { authorId = Model.SinglePost.AuthorId })">@Model.SinglePost.Author
+                            </a>
+                        </div>
+                        <span class="block-items-datetime"> - @Model.SinglePost.PostTimeFormatSingle</span>
+                    </div>
+                    @if (!Model.IsVideo)
+                    {
+                        <div class="content">
+                            @Html.Raw(Model.SinglePost.PostContent)
+                        </div>
+                    }
+                </div>
+                <div class="main-social">
+                    <ul class="social left-social">
+                        <li class="item-social">
+                            @if (Model.IsVideo)
+                            {
+                                <a href="@Url.Action("Video", "Euro2024")"
+                                   class="item intent"
+                                   title="@ViewResources.Back @ViewResources.Video">
+                                    <i class="icon-social icon-back"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Model.CateInfo.Url"
+                                   class="item intent"
+                                   title="@ViewResources.Back @Model.CateInfo.Name">
+                                    <i class="icon-social icon-back"></i>
+                                </a>
+                            }
+                        </li>
+                        <li class="item-social">
+                            <a href="javascript:;" class="item intent save_post @(Model.SavePost != null ? "active" : "")">
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-bookmark">
+                                    <path d="M0.51 2.00031V2C0.51 1.17287 1.1794 0.5 2 0.5H12C12.8239 0.5 13.5 1.17614 13.5 2V17.2417L7.19696 14.5404L7 14.456L6.80304 14.5404L0.500474 17.2415L0.51 2.00031Z" fill="none" stroke="#999999" />
+                                </svg>
+                                Lưu Tin
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="social right-social">
+                        <li class="item-social">Chia sẻ:</li>
+                        <li class="item-social">
+                            <a href="http://www.facebook.com/sharer/sharer.php?u=@Model.AbsoluteUrl"
+                               data-count="facebook" target="_blank"
+                               rel="nofollow"
+                               class="item intent facebook"
+                               title="@ViewResources.ShareFacebook">
+                                <i class="icon-social icon-detail_facebook"></i>
+                            </a>
+                        </li>
+                        <li class="item-social">
+                            <a href="javascript:;"
+                               onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&su=@Model.SinglePost.PostTitle&body=@Model.AbsoluteUrl', '_blank')"
+                               rel="nofollow" class="item"
+                               title="@ViewResources.ShareMail">
+                                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-email">
+                                    <path d="M16.2 0H1.8C0.81 0 0.00899999 0.7875 0.00899999 1.75L0 12.25C0 13.2125 0.81 14 1.8 14H16.2C17.19 14 18 13.2125 18 12.25V1.75C18 0.7875 17.19 0 16.2 0ZM16.2 3.5L9 7.875L1.8 3.5V1.75L9 6.125L16.2 1.75V3.5Z" fill="#999999" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="item-social">
+                            <a href="javascript:;"
+                               rel="nofollow"
+                               class="item intent copy-clipboard"
+                               title="@ViewResources.CopyLink">
+                                <i class="icon-social icon-link"></i>
+                            </a>
+                            <span class="tip">@ViewResources.CopyClipBoardSuccessfully</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tag-post">
+                    @if (Model.SinglePost.Tags != null && Model.SinglePost.TagsSlug != null)
+                    {
+                        var tags_slug = Model.SinglePost.TagsSlug.Split(',');
+                        var tags = Model.SinglePost.Tags.Split(',');
+                        @for (var i = 0; i < tags.Length; i++)
+                        {
+                            <h3 class="tag-item"><a href="@Url.Action("Tag", "Home", new { tagname = tags_slug[i].Trim() })" class="tag">@tags[i]</a></h3>
+                        }
+                    }
+                </div>
+                <input name="postID" id="postID" type="hidden" value="@Model.SinglePost.ID" />
+                <input name="isVideo" id="isVideo" type="hidden" value="@Model.IsVideo.ToString()" />
+                <input name="isLogin" id="isLogin" type="hidden" value="@Model.IsLogin.ToString()" />
+                <div class="comment-post" id="comment">
+                </div>
+                @if (isMobile)
+                {
+                    <div data-ismobile="@isMobile" class="euro-top-standing sticky-box"></div>
+                    <div class="euro-top-scorer sticky-box"></div>
+                }
+                <div class="euro-related-posts" data-postid="@Model.SinglePost.ID" data-cateslug="@Model.CateInfo.Slug"></div>
+                @if(isMobile)
+                {
+                    <div class="euro-most-view-posts" data-postid="@Model.SinglePost.ID" data-cateslug="@Model.CateInfo.Slug" ></div>
+                }
+            </div>
+            @if(!isMobile)
+            {
+                <div class="page-items-right">
+                    <div class="sticky-position">
+                        <div class="sticky-position">
+                            <div class="euro-most-view-posts" data-postid="@Model.SinglePost.ID" data-cateslug="@Model.CateInfo.Slug" ></div>
+                            <div data-ismobile="@isMobile" class="euro-top-standing sticky-box"></div>
+                            <div class="euro-top-scorer sticky-box"></div>
+                        </div>
+                    </div>
+                </div> 
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    var checkScroll = function () {
+        var el = document.querySelector('#comment');
+        var main = document.querySelector('.fixed-social');
+        var hambuger = document.querySelector('.button-mobile');
+        if (el !== null) {
+            var top_of_obj = el.offsetTop - 600;
+            var top_of_window = window.scrollY;
+            if (top_of_window > top_of_obj) {
+                main.classList.add('active-nav-socical');
+                hambuger.classList.add('active-nav-socical');
+            } else {
+                main.classList.remove('active-nav-socical');
+                hambuger.classList.remove('active-nav-socical');
+            }
+        }
+    }
+    if (window.innerWidth > 1024) {
+        window.addEventListener('scroll', function () { checkScroll() })
+    }
+</script>

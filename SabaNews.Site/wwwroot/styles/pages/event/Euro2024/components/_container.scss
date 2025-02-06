@@ -1,0 +1,20 @@
+.container,.base-container{
+    width: 100%;
+    padding: 0 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    @include tableMobile{
+        padding : 0 1.2rem ;
+    }
+ 
+    @media (max-width : 1399px){
+        max-width: 117rem;
+    }
+    @media (min-width : 1400px){
+        max-width: 117rem;
+    }
+}
+
+// .medium-container,.detail-container{
+//     max-width: 112rem;
+// }

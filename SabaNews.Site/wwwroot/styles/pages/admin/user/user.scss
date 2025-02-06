@@ -1,0 +1,33 @@
+
+.btn-exportexcel {
+    background-color: #108603;
+    border: none;
+    color: white;
+    padding: 1px 10px;
+    margin-right: -5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    border-radius: 6px;
+    height: 4rem;
+    margin: 0 1rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-exportexcel:hover {
+    cursor: pointer;
+    background-color: #4F94CD;
+    border: none;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    border-radius: 6px;
+}
+

@@ -1,0 +1,86 @@
+@import "../../../abstracts/variables";
+@import "../../../abstracts/mixins";
+@import "../../../base/base";
+@import "../../../components/block-extension";
+@import "../../../components/container";
+@import "../../../components/soccer-item";
+@import "../../../components/league-header-detail";
+@import "../../../components/nav-tab";
+@import "../../../components/search-bar";
+@import "../../../components/tooltip";
+@import "../../../components/breadcrumb";
+@import "../../../components/modal";
+@import "../../../components/recent-post";
+
+.livescore-soccer {
+  .soccer-match-grid {
+    &-item {
+      .soccer-match-grid-item-header {
+        padding: 1rem 1.2rem;
+        color: $color-title;
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+
+        @include tableMobile {
+          font-size: 1.2rem;
+          line-height: 1.6rem;
+          padding: 1rem 0.8rem;
+        }
+      }
+    }
+  }
+
+  .group-searchbar {
+    .livescore-soccer-search-bar {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
+.season-standings {
+  .table {
+    .soccer-team {
+      display: flex;
+      align-items: center;
+
+      .soccer-team-logo {
+        width: 2.4rem;
+        height: 2.4rem;
+        margin-right: 1.6rem;
+      }
+    }
+  }
+}
+.livescore-league-header-detail {
+  margin-bottom: 1.6rem;
+  @include Mobile{
+    margin-bottom: 1rem;
+  }
+  &-name {
+    text-transform: uppercase;
+  }
+}
+
+.group-match-item-slogan {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: .6rem 1.4rem;
+  @include tableMobile{
+    padding: .6rem 1rem;
+  }
+  img {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: 1rem;
+  }
+  .icon-fav-league{
+    font-size: 2.4rem;
+    margin-right: 1.2rem;
+    @include tableMobile{
+      font-size: 2rem;
+    }
+  }
+}

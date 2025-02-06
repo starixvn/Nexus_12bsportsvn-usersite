@@ -1,0 +1,47 @@
+﻿@{
+    int CurrentPage = Model.CurrentPage;
+    int TotalPages = Model.TotalPages;
+    var linkLast = CurrentPage < TotalPages ? Model.Href + "?page=" + Model.TotalPages : "javascript:;";
+    var linkFirst = CurrentPage > 1 ? Model.Href + "?page=" + 1 : "javascript:;";
+    var linkNext = CurrentPage < TotalPages ? Model.Href + "?page=" + (CurrentPage + 1) : "javascript:;";
+    var linkPrev = CurrentPage > 1 ? Model.Href + "?page=" + (CurrentPage - 1) : "javascript:;";
+    var disabledFirst = CurrentPage > 1 ? "" : "disabled";
+    var disabledLast = CurrentPage < TotalPages ? "" : "disabled";
+
+}
+@if (TotalPages > 1)
+{
+    <div class="pagination">
+        <a href="@linkFirst" class="icon-pagination icon-page-first @disabledFirst"></a>
+        <a href="@linkPrev" class="icon-pagination icon-chevron-left @disabledFirst"></a>
+        <ul class="main-pagination">
+            @{
+                var front = CurrentPage - 1 > 2 ? 2 : CurrentPage - 1;
+                front = CurrentPage - 1 == 3 ? 3 : front;
+                var back = TotalPages - CurrentPage > 2 ? 2 : TotalPages - CurrentPage;
+                back = TotalPages - CurrentPage == 3 ? 3 : back;
+
+                if (CurrentPage - 4 >= 1)
+                {
+                    <li class="items-pagination"><a href="@linkFirst" class="item">1</a></li>
+                    <li class="items-pagination"><a class="item">...</a></li>
+                }
+
+                for (var i = CurrentPage - front; i <= CurrentPage + back; i++)
+                {
+                    var link = Model.Href + "?page=" + i;
+                    var active = i == CurrentPage ? "active" : "";
+                    <li class="items-pagination @active"><a href="@link" class="item">@i</a></li>
+                }
+
+                if (CurrentPage + 4 <= TotalPages)
+                {
+                    <li class="items-pagination"><a class="item">...</a></li>
+                    <li class="items-pagination"><a href="@linkLast" class="item">@Model.TotalPages</a></li>
+                }
+            }
+        </ul>
+        <a href="@linkNext" class="icon-pagination icon-chevron-right @disabledLast"></a>
+        <a href="@linkLast" class="icon-pagination icon-page-last @disabledLast"></a>
+    </div>
+}

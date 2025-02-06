@@ -1,0 +1,54 @@
+﻿@{
+    int CurrentPage = Convert.ToInt32(Model.CurrentPage);
+    int TotalPages = Convert.ToInt32(Model.TotalPages);
+    var pageLast = Model.TotalPages;
+    var pageNext = CurrentPage + 1;
+    var pagePrev = CurrentPage - 1;
+    var checkPrev = CurrentPage > 1 ? "paging" : "disabled";
+    var checkNext = CurrentPage < TotalPages ? "paging" : "disabled";
+    var PageSizes = new int[] { 10, 20, 50, 100, 500, 1000 };
+}
+<div class="pagination">
+	<div class="page-size">
+		<p class="label-admin">Page size</p>
+		<select id="page-size">
+			@for (var i = 0; i < PageSizes.Length; i++)
+			{
+				<!option value="@PageSizes[i]" @(Model.PageSize == PageSizes[i] ? "selected" : "")>@PageSizes[i]</!option>
+			}
+		</select>
+	</div>
+	@if (TotalPages > 1)
+	{
+
+		<a href="javascript:;" data-page="1" class="icon-pagination icon-page-first @checkPrev"></a>
+		<a href="javascript:;" data-page="@pagePrev" class="icon-pagination icon-chevron-left @checkPrev"></a>
+		<ul class="main-pagination">
+			@{ var front = CurrentPage - 1 > 2 ? 2 : CurrentPage - 1;
+				front = CurrentPage - 1 == 3 ? 3 : front;
+				var back = TotalPages - CurrentPage > 2 ? 2 : TotalPages - CurrentPage;
+				back = TotalPages - CurrentPage == 3 ? 3 : back;
+
+				if (CurrentPage - 4 >= 1)
+				{
+					<li class="items-pagination"><a href="javascript:;" data-page="1" class="item paging">1</a></li>
+					<li class="items-pagination"><a class="item">...</a></li>
+				}
+
+				for (var i = CurrentPage - front; i <= CurrentPage + back; i++)
+				{
+					var active = i == CurrentPage ? "active" : "";
+					<li class="items-pagination @active"><a href="javascript:;" data-page="@i" class="item paging">@i</a></li>
+				}
+
+				if (CurrentPage + 4 <= TotalPages)
+				{
+					<li class="items-pagination"><a class="item">...</a></li>
+					<li class="items-pagination"><a href="javascript:;" data-page="@pageLast" class="item paging">@Model.TotalPages</a></li>
+				} }
+		</ul>
+		<a href="javascript:;" data-page="@pageNext" class="icon-pagination icon-chevron-right @checkNext"></a>
+		<a href="javascript:;" data-page="@pageLast" class="icon-pagination icon-page-last @checkNext"></a>
+
+	}
+</div>

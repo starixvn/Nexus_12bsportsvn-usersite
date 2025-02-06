@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Post">
+    <Setting Key="get_posts_by_slug" SpName="get_posts_by_slug" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_posts_by_cate_slug" SpName="get_posts_by_cate_slug" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_posts_by_cate_slug_not_contain_children" SpName="get_posts_by_cate_slug_not_contain_children" DbName="sabasports" Plain="0">
+      <Mapping DataField="id" ObjectProperty="ID" class="Post" />
+      <Mapping DataField="post_title" ObjectProperty="PostTitle" class="Post" />
+      <Mapping DataField="post_content" ObjectProperty="PostContent" class="Post" />
+      <Mapping DataField="post_date" ObjectProperty="PostDate" class="Post" />
+      <Mapping DataField="post_date_gmt" ObjectProperty="PostDateGMT" class="Post" />
+      <Mapping DataField="feature_image" ObjectProperty="FeatureImage" class="Post" />
+      <Mapping DataField="cate_name" ObjectProperty="Categories" class="Post" />
+      <Mapping DataField="cate_parent_name" ObjectProperty="CategoryParent" class="Post" />
+      <Mapping DataField="post_name" ObjectProperty="Slug" class="Post" />
+      <Mapping DataField="metadata" ObjectProperty="Metadata" class="Post" />
+      <Mapping DataField="comment_count" ObjectProperty="CommentCount" class="Post" />
+      <Mapping DataField="post_excerpt" ObjectProperty="PostExcerpt" class="Post" />
+    </Setting>
+    <Setting Key="get_recent_posts" SpName="get_recent_posts" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_top_posts_by_cate_slug" SpName="get_top_posts_by_cate_slug" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_menu" SpName="get_menu" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_category_detail" SpName="get_category_detail_xtest" DbName="sabasports" Plain="0"> </Setting>
+    <Setting Key="get_page_detail_by_slug" SpName="get_page_detail_by_slug" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_post_detail_by_slug" SpName="get_post_detail_by_slug" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="search_posts" SpName="search_posts" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="get_posts_by_tag" SpName="get_posts_by_tag" DbName="sabasports" Plain="0">
+      <Mapping DataField="id" ObjectProperty="ID" class="Post" />
+      <Mapping DataField="post_title" ObjectProperty="PostTitle" class="Post" />
+      <Mapping DataField="post_content" ObjectProperty="PostContent" class="Post" />
+      <Mapping DataField="post_date" ObjectProperty="PostDate" class="Post" />
+      <Mapping DataField="post_date_gmt" ObjectProperty="PostDateGMT" class="Post" />
+      <Mapping DataField="feature_image" ObjectProperty="FeatureImage" class="Post" />
+      <Mapping DataField="post_name" ObjectProperty="Slug" class="Post" />
+      <Mapping DataField="metadata" ObjectProperty="Metadata" class="Post" />
+      <Mapping DataField="tags" ObjectProperty="Tags" class="Post" />
+      <Mapping DataField="comment_count" ObjectProperty="CommentCount" class="Post" />
+    </Setting>
+    <Setting Key="get_posts_by_ids" SpName="get_posts_by_ids" DbName="sabasports" Plain="0">
+      <Mapping DataField="id" ObjectProperty="ID" class="Post" />
+      <Mapping DataField="post_title" ObjectProperty="PostTitle" class="Post" />
+      <Mapping DataField="post_content" ObjectProperty="PostContent" class="Post" />
+      <Mapping DataField="post_date" ObjectProperty="PostDate" class="Post" />
+      <Mapping DataField="post_date_gmt" ObjectProperty="PostDateGMT" class="Post" />
+      <Mapping DataField="feature_image" ObjectProperty="FeatureImage" class="Post" />
+      <Mapping DataField="post_name" ObjectProperty="Slug" class="Post" />
+      <Mapping DataField="metadata" ObjectProperty="Metadata" class="Post" />
+      <Mapping DataField="tags" ObjectProperty="Tags" class="Post" />
+      <Mapping DataField="comment_count" ObjectProperty="CommentCount" class="Post" />
+    </Setting>
+    <Setting Key="check_type_category" SpName="check_type_category" DbName="sabasports" Plain="0">
+      <Mapping DataField="term_id" ObjectProperty="CatId" class="Category" />
+    </Setting>
+    <Setting Key="get_sitemap" SpName="get_sitemap" DbName="sabasports" Plain="0" />
+    <Setting Key="get_sitemap_news" SpName="get_sitemap_news" DbName="sabasports" Plain="0" />
+    <Setting Key="get_rss" SpName="get_rss" DbName="sabasports" Plain="0" />
+    <Setting Key="post_update_video_view" SpName="post_update_video_view" DbName="sabasports" Plain="0" />
+    <Setting Key="post_update_view" SpName="post_update_view" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_by_cate_slugs" SpName="post_get_by_cate_slugs" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_by_cate_slugs_paging" SpName="post_get_by_cate_slugs_paging" DbName="sabasports" Plain="0" />
+    <Setting Key="cate_get_parents" SpName="cate_get_parents" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_by_author" SpName="post_get_by_author" DbName="sabasports" Plain="0" />
+    <Setting Key="rss_get_category" SpName="rss_get_category" DbName="sabasports" Plain="0" />
+    <Setting Key="rss_get_recent" SpName="rss_get_recent" DbName="sabasports" Plain="0" />
+    <Setting Key="get_posts_by_cate_slug_paging" SpName="get_posts_by_cate_slug_paging" DbName="sabasports" Plain="0" />
+    <Setting Key="posts_sitemap_get_by_date" SpName="posts_sitemap_get_by_date" DbName="sabasports" Plain="0" />
+    <Setting Key="tag_get_all" SpName="tag_get_all" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_by_id" SpName="post_get_by_id" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_detail_summary" SpName="post_get_detail_summary" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_by_jsonIds" SpName="post_get_by_jsonIds" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_mostView" SpName="post_get_mostView" DbName="sabasports" Plain="0" />
+    <Setting Key="post_video_get_by_slug" SpName="post_video_get_by_slug" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Category">
+    <Setting Key="cate_get_livescore" SpName="cate_get_livescore" DbName="sabasports" Plain="0" />
+    <Setting Key="cate_update_livescore" SpName="cate_update_livescore" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Comment">
+    <Setting  Key="cmt_get_parent_and_number_children" SpName="cmt_get_parent_and_number_children" DbName="sabasports" Plain="0">
+      <Mapping DataField="comment_ID" ObjectProperty="CommentID" class="Comment" />
+      <Mapping DataField="comment_post_ID" ObjectProperty="CommentPostID" class="Comment" />
+      <Mapping DataField="comment_author" ObjectProperty="CommentAuthor" class="Comment" />
+      <Mapping DataField="comment_author_email" ObjectProperty="CommentAuthorEmail" class="Comment" />
+      <Mapping DataField="comment_author_IP" ObjectProperty="CommentAuthorIP" class="Comment" />
+      <Mapping DataField="comment_date" ObjectProperty="CommentDate" class="Comment" />
+      <Mapping DataField="comment_date_gmt" ObjectProperty="CommentDateGMT" class="Comment" />
+      <Mapping DataField="comment_content" ObjectProperty="CommentContent" class="Comment" />
+      <Mapping DataField="comment_parent" ObjectProperty="CommentParent" class="Comment" />
+      <Mapping DataField="user_id" ObjectProperty="UserID" class="Comment" />
+      <Mapping DataField="comment_like_count" ObjectProperty="CommentLikeCount" class="Comment" />
+      <Mapping DataField="comment_like_ips" ObjectProperty="CommentLikeIPs" class="Comment" />
+      <Mapping DataField="comment_like_users" ObjectProperty="CommentLikeUsers" class="Comment" />
+      <Mapping DataField="comment_number_children" ObjectProperty="CommentNumberChildren" class="Comment" />
+    </Setting>
+    <Setting Key="cmt_get_children" SpName="cmt_get_children" DbName="sabasports" Plain="0">
+      <Mapping DataField="comment_ID" ObjectProperty="CommentID" class="Comment" />
+      <Mapping DataField="comment_post_ID" ObjectProperty="CommentPostID" class="Comment" />
+      <Mapping DataField="comment_author" ObjectProperty="CommentAuthor" class="Comment" />
+      <Mapping DataField="comment_author_email" ObjectProperty="CommentAuthorEmail" class="Comment" />
+      <Mapping DataField="comment_author_IP" ObjectProperty="CommentAuthorIP" class="Comment" />
+      <Mapping DataField="comment_date" ObjectProperty="CommentDate" class="Comment" />
+      <Mapping DataField="comment_date_gmt" ObjectProperty="CommentDateGMT" class="Comment" />
+      <Mapping DataField="comment_content" ObjectProperty="CommentContent" class="Comment" />
+      <Mapping DataField="comment_parent" ObjectProperty="CommentParent" class="Comment" />
+      <Mapping DataField="user_id" ObjectProperty="UserID" class="Comment" />
+      <Mapping DataField="comment_like_count" ObjectProperty="CommentLikeCount" class="Comment" />
+      <Mapping DataField="comment_like_ips" ObjectProperty="CommentLikeIPs" class="Comment" />
+      <Mapping DataField="comment_like_users" ObjectProperty="CommentLikeUsers" class="Comment" />
+    </Setting>
+    <Setting  Key="cmt_get_like_data_cmtId" SpName="cmt_get_like_data_cmtId" DbName="sabasports" Plain="0">
+      <Mapping DataField="comment_like_count" ObjectProperty="CommentLikeCount" class="Comment" />
+      <Mapping DataField="comment_like_ips" ObjectProperty="CommentLikeIPs" class="Comment" />
+      <Mapping DataField="comment_like_users" ObjectProperty="CommentLikeUsers" class="Comment" />
+    </Setting>
+    <Setting Key="cmt_create" SpName="cmt_create" DbName="sabasports" />
+    <Setting Key="cmt_update_like" SpName="cmt_update_like" DbName="sabasports" />
+  </Function>
+  <Function Name="Auth">
+    <Setting Key="user_create" SpName="user_create" DbName="sabasports" Plain="0" />
+    <Setting Key="user_get_login" SpName="user_get_login" DbName="sabasports" Plain="0" />
+    <Setting Key="user_create_token_confirm" SpName="user_create_token_confirm" DbName="sabasports" Plain="0" />
+    <Setting Key="user_confirm_email" SpName="user_confirm_email" DbName="sabasports" Plain="0" />
+    <Setting Key="user_create_token_reset" SpName="user_create_token_reset" DbName="sabasports" Plain="0" />
+    <Setting Key="user_verify_token_reset" SpName="user_verify_token_reset" DbName="sabasports" Plain="0" />
+    <Setting Key="user_reset_password" SpName="user_reset_password" DbName="sabasports" Plain="0" />
+    <Setting Key="social_user_get_login" SpName="social_user_get_login" DbName="sabasports" Plain="0" />
+    <Setting Key="social_user_create" SpName="social_user_create" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Profile">
+    <Setting Key="user_save_post" SpName="user_save_post" DbName="sabasports" Plain="0" />
+    <Setting Key="user_get_by_id" SpName="user_get_by_id" DbName="sabasports" Plain="0" />
+    <Setting Key="user_update_info" SpName="user_update_info" DbName="sabasports" Plain="0" />
+    <Setting Key="social_disconnect_type" SpName="social_disconnect_type" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Statistics">
+    <Setting Key="post_view_statistic_get" SpName="post_view_statistic_get" DbName="sabasports" Plain="0" />
+    <Setting Key="post_view_detail_get" SpName="post_view_detail_get" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="SendMail">
+    <Setting Key="user_get_all" SpName="user_get_all" DbName="sabasports" Plain="0" />
+    <Setting Key="user_unsubscribe" SpName="user_unsubscribe" DbName="sabasports" Plain="0" />
+    <Setting Key="user_subscribe_create_token" SpName="user_subscribe_create_token" DbName="sabasports" Plain="0" />
+    <Setting Key="email_create" SpName="email_create" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_create" SpName="email_detail_create" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_verify_token" SpName="email_detail_verify_token" DbName="sabasports" Plain="0" />
+    <Setting Key="email_get_by_user" SpName="email_get_by_user" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_filter" SpName="email_detail_filter" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_get" SpName="email_detail_get" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_update_status" SpName="email_detail_update_status" DbName="sabasports" Plain="0" />
+    <Setting Key="email_get_by_id" SpName="email_get_by_id" DbName="sabasports" Plain="0" />
+    <Setting Key="email_get_all" SpName="email_get_all" DbName="sabasports" Plain="0" />
+    <Setting Key="email_update_status" SpName="email_update_status" DbName="sabasports" Plain="0" />
+    <Setting Key="email_update" SpName="email_update" DbName="sabasports" Plain="0" />
+    <Setting Key="email_get_for_send" SpName="email_get_for_send" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_update" SpName="email_detail_update" DbName="sabasports" Plain="0" />
+    <Setting Key="email_detail_remove" SpName="email_detail_remove" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Poll">
+    <Setting Key="poll_get" SpName="poll_get" DbName="sabasports" Plain="0" />
+    <Setting Key="poll_vote" SpName="poll_vote" DbName="sabasports" Plain="0" />
+    <Setting Key="poll_get_all" SpName="poll_get_all" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="User">
+    <Setting Key="user_get_report" SpName="user_get_report" DbName="sabasports" Plain="0" />
+    <Setting Key="user_membership_event_create_data" SpName="user_membership_event_create_data" DbName="sabasports" Plain="0" />
+    <Setting Key="user_membership_event_get_data" SpName="user_membership_event_get_data" DbName="sabasports" Plain="0" />
+    <Setting Key="user_membership_event_get_detail" SpName="user_membership_event_get_detail" DbName="sabasports" Plain="0" />
+    <Setting Key="user_membership_event_get_result" SpName="user_membership_event_get_result" DbName="sabasports" Plain="0" />
+    <Setting Key="user_get_for_send_email" SpName="user_get_for_send_email" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Banner">
+    <Setting Key="banner_get_info" SpName="banner_get_info" DbName="sabasports" Plain="0" />
+    <Setting Key="banner_update" SpName="banner_update" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Log">
+    <Setting Key="log_writelog" SpName="log_writelog" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Options">
+    <Setting Key="Options_GetKey" SpName="Options_GetKey" DbName="sabasports" Plain="0" />
+    <Setting Key="Options_UpdateKey" SpName="Options_UpdateKey" DbName="sabasports" Plain="0" />
+    <Setting Key="Options_CountValueKey" SpName="Options_CountValueKey" DbName="sabasports" Plain="0" />
+  </Function>
+  <Function Name="Livescore">
+    <Setting Key="Livescore_League_GetMajorLeague" SpName="Livescore_League_GetMajorLeague" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Get" SpName="Livescore_League_Get" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_GetAll" SpName="Livescore_League_GetAll" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Extra_UpdatePriorities" SpName="Livescore_League_Extra_UpdatePriorities" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Update" SpName="Livescore_League_Update" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_GetLeagueById" SpName="Livescore_League_GetLeagueById" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetLineup" SpName="Livescore_Match_GetLineup" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Extra_Remove" SpName="Livescore_League_Extra_Remove" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Extra_Insert" SpName="Livescore_League_Extra_Insert" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Extra_Update" SpName="Livescore_League_Extra_Update" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetHeadToHead" SpName="Livescore_Match_GetHeadToHead" DbName="sabasports" Plain="0" >
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetStatistic" SpName="Livescore_Match_GetStatistic" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetIncident" SpName="Livescore_Match_GetIncident" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetById" SpName="Livescore_Match_GetById" DbName="sabasports" Plain="0" >
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetByDate" SpName="Livescore_Match_GetByDate" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetLiveMatch" SpName="Livescore_Match_GetLiveMatch" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetBySeason" SpName="Livescore_Match_GetBySeason" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetSeasonStandings" SpName="Livescore_Match_GetSeasonStandings" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_Match_GetByIds" SpName="Livescore_Match_GetByIds" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_GetByIds" SpName="Livescore_League_GetByIds" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_Get" SpName="Livescore_League_Get" DbName="sabasports" Plain="0" />
+    <Setting Key="Livescore_League_GetSeasonStandings" SpName="Livescore_League_GetSeasonStandings" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_GetTop10" SpName="Livescore_Top_Scorers_GetTop10" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_Insert" SpName="Livescore_Top_Scorers_Insert" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_Update" SpName="Livescore_Top_Scorers_Update" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_GetByRow" SpName="Livescore_Top_Scorers_GetByRow" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_Get" SpName="Livescore_Top_Scorers_Get" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_UpdateTop" SpName="Livescore_Top_Scorers_UpdateTop" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Top_Scorers_Delete" SpName="Livescore_Top_Scorers_Delete" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Team_GetAll" SpName="Livescore_Team_GetAll" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Player_GetByTeamId" SpName="Livescore_Player_GetByTeamId" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescorer_Minigame_Get_Data" SpName="Livescorer_Minigame_Get_Data" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescorer_Minigame_Get_Detail" SpName="Livescorer_Minigame_Get_Detail" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescorer_Minigame_Create" SpName="Livescorer_Minigame_Create" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Season_GetByLeague" SpName="Livescore_Season_GetByLeague" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Match_GetBySeason_Filter" SpName="Livescore_Match_GetBySeason_Filter" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_Update" SpName="Livescore_Match_Update" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_League_GetSeasonStanding_Detail" SpName="Livescore_League_GetSeasonStanding_Detail" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Standing_Update" SpName="Livescore_Standing_Update" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Standing_UpdatePosition" SpName="Livescore_Standing_UpdatePosition" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Match_GetByIdUpdate" SpName="Livescore_Match_GetByIdUpdate" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_getByUserStage" SpName="worldcup_minigame_getByUserStage" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_getByUser" SpName="worldcup_minigame_getByUser" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_updateVote" SpName="worldcup_minigame_updateVote" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_getVoteMatch" SpName="worldcup_minigame_getVoteMatch" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_get_by_stage" SpName="worldcup_minigame_get_by_stage" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="worldcup_minigame_get_list_users" SpName="worldcup_minigame_get_list_users" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_League_GetLeagueAndSeasonStandings" SpName="Livescore_League_GetLeagueAndSeasonStandings" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Standing_RemoveCustom" SpName="Livescore_Standing_RemoveCustom" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Match_GetSummaryById" SpName="Livescore_Match_GetSummaryById" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetTodayHotLeague" SpName="Livescore_Match_GetTodayHotLeague" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Match_GetSitemap" SpName="Livescore_Match_GetSitemap" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_Match_GetByTeamSeason" SpName="Livescore_Match_GetByTeamSeason" DbName="sabasports" Plain="0">
+      <Mapping DataField="HomeTeamId" ObjectProperty="TeamId" class="Team" />
+      <Mapping DataField="AwayTeamId" ObjectProperty="TeamId" class="Team" />
+    </Setting>
+    <Setting Key="Livescore_Team_GetByStage" SpName="Livescore_Team_GetByStage" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_PlayerCustom_GetByTeamId" SpName="Livescore_PlayerCustom_GetByTeamId" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_PlayerCustom_Create" SpName="Livescore_PlayerCustom_Create" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_PlayerCustom_GetById" SpName="Livescore_PlayerCustom_GetById" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_PlayerCustom_Update" SpName="Livescore_PlayerCustom_Update" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="Livescore_PlayerCustom_Delete" SpName="Livescore_PlayerCustom_Delete" DbName="sabasports" Plain="0"></Setting>
+  </Function>
+  <Function Name="Api">
+    <Setting Key="get_post_detail_by_postid" SpName="get_post_detail_by_postid" DbName="sabasports" Plain="0" />
+    <Setting Key="get_posts" SpName="get_posts" DbName="sabasports" Plain="0" />
+    <Setting Key="post_get_deleted" SpName="post_get_deleted" DbName="sabasports" Plain="0" />
+  </Function>
+  <Functions Name="Minigame">
+    <Setting Key="minigame_League_GetByUserStage" SpName="minigame_League_GetByUserStage" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="minigame_League_GetByUser" SpName="minigame_League_GetByUser" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="minigame_UpdateVote" SpName="minigame_UpdateVote" DbName="sabasports" Plain="0"></Setting>
+    <Setting Key="minigame_League_GetByStage" SpName="minigame_League_GetByStage" DbName="sabasports" Plain="0"></Setting>
+  </Functions>
+</Functions>

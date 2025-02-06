@@ -1,0 +1,29 @@
+﻿.block-line-up {
+    .block-line-up-main {
+        border: 1px solid $border-color;
+        margin-top: 1.2rem;
+        border-radius: 3px;
+        background: $border-soccer-item;
+    }
+
+    .block-line-up-title {
+        border-bottom: 1px solid $border-color;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: $color-title;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items :center;
+        @include Mobile{
+            height : 3rem;
+            font-size : 1.3rem;
+            line-height : 1.8rem;
+        }
+    }
+
+    .block-line-up-body {
+        background: $primary-bg;
+    }
+}

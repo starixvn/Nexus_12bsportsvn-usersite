@@ -1,0 +1,42 @@
+﻿@section Title{
+	@ViewResources.EmptyProfileTitle
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/profile.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+	<script>
+		auth.GetModalLogin();
+	</script>
+}
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+
+	<div class="container profile-container">
+		<div class="block block-main">
+			<div class="profile">
+				<div class="profile__avatar">J</div>
+				<div class="profile__name">User</div>
+				<div class="profile__date">
+					<p>Tham gia từ</p>
+					<p>01/01/1970</p>
+				</div>
+				<ul class="profile__control">
+					<li><a href="#">@ViewResources.SavedPost</a></li>
+				</ul>
+				<ul class="profile__nav">
+					<li class="active-control"><a href="#">@ViewResources.MyAccount</a></li>
+					<li><a href="#">@ViewResources.Exit</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="block block-extension">
+			<div class="controls">
+				<h2 class="block__title"><a>@ViewResources.MyAccount </a></h2>
+			</div>
+		</div>
+	</div>
+</section>

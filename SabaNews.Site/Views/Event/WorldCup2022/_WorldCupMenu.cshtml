@@ -1,0 +1,24 @@
+﻿@using SabaNews.Core.Constants;
+
+@{
+    var menus = WorldCup2022.Menus;
+}
+<div class="top-header">
+    <div class="container padding-mobile-none">
+        <div class="group-menu">
+            <div class="nav-menu">
+                <ul class="main-menu" id="meumutilv">
+                    @foreach (var menu in menus)
+                    {
+                        var active = menu.Slug == Model ? "active" : "";
+                        <li class="menu-item @active">
+                            <a href=@($"{WorldCup2022.HomepageSlug}/{menu.Slug}") class="item">
+                                @menu.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

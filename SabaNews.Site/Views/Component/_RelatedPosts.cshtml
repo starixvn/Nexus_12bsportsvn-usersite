@@ -1,0 +1,12 @@
+﻿﻿@using SabaNews.Models.ViewModel.Posts;
+@model PostComponentViewModel
+
+<div class="related-posts" data-postid="@Model.PostId" data-cateslug="@Model.CateSlug" data-title="@Model.Title">
+    <div class="skeleton-horizontal">
+        <a class="skeleton-horizontal__image"></a>
+        <div class="text-skeleton">
+            <a class="skeleton-horizontal__title"></a>
+            <p class="skeleton-horizontal__description text-description"></p>
+        </div>
+    </div>
+</div>

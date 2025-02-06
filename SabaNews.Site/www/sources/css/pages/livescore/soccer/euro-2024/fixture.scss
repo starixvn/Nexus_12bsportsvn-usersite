@@ -1,0 +1,62 @@
+@import '~react-loading-skeleton/dist/skeleton.css';
+@import "../../../../abstracts/variables";
+@import "../../../../abstracts/mixins";
+@import "../../../../base/base";
+@import "../../../../components/block-extension";
+@import "../../../../components/soccer-item";
+@import './components/date-bar';
+
+
+#euro-fixture {
+    .group-live-icon{
+        display: flex;
+        align-items: center;
+        i{
+            display: none;
+            font-size: 1.6rem;
+            margin-right: .6rem;
+            &::before{
+                color: #EFF612;
+            }
+        }
+    }
+    .live,.live.live-intermission{
+        .soccer-match-stage{
+            width: auto;
+            margin-top: 0;
+            font-size: 1.3rem !important;
+            span{
+                color: #EFF612 !important;
+                &::before,&::after{
+                    display: none;
+                }
+            }
+        }
+        .group-live-icon{
+            i{
+                display: block;
+            }
+        }
+    }
+    .react-loading-skeleton{
+        --base-color: #0B227D !important;
+
+        &::after {
+            background: #0B227D !important;
+        }
+    }
+    .group-match-item{
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+    }
+    .soccer-match-date-result{
+        border: 1px solid #0E2A99;
+        background: #0B227D;
+    }
+    .wc-date-bar .group-match-item .soccer-match-item{
+        border: none;
+        background: #091B61;
+    }
+}
+
+
+

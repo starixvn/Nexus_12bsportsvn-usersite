@@ -1,0 +1,15 @@
+@import "../../../../abstracts/variables";
+@import "../../../../abstracts/mixins";
+@import "../../../../base/base";
+@import './components/container';
+@import './components/dock_stage';
+@import './components/dots-title';
+@import './components/statistic-grid';
+@import './components/minigame_control';
+
+
+body{
+    background-image: linear-gradient(119.36deg, #901831 0%, #310818 100%) !important;
+}
+
+

@@ -1,0 +1,49 @@
+.livescore-soccer-search-bar {
+  position: relative;
+  margin-right: 0;
+  width: 100%;
+  @include tableMobile {
+    margin-right: 0.4rem;
+  }
+
+  .livescore-soccer-searchbox {
+    width: 100%;
+    border: 1px solid $border-color;
+    background: transparent;
+    height: 3.6rem;
+    padding: 1.2rem 0rem 1.2rem 3.5rem;
+    border-radius: 3px;
+    font-size: 1.4rem;
+
+    @include Mobile {
+      height: 3.4rem;
+    }
+
+    &::placeholder {
+      font-style: italic;
+      font-size: 1.4rem !important;
+
+      @include tableMobile {
+        font-size: 1.2rem !important;
+      }
+    }
+  }
+
+  .btn-search-match {
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+    color: #7e7e7e;
+    top: 8px;
+    line-height: 1;
+  }
+
+  .btn-close-match {
+    position: absolute;
+    right: 14px;
+    cursor: pointer;
+    color: #7e7e7e;
+    top: 8px;
+    line-height: 1;
+  }
+}

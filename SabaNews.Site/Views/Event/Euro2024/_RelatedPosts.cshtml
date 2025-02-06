@@ -1,0 +1,30 @@
+﻿<div class="block-related">
+    <div class="block-heading">
+        <h3 class="block-heading-text">
+            <a>
+                @ViewResources.RelatedPosts</a>
+            </a>
+        </h3>
+    </div>
+    <div class="block-body">
+        @foreach (var post in Model)
+        {
+            string featureImg =  post.FeatureImage;
+            <div class="block-items block-items-horizontal">
+                <div class="block-items-img hover-image">
+                    <a href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">
+                        <img src=@Url.Content(featureImg) alt="@post.PostTitle" class="img-res" loading="lazy" />
+                    </a>
+                </div>
+                <div class="block-items-group">
+                    <h4 class="block-items-heading">
+                        <a href="@Url.Action("Article", "Euro2024", new { slug = post.Uri })">@post.PostTitle</a>
+                    </h4>
+                    <div class="block-heading-description">
+                        @post.PostExcerpt
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

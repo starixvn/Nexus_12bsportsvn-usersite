@@ -1,0 +1,224 @@
+.block {
+    margin-bottom: 3.2rem;
+
+    @include tableMobile {
+        margin-bottom: 3rem;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+        position: relative;
+        border-bottom: 2px solid $color-main-title;
+        @include tableMobile {
+            margin-bottom: 1rem;
+        }
+        a {
+            font-weight: bold;
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            color: $bg-nav;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-color: $color-main-title;
+            position: relative;
+            z-index: 9;
+            padding: .5rem 1.5rem .3rem 1.2rem;
+            display: inline-block;
+            border-radius: 3px 0 0 0;
+            cursor: pointer;
+            &::after{
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 2rem;
+                top: 0;
+                right: -10px;
+                transform: skew(25deg);
+                z-index: 1;
+                background-color: $color-main-title;
+            }
+            @include tableMobile {
+                font-size: 1.6rem;
+            }
+            &.none-bg{
+                background-color: transparent !important;
+            }
+            &.none-cusor{
+                cursor: default
+            }
+        }
+    }
+}
+
+.block-first-hot{
+    margin-bottom: 1.6rem;
+    @include tableMobile {
+        margin-bottom: 3rem;
+    }
+}
+
+
+.heading-category{
+    @extend .block__title;
+    margin-bottom: 2.4rem;
+    margin-right: 3rem;
+    border-bottom: none;
+    a{
+        padding: 0.6rem 1.2rem 0.4rem 1.2rem;
+    }
+}
+.block-sticky{
+    .block__title{
+        margin-bottom: 1.2rem !important;
+    }
+}
+
+.title-new-page{
+    margin-bottom: 2.4rem;
+    position: relative;
+    border-bottom: none;
+    @include Mobile{
+        border-bottom: 2px solid #f12f19;
+        margin-bottom: 1rem;
+    }
+    &::before{
+        content:  "";
+        display: block;
+        height: 1px;
+        background: #D4D4D4;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        @include tableMobile{
+            display: none;
+        }
+    }
+    a{
+        padding: 0.6rem 1.2rem 0.4rem 1.2rem;
+    }
+}
+
+
+.block-detail{
+    .block__title{
+        margin-bottom: 1.6rem;
+        @include tableMobile{
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+
+
+.block-columns{
+    display: flex;
+    grid-gap: 2rem;
+    align-items: start;
+    @include tableMobile{
+        display: unset;
+    }
+    @include Mobile{
+        display: unset;
+    }
+    .columns-left{
+        width: 71%;
+        @include tableMobile{
+            width: 100%;
+        }
+    }
+    .columns-right{
+        width: 35rem;
+        @media (max-width : 1399px) {
+            width: 33rem;
+        }
+        @include tableMobile{
+            width: 100%;
+        }
+        @include Mobile{
+            display: unset;
+            width: auto;
+        }
+    }
+}
+.block-last-page{
+    .block-columns{
+        @include Mobile{
+            display: flex;
+            flex-wrap: wrap; 
+            grid-gap: 0;   
+        }
+    }
+    .columns-left{
+        border-right : 1px solid #E5E5E5;
+        padding-right: 2rem;
+        width: 100%;
+        @include Mobile{
+            padding-right: 0;
+            border-right: none;
+            order: 2;
+            width: 100%;
+        }
+    }
+    .columns-right{
+        min-width: 30rem;
+        @include Mobile{
+            order: 1;
+            width: 100%;
+        }
+        .banner-right{
+            min-height: 42rem;
+        }
+    }
+}
+
+.wraper-hot-news{
+    height: 3rem;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    display: flex;
+    background: #F5F6F6;
+    border-radius: 0 3px 3px ;
+    @include tableMobile{
+        margin: 1.2rem 0;
+        display: none;
+    }
+    .block__title{
+        border-bottom:  none;
+        margin-bottom: 0;
+        width: 17rem;
+    }
+    .list-hot-news{
+        list-style: none;
+        padding-left: 0;
+        transition: all ease .6s;
+        width: 79%;
+        margin-left: 10px;
+        @include Mobile{
+            width: 160px;
+        }
+        .hot-news-item{
+            color: #89888b;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            a{
+                text-decoration: none;
+                color: #333;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+.hotnews-title{
+    a{
+        cursor: context-menu;
+    }
+}

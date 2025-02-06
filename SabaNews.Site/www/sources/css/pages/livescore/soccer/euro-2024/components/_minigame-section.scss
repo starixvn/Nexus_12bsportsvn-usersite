@@ -1,0 +1,6 @@
+.minigame-section{
+    padding: 3rem;
+    @include Mobile{
+        padding: 2rem 1.2rem;
+    }
+}

@@ -1,0 +1,107 @@
+﻿@using SabaNews.Resources
+
+<div class="card-view">
+    <div class="card-item card-pupple">
+        <div class="card-icon bg-pupple"><i class="icon-page icon-icon-admin"></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@ViewResources.Articles</li>
+            <li class="cart-toal-count">@Model.TotalPost</li>
+        </ul>
+    </div>
+    <div class="card-item card-green">
+        <div class="card-icon bg-green"><i class="icon-page icon-post-view"></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@ViewResources.ArticleViews</li>
+            <li class="cart-toal-count">@Model.TotalPostView</li>
+        </ul>
+    </div>
+    <div class="card-item card-orange">
+        <div class="card-icon bg-orange"><i class="icon-page icon-video-admin"></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@ViewResources.Videos</li>
+            <li class="cart-toal-count">@Model.TotalVideo</li>
+        </ul>
+    </div>
+    <div class="card-item card-blue">
+        <div class="card-icon bg-blue"><i class="icon-page icon-video-view-admin"></i></div>
+        <ul class="card-total">
+            <li class="cart-total-title">@ViewResources.VideoViews</li>
+            <li class="cart-toal-count">@Model.TotalVideoView</li>
+        </ul>
+    </div>
+</div>
+
+<div class="table-admin">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>@ViewResources.CreatedDate</th>
+                <th>@ViewResources.Articles</th>
+                <th>
+                    <p class="warning-admin">
+                        @ViewResources.TotalViews
+                        <span class="tooltip-icon">
+                            <i class="icon-error_outline"></i>
+                            <span class="tooltip-content">@ViewResources.ArticleTooltipContent</span>
+                        </span>
+                    </p>
+                </th>
+                <th>@ViewResources.Videos</th>
+                <th>
+                    <p class="warning-admin">
+                        @ViewResources.TotalViews
+                        <span class="tooltip-icon">
+                            <i class="icon-error_outline"></i>
+                            <span class="tooltip-content">
+                                @ViewResources.VideoTooltipContent
+                            </span>
+                        </span>
+                    </p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.PostViewDetails)
+                {
+                    <tr>
+                        <td class="text-center" width="20%">@item.PostDate.ToString("dd MMM yyyy")</td>
+                        <td class="text-right" width="20%">
+                            @if (item.PostCount > 0)
+                            {
+                                <a href="ViewDetails?createdDate=@item.PostDate.ToString("yyyy-MM-dd")&isVideoDetails=false">@item.PostCount</a>
+                            }
+                            else
+                            {
+                                @item.PostCount
+
+                            }
+                        </td>
+                        <td class="text-right" width="20%">@item.PostView</td>
+                        <td class="text-right" width="20%">
+                            @if (item.VideoCount > 0)
+                            {
+                                <a href="ViewDetails?createdDate=@item.PostDate.ToString("yyyy-MM-dd")&isVideoDetails=true">@item.VideoCount</a>
+                            }
+                            else
+                            {
+                                @item.VideoCount
+
+                            }
+                        </td>
+                        <td class="text-right" width="20%">@item.VideoView</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center" width="20%">@ViewResources.Total</td>
+                <td class="text-right" width="20%">@Model.TotalPost</td>
+                <td class="text-right" width="20%">@Model.TotalPostView</td>
+                <td class="text-right" width="20%">@Model.TotalVideo</td>
+                <td class="text-right" width="20%">@Model.TotalVideoView</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

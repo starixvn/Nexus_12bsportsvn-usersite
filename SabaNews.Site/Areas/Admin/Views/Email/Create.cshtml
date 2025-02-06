@@ -1,0 +1,177 @@
+﻿@using SabaNews.Resources;
+@{
+    Layout = "_AdminLayout";
+}
+
+@section Styles{
+
+    <link rel="stylesheet" href="~/minify/styles/admin_email_create.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+    <script src="~/lib/ckeditor4/ckeditor.js"></script>
+    <script src="~/minify/js/admin_email_create.min.js" asp-append-version="true"></script>
+}
+
+@section TopHeader{
+    @ViewResources.CreateElectronicDirectMail
+}
+
+@section Title{
+    @ViewResources.CreateElectronicDirectMail
+}
+
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.CreateEDM" />
+}
+
+<section class="page-content">
+    <div class="main-list">
+        <form id="form-sendmail" class="form-main">
+            <input type="hidden" name="rawUrl" id="baseUrl" value="@ViewBag.rawUrl" />
+            <input type="hidden" name="embeddedLink" id="embeddedLink" value="" />
+
+            <div class="form-input custom-with-input users-block">
+                <p class="label-admin">@ViewResources.SendToUsers </p>
+                <select class="send-multiple-select" id="users" multiple="multiple">
+                    @foreach (var user in Model.UsersForSend)
+                    {
+                        <option value="@user.Id" selected data-email="@user.Email">@user.Email (@user.Name)</option>
+                    }
+                </select>
+                <p class="help-block"></p>
+            </div>
+
+            <div class="form-input custom-with-input  email_title">
+                <p class="label-admin">@ViewResources.Subject</p>
+                <input type="text" class="custom-input" placeholder="" name="emailTitle" />
+                <p class="help-block"></p>
+            </div>
+
+            <div class="form-input custom-with-input email_link">
+                <p class="label-admin">@ViewResources.OriginalUrl</p>
+                <input type="text" class="custom-input" placeholder="" name="emailReturnLink" />
+                <div class="form-input group_raw_link">
+                    <p class="label-admin">@ViewResources.EmbeddedUrl</p>
+                    <p class="custom-input raw_link"><span></span></p>
+                    <a href="javascript:;" title="Copy embedded url" class="copy-link"><span><i class="icon-copy-admin"></i></span></a>
+                    <span class="tip">Copied embedded url</span>
+                </div>
+
+                <p class="help-block"></p>
+            </div>
+            <div class="form-input email_content">
+                <p class="label-admin">@ViewResources.EmailContent</p>
+                <textarea id="emailContent" class="input-form"></textarea>
+                <p class="help-block"></p>
+            </div>
+
+            <div class="group-btn-admin">
+                <div class="left-btn">
+                    <button type="button" class="button btn-custom-admin btn-red btn-send-mail">@ViewResources.SaveAndSend</button>
+                    <button type="button" class="button btn-custom-outline  btn-red btn-save-as-draft">@ViewResources.SaveEmail</button>
+                </div>
+                <button type="button" class="button btn-test">@ViewResources.SendTestEmailTo</button>
+            </div>
+        </form>
+
+        <div class="modal" id="ViewEmailContent" style="display:none">
+            <div class="modal-content">
+                <div class="modal-warning">
+                    <div class="modal-title">
+                        <h2 class="title"></h2>
+                        <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body ck-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="TestSendEmail" style="display:none">
+            <div class="modal-content">
+                <div class="modal-warning">
+                    <div class="modal-title">
+                        <h2 class="title">Test Send Email</h2>
+                        <button type="button" class="close-login" data-dismiss="modal" aria-label="Close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="form_test_sendemail" class="form">
+                            <div class="form-radio">
+                                <label class="raido-custom label-admin">@ViewResources.SendTo</label>
+                                <div class="raido-custom">
+                                    <input type="radio" name="sendTo" class="send_to" value="email" checked />
+                                    <p class="label-admin">Email</p>
+                                </div>
+                                <div class="raido-custom">
+                                    <input type="radio" name="sendTo" class="send_to" value="user" />
+                                    <p class="label-admin">User</p>
+                                </div>
+                            </div>
+
+                            <div class="form-input user_list" style="display: none">
+                                <label class="label-admin">@ViewResources.UserList</label>
+                                <select name="user" class="custom-input user">
+                                    @foreach (var user in Model.UsersForTest)
+                                    {
+                                        <option value="@user.Email" data-email="@user.Email">@user.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="form-input email">
+                                <label class="label-admin">@ViewResources.Email</label>
+                                <input type="text" class="custom-input" id="email" name="emailAddress" />
+                                <p class="help-block"></p>
+                            </div>
+                        </form>
+                        <div class="button-confirm">
+                            <button type="button" class="btn-custom-admin submit-test-send-email">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="NoticeModal" style="display:none">
+            <div class="modal-content">
+                <div class="modal-warning">
+                    <div class="modal-title title-success">
+                        <h2 class="title"><i class="icon-title icon-success-admin"></i> @ViewResources.Announcement</h2>
+                        <button type="button" class="close-login close-notice" data-dismiss="modal" aria-label="Close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal confirm" id="ConfirmModal" style="display:none">
+        <div class="modal-content">
+            <div class="modal-warning">
+                <div class="modal-title">
+                    <h2 class="title">@ViewResources.Confirmation</h2>
+                    <button type="button" class="close-login close-announcement" data-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+                <div class="button-confirm">
+                    <button class="btn-custom-outline confirm-action">Yes</button>
+                    <button data-dismiss="modal" aria-label="Close" class="btn-custom-admin">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

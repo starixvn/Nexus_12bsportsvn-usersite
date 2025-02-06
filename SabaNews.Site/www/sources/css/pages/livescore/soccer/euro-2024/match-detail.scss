@@ -1,0 +1,571 @@
+@import '../../../../abstracts/variables';
+@import '../../../../abstracts/mixins';
+@import '../../../../base/base';
+@import '../../../../components/duel-participant';
+@import '../../../../components/statistices';
+@import '../../../../components/soccer-staus';
+@import '../../../../components/line-up';
+@import '../../../../components/block-line-up';
+@import '../../../../components/time-line-livescore';
+@import '../../../../components/soccer-item';
+@import '../../../../components/head-to-head';
+@import '../../../../components/tile-custom';
+@import '../../../../components/dot_live';
+@import './components/nav-team';
+
+//wc
+.document-text{
+    margin-bottom: 1.2rem;
+}
+
+.active-scroll{
+    .document-text{
+        @include Mobile{
+            margin: 1.2rem;
+        }
+    }
+    .none-livescore {
+        margin: 1rem 0;
+        @include Mobile{
+            margin: 1rem 1.2rem;
+        }
+    }
+}
+
+.livescore-soccer {
+    padding-bottom: 5rem;
+    display: block;
+    max-width: 70.5rem;
+    margin: 0 auto;
+    @include tableMobile{
+        max-width: 100%;
+    }
+    .icon-live-start, .icon-favourite-outline {
+        font-size: 2rem;
+        cursor: pointer;
+
+        @include Mobile {
+            font-size: 2rem;
+        }
+    }
+
+    .soccer-team-status {
+        margin-bottom: 1.8rem;
+    }
+}
+
+.group-searchbar {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    margin-top: 0;
+
+    i {
+        margin-left: 0;
+    }
+
+    .livescore-like {
+        width: 100%;
+        width: 3rem;
+    }
+}
+
+.livescore-league-header-detail {
+    justify-content: space-between;
+    background: #143CDB;
+    text-align: center;
+    padding: .6rem 0;
+    color: #fff;
+    .title-section{
+        h2{
+            line-height: normal;
+            font-size: 2rem;
+            font-weight: 700;
+            @include Mobile{
+                font-size: 1.6rem;
+            }
+        }
+        .start-date{
+            font-size: 1.6rem;
+            font-weight: 600;
+            @include Mobile{
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+.sticky-header {
+    opacity: 1;
+    border-radius: 5px;
+    border: 2px solid #143CDB;
+    background: #FFFDF9;
+    &.active-scroll {
+        opacity: 0;
+    }
+}
+
+.live {
+    .soccer-match-stage {
+        span {
+            font-size: 1.5rem;
+
+            @include Mobile {
+                font-size: 1.1rem;
+            }
+
+            &:before {
+                left: -15px;
+                top: 8px;
+
+                @include Mobile {
+                    top: 5px;
+                }
+            }
+
+            &:after {
+                left: -19px;
+                top: 4px;
+
+                @include Mobile {
+                    top: 1px;
+                }
+            }
+        }
+    }
+}
+
+.live-middle {
+    .soccer-match-stage {
+        span {
+            font-size: 1.2rem;
+
+            @include Mobile {
+                font-size: .8rem;
+            }
+
+            &:before {
+                left: -15px;
+                top: 5px;
+
+                @include Mobile {
+                    top: 2px;
+                }
+            }
+
+            &:after {
+                left: -19px;
+                top: 1px;
+
+                @include Mobile {
+                    top: -2px;
+                }
+            }
+        }
+    }
+}
+
+.duel-participant {
+    .flex-league {
+        .column {
+            .team {
+                &-logo {
+                    width: 3.6rem;
+                    height: 3.6rem;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    background: transparent; 
+                    border-radius: 100px;
+                    @include Mobile{
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                    img{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        @include Mobile{
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.detail-fixed {
+    position: fixed;
+    top: 7.7rem;
+    z-index: -1;
+    background: $primary-bg;
+    width: 100%;
+    opacity: 0;
+    padding-top: 2rem;
+    @include tableMobile {
+        position: fixed;
+        top: 3.9rem;
+        left: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-top: .6rem;
+    }
+
+
+    &.active-scroll {
+        opacity: 1;
+        transition: .2s all ease;
+        z-index: 80;
+    }
+
+
+    .duel-participant .icon-live-start, .duel-participant .icon-favourite-outline {
+        top: 3px;
+        right: 3px;
+    }
+
+    .sticky-header-scroll {
+        .breadcrumb {
+            margin-top: 1.3rem;
+
+            @include tableMobile {
+                padding: 0 1.2rem;
+                margin-top: 1.3rem;
+            }
+        }
+
+        .group-searchbar {
+            margin-right: 1.2rem;
+        }
+
+        .livescore-league-header-detail {
+            @include tableMobile {
+                margin-bottom: .5rem;
+            }
+        }
+
+        .sticky-position {
+            display: none;
+        }
+
+        .detail-function-bar {
+            padding-top: .4rem;
+            margin-bottom: 0;
+
+            @include tableMobile {
+                margin: 0 1.2rem;
+            }
+        }
+
+        .duel-participant {
+            padding: .6rem;
+
+            @include tableMobile {
+                margin: 0;
+            }
+
+            .flex-league {
+                margin-bottom: .6rem;
+                align-items: center;
+
+                @include Mobile {
+                    margin-bottom: .6rem;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(3) {
+                    margin-bottom: 0;
+                }
+
+                .column-center {
+                    @include Mobile {
+                        margin: 0 .8rem;
+                    }
+                }
+
+                .home-team {
+                    .team-logo {
+                        @include Mobile {
+                            order: 2;
+                        }
+                    }
+
+                    .team-name {
+                        font-size: 1.6rem;
+
+                        @include Mobile {
+                            text-align: right;
+                            margin-right: .6rem !important;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                .away-team {
+                    .team-name {
+                        font-size: 1.6rem;
+
+                        @include Mobile {
+                            text-align: left;
+                            margin-left: .6rem !important;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                .team {
+                    align-items: center;
+
+                    @include Mobile {
+                        flex-wrap: nowrap;
+                    }
+
+                    &-logo {
+                        img{
+                            @include Mobile{
+                                width: 2.4rem;
+                                height: 2.4rem;
+                            }
+                        }
+                    }
+
+                    &-name {
+                        @include Mobile {
+                            max-width: 8.5rem;
+                        }
+                    }
+                }
+
+                .detail-score-wrapper {
+                    font-size: 2.4rem;
+                    padding: .4rem 1.4rem;
+                    border-radius: 5px;
+
+                    @include Mobile {
+                        padding: .4rem .8rem;
+                        font-size: 1.6rem;
+                        line-height: 2.4rem;
+                    }
+                }
+
+                .soccer-match-stage {
+                    @include Mobile {
+                        line-height: 1;
+                    }
+                }
+                .detail-score-status{
+                    display: none;
+                }
+            }
+        }
+
+        .duel-participant {
+            .flex-league {
+                .column {
+                    .team {
+                        &-logo {
+                            width: 2.4rem;
+                            height: 2.4rem;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            background: transparent; 
+                            border-radius: 100px;
+                            @include Mobile {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.soccer-match-item{
+    justify-content : space-between;
+}
+
+
+
+
+
+.wc-date-bar{
+    .soccer-team {
+        &.home-team{
+            border-bottom: none !important;
+        }
+    }
+}
+.line-up-map-body{
+    background: url('../../../../../images/image-map.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+.duel-participant{
+    border: none;
+}
+.sticky-header-scroll{
+    border: 2px solid #143CDB;
+    border-radius: 5px;
+    @include tableMobile{
+        margin: 0 1.2rem;
+    }
+}
+.duel-participant .flex-league .column-center.result-league .detail-score-wrapper{
+    background: transparent;
+    padding: 0;
+}
+.duel-participant .flex-league .column-center.result-league .detail-score-wrapper span{
+    color: #222;
+}
+.duel-participant .flex-league .column .team-name{
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #222;
+    @include Mobile{
+        font-size: 1.2rem;
+    }
+}
+.duel-participant .flex-league .column-center{
+    margin: 0 2rem;
+}
+.block-line-up .block-line-up-main{
+    border: 2px solid #143CDB;
+    border-radius: 5px;
+    background: #143CDB;
+    overflow: hidden;
+    border-top: none;
+    @include Mobile{
+        background: transparent;
+    }
+}
+.block-line-up-title{
+    color: #fff !important;
+    @include Mobile{
+        border-bottom: none !important;
+        background: #143CDB;
+    }
+}
+.line-up-group{
+    border-radius: 3px;
+    border: 2px solid #143CDB;
+    background: #FFFDF9;
+    margin-top: 1.6rem;
+    .title-custom{
+        margin-top: 0;
+    }
+    .block-line-up-main{
+        border: 1px solid #DADADA;
+        @include Mobile{
+            border: none;
+        }
+    }
+    .block-line-up-body{
+        background: #FAFAED;
+        @include Mobile{
+            background: #FFFDF9;
+        }
+    }
+    .line-up-table{
+        @include Mobile{
+            padding: .8rem 0 !important;
+        }
+    }
+}
+.line-up-map-main{
+    margin-top: 0;
+}
+.line-up-group-spacing{
+    padding: 1.6rem 1.2rem;
+    @include Mobile{
+        padding: .8rem;
+    }
+}
+
+.title-custom{
+    background: #143CDB;
+    border: none;
+    color: #fff;
+    border-radius: 0;
+}
+
+.team-menu-tabs{
+    padding: 1.6rem 0 .4rem 0;
+    .nav-team{
+        @include Mobile{
+            gap: 1.2rem;
+            li{
+                font-size: 1.6rem;
+                padding: .5rem 1.6rem;
+            }
+        }
+    }
+}
+.active-scroll{
+    .team-menu-tabs{
+        padding: 1.6rem 0 1rem 0;
+        border-bottom: 2px solid #143CDB;
+        @include tableMobile{
+            margin: 0 1.2rem;
+        }
+    }
+}
+
+.euro-page-main{
+    @include Mobile{
+        padding-top: .6rem;
+    }
+}
+
+.head-top-team{
+    transform: skew(-15deg);
+    max-width: 19rem;
+    background: linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    border: none;
+    @include Mobile{
+        max-width: 16rem;
+    }
+    .time-event{
+        &-title{
+            transform: skew(15deg);
+            color: #fff;
+        }
+        &-score{
+            transform: skew(15deg);
+            color: #fff;
+        }
+    }
+}
+.statistices{
+    @include Mobile{
+        padding: 0 1.2rem 1.2rem;
+    }
+}
+
+
+.line-up-change-men{
+    .block-line-up-title{
+        @include Mobile{
+            border-radius: 5px;
+        }
+    }
+}
+
+.first-pen{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    margin: 1.2rem 0;
+    color: #324A75;
+    @include Mobile{
+        font-size: 1.2rem;
+    }
+}

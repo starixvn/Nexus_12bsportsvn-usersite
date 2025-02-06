@@ -1,0 +1,79 @@
+@import './../../../../abstracts/mixins';
+@import './components/dock_stage';
+@import './components/auth-user';
+@import './components/minigame-section';
+
+
+.minigame-title{
+    margin-bottom: 3rem;
+    @include Mobile{
+        margin-bottom: 2.5rem;
+    }
+    .text{
+        padding-bottom: 1.1rem;
+        text-transform: uppercase;
+        color: #833D55;
+        @include tableMobile{
+            font-size: 2rem;
+        }
+    }
+    .dots-parent{
+        background: #833D55;
+        ul{
+            background: #E8E8D6;
+        }
+    }
+}
+.minigame-table{
+    .minigame-table-flex{
+        &.minigame-table-header{
+            background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+            width: 100%;
+        }
+        .table-row{
+            position: relative;
+            &-index {
+                width: 10%;
+            }
+        
+            &-name {
+                width: 36%;
+                text-align: center;
+            }
+        
+            &-score {
+                width: 25%;
+            }
+        
+            &-time {
+                width: 20%;
+                .icon-icon_lock{
+                    cursor: no-drop;
+                    &::before{
+                        color: #833D55;
+                    }
+                }
+                @include Mobile{
+                    width: 25%;
+                    i{
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+        .table-user{
+            display: block;
+        }
+    }
+}
+
+.view-minigame-detail{
+    position: absolute;
+    right: -20px;
+    top: 3px;
+    @include Mobile{
+        top: -3px;
+        right: 0 !important;
+    }
+}
+

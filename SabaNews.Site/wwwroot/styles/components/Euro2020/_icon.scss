@@ -1,0 +1,15 @@
+﻿@mixin flag {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+$countries: italia, switzerland, wales, ukraine, turkey, sweden, slovakia, scotland, russia, portugal, poland, macedonia, netherlands, finland, hungary, england, denmark, czech, belgium, croatia, austria, germany, france, spain, undefined;
+
+@each $country in $countries {
+    .flag-#{$country} {
+        @include flag;
+        background: url("../../../images/flag-event/#{$country}.svg") no-repeat;
+    }
+}

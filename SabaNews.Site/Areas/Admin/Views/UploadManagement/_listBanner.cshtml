@@ -1,0 +1,7 @@
+﻿<div class="fileExplorer">
+	@foreach (var fileInfo in Model.FileInfos)
+	{
+		var link = Model.BaseUrl + fileInfo.Name;
+		<span class="crop" data-url="@link" title="@fileInfo.Name" style="height:100px;background-image:url('@link')"></span>
+	}
+</div>

@@ -1,0 +1,664 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+@import '../../../components/soccer-staus';
+@import '../../../components/dot_live';
+
+.icon-livescore {
+    font-size: 2rem;
+}
+
+#match-detail {
+    margin: 2.4rem 0;
+    @include Mobile{
+        margin: .6rem 0;
+    }
+    li{
+        margin-bottom: 0;
+    }
+    .duel-participant{
+        @include Mobile{
+            padding: .4rem;
+        }
+        .flex-league{
+            align-items: flex-start !important;
+            .column-left{
+                ul{
+                    margin-bottom: .6rem;
+                    margin-left: 0;
+                    @include Mobile{
+                        margin-bottom: .4rem;
+                    }
+                    li{
+                        span{
+                            line-height: 2.4rem;
+                        }
+                    }
+                }
+            }
+            .column-right{
+                ul{
+                    margin-left: 0;
+                }
+            }
+            &.live{
+                .soccer-match-stage{
+                    span{
+                        font-size: 1.2rem;
+                        @include Mobile{
+                            font-size: .8rem;
+                            &::before{
+                                top: 3px;
+                            }
+                            &::after{
+                                top: -1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .league-and-time {
+        background: #F5F5F5;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        .league{
+            list-style: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            &-logo{
+                width: 3rem;
+                height: 3rem;
+                margin-right: .6rem;
+                img{
+                    object-fit: cover;
+                }
+            }
+            &-name{
+                color: #333333;
+                font-weight: 600;
+                font-size: 1.4rem;
+                line-height: 2.4rem;
+                @include Mobile{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        p{
+            @extend .league-name;
+            margin-bottom: 0;
+            .days{
+                @include Mobile{
+                    display: none;
+                }
+            }
+        }
+    }
+    .center-league{
+        border-bottom: 1px solid #E9E9E9;
+        padding-bottom: 1rem;
+    }
+    .view-detail {
+        text-align: center;
+        margin-bottom: 1rem;
+        @include Mobile{
+            margin-bottom: 1.6rem;
+        }
+        span{
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            background: #EAEFF2;
+            border-radius: 3px;
+            padding: .7rem 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.8rem;
+            @include Mobile{
+                font-size: 1.2rem;
+            }
+            i{
+                font-size: 2rem;
+            }
+        }
+    }
+    .duel-participant {
+        border: 1px solid $border-color;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.2rem 1.3rem;
+        background: $primary-bg;
+        position: relative;
+    
+        @include Mobile {
+            padding: 1rem;
+        }
+    
+        .icon-live-start, .icon-favourite-outline {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 2rem;
+    
+            @include Mobile {
+                right: 6px;
+                top: 6px;
+            }
+        }
+    
+        .flex-league {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+    
+            @include Mobile {
+                margin-bottom: .6rem;
+                align-items: flex-start;
+            }
+    
+            &:last-child {
+                margin-bottom: 0;
+                align-items: flex-start;
+            }
+    
+            &.first-league {
+                align-items: center;
+    
+                .home-team, .away-team {
+                    justify-content: center;
+                }
+            }
+    
+            .column {
+                text-align: center;
+    
+                .team {
+                    display: flex;
+                    align-items: center;
+                    list-style: none;
+                    padding-left: 0;
+                    margin-bottom: 0;
+                    width: 100%;
+    
+                    @include Mobile {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                    }
+    
+                    &-logo {
+                        overflow: hidden;
+                        position: relative;
+                        width: 4.4rem;
+    
+                        @include Mobile {
+                            order: 1;
+                            width: 3.2rem;
+                            text-align: center;
+                            margin-bottom: .4rem;
+                        }
+    
+                        img {
+                            max-width: 100%;
+                            object-fit: cover;
+                            display: block;
+                            margin: 0 auto;
+                            image-rendering: -webkit-optimize-contrast;
+                        }
+                    }
+    
+                    &-name {
+                        font-weight: 600;
+                        font-size: 2rem;
+                        line-height: 2.4rem;
+                        color: $color-title;
+    
+                        @include Mobile {
+                            order: 2;
+                            text-align: center;
+                            width: 100% !important;
+                            margin-right: 0 !important;
+                            margin-left: 0 !important;
+                            font-size: 1.1rem;
+                            line-height: 1.6rem;
+                        }
+                    }
+                }
+    
+                ul {
+                    list-style: none;
+                    padding-left: 0;
+                }
+    
+                &.home-team {
+                    text-align: right;
+    
+                    .participant-detail {
+                        justify-content: flex-end;
+    
+                        &-group {
+                            justify-content: flex-end;
+    
+                            li {
+                                display: flex;
+                                align-items: center;
+                            }
+    
+                            .name-player {
+                                order: 1;
+                                margin-right: .6rem;
+                                max-width: 16rem;
+                                @include Mobile {
+                                    margin-right: .6rem;
+                                    line-height: 1;
+                                    max-width: 9rem;
+                                }
+    
+                                @include iphone5 {
+                                    max-width: 7rem;
+                                }
+                            }
+    
+                            i, svg {
+                                order: 2;
+                            }
+    
+                            svg {
+                                width: 2rem;
+    
+                                @include Mobile {
+                                    width: 1.8rem;
+                                    height: 1.8rem;
+                                }
+                            }
+                        }
+    
+                        .card-league {
+                            margin-left: .5rem;
+    
+                            &:first-child {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+    
+                &.away-team {
+                    text-align: left;
+    
+                    .participant-detail {
+                        justify-content: flex-start;
+    
+                        &-group {
+                            li {
+                                display: flex;
+                                align-items: center;
+                            }
+    
+                            .name-player {
+                                margin-left: .6rem;
+                                max-width: 16rem;
+                                line-height: 2.4rem;
+                                @include Mobile {
+                                    margin-left: .6rem;
+                                    line-height: 1;
+                                    max-width: 9rem;
+                                }
+    
+                                @include iphone5 {
+                                    max-width: 7rem;
+                                }
+                            }
+    
+                            svg {
+                                width: 2rem;
+    
+                                @include Mobile {
+                                    width: 1.8rem;
+                                    height: 1.8rem;
+                                }
+                            }
+                        }
+    
+                        .card-league {
+                            margin-right: .5rem;
+    
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+    
+                &-right {
+                    width: 30%;
+                    display: flex;
+                    justify-content: flex-start;
+    
+                    @include Mobile {
+                        width: 35%;
+                    }
+    
+                    ul {
+                        margin-bottom: 1rem;
+    
+                        @include Mobile {
+                            margin-bottom: .6rem;
+                        }
+                    }
+    
+                    .team-name {
+                        margin-left: 1.2rem;
+                        max-width: 15rem;
+                    }
+                }
+    
+                &-left {
+                    width: 30%;
+                    display: flex;
+                    justify-content: flex-end;
+    
+                    @include Mobile {
+                        width: 35%;
+                    }
+    
+                    ul {
+                        margin-bottom: 1rem;
+                        justify-content: flex-end;
+    
+                        @include Mobile {
+                            margin-bottom: .6rem;
+                        }
+                    }
+    
+                    .team-name {
+                        margin-right: 1.2rem;
+                        max-width: 15rem;
+                    }
+                }
+    
+                &-center {
+                    margin: 0 2.4rem;
+                    text-align: center;
+                    width: 16%;
+    
+                    @include Mobile {
+                        margin: 0 1.5rem;
+                        width: 20%;
+                    }
+    
+                    &.result-league {
+                        .detail-score-wrapper {
+                            background: $bg-score-detail;
+                            border-radius: 15px;
+                            padding: 1rem;
+                            font-weight: 700;
+                            font-size: 2.8rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-evenly;
+    
+                            @include Mobile {
+                                padding: 0.5rem;
+                                font-size: 2rem;
+                                border-radius: 5px;
+                            }
+    
+                            @include iphone5 {
+                                font-size: 1.4rem;
+                            }
+    
+                            span {
+                                color: $color-title;
+                                line-height: 1;
+                            }
+                        }
+                    }
+                }
+    
+                .soccer-match-stage {
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 1.3rem;
+                    line-height: 1;
+    
+                    @include Mobile {
+                        font-size: 1rem;
+                    }
+    
+                    span {
+                        color: $color-detail-league;
+                        line-height: 1.5rem;
+                    }
+                }
+            }
+        }
+    
+        &-result {
+            margin: 0 4rem;
+            text-align: center;
+            width: 20%;
+    
+            .soccer-match-stage {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 1.3rem;
+                line-height: 2.4rem;
+    
+                span {
+                    color: $color-detail-league;
+                }
+            }
+    
+            &-score {
+                .detail-score-wrapper {
+                    margin: 1rem 0;
+                    background: $bg-score-detail;
+                    border-radius: 15px;
+                    padding: 1rem 1.8rem;
+                    font-weight: 700;
+                    font-size: 4.2rem;
+    
+    
+                    span {
+                        color: $color-title;
+                        line-height: 1;
+                    }
+                }
+    
+                .detail-score-status {
+                    color: $color-detail-league;
+                    font-weight: 600;
+                    font-size: 1.3rem;
+                    line-height: 1.8rem;
+                }
+            }
+        }
+    
+        &-home-wrapper {
+            width: 40%;
+    
+            .soccer-team-status {
+                justify-content: flex-end;
+            }
+    
+            &-image {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+    
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    margin-left: 1.1rem;
+                    display: block;
+                }
+            }
+    
+            &-name {
+                font-weight: 600;
+                font-size: 2rem;
+                line-height: 2.4rem;
+                color: $color-title;
+            }
+    
+            .participant-detail {
+                justify-content: flex-end;
+    
+                &-group {
+                    justify-content: flex-end;
+    
+                    .name-player {
+                        order: 1;
+                        margin-right: 1.2rem;
+    
+                        @include Mobile {
+                            line-height: 1;
+                        }
+                    }
+    
+                    i, svg {
+                        order: 2;
+                    }
+    
+                    svg {
+                        width: 1.6rem;
+                    }
+                }
+    
+                .card-league {
+                    margin-left: .8rem;
+    
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    
+        &-away-wrapper {
+            width: 40%;
+    
+            &-image {
+                display: flex;
+                align-items: center;
+    
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    margin-right: 1.1rem;
+                    display: block;
+                }
+            }
+    
+            &-name {
+                font-weight: 600;
+                font-size: 2rem;
+                line-height: 2.4rem;
+                color: $color-title;
+            }
+    
+            .participant-detail {
+                justify-content: flex-start;
+    
+                &-group {
+                    .name-player {
+                        margin-left: 1.2rem;
+                    }
+    
+                    svg {
+                        width: 1.6rem;
+                    }
+                }
+    
+                .card-league {
+                    margin-right: .8rem;
+    
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    .detail-score-status {
+        color: $color-detail-league;
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        list-style: none;
+    
+        @include Mobile {
+            font-size: .9rem;
+            line-height: 1.2rem;
+        }
+    }
+    
+    
+    .participant-detail {
+        flex-wrap: wrap;
+        align-items: center;
+        display: flex;
+    
+        &-group {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 1rem;
+    
+            &:last-child {
+                margin-bottom: 0;
+            }
+    
+            .name-player {
+                font-weight: 400;
+                font-size: 1.4rem;
+    
+                @include Mobile {
+                    font-size: 1rem;
+                }
+    
+                @include iphone5 {
+                    font-size: .8rem;
+                }
+            }
+        }
+    
+        .card-league {
+            padding: .4rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1;
+            border-radius: 3px;
+            margin-bottom: .2rem;
+    
+            @include Mobile {
+                font-size: .9rem;
+            }
+        }
+    
+        .red-card {
+            background: $red-card;
+            color: $color-red-card;
+        }
+    
+        .yellow-card {
+            background: $yellow-card;
+            color: $color-yellow-card;
+        }
+    }
+    
+    .soccer-team-status {
+        margin-bottom: 0 !important;
+    }
+    
+}
+

@@ -1,0 +1,54 @@
+@import './../../../../abstracts/mixins';
+@import './components/minigame_control';
+@import './components/input-custom';
+@import './components/minigame-section';
+@import './components/minigame-table';
+
+
+.standing-minigame{
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #4C65DD;
+    background: #0C1C66;
+    position: relative;
+    @include Mobile{
+        margin: 0 1.2rem;
+    }
+    .img-table{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 0;
+        @include Mobile{
+            text-align: right;
+        }
+        img{
+            @include Mobile{
+                width: 50%;
+            }
+        }
+    }
+}
+
+.standing-me{
+    color: #FFF;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 1.8rem;
+    @include Mobile{
+        margin-bottom: 1.1rem;
+    }
+}
+.your-rating{
+    margin-bottom: 1.8rem;
+    color: #FFF;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.detailStandings {
+    display: none;
+}

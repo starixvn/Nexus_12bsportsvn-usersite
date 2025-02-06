@@ -1,0 +1,57 @@
+﻿@if (ViewBag.CurrentPage == 1)
+{
+    <div class="post card-horizontal card-horizontal-highlight">
+        <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = Model[0].Slug })" class="card-horizontal__image thumb thumb-56">
+            <picture>
+                <source srcset="@Url.Content(Model[0].FeatureImage)" type="image/webp" class="img-res">
+                <source srcset="@Url.Content(Model[0].FeatureImage)" type="image/jpeg" class="img-res">
+                <img asp-append-version="true" loading="lazy" src="@Url.Content(Model[0].FeatureImage)" alt="@Model[0].PostTitle" class="img-res img-block lazy">
+            </picture>
+        </a>
+        <div class="card-horizontal__content">
+            <a class="title" href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = Model[0].Slug })">@Model[0].PostTitle</a>
+            <p class="description">@Html.Raw(Model[0].PostExcerpt)</p>
+            <p class="datetime">
+                <span>@Model[0].PostTime</span>
+                @if (Model[0].CommentCount > 0)
+                {
+                    <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = Model[0].Slug })#comment" class="comment"><i class="icon-mode_comment_full"></i> <i class="number">@Model[0].CommentCount</i></a>
+                }
+            </p>
+        </div>
+    </div>
+}
+
+@{
+    var postIndex = 0;
+    foreach (var post in Model)
+    {
+        {
+            postIndex++;
+            if (postIndex <= 1 && ViewBag.CurrentPage == 1)
+            {
+                continue;
+            }
+        }
+        <div class="post card-horizontal">
+            <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })" class="card-horizontal__image thumb thumb-52">
+                <picture>
+                    <source srcset="@Url.Content(post.FeatureImage)" type="image/webp" class="img-res">
+                    <source srcset="@Url.Content(post.FeatureImage)" type="image/jpeg" class="img-res">
+                    <img asp-append-version="true" loading="lazy" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                </picture>
+            </a>
+            <div class="card-horizontal__content">
+                <a class="title" href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug })">@post.PostTitle</a>
+                <p class="description">@Html.Raw(post.PostExcerpt)</p>
+                <p class="datetime">
+                    <span>@post.PostTime</span>
+                    @if (post.CommentCount > 0)
+                    {
+                        <a href="@Url.Action("PostDetailWC", "WorldCup2022", new { slug = post.Slug  })#comment" class="comment"><i class="icon-mode_comment_full"></i> <i class="number">@post.CommentCount</i></a>
+                    }
+                </p>
+            </div>
+        </div>
+    }
+}

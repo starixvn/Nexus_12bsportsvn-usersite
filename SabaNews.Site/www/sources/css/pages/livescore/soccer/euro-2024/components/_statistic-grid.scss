@@ -1,0 +1,200 @@
+.statistic-grid{
+    width: 70rem;
+    @include tableMobile{
+        width: 100%;
+    }
+    &-item{
+        border-radius: 10px;
+        border: 1px solid #344699;
+        background: linear-gradient(0deg, #09154D 0%, #0C1C66 100%);
+        margin-bottom: 1rem;
+        transition: box-shadow .2s ease-in ;
+        &.active{
+            .statistic-grid-item-vote-round{
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                background: #FFCA00;
+                color: #222;
+            }
+            .statistic-grid-item-choose{
+                span{
+                    b{
+                        color: #FFCA00;
+                    }
+                }
+            }
+            .finish{
+                .statistic-team{
+                    &.active{
+                        &:hover{
+                            cursor: no-drop;
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+        &-vote{
+            color: #fff;
+            width: 50%;
+            @include tableMobile{
+                width: 100%;
+            }
+            &-round{
+                font-weight: 700;
+                min-height: 2.8rem;
+                font-size: 1.5rem;
+                border-radius: 5px;
+                background: rgba($color: #fff, $alpha: .1);
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+                margin-bottom: 1rem;
+                @include Mobile{
+                    min-height: 3.2rem;
+                    border-radius: 3px;
+                    margin: -.6rem;
+                    font-size: 1.4rem;
+                }
+            }
+            &-choose{
+                font-weight: 600;
+                font-size: 1.3rem;
+            }
+        }
+        &-body{
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            @include tableMobile{
+                padding: 1rem;
+                display: block;
+            }
+            .team-main{
+                display: flex;
+                grid-gap: 1rem;
+                justify-content: center;
+                @include tableMobile{
+                    margin-top: 1rem;
+                }
+                @include Mobile{
+                    margin-top: 1.6rem;
+                }
+            }
+            &.finish{
+                opacity: .5;
+                &:hover{
+                    box-shadow: none;
+                    cursor: no-drop;
+                }
+                .statistic-team{
+                    &:hover{
+                        cursor: no-drop;
+                    }
+                }
+            }
+           
+        }
+        &-round{
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 2.8rem;
+            @include tableMobile{
+                font-size: 1.4rem;
+            }
+        }
+        &-fav{
+            font-weight: 400;
+            font-size: 1.3rem;
+            color: #fff;
+            @include tableMobile{
+                margin-top: 1rem;
+                line-height: normal;
+                span{
+                    b{
+                        color: #FFCA00;
+                    }
+                }
+            }
+        }
+    }
+
+    .statistic-team{
+        background: rgba($color: #fff, $alpha: .1);
+        border: 2px solid transparent;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 11rem;
+        min-height: 10rem;
+        align-items: center;
+        padding: .8rem .3rem 0 .3rem;
+        cursor: pointer;
+        transition: box-shadow , background .2s ease-in ;
+        @include Mobile{
+            width: 33.3%;
+        }
+        &.active{
+            border: 2px solid #FFCA00;
+            background: rgba(255, 202, 0, 0.10);
+            box-shadow: 0px 2px 8px 0px rgba(255, 202, 0, 0.50);
+            .statistic-team-name{
+                color: #FFCA00
+            }
+            i{
+                &::before{
+                    color: #FFCA00;
+                }
+            }
+        }
+        &-logo{
+            width: 4.8rem;
+            height: 4.8rem;
+            object-fit: contain;
+            display: block;
+            border-radius: 3px;
+        }
+        &-name{
+            color: #fff;
+            margin-top: 1.5rem;
+            margin-bottom: .5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: normal;
+            text-align: center;
+        }
+        .icon-minigame_draw {
+            font-size: 5rem;
+            &::before{
+                color: #fff;
+            }
+        }
+    }
+}
+.equal-height-JlocK{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-pc{
+    display: block;
+    @include Mobile{
+        display: none;
+    }
+}
+
+.show-mb{
+    display: none;
+    @include Mobile{
+        display: block;
+    }
+}
+
+.statistic-main{
+    @include tableMobile{
+        width: 100%;
+        grid-column: 2/4;
+    }
+}

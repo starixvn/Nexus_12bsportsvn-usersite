@@ -1,0 +1,19 @@
+﻿.wc-main, .wc-page-main {
+    padding-top: 3rem;
+
+    @include tableMobile {
+        padding-top: 2rem;
+    }
+}
+
+
+.overflow-page {
+    overflow: hidden;
+}
+
+body {
+    background: #EEEEE4 !important;
+}
+html,body{
+    overflow-x: unset;
+}

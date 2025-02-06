@@ -1,0 +1,14 @@
+.document-text{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 5px;
+    background: #F9F6F0;
+    margin-bottom: .8rem;
+    @include Mobile{
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+    }
+}

@@ -1,0 +1,66 @@
+﻿@using SabaNews.Core.Constants;
+@using DeviceDetectorNET;
+
+@{
+    var detector = new DeviceDetector(Context.Request.Headers["User-Agent"].ToString());
+    detector.Parse();
+    var isMobile = detector.IsMobile();
+    var isDesktop = detector.IsDesktop();
+    var isTablet = detector.IsTablet();
+}
+
+<meta name="description" content='@Model.ViewData.Description' />
+<meta name="robots" content="noarchive">
+<meta property="og:description" content='@Model.Category.OgDescription' />
+<meta property="og:title" content='@Model.Category.OgTitle' />
+<meta property="og:image" content='@Model.Category.OgImage' />
+
+@section Title{
+    @Model.ViewData.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2020_ranking.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+    <script src="~/js/euro2020/euro2020.js" asp-append-version="true"></script>
+}
+
+
+<div class="page">
+    @(await Component.InvokeAsync("HeaderEvent", new { page = Constants.Euro2020RankingSlug }))
+    <div class="main-content">
+        <div class="container">
+            <h2 class="block__title"><span class="text-title">@Model.ViewData.HeadTitle</span></h2>
+
+            <div class="block__content">
+                <div class="block">
+                    <ul class="sub-category">
+                        @{
+                            var first = true;
+                        }
+
+                        @foreach (var post in Model.Posts)
+                        {
+                            var active = "";
+                            if (first)
+                            {
+                                active = "active";
+                                first = false;
+                            }
+
+                            <li class="sub-item"><a href="javascript:;" data-slug="@post.Slug" class="tab-data  @active">@post.PostTitle</a></li>
+                        }
+
+                    </ul>
+                    <div class="post_content ranking">
+                        @Html.Raw(Model.Posts[0].PostContent)
+                    </div>
+
+                </div>
+                @Html.Raw(Model.ThirdPlaceTable.PostContent)
+            </div>
+        </div>
+    </div>
+</div>

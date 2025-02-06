@@ -1,0 +1,47 @@
+﻿@using Microsoft.Extensions.Configuration;
+@inject IConfiguration configuration
+
+@{
+    var baseUrl = configuration.GetValue<string>("BaseUrl");
+}
+@section Title{
+	@ViewResources.NotFoundPostMsg
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/notfound.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+	<script src="~/minify/js/notfound.min.js" asp-append-version="true"></script>
+}
+
+
+@section Metadata {
+    <link rel="canonical" href="@baseUrl" >
+}
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+    <div class="notfound-container">
+        <div class="img-notfound">
+            <img src="~/images/404.png" alt="not-found" class="img-res" width="277" height="224" />
+        </div>
+        <div class="heading-notfound">
+            Không tìm thấy đường dẫn này
+        </div>
+        <div class="text-notfound">
+            Bạn có thể truy cập vào trang chủ hoặc sử dụng ô dưới đây để tìm kiếm
+        </div>
+        <form action="" method="post" class="form-notfound">
+            <input type="text" placeholder="tìm kiếm..." class="keyword">
+            <button class="search-button">
+                <i class="icon-search"></i>
+            </button>
+        </form>
+        <div class="back-to-home">
+            <a href="/">Quay lại trang chủ</a>
+        </div>
+        @await Html.PartialAsync(ViewResources.RelatedPostView, new PostComponentViewModel { PostId = 0, Title = "Tin mới nhất" })
+    </div>
+</section>

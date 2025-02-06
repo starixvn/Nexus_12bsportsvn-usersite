@@ -1,0 +1,29 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './base/base';
+@import './layout/header';
+@import './layout/footer';
+@import './components/button';
+@import './components/container';
+@import './components/block';
+@import './components/hover-img-item';
+@import './components/items-block';
+@import './components/nav-tabs-event';
+
+.block-items-vertical-hot{
+    .block-items-heading{
+        text-align: left;
+    }
+}
+.video-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin: 2rem 0;
+    @include tableMobile{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include Mobile{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

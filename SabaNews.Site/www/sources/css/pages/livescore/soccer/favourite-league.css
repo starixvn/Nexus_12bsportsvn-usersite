@@ -1,0 +1,1537 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: Open Sans, sans-serif;
+  color: #4F4F4F;
+  line-height: 2.2rem;
+  background-color: #FFFDF9;
+}
+
+.img-res {
+  max-width: 100%;
+  height: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 100%;
+  margin: 0;
+}
+
+.hidden-body, .overflow-modal {
+  overflow: hidden;
+}
+
+.hidden-body {
+  position: fixed;
+  height: 100%;
+  overflow: hidden;
+}
+@media screen and (max-width: 1024px) {
+  .hidden-body main {
+    overflow: hidden;
+  }
+}
+
+#app-container {
+  padding-top: 2rem;
+}
+@media screen and (max-width: 1024px) {
+  #app-container {
+    padding-top: 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+}
+
+.start-active:before {
+  color: #EF9123;
+}
+
+.icon-livescore {
+  font-size: 2rem;
+}
+@media screen and (max-width: 1024px) {
+  .icon-livescore {
+    font-size: 1.8rem;
+  }
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.livescore-soccer {
+  display: grid;
+  grid-template-columns: 69% 31%;
+  grid-template-rows: unset;
+  grid-gap: 0;
+  align-items: start;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer {
+    grid-template-columns: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .livescore-soccer {
+    display: inherit;
+  }
+}
+
+.leagues-main {
+  margin: 0.5rem 0;
+}
+
+.livescore-soccer-extension {
+  padding-left: 1.6rem;
+  margin-bottom: 4rem;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-extension {
+    display: none;
+  }
+}
+.livescore-soccer-extension .livescore-like {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid #E6E6E6;
+  margin-bottom: 0.8rem;
+  position: relative;
+  cursor: pointer;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-extension .livescore-like {
+    display: none;
+  }
+}
+.livescore-soccer-extension .livescore-like .title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #E13C29;
+  text-transform: uppercase;
+}
+.livescore-soccer-extension .livescore-like .icon-livescore:before {
+  color: #223453;
+}
+.livescore-soccer-extension .livescore-like .number-like {
+  background: #E13C29;
+  padding: 0.3rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #fff;
+  border-radius: 3px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.livescore-soccer-extension .leagues {
+  background: #FFFDF9;
+  border: 1px solid #DADADA;
+  border-radius: 3px;
+}
+.livescore-soccer-extension .leagues-group {
+  display: flex;
+  align-items: center;
+}
+.livescore-soccer-extension .leagues-title {
+  background-color: #fffdf9;
+  border-bottom: 1px solid #DADADA;
+  padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.livescore-soccer-extension .leagues-title span {
+  font-weight: bold;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #f12f19;
+  text-transform: uppercase;
+  background-color: #fffdf9;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-extension .leagues-title span {
+    font-size: 1.6rem;
+  }
+}
+.livescore-soccer-extension .leagues-title i:before {
+  color: #223453;
+}
+.livescore-soccer-extension .leagues-item {
+  margin-bottom: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+}
+.livescore-soccer-extension .leagues-item:last-child {
+  margin-bottom: 0;
+}
+.livescore-soccer-extension .leagues-item .toggle-league {
+  display: none;
+}
+.livescore-soccer-extension .leagues-item .toggle-league i {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.livescore-soccer-extension .leagues-item:hover {
+  background: #F5F5F5;
+}
+.livescore-soccer-extension .leagues-item:hover .toggle-league {
+  display: block;
+}
+.livescore-soccer-extension .leagues-item:hover .leagues-name {
+  color: #E13C29;
+}
+.livescore-soccer-extension .leagues-item:hover .start-active {
+  display: block;
+}
+.livescore-soccer-extension .leagues-item:hover .leagues-name .text {
+  font-weight: 600;
+}
+.livescore-soccer-extension .leagues-item .leagues-name {
+  display: flex;
+  align-items: center;
+}
+.livescore-soccer-extension .leagues-item .leagues-name .logo {
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
+  margin-right: 0.8rem;
+}
+.livescore-soccer-extension .leagues-item .leagues-name .text {
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+  font-weight: 600;
+  max-width: 20rem;
+}
+
+.icon-close {
+  cursor: pointer;
+}
+.icon-close.rotare-plus {
+  transform: rotate(135deg);
+}
+
+.empty-league {
+  padding: 0 1rem;
+}
+
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 130rem;
+  }
+}
+
+.livescore-container {
+  width: 100%;
+  padding: 0 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-container {
+    padding: 0 1.2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .livescore-container {
+    max-width: 104rem;
+  }
+}
+
+.livescore-league-header-detail {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-league-header-detail {
+    margin-bottom: 1.6rem;
+  }
+}
+.livescore-league-header-detail-group, .livescore-league-header-detail-icon {
+  display: flex;
+  align-items: center;
+}
+.livescore-league-header-detail-logo {
+  width: 3rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  align-items: center;
+  display: flex;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-league-header-detail-logo {
+    margin-right: 0.8rem;
+    order: 2;
+  }
+}
+.livescore-league-header-detail-logo img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+.livescore-league-header-detail span {
+  height: 3rem;
+}
+.livescore-league-header-detail-name {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: #324A75;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-league-header-detail-name {
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    order: 3;
+  }
+}
+@media (max-width: 767px) {
+  .livescore-league-header-detail-name {
+    max-width: 22rem;
+  }
+}
+.livescore-league-header-detail-name span {
+  font-weight: 400;
+  margin-left: 0.3rem;
+}
+.livescore-league-header-detail .start-active, .livescore-league-header-detail .icon-favourite-outline {
+  margin-left: 1.1rem;
+  cursor: pointer;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-league-header-detail .start-active, .livescore-league-header-detail .icon-favourite-outline {
+    margin-left: 0;
+    margin-right: 1rem;
+    order: 1;
+  }
+}
+.livescore-league-header-detail .favoroute-icon {
+  margin-right: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-league-header-detail .favoroute-icon {
+    margin-right: 0.6rem;
+  }
+}
+
+:root {
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #07bc0c;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+  --toastify-toast-width: 320px;
+  --toastify-toast-background: #fff;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-font-family: sans-serif;
+  --toastify-z-index: 9999;
+  --toastify-text-color-light: #757575;
+  --toastify-text-color-dark: #fff;
+  --toastify-text-color-info: #fff;
+  --toastify-text-color-success: #fff;
+  --toastify-text-color-warning: #fff;
+  --toastify-text-color-error: #fff;
+  --toastify-spinner-color: #616161;
+  --toastify-spinner-color-empty-area: #e0e0e0;
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #4cd964,
+    #5ac8fa,
+    #007aff,
+    #34aadc,
+    #5856d6,
+    #ff2d55
+  );
+  --toastify-color-progress-dark: #bb86fc;
+  --toastify-color-progress-info: var(--toastify-color-info);
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-color-progress-warning: var(--toastify-color-warning);
+  --toastify-color-progress-error: var(--toastify-color-error);
+}
+
+.Toastify__toast-container {
+  z-index: var(--toastify-z-index);
+  -webkit-transform: translate3d(0, 0, var(--toastify-z-index) px);
+  position: fixed;
+  padding: 4px;
+  width: var(--toastify-toast-width);
+  box-sizing: border-box;
+  color: #fff;
+}
+.Toastify__toast-container--top-left {
+  top: 1em;
+  left: 1em;
+}
+.Toastify__toast-container--top-center {
+  top: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.Toastify__toast-container--top-right {
+  top: 1em;
+  right: 1em;
+}
+.Toastify__toast-container--bottom-left {
+  bottom: 1em;
+  left: 1em;
+}
+.Toastify__toast-container--bottom-center {
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.Toastify__toast-container--bottom-right {
+  bottom: 1em;
+  right: 1em;
+}
+
+@media only screen and (max-width : 480px) {
+  .Toastify__toast-container {
+    width: 100vw;
+    padding: 0;
+    left: 0;
+    margin: 0;
+  }
+  .Toastify__toast-container--top-left, .Toastify__toast-container--top-center, .Toastify__toast-container--top-right {
+    top: 0;
+    transform: translateX(0);
+  }
+  .Toastify__toast-container--bottom-left, .Toastify__toast-container--bottom-center, .Toastify__toast-container--bottom-right {
+    bottom: 0;
+    transform: translateX(0);
+  }
+  .Toastify__toast-container--rtl {
+    right: 0;
+    left: initial;
+  }
+}
+.Toastify__toast {
+  position: relative;
+  min-height: var(--toastify-toast-min-height);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  max-height: var(--toastify-toast-max-height);
+  overflow: hidden;
+  font-family: var(--toastify-font-family);
+  cursor: pointer;
+  direction: ltr;
+}
+.Toastify__toast--rtl {
+  direction: rtl;
+}
+.Toastify__toast-body {
+  margin: auto 0;
+  flex: 1 1 auto;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+}
+.Toastify__toast-body > div:last-child {
+  flex: 1;
+}
+.Toastify__toast-icon {
+  margin-inline-end: 10px;
+  width: 20px;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.Toastify--animate {
+  animation-fill-mode: both;
+  animation-duration: 0.7s;
+}
+
+.Toastify--animate-icon {
+  animation-fill-mode: both;
+  animation-duration: 0.3s;
+}
+
+@media only screen and (max-width : 480px) {
+  .Toastify__toast {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+}
+.Toastify__toast-theme--dark {
+  background: var(--toastify-color-dark);
+  color: var(--toastify-text-color-dark);
+}
+.Toastify__toast-theme--light {
+  background: var(--toastify-color-light);
+  color: var(--toastify-text-color-light);
+}
+.Toastify__toast-theme--colored.Toastify__toast--default {
+  background: var(--toastify-color-light);
+  color: var(--toastify-text-color-light);
+}
+.Toastify__toast-theme--colored.Toastify__toast--info {
+  color: var(--toastify-text-color-info);
+  background: var(--toastify-color-info);
+}
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  color: var(--toastify-text-color-success);
+  background: var(--toastify-color-success);
+}
+.Toastify__toast-theme--colored.Toastify__toast--warning {
+  color: var(--toastify-text-color-warning);
+  background: var(--toastify-color-warning);
+}
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  color: var(--toastify-text-color-error);
+  background: var(--toastify-color-error);
+}
+
+.Toastify__progress-bar-theme--light {
+  background: var(--toastify-color-progress-light);
+}
+.Toastify__progress-bar-theme--dark {
+  background: var(--toastify-color-progress-dark);
+}
+.Toastify__progress-bar--info {
+  background: var(--toastify-color-progress-info);
+}
+.Toastify__progress-bar--success {
+  background: var(--toastify-color-progress-success);
+}
+.Toastify__progress-bar--warning {
+  background: var(--toastify-color-progress-warning);
+}
+.Toastify__progress-bar--error {
+  background: var(--toastify-color-progress-error);
+}
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--success, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--error {
+  background: var(--toastify-color-transparent);
+}
+
+.Toastify__close-button {
+  color: #fff;
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s ease;
+  align-self: flex-start;
+}
+.Toastify__close-button--light {
+  color: #000;
+  opacity: 0.3;
+}
+.Toastify__close-button > svg {
+  fill: currentColor;
+  height: 16px;
+  width: 14px;
+}
+.Toastify__close-button:hover, .Toastify__close-button:focus {
+  opacity: 1;
+}
+
+@keyframes Toastify__trackProgress {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+.Toastify__progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  z-index: var(--toastify-z-index);
+  opacity: 0.7;
+  transform-origin: left;
+}
+.Toastify__progress-bar--animated {
+  animation: Toastify__trackProgress linear 1 forwards;
+}
+.Toastify__progress-bar--controlled {
+  transition: transform 0.2s;
+}
+.Toastify__progress-bar--rtl {
+  right: 0;
+  left: initial;
+  transform-origin: right;
+}
+
+.Toastify__spinner {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: 100%;
+  border-color: var(--toastify-spinner-color-empty-area);
+  border-right-color: var(--toastify-spinner-color);
+  animation: Toastify__spin 0.65s linear infinite;
+}
+
+@keyframes Toastify__bounceInRight {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(-25px, 0, 0);
+  }
+  75% {
+    transform: translate3d(10px, 0, 0);
+  }
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes Toastify__bounceOutRight {
+  20% {
+    opacity: 1;
+    transform: translate3d(-20px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+}
+@keyframes Toastify__bounceInLeft {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    transform: translate3d(5px, 0, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes Toastify__bounceOutLeft {
+  20% {
+    opacity: 1;
+    transform: translate3d(20px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+@keyframes Toastify__bounceInUp {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes Toastify__bounceOutUp {
+  20% {
+    transform: translate3d(0, -10px, 0);
+  }
+  40%, 45% {
+    opacity: 1;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+@keyframes Toastify__bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes Toastify__bounceOutDown {
+  20% {
+    transform: translate3d(0, 10px, 0);
+  }
+  40%, 45% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+.Toastify__bounce-enter--top-left, .Toastify__bounce-enter--bottom-left {
+  animation-name: Toastify__bounceInLeft;
+}
+.Toastify__bounce-enter--top-right, .Toastify__bounce-enter--bottom-right {
+  animation-name: Toastify__bounceInRight;
+}
+.Toastify__bounce-enter--top-center {
+  animation-name: Toastify__bounceInDown;
+}
+.Toastify__bounce-enter--bottom-center {
+  animation-name: Toastify__bounceInUp;
+}
+
+.Toastify__bounce-exit--top-left, .Toastify__bounce-exit--bottom-left {
+  animation-name: Toastify__bounceOutLeft;
+}
+.Toastify__bounce-exit--top-right, .Toastify__bounce-exit--bottom-right {
+  animation-name: Toastify__bounceOutRight;
+}
+.Toastify__bounce-exit--top-center {
+  animation-name: Toastify__bounceOutUp;
+}
+.Toastify__bounce-exit--bottom-center {
+  animation-name: Toastify__bounceOutDown;
+}
+
+@keyframes Toastify__zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes Toastify__zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+.Toastify__zoom-enter {
+  animation-name: Toastify__zoomIn;
+}
+
+.Toastify__zoom-exit {
+  animation-name: Toastify__zoomOut;
+}
+
+@keyframes Toastify__flipIn {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+@keyframes Toastify__flipOut {
+  from {
+    transform: perspective(400px);
+  }
+  30% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+  to {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+.Toastify__flip-enter {
+  animation-name: Toastify__flipIn;
+}
+
+.Toastify__flip-exit {
+  animation-name: Toastify__flipOut;
+}
+
+@keyframes Toastify__slideInRight {
+  from {
+    transform: translate3d(110%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes Toastify__slideInLeft {
+  from {
+    transform: translate3d(-110%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes Toastify__slideInUp {
+  from {
+    transform: translate3d(0, 110%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes Toastify__slideInDown {
+  from {
+    transform: translate3d(0, -110%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes Toastify__slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(110%, 0, 0);
+  }
+}
+@keyframes Toastify__slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(-110%, 0, 0);
+  }
+}
+@keyframes Toastify__slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 500px, 0);
+  }
+}
+@keyframes Toastify__slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -500px, 0);
+  }
+}
+.Toastify__slide-enter--top-left, .Toastify__slide-enter--bottom-left {
+  animation-name: Toastify__slideInLeft;
+}
+.Toastify__slide-enter--top-right, .Toastify__slide-enter--bottom-right {
+  animation-name: Toastify__slideInRight;
+}
+.Toastify__slide-enter--top-center {
+  animation-name: Toastify__slideInDown;
+}
+.Toastify__slide-enter--bottom-center {
+  animation-name: Toastify__slideInUp;
+}
+
+.Toastify__slide-exit--top-left, .Toastify__slide-exit--bottom-left {
+  animation-name: Toastify__slideOutLeft;
+}
+.Toastify__slide-exit--top-right, .Toastify__slide-exit--bottom-right {
+  animation-name: Toastify__slideOutRight;
+}
+.Toastify__slide-exit--top-center {
+  animation-name: Toastify__slideOutUp;
+}
+.Toastify__slide-exit--bottom-center {
+  animation-name: Toastify__slideOutDown;
+}
+
+@keyframes Toastify__spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.tooltip-add-favourite-match {
+  z-index: 99999999;
+  padding: 0.4rem 0;
+  pointer-events: none;
+}
+.tooltip-add-favourite-match .arrow {
+  display: block;
+  width: 0.8rem;
+  height: 0.4rem;
+  position: absolute;
+  left: -2px !important;
+  top: 0;
+}
+.tooltip-add-favourite-match .arrow:before {
+  position: absolute;
+  content: "";
+  border-color: transparent;
+  border-style: solid;
+  display: block;
+  bottom: 0;
+  border-width: 0 5px 5px;
+  border-bottom-color: rgba(41, 41, 41, 0.9);
+}
+
+.tooltip-add-favourite-match [class$=inner] {
+  background: rgba(41, 41, 41, 0.9);
+  color: #FFFFFF;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2.4rem;
+}
+
+.fav-match ul, .fav-league ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fav-match ul li, .fav-league ul li {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  display: inline-flex;
+  margin-right: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1024px) {
+  .fav-match ul li, .fav-league ul li {
+    margin-right: 0;
+  }
+}
+.fav-match ul li:last-child, .fav-league ul li:last-child {
+  margin-right: 0;
+}
+.fav-match ul li i, .fav-league ul li i {
+  margin-right: 0.8rem;
+}
+.fav-match ul li a, .fav-league ul li a {
+  background: #BAD3FF;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 0.4rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #324A75;
+  text-transform: uppercase;
+}
+
+.Toastify__toast {
+  background: #324A75;
+  padding: 0;
+  min-height: 4rem !important;
+  padding: 0.9rem 1.2rem !important;
+  margin-bottom: 0 !important;
+}
+@media screen and (max-width: 1024px) {
+  .Toastify__toast {
+    border-radius: 3px !important;
+  }
+}
+
+.Toastify__toast-container {
+  width: auto !important;
+}
+@media screen and (max-width: 1024px) {
+  .Toastify__toast-container {
+    bottom: 1em !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .Toastify__toast-container .show-link-toastify {
+    width: 6rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .Toastify__toast-container .text-fav {
+    width: 23rem;
+  }
+}
+
+.Toastify__close-button {
+  display: none;
+}
+
+.Toastify__toast-body {
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-bottom: 1.3rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 767px) {
+  .breadcrumb {
+    margin-top: 0.3rem;
+    margin-bottom: 1.2rem;
+    display: inherit;
+    line-height: 1;
+  }
+}
+.breadcrumb li {
+  color: #7D7D7D;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.breadcrumb li span:hover {
+  color: #0066CC;
+  text-decoration: underline;
+}
+.breadcrumb li span:hover:after {
+  color: inherit;
+}
+@media (max-width: 767px) {
+  .breadcrumb li {
+    font-size: 1.1rem;
+    display: contents;
+  }
+}
+.breadcrumb li:last-child:after {
+  display: none;
+}
+.breadcrumb li.current {
+  cursor: context-menu;
+}
+.breadcrumb li.current span {
+  color: #454545;
+}
+.breadcrumb li.current span:hover {
+  text-decoration: none;
+}
+.breadcrumb li:after {
+  display: inline-block;
+  font-family: "Fraud-Sensor";
+  content: "\e97d";
+  font-weight: normal;
+  margin: 0 0.5rem;
+}
+@media (max-width: 767px) {
+  .breadcrumb li:after {
+    margin: 0 0.2rem;
+    line-height: 1;
+  }
+}
+
+.livescore-soccer-search-bar {
+  position: relative;
+  margin-right: 0;
+  width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-search-bar {
+    margin-right: 0.4rem;
+  }
+}
+.livescore-soccer-search-bar .livescore-soccer-searchbox {
+  width: 100%;
+  border: 1px solid #DADADA;
+  background: transparent;
+  height: 3.6rem;
+  padding: 1.2rem 0rem 1.2rem 3.5rem;
+  border-radius: 3px;
+  font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  .livescore-soccer-search-bar .livescore-soccer-searchbox {
+    height: 3.4rem;
+  }
+}
+.livescore-soccer-search-bar .livescore-soccer-searchbox::placeholder {
+  font-style: italic;
+  font-size: 1.4rem !important;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-search-bar .livescore-soccer-searchbox::placeholder {
+    font-size: 1.2rem !important;
+  }
+}
+.livescore-soccer-search-bar .btn-search-match {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: #7e7e7e;
+  top: 8px;
+  line-height: 1;
+}
+.livescore-soccer-search-bar .btn-close-match {
+  position: absolute;
+  right: 14px;
+  cursor: pointer;
+  color: #7e7e7e;
+  top: 8px;
+  line-height: 1;
+}
+
+.modal-livescore {
+  z-index: 99999999;
+  padding-right: 0 !important;
+  outline: none !important;
+  background: #FFFDF9;
+  position: fixed;
+  width: 100%;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%, 0);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  max-width: 50rem;
+}
+@media screen and (max-width: 1024px) {
+  .modal-livescore {
+    max-width: 70rem;
+  }
+}
+@media (max-width: 767px) {
+  .modal-livescore {
+    max-width: 36.5rem;
+  }
+}
+.modal-livescore .modal-header {
+  position: relative;
+  border-bottom: 1px solid #DADADA;
+  align-items: center;
+  text-transform: uppercase;
+}
+.modal-livescore .modal-header .modal-title {
+  color: #E13C29;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+}
+.modal-livescore .modal-header .icon-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.modal-livescore .modal-body {
+  padding: 1rem 0;
+}
+.modal-livescore .modal-body .livescore-soccer-search-bar {
+  padding: 0 1rem;
+}
+.modal-livescore .modal-body .btn-close-match {
+  right: 20px;
+}
+
+.modal-data {
+  min-height: 11.3rem;
+  max-height: 50rem;
+  overflow: auto;
+  margin-top: 1rem;
+}
+@media screen and (max-width: 1367px) and (min-width: 900px), (max-height: 601px) {
+  .modal-data {
+    max-height: 40rem;
+  }
+}
+.modal-data .livescore-soccer-extension {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.modal-data .livescore-soccer-extension .toggle-league {
+  display: block !important;
+}
+.modal-data .livescore-soccer-extension .toggle-league .icon-favourite-outline:hover:before {
+  color: #EF9123;
+}
+.modal-data .livescore-soccer-extension .leagues-item .leagues-name span {
+  font-size: 1.3rem;
+}
+.modal-data.spacing-top {
+  margin-top: 1rem;
+}
+.modal-data.spacing-top .livescore-soccer-extension {
+  padding-left: 0;
+}
+.modal-data.spacing-top .livescore-soccer-extension .leagues-item {
+  padding: 0.5rem 1.2rem;
+}
+.modal-data.spacing-top .livescore-soccer-extension .leagues-item:hover .toggle-league {
+  display: block !important;
+}
+.modal-data::-webkit-scrollbar {
+  width: 0.6rem;
+}
+.modal-data::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 3px;
+}
+.modal-data .not-found {
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+
+.search-league-title {
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.text-matched {
+  font-weight: 700;
+}
+
+.txt {
+  font-size: 1.3rem !important;
+}
+
+.my-league {
+  display: grid;
+  margin-bottom: 3rem;
+}
+@media (max-width: 767px) {
+  .my-league {
+    margin-bottom: 1.5rem;
+  }
+}
+.my-league-item {
+  cursor: move;
+  background: #FFFDF9;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  padding: 0 0.8rem 0 0;
+  display: grid;
+  grid-template: "myLeagueAction myLeagueImg myLeagueName myLeagueDrop" 3.8rem/4rem 3.8rem 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+@media (max-width: 767px) {
+  .my-league-item {
+    margin-bottom: 0.8rem;
+    padding: 0 0.5rem 0 0;
+    grid-template: "myLeagueAction myLeagueImg myLeagueName myLeagueDrop" 3.8rem/3.5rem 3.8rem 1fr;
+  }
+}
+.my-league-item.result-search {
+  cursor: pointer;
+}
+.my-league-item-action {
+  grid-area: myLeagueAction;
+  cursor: pointer;
+  text-align: center;
+}
+.my-league-item-img {
+  grid-area: myLeagueImg;
+  width: 3rem;
+  object-position: top;
+  -webkit-backface-visibility: hidden;
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0) scale(1, 1);
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+  cursor: pointer;
+}
+.my-league-item-name {
+  grid-area: myLeagueName;
+  font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  .my-league-item-name {
+    font-size: 1.2rem;
+  }
+}
+.my-league-item-name span {
+  cursor: pointer;
+}
+.my-league-item-drop {
+  grid-area: myLeagueDrop;
+}
+
+.livescore-soccer-search-bar {
+  position: relative;
+  margin-right: 0;
+  width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-search-bar {
+    margin-right: 0.4rem;
+  }
+}
+.livescore-soccer-search-bar .livescore-soccer-searchbox {
+  width: 100%;
+  border: 1px solid #DADADA;
+  background: transparent;
+  height: 3.6rem;
+  padding: 1.2rem 0rem 1.2rem 3.5rem;
+  border-radius: 3px;
+  font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  .livescore-soccer-search-bar .livescore-soccer-searchbox {
+    height: 3.4rem;
+  }
+}
+.livescore-soccer-search-bar .livescore-soccer-searchbox::placeholder {
+  font-style: italic;
+  font-size: 1.4rem !important;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-soccer-search-bar .livescore-soccer-searchbox::placeholder {
+    font-size: 1.2rem !important;
+  }
+}
+.livescore-soccer-search-bar .btn-search-match {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: #7e7e7e;
+  top: 8px;
+  line-height: 1;
+}
+.livescore-soccer-search-bar .btn-close-match {
+  position: absolute;
+  right: 14px;
+  cursor: pointer;
+  color: #7e7e7e;
+  top: 8px;
+  line-height: 1;
+}
+
+.livescore-recent-post {
+  margin-top: 1.7rem;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-recent-post {
+    margin-bottom: 0;
+    padding-bottom: 1.6rem;
+  }
+}
+.livescore-recent-post__title {
+  margin-bottom: 1.3rem;
+  position: relative;
+  padding-left: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  .livescore-recent-post__title {
+    margin-bottom: 0.9rem;
+  }
+}
+.livescore-recent-post__title::after {
+  content: "";
+  display: block;
+  background: #F12F19;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 0.3rem;
+  height: 2rem;
+  z-index: 0;
+}
+.livescore-recent-post__title a {
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 2.7rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 9;
+  padding-right: 1rem;
+  line-height: 1;
+  color: #F12F19;
+}
+.livescore-recent-post__title a:hover {
+  color: #cb200c;
+}
+.livescore-recent-post__item {
+  display: grid;
+  grid-template: "recentPostImg recentPostDescription" 8rem/12rem;
+  grid-gap: 1.2rem;
+  border-bottom: 1px solid #E9E9E9;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.livescore-recent-post__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.livescore-recent-post__item .img-item {
+  grid-area: recentPostImg;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.livescore-recent-post__item .img-item a {
+  display: block;
+}
+.livescore-recent-post__item .img-item img {
+  transition: all 0.5s ease;
+  -webkit-backface-visibility: hidden;
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0) scale(1, 1);
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+  display: block;
+  height: 8rem;
+  object-fit: cover;
+  width: 100%;
+}
+.livescore-recent-post__item .img-item:hover img {
+  transition: all 0.5s ease;
+  transform: scale(1.02);
+}
+.livescore-recent-post__item .description-item {
+  grid-area: recentPostDescription;
+}
+.livescore-recent-post__item .description-item a {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #333333;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+.livescore-recent-post__item .description-item a:hover {
+  color: #F12F19;
+}
+
+.livescore-soccer .livescore-soccer-search-bar {
+  padding: 0;
+}
+.livescore-soccer .btn-search-match {
+  left: 10px;
+  cursor: pointer;
+}
+
+.my-league {
+  margin-top: 1.2rem;
+}
+@media (max-width: 767px) {
+  .my-league {
+    margin-top: 1rem;
+  }
+}
+
+.livescore-league-header-detail {
+  margin-bottom: 1.6rem;
+}
+@media (max-width: 767px) {
+  .livescore-league-header-detail {
+    margin-bottom: 1rem;
+  }
+}
+.livescore-league-header-detail-name {
+  text-transform: uppercase;
+}

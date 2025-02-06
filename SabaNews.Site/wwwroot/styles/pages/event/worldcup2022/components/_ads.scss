@@ -1,0 +1,75 @@
+﻿@import '../../../../abstracts/mixins';
+
+.banner-change-domain, .skeleton-banner-align {
+    position: absolute;
+    top: 29.2rem;
+    z-index: 9;
+
+    &.active-ads {
+        top: 7.5rem !important;
+        position: fixed;
+    }
+
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
+
+    @media screen and (max-width: 1280px) {
+        display: none;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        display: none;
+    }
+
+
+    &.banner-left, &.skeleton-banner-align-left {
+        right: 50%;
+        margin-right: 60rem;
+    }
+
+    &.banner-right, &.skeleton-banner-align-right {
+        left: 50%;
+        margin-left: 60rem;
+    }
+}
+
+.skeleton-banner-align {
+    width: 100%;
+    max-width: 20rem;
+    max-height: 60rem;
+}
+
+
+
+.banner-euro-mobile, .banner-mobile {
+    text-align: center;
+    position: relative;
+    display: none;
+
+    @include Mobile {
+        display: block;
+    }
+
+    img {
+        display: block;
+        margin-bottom: 0;
+    }
+}
+
+.banner-mobile {
+    @include Mobile {
+        margin-top: 2.5rem;
+    }
+}
+
+.swiper-ads-wc {
+    .swiper-pagination-bullet {
+        background: #FFFFFF !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 1.6rem !important;
+        border-radius: 4px !important;
+    }
+}

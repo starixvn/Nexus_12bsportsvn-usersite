@@ -1,0 +1,79 @@
+﻿var worldcup = (function ($) {
+
+    function getTopScorers() {
+        if ($('#topScorersWC')) {
+            $.ajax({
+                url: '/WorldCup2022/GetTopScorers',
+                type: 'GET',
+            }).done(function (data) {
+                $('#topScorersWC').html(data);
+                $('[data-toggle="tooltip"]').tooltip();
+            })
+        }
+    }
+
+
+    function scrollEffectHeader() {
+        $(window).scroll(function () {
+            var topScroll = $(window).scrollTop();
+            var header = $('.top-header');
+            if (topScroll > 0) {
+                header.addClass('scroll-height');
+            } else {
+                header.removeClass('scroll-height');
+            }
+        });
+    }
+
+    function handleActions() {
+
+        $(document).on('shown.bs.modal', '.modal', function (e) {
+            $('html').addClass('overflow-page');
+        })
+
+        $(document).on('hidden.bs.modal', '.modal', function (e) {
+            $('html').removeClass('overflow-page');
+        })
+    }
+
+
+<<<<<<< HEAD
+    
+=======
+    //function countDownTime() {
+    //    const second = 1000,
+    //        minute = second * 60,
+    //        hour = minute * 60,
+    //        day = hour * 24;
+    //    let countDown = new Date('November 15, 2022 00:00:00').getTime(),
+    //        x = setInterval(function () {
+    //            let now = new Date().getTime(),
+    //                distance = countDown - now;
+    //            document.getElementById('days').innerHTML = `<div class="clock-time">${Math.floor(distance / (day))}</div> <div class="clock-text">ngày</div>`;
+    //            document.getElementById('hours').innerHTML = `<div class="clock-time">${Math.floor((distance % (day)) / (hour))}</div> <div class="clock-text">giờ</div>`,
+    //                document.getElementById('minutes').innerHTML = `<div class="clock-time">${Math.floor((distance % (hour)) / (minute))}</div> <div class="clock-text">phút</div>`,
+    //                document.getElementById('seconds').innerHTML = `<div class="clock-time">${Math.floor((distance % (minute)) / second)}</div> <div class="clock-text">giây</div>`;
+    //        }, second);
+    //}
+>>>>>>> dea728b55 (feat: create page minigames)
+
+    function init() {
+        getTopScorers();
+        scrollEffectHeader();
+        handleActions();
+<<<<<<< HEAD
+=======
+        //countDownTime();
+>>>>>>> dea728b55 (feat: create page minigames)
+    }
+   
+
+    return {
+        init
+    }
+})(jQuery);
+
+$(document).ready(function () {
+    worldcup.init();
+});
+

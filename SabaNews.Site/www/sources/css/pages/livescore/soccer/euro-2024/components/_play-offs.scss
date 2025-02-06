@@ -1,0 +1,489 @@
+.play-offs {
+    border-radius: 3px;
+    border-top: none;
+  
+    .draw-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+  
+      .draw-wrapper {
+        overflow-x: auto;
+        z-index: 0;
+        position: relative;
+  
+        @include tableMobile {
+          overflow-x: hidden;
+          margin: initial;
+        }
+  
+        &::-webkit-scrollbar {
+          width: 0.6rem;
+          height: 0.6rem;
+        }
+  
+        &::-webkit-scrollbar-track {
+          background: #ededed;
+        }
+  
+        &::-webkit-scrollbar-thumb {
+          background: #ddd;
+          border-radius: 3px;
+        }
+  
+        .shadowHeader {
+          border: 1px solid #dadada;
+          border-right: none;
+          border-left: none;
+          color: $color-title;
+          background: $border-soccer-item;
+          height: 4rem;
+          display: flex;
+          position: sticky;
+          z-index: 2;
+          left: 0;
+          top: 0;
+          border-radius: 3px;
+  
+          @include tableMobile {
+            display: none;
+          }
+        }
+  
+        .learHeader {
+          width: 100%;
+          height: 4rem;
+          display: flex;
+          position: sticky;
+          z-index: 3;
+          top: 0;
+          left: 0;
+          margin-top: -8rem;
+  
+          @include tableMobile {
+            display: none;
+          }
+        }
+  
+        .draw {
+          display: grid;
+          grid-auto-flow: column;
+          grid-auto-columns: 21rem;
+          user-select: none;
+          padding-bottom: 1rem;
+          @include tableMobile {
+            grid-auto-columns: 100%;
+            overflow-x: visible;
+            transition: transform 350ms ease-out;
+            margin-top: initial;
+          }
+  
+          &__round {
+            display: grid;
+            grid-template-rows: 4rem;
+            row-gap: 1rem;
+            min-width: 19rem;
+  
+            @include tableMobile {
+              grid-template-rows: 2.6rem;
+            }
+  
+            &--first {
+              .draw__bracket {
+                &::after {
+                  width: 1.5rem;
+                }
+              }
+            }
+  
+            &--last {
+              .draw__bracket {
+                &::after {
+                  width: 1.5rem;
+                  left: -10px;
+                  border-radius: 0;
+                  border-right: none;
+  
+                  @include tableMobile {
+                    left: -15px;
+                  }
+                }
+              }
+  
+              .draw__brackets {
+                align-content: space-around;
+  
+                @include tableMobile {
+                  align-content: flex-start;
+                }
+              }
+            }
+          }
+  
+          &__header {
+            grid-row: 1;
+            position: sticky;
+            top: 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1.3rem;
+            z-index: 999999;
+  
+            @include tableMobile {
+              display: grid;
+              grid-template: "previous label next" 2.5rem / 1.6rem 1fr 1.6rem;
+              background-color: $border-soccer-item;
+              border-radius: 3px;
+              border: 1px solid #dadada;
+              border-right: none;
+              border-left: none;
+              padding: 0 0.5rem;
+            }
+          }
+  
+          &__label {
+            color: $color-title;
+  
+            @include tableMobile {
+              grid-area: label;
+              place-self: center;
+              font-size: 1.2rem;
+            }
+          }
+  
+          &__arrow {
+            display: none;
+  
+            @include tableMobile {
+              display: flex;
+              position: relative;
+              align-items: center;
+              justify-content: center;
+              top: 0;
+              width: 100%;
+              height: 100%;
+            }
+  
+            &::before {
+              background: #d9d9d9;
+              border-radius: 50px;
+            }
+  
+            &--next {
+              @include tableMobile {
+                grid-area: next;
+              }
+            }
+  
+            &--previous {
+              @include tableMobile {
+                grid-area: previous;
+              }
+            }
+          }
+  
+          &__brackets {
+            display: grid;
+            grid-gap: 2rem 0;
+            z-index: 1;  
+            @include tableMobile {
+              grid-gap: 0.8rem 0;
+              grid-auto-rows: min-content;
+              align-content: flex-start;
+              margin: 0 1.5rem;
+            }
+          }
+  
+          &__bracket {
+            display: grid;
+            align-items: center;
+            position: relative;
+            @include Mobile{
+              width: 100%;
+              max-width: 26rem;
+              margin: auto;
+            }
+            &:after {
+              content: "";
+              width: calc(100% + 2rem);
+              height: 100%;
+              position: absolute;
+              right: -10px;
+              z-index: -1;
+              border-right: 1px solid #d9d9d9;
+              border-color: #d9d9d9;
+            }
+  
+            &--even {
+              &:after {
+                border-bottom: 1px solid #d9d9d9;
+                bottom: 50%;
+              }
+  
+              &:before {
+                @include tableMobile{
+                  content: "";
+                  background-color: #d9d9d9;
+                  position: absolute;
+                  height: 1px;
+                  left: auto;
+                  top: -20px;
+                  width: calc(100% + 25px);
+                  right: -100%;
+                }
+                @include  Mobile {
+                  content: "";
+                  background-color: #d9d9d9;
+                  position: absolute;
+                  height: 1px;
+                  left: auto;
+                  top: -20px;
+                  width: calc(100% - 45px);
+                  right: -100%;
+                }
+              }
+            }
+  
+            &--odd {
+              &:after {
+                border-top: 1px solid #d9d9d9;
+                top: 50%;
+              }
+            }
+  
+            .bracket {
+              display: grid;
+              border-radius: 3px;
+              cursor: pointer;
+              &--eventless {
+                cursor: default;
+              }
+  
+              &.bracket--highlighted {
+                background: #eef7ff;
+              }
+  
+              &--active {
+                background: #3b3a3c;
+                border: 1px solid #3b3a3c;
+                color: $white;
+                position: relative;
+                z-index: 2;
+              }
+  
+              &__image {
+                align-self: center;
+                justify-self: center;
+                margin-right: 0.4rem;
+                width: 2.6rem;
+                height: 2.6rem;
+                border-radius: 50px;
+                object-fit: cover;
+                @include Mobile{
+                  width: 3.2rem;
+                  height: 3.2rem;
+                }
+                &--home {
+                  grid-area: homeImage;
+                }
+  
+                &--away {
+                  grid-area: awayImage;
+                }
+              }
+  
+              &__participant {
+                align-self: center;
+                display: flex;
+                overflow: hidden;
+                font-weight: 600;
+                font-size: 1.4rem;
+                color: #222;
+                @include Mobile{
+                  font-size: 1.8rem;
+                }
+  
+                &.win {
+                  font-weight: 700;
+                }
+  
+                &--home {
+                  grid-area: homeParticipant;
+                }
+  
+                &--away {
+                  grid-area: awayParticipant;
+                }
+              }
+  
+              &__name {
+                width: 13rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include tableMobile{
+                  width: 20rem;
+                }
+              }
+  
+              &__series {
+                position: absolute;
+                top: calc(50% + 2.7rem);
+                width: 100%;
+                box-sizing: border-box;
+                z-index: 1;
+                background: $primary-bg;
+                border: 1px solid $border-color;
+                border-radius: 3px;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+                padding: 0.6rem;
+  
+                .series {
+                  position: relative;
+                  z-index: 2;
+                  display: grid;
+                  align-items: center;
+                  grid-template: ". time names . result ." auto / 0px 3.7rem 1fr 0px max-content 0;
+                  text-decoration: none;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                  border-bottom: 1px solid #e3e3e3;
+                  padding-bottom: 0.4rem;
+                  margin-bottom: 0.4rem;
+  
+                  @include tableMobile {
+                    grid-template: ". time names . result ." auto / 0px 3.7rem 1fr 0px max-content 0;
+                  }
+  
+                  &:last-child {
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                    border-bottom: none;
+                  }
+  
+                  &__names {
+                    grid-area: names;
+                    position: relative;
+                    margin-right: auto;
+                    text-decoration: none;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: 100%;
+  
+                    ul {
+                      li {
+                        line-height: 1.6rem;
+                        margin-bottom: 0.3rem;
+                        width: 10.8rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        font-size: 1.2rem;
+                        &.win {
+                          font-weight: 700;
+                        }
+  
+                        @include tableMobile {
+                          width: 23rem;
+                        }
+  
+                        &:last-child {
+                          margin-bottom: 0;
+                        }
+                      }
+                    }
+                  }
+  
+                  .result {
+                    grid-area: result;
+                    justify-self: flex-end;
+                    font-weight: bold;
+                    ul {
+                      list-style: none;
+                      li {
+                        font-size: 1.3rem;
+                      }
+                    }
+                  }
+  
+                  &__time {
+                    grid-area: time;
+                  }
+                }
+              }
+  
+              &__result {
+                font-size: 2rem;
+                background: #0A195B;
+                width: 4.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                height: 90%;
+                color: #fff;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                border-top-right-radius: 5px;
+                transform: skew(-15deg);
+                font-weight: 700;
+                span{
+                  transform: skew(10deg);
+                }
+                &--home {
+                  grid-area: homeResult;
+                }
+  
+                &--away {
+                  grid-area: awayResult;
+                }
+              }
+            }
+          }
+  
+          &__final {
+            margin-top: -1rem;
+            background: #f1f1f1;
+            border: 1px solid $border-color;
+            border-radius: 3px;
+  
+            @include tableMobile {
+              margin-top: 0;
+            }
+  
+            &--header {
+              font-weight: 700;
+              font-size: 1.2rem;
+              text-transform: uppercase;
+              padding: 0.6rem;
+            }
+  
+            .bracket {
+              border-width: 1px 0 0 0;
+            }
+  
+            .draw__bracket {
+              @include tableMobile {
+                margin-bottom: 0 !important;
+              }
+  
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .win {
+      font-weight: 700;
+    }
+  }
+  

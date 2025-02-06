@@ -1,0 +1,155 @@
+﻿.euro-modal {
+    .modal {
+        &.show {
+            position: fixed;
+            z-index: 99999;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%,-50%);
+            width: 100%;
+            max-width: 70rem;
+            width: 100%;
+            background: #FFFDF9;
+            border-radius: 5px;
+        }
+
+        .modal-auth {
+            border: none;
+            border-radius: 0;
+            position: relative;
+            height: 100%;
+            max-width: 75rem;
+            margin: 0 auto;
+        }
+
+        .close-event {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 999999;
+            cursor: pointer;
+            color: #fff;
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            line-height: 0;
+            font-size: 4rem;
+            outline: none;
+            border: none;
+            background: rgba(0, 0, 0, 0.10);
+            .icon{
+                line-height: 0;
+                &::before{
+                    font-size: 1rem !important;
+                    color: #333333;
+                    line-height: 2;
+                }
+            }
+        }
+    }
+    .txt-guide{
+        background: unset;
+        padding: 0;
+        border-radius: 0;
+        min-height: 50rem;
+        height: 50rem;
+        overflow: auto;
+        &::-webkit-scrollbar{
+            width: .8rem;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        &::-webkit-scrollbar-track{
+            background: transparent;
+        }
+    }
+    .minigame-title{
+        padding-top: 2rem;
+        padding-left: 2rem;
+        text-align: left;
+    }
+    .event-txt {
+        line-height: normal;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #333;
+    }
+    .event-text-header{
+        color: #143CDB;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: .5rem;
+    }
+    .text-event-section{
+        padding-right: 1rem;
+        margin-bottom: 1rem;
+        a{
+            color: #06C;
+        }
+    }
+    .main-guide{
+        padding: 0 1rem 2rem 2rem;
+    }
+    ul{
+        list-style: none;
+        padding-left: 1.6rem;
+    }
+}
+
+
+.euro-modal{
+    .modal{
+        &.is-login{
+            max-width: 40rem;
+            min-height: 17.2rem;
+            ul{
+                padding-left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap : 2rem;
+                margin-top: 1.6rem;
+                li{
+                    a{
+                        display: inline-block;
+                        color: #222;
+                        font-size: 1.6rem;
+                        font-weight: 700;
+                        line-height: 2.8rem; 
+                        padding: .6rem 2.4rem;
+                        text-transform: uppercase;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        background: #FFCA00;
+                    }
+                }
+            }
+            .close-event{
+                background: transparent;
+                border: 1px solid #222;
+                .icon{
+                    &::before{
+                        line-height: 2;
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+            }
+            .warning-event{
+                color: #222;
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                line-height: 2.8rem;
+                max-width: 270px;
+                margin: 0 auto;
+            }
+            .modal-body{
+                padding: 3rem 1rem;
+            }
+        }
+    }
+}

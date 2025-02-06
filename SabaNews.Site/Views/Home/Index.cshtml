@@ -1,0 +1,605 @@
+﻿@using SabaNews.Core.Constants;
+@using SabaNews.Resources
+@using static SabaNews.Site.Extensions.DeviceHelper;
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+}
+@section Schema {
+    <script type="application/ld+json">
+    [
+        {
+            "@@context": "https://schema.org",
+            "@@type": "Organization",
+            "name": "SABA Sports",
+            "url": "https://www.sabavn.net/",
+            "logo": "https://www.sabavn.net/images/sabasports.svg",
+            "description": "SABAVN.net cung cấp tin tức bóng đá và thông tin thể thao, bao gồm cập nhật trực tiếp, nhận định, video nổi bật, và thông tin hậu trường từ thế giới bóng đá và các môn thể thao khác.",
+            "sameAs": [
+                "https://www.facebook.com/sabasportsvietnam",
+                "https://www.tiktok.com/@@sabasportsvietnam",
+                "https://www.youtube.com/SABASportsVietnam",
+                "https://sites.google.com/view/sabavn/"
+            ],
+            "subjectOf": [
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/c1-champions-league-sabavn",
+                    "name": "Champions League"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/bong-da-anh-sabavn",
+                    "name": "Bóng đá Anh"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/bong-da-viet-nam-sabavn",
+                    "name": "Bóng đá Việt Nam"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/nhan-dinh-bong-da-sabavn",
+                    "name": "Nhận định bóng đá"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/lich-thi-dau/bong-da",
+                    "name": "Lịch thi đấu bóng đá, Trực tiếp bóng đá"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/hau-truong-sabavn",
+                    "name": "Hậu trường thể thao"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/chuyen-nhuong-sabavn",
+                    "name": "Tin tức chuyển nhượng"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/bong-da-tbn-sabavn",
+                    "name": "Bóng đá Tây Ban Nha"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/bong-ro-sabavn",
+                    "name": "Bóng rổ"
+                },
+                {
+                    "@@type": "WebPage",
+                    "url": "https://www.sabavn.net/euro-sabavn",
+                    "name": "Euro 2024"
+                }
+            ]
+        },
+
+        {
+            "@@context": "https://schema.org",
+            "@@type": "LocalBusiness",
+            "name": "SABA Sports",
+            "@@id": "https://www.sabavn.net/",
+            "url": "https://www.sabavn.net/",
+            "logo": "https://www.sabavn.net/images/sabasports.svg",
+            "image": "https://www.sabavn.net/images/sabasports.svg",
+            "description": "SABAVN.net - Tin tức bóng đá và thể thao mới nhất trên SABA Sports. Xem LTĐ, BXH các giải bóng đá hấp dẫn nhất hành tinh. Tin nóng bóng đá, thể thao 24/7",
+            "telephone": "0916328916",
+            "address": {
+                "@@type": "PostalAddress",
+                "streetAddress": "Số 20, Bầu Cát 6, Phường 14",
+                "addressLocality": "Tân Bình",
+                "addressRegion": "Thành phố Hồ Chí Minh",
+                "postalCode": "700000",
+                "addressCountry": "VN"
+            },
+            "openingHoursSpecification": {
+                "@@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                ],
+                "opens": "00:00",
+                "closes": "23:59"
+            }
+        }
+    ]
+    </script>
+}
+@section Metadata {
+    <meta name="robots" content="index,follow,noarchive,max-image-preview:large" />
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Category.OgDescription' />
+    <meta property="og:title" content='@Model.Category.OgTitle' />
+    <meta property="og:image" content='@Model.Category.OgImage' />
+    <meta name="google-site-verification" content="_Ade-bygW3LwBcRJe5PG2HM_ZxR2UzCL8FOW1JepVV0" />
+    <meta name='dmca-site-verification' content='L21LWUJKSGlUVmFvaFhNYzBBVXc1dz090' />
+    <link rel="canonical" href="@Model.Url" />
+    <link rel="alternate" href="@Model.Url" hreflang="vi-vn" />
+    <link rel="alternate" type="application/rss+xml" href="@Model.RSSUrl" title='@Model.Header.Title' />
+}
+
+@section Title {
+    @Model.Header.Title
+}
+
+@section Styles{
+     <environment include="Development">
+        <link rel="stylesheet" media="all" href="~/css/dev/pages/livescore/soccer/homepage/fixture.chunk.css"
+        asp-append-version="true" />
+        <link rel="stylesheet" media="all" href="~/css/dev/pages/livescore/soccer/homepage/standing.chunk.css"
+        asp-append-version="true" />
+        <link rel="preload stylesheet" href="~/styles/vendor/icomoon/style.css" asp-append-version="true">
+        <link rel="preload stylesheet" href="~/styles/pages/home.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/lib/swipper/css/swiper.min.css" asp-append-version="true">
+    </environment>
+    <environment exclude="Development">
+        <link rel="preload stylesheet" media="all" href="~/minify/styles/home.min.css" asp-append-version="true">
+    </environment>
+}
+
+@section Scripts {
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/homepage/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/homepage/standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/home.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/pages/livescore/soccer/homepage/fixture.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/homepage/standing.chunk.js" asp-append-version="true"></script>
+        <script src="~/minify/js/home.min.js" asp-append-version="true"></script>
+    </environment>
+    <script type="text/javascript">
+        if (screen && screen.width > 760) {
+            document.write('<script type="text/javascript" src="/minify/js/swiper.min.js"><\/script>');
+        }
+    </script>
+}
+
+@(await Component.InvokeAsync("Menu", new { page = "home-page", CategorySlug = "/" }))
+@{
+    var newPostIndex =  0;
+}
+<section class="main">
+    <h1 style="display: none;">SABA Sports - Tin tức bóng đá và thể thao 24/7</h1>
+    <div class="container">
+        <div class="block block-first-hot">
+            <div class="block-columns">
+                <div class="columns columns-left">
+                    <div class="wraper-hot-news">
+                        <div class="block__title">
+                            <a href="@Url.Action("Category", "Home", new { slug =   Constants.NewPostSlug + CategoryKey.Suffix })">@ViewResources.RecentsPost</a>
+                        </div>
+                        <ul class="list-hot-news" id="row">
+                            @{
+                                newPostIndex =  0;
+                                foreach (var item in Model.NewPosts)
+                                {
+                                    newPostIndex++;
+                                    if (newPostIndex >= 6)
+                                    {
+                                        continue;
+                                    }
+                                    <li class="hot-news-item">
+                                        <a title="@item.PostTitle" href="@Url.Action("Single", "Post", new { slug =  item.Uri })">@item.PostTitle</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="block-news-hot">
+                        <div class="card-hightlight-text">
+                            @{
+                                newPostIndex = 0;
+                                foreach (var item in Model.NewPosts)
+                                {
+                                    newPostIndex++;
+                                    if (newPostIndex <= 4)
+                                    {
+                                        continue;
+                                    }
+                                    <h3 class="card-hightlight-item"><a title="@item.PostTitle" href="@Url.Action("Single", "Post", new { slug =  item.Uri })">@item.PostTitle</a></h3>
+                                }
+                            }
+                        </div>
+                        @if(Model.NewPosts.Count > 0)
+                        {
+                            <div class="box-vertical box-vertical-hightlight">
+                                @{
+                                    var firstPost = Model.NewPosts[0];
+                                    string firstImgUrl = firstPost.FeatureImage;
+                                    <a title="@firstPost.PostTitle" href="@Url.Action("Single", "Post", new { slug =  firstPost.Uri})" class="box-vertical-image hover-image">
+                                        <img class="img-res lazy"  src="@Url.Content(firstImgUrl)" data-original="@Url.Content(firstImgUrl)" alt="@firstPost.PostTitle"  />
+                                        <noscript>
+                                            <img src="@Url.Content(firstImgUrl)" class="img-res" alt="@firstPost.PostTitle"  />
+                                        </noscript>
+                                    </a>
+                                    <div class="box-vertical-content">
+                                        <h3 class="heading-hight-light"><a title="@firstPost.PostTitle" href="@Url.Action("Single", "Post", new { slug =  firstPost.Uri})">@firstPost.PostTitle</a></h3>
+                                        <p>@firstPost.PostExcerpt</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div class="block-news-hot-child">
+                            @{
+                                newPostIndex = 0;
+                                foreach (var item in Model.NewPosts)
+                                {
+                                    newPostIndex++;
+                                    if (newPostIndex < 5 && newPostIndex > 1)
+                                    {
+                                        <div class="box-vertical">
+                                            <a title="@item.PostTitle" href="@Url.Action("Single", "Post", new { slug =  item.Uri })" class="box-vertical-image hover-image">
+                                                <img src="@Url.Content(item.FeatureImage)" data-original="@Url.Content(item.FeatureImage)" alt="@item.PostTitle" class="img-res lazy"  />
+                                                 <noscript>
+                                                    <img src="@Url.Content(item.FeatureImage)" alt="@item.PostTitle" />
+                                                </noscript>
+                                            </a>
+                                            <div class="box-vertical-content">
+                                                <h4 class="heading-box-content">
+                                                    <a title="@item.PostTitle" href="@Url.Action("Single", "Post", new { slug =  item.Uri})">@item.PostTitle</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="view-more-block">
+                        <a title="Xem Thêm" href="@Url.Action("Category", "Home", new { slug = Constants.NewPostSlug + CategoryKey.Suffix })">Xem Thêm</a>
+                    </div>
+
+                    <div class="ads-insite show-pc banner-left">
+                    </div>
+
+                    <div class="ads-insite show-mobile banner-mobile-top">
+                    </div>
+
+                </div>
+                <div class="columns columns-right">
+                    <div class="home-nav-content">
+                        <div id="fixture-homepage"></div>
+                        <div id="standing-homepage"></div>
+                    </div>
+                    @* <div class="standing-fixture-mobile">
+                        MObile
+                    </div> *@
+                </div>
+            </div>
+        </div>
+        <div class="block block-guess">
+            <h2 class="block__title">
+                <a title="@ViewResources.Guess" href="@Url.Action("Category", "Home", new { slug = Constants.GuessSlug + CategoryKey.Suffix })">@ViewResources.Guess
+            </h2>
+            <div class="block__content">
+                <div class="swiper-guess">
+                    <div class="swiper-wrapper scroll-snap">
+                        @foreach (var post in Model.GuessPosts)
+                        {
+                            <div class="box-vertical swiper-slide scroll-snap-items">
+                                <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug = post.Uri  })"
+                                    class="box-vertical-image hover-image">
+                                    <img data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy"  />
+                                    <noscript>
+                                        <img src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res"  />
+                                    </noscript>
+                                </a>
+                                <div class="box-vertical-content">
+                                    <h4 class="heading-box-content"><a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug = post.Uri  })">@post.PostTitle</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        }
+                        <div class="view-more-block scroll-snap-items">
+                                <a title="Xem thêm" href="@Url.Action("Category", "Home", new { slug = Constants.GuessSlug + CategoryKey.Suffix })">Xem Thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button swiper-button-next"><span class="icon-slide icon-chevron-right"></span></div>
+                <div class="swiper-button swiper-button-prev"><span class="icon-slide icon-chevron-left"></span></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="block block-last-page">
+            <div class="block-columns">
+                <div class="columns columns-left">
+                    <div class="block block-video">
+                        <h2 class="block__title">
+                            <a title="@ViewResources.Video" href="@Url.Action("Category", "Home", new { slug = Constants.VideoSlug + CategoryKey.Suffix })" class="none-bg">@ViewResources.Video</a>
+                        </h2>
+                        <div class="group-video">
+                            <div class="box-vertical">
+                                @{
+                                    var numVideos = 0;
+                                    foreach (var post in Model.VideoPosts)
+                                    {
+                                        numVideos++;
+                                        var display = numVideos == 1 ? "block" : "none";
+                                        <div style="display:@display;" class="box-play-video" id="slide-@post.ID">
+                                            <input type="hidden" name="iframe_value" value="@post.PostContent" />
+                                            <div class="img-item">
+                                                <a title="@post.PostTitle" class="box-vertical-image hover-image">
+                                                    <img data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy"  />
+                                                    <noscript>
+                                                        <img src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res"  />
+                                                    </noscript>
+                                                    <div class="btn-play-video" post-id="@post.ID">
+                                                        <span class="icon-play"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div style="display:none;" class="play_video"></div>
+                                            <div class="box-vertical-content">
+                                                <h4>
+                                                    <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug = post.Uri })">@post.PostTitle</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="block-child-video scroll-snap slide-video">
+                                @foreach (var post in Model.VideoPosts)
+                                {
+                                    <div class="box-horizontal scroll-snap-items card-item">
+                                        <a title="@post.PostTitle" href="javascript:;" data-id="@post.ID" class="image-slider box-horizontal-image hover-none-16-9">
+                                            <img data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy"  />
+                                            <noscript>
+                                                <img src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res"  />
+                                            </noscript>
+                                        </a>
+                                        <div class="box-horizontal-content">
+                                            <h5>
+                                                <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug = post.Uri })">@post.PostTitle</a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                }
+                                @{
+                                    if(isMobile){
+                                        <div class="view-more-block scroll-snap-items">
+                                            <a title="Xem thêm" href="@Url.Action("Category", "Home", new { slug = Constants.VideoSlug + CategoryKey.Suffix })">Xem Thêm</a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block block-event block-columns-border">
+                        @{
+                            var i = -1;
+                            foreach(var leagues in Model.LeaguePosts)
+                            {
+                                i++;
+                                @if(leagues.Count > 0)
+                                {
+                                    <div class="block-event-item item-league">
+                                        <h2 class="block__title">
+                                            <a title="@Model.FootballNewCategory[i].Category" href="@Url.Action("Category", "Home", new { slug = @Model.FootballNewCategory[i].Slug + CategoryKey.Suffix })">@Model.FootballNewCategory[i].Category</a>
+                                        </h2>
+                                            <div class="box-vertical">
+                                                <a title="@leagues[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  leagues[0].Uri })" class="box-vertical-image hover-image">
+                                                    <img data-original="@Url.Content(leagues[0].FeatureImage)" src="@Url.Content(leagues[0].FeatureImage)" alt="@leagues[0].PostTitle" class="img-res lazy"  />
+                                                    <noscript>
+                                                        <img src="@Url.Content(leagues[0].FeatureImage)" alt="@leagues[0].PostTitle" class="img-res"  />
+                                                    </noscript>
+                                                </a>
+                                                <div class="box-vertical-content">
+                                                    <h4 class="heading-box-content"><a title="@leagues[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  leagues[0].Uri })">@leagues[0].PostTitle</a></h4>
+                                                    <div class="list-event-title">
+                                                        @{
+                                                            var LeaguePostsIndex = 0;
+                                                            foreach(var post in leagues){
+                                                                LeaguePostsIndex++;
+                                                                if(LeaguePostsIndex <= 1){
+                                                                    continue;
+                                                                }
+                                                                <h4 class="heading-box-content"><a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })">@post.PostTitle</a></h4>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="view-more-block">
+                                            <a title="Xem thêm" href="@Url.Action("Category", "Home", new { slug = @Model.FootballNewCategory[i].Slug + CategoryKey.Suffix })">Xem Thêm</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+
+                    <div class="ads-insite show-mobile banner-mobile-bottom">
+                    </div>
+
+                    <div class="block block-behind">
+                        <h2 class="block__title">
+                            <a title="@ViewResources.Backstage" href="@Url.Action("Category", "Home", new { slug = Constants.BackstageSlug + CategoryKey.Suffix })" class="none-bg">@ViewResources.Backstage</a>
+                        </h2>
+                        <div class="block-columns-border">
+                            @if(Model.BackstagePosts.Count > 0)
+                            {
+                                <div class="block-event-item">
+                                    <div class="box-vertical">
+                                        <a title="@Model.BackstagePosts[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  Model.BackstagePosts[0].Uri })" class="box-vertical-image hover-image">
+                                            <img data-original="@Url.Content(Model.BackstagePosts[0].FeatureImage)" src="@Url.Content(Model.BackstagePosts[0].FeatureImage)" alt="@Model.BackstagePosts[0].PostTitle" class="img-res lazy"  />
+                                            <noscript>
+                                                <img src="@Url.Content(Model.BackstagePosts[0].FeatureImage)" alt="@Model.BackstagePosts[0].PostTitle" class="img-res"  />
+                                            </noscript>
+                                        </a>
+                                        <div class="box-vertical-content">
+                                            <h4><a title="@Model.BackstagePosts[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  Model.BackstagePosts[0].Uri })">@Model.BackstagePosts[0].PostTitle</a></h4>
+                                            <p>@Model.BackstagePosts[0].PostExcerpt</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="block-event-item">
+                                @{
+                                    var BackstagePostsPostIndex = 0;
+                                    foreach (var post in Model.BackstagePosts)
+                                    {
+                                        BackstagePostsPostIndex++;
+                                        if(BackstagePostsPostIndex <= 1 || BackstagePostsPostIndex >= 5){
+                                            continue;
+                                        }
+                                        <div class="box-horizontal">
+                                            <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })" class="box-horizontal-image hover-none-16-9">
+                                                <img data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy"  />
+                                                <noscript>
+                                                    <img src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res"  />
+                                                </noscript>
+                                            </a>
+                                            <div class="box-horizontal-content">
+                                                <h4 class="heading-box-content">
+                                                    <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })">@post.PostTitle</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="block-behind-vertical">
+                            @{
+                                BackstagePostsPostIndex = 0;
+                                foreach (var post in Model.BackstagePosts)
+                                {
+                                    BackstagePostsPostIndex++;
+                                    if(BackstagePostsPostIndex < 5){
+                                        continue;
+                                    }
+                                    <div class="box-vertical">
+                                        <a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })" class="box-vertical-image hover-image">
+                                            <img data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res lazy"  />
+                                            <noscript>
+                                                <img src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res"  />
+                                            </noscript>
+                                        </a>
+                                        <div class="box-vertical-content">
+                                            <h4 class="heading-box-content"><a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })">@post.PostTitle</a></h4>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="view-more-block">
+                                <a title="xem thêm" href="@Url.Action("Category", "Home", new { slug = Constants.BackstageSlug + CategoryKey.Suffix   })">Xem Thêm</a>
+                        </div>
+                    </div>
+
+                    <div class="block block-event block-columns-border none-bottom-spacing">
+                        @if(Model.TransferPosts.Count > 0)
+                        {
+                            <div class="block-event-item item-league block-tranfer">
+                                <h2 class="block__title">
+                                    <a title="Chuyển nhượng" href="@Url.Action("Category", "Home", new { slug = Constants.TransferSlug + CategoryKey.Suffix  })">CHUYỂN NHƯỢNG</a>
+                                </h2>
+                                <div class="box-vertical">
+                                    <a title="@Model.TransferPosts[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  Model.TransferPosts[0].Uri })" class="box-vertical-image hover-image">
+                                        <img data-original="@Url.Content(Model.TransferPosts[0].FeatureImage)" src="@Url.Content(Model.TransferPosts[0].FeatureImage)" alt="@Model.TransferPosts[0].PostTitle" class="img-res lazy"  />
+                                        <noscript>
+                                            <img src="@Url.Content(Model.TransferPosts[0].FeatureImage)" alt="@Model.TransferPosts[0].PostTitle" class="img-res"  />
+                                        </noscript>
+                                    </a>
+                                    <div class="box-vertical-content">
+                                        <h4 class="heading-box-content"><a title="@Model.TransferPosts[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  Model.TransferPosts[0].Uri })">@Model.TransferPosts[0].PostTitle</a></h4>
+                                        <div class="list-event-title">
+                                            @{
+                                                var TransferPostIndex = 0;
+                                                foreach (var post in Model.TransferPosts)
+                                                {
+                                                    TransferPostIndex++;
+                                                    if (TransferPostIndex <= 1)
+                                                    {
+                                                        continue;
+                                                    }
+                                                    <h4 class="heading-box-content"><a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })">@post.PostTitle</a></h4>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="view-more-block">
+                                    <a title="Xem thêm" href="@Url.Action("Category", "Home", new { slug = Constants.TransferSlug + CategoryKey.Suffix  })">Xem Thêm</a>
+                                </div>
+                            </div>
+                        }
+                        
+                        @if(Model.OtherPosts.Count > 0)
+                        {
+                            <div class="block-event-item item-league">
+                                <h2 class="block__title">
+                                    <a title="@ViewResources.OtherPosts" href="@Url.Action("Category", "Home", new { slug = Constants.NewOtherPostSlug + CategoryKey.Suffix  })">@ViewResources.OtherPosts</a>
+                                </h2>
+                                <div class="box-vertical">
+                                    <a title="@Model.OtherPosts[0].PostTitle" href="@Url.Action("Single", "Post", new { slug =  Model.OtherPosts[0].Uri })" class="box-vertical-image hover-image">
+                                        <img data-original="@Url.Content(Model.OtherPosts[0].FeatureImage)" src="@Url.Content(Model.OtherPosts[0].FeatureImage)" alt="@Model.OtherPosts[0].PostTitle" class="img-res lazy"  />
+                                        <noscript>
+                                            <img src="@Url.Content(Model.OtherPosts[0].FeatureImage)" alt="@Model.OtherPosts[0].PostTitle" class="img-res"  />
+                                        </noscript>
+                                    </a>
+                                    <div class="box-vertical-content">
+                                        <h4 class="heading-box-content"><a href="@Url.Action("Single", "Post", new { slug =  Model.OtherPosts[0].Uri })">@Model.OtherPosts[0].PostTitle</a></h4>
+                                        <div class="list-event-title">
+                                            @{
+                                                var OtherPostIndex = 0;
+                                                foreach (var post in Model.OtherPosts)
+                                                {
+                                                    OtherPostIndex++;
+                                                    if (OtherPostIndex <= 1)
+                                                    {
+                                                        continue;
+                                                    }
+                                                    <h4 class="heading-box-content"><a title="@post.PostTitle" href="@Url.Action("Single", "Post", new { slug =  post.Uri })">@post.PostTitle</a></h4>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="view-more-block">
+                                        <a title="Xem thêm" href="@Url.Action("Category", "Home", new { slug = Constants.OtherPostSlug + CategoryKey.Suffix })">Xem Thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="columns columns-right">
+                    <div class="hotnews-block">
+                        <div class="block__title">
+                            <a href="javascipts:;">
+                                @ViewResources.MostViewTitle
+                            </a>
+                        </div>
+                        <ul class="list-hotnews">
+                            @{
+                                foreach (var item in Model.Hotnews)
+                                {
+                                    <li>
+                                        <a title="@item.PostTitle" href="@Url.Action("Single", "Post", new { slug =  item.Uri })">@item.PostTitle</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="ads-insite show-pc banner-right">
+                    </div>
+                    <div class="ads-insite show-mobile banner-mobile-center">
+                    </div>
+                    <div class="home-poll" data-id="@Model.PollKey"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* @await Html.PartialAsync(ViewResources.SidebarBannerView) *@
+</section>
+

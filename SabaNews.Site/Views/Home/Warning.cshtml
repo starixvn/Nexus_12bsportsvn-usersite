@@ -1,0 +1,89 @@
+﻿@section Metadata {
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="description" content='@Model.Header.Description' />
+	<meta property="og:description" content='@Model.Category.OgDescription' />
+	<meta property="og:title" content='@Model.Category.OgTitle' />
+	<meta property="og:image" content='@Model.Category.OgImage' />
+}
+
+@section Title{
+	@Model.Header.Title
+}
+
+@section Styles{
+	<link rel="stylesheet" href="~/minify/styles/news.min.css" asp-append-version="true">
+}
+@(await Component.InvokeAsync("Menu", new { CategorySlug = Model.Header.CategorySlug }))
+
+<section class="main">
+	<div class="container">
+		<div class="block block-main block-warning">
+			<h2 class="block__title"></h2>
+			<div class="block__content">
+				<div class="warning content">
+					<p>
+						<strong><em>Là thương hiệu hàng đầu trong lĩnh vực cung cấp nền tảng thể thao trực tuyến tại Châu Á, SABA Sports may mắn có được nhiều sự quan tâm và tin tưởng từ Quý độc giả.</em></strong>
+					</p>
+					<p>Tuy nhiên một số đối tượng đã lợi dụng điều này để mạo danh thương hiệu của chúng tôi nhằm trục lợi, lấy cắp thông tin Quý độc giả một cách bất chính, gây tổn hại đến danh tiếng của SABA Sports. Vì vậy, chúng tôi xin trân trọng gửi đến Quý độc giả thân thiết, cách nhận biết dấu hiệu lừa đảo của những trang web giả mạo.</p>
+					<p><strong>1. Trang web thông tin thể thao</strong></p>
+					<p>
+						Hiện tại, web thông tin thể thao của SABA Sports đang có 6 phiên bản ngôn ngữ:
+					</p>
+					<ul class="domain">
+						<li>Tiếng Việt: <strong>sabavn.net</strong> (trước đây là sabavn.com)</li>
+						<li>Tiếng Anh: <strong>thesabamynews.com</strong></li>
+						<li>Tiếng Hoa: <strong>sabasports.com.cn</strong></li>
+                        <li>Tiếng Ấn: <strong>sabasports.in</strong></li>
+						<li>Tiếng Thái: <strong>sabanews-th.com</strong></li>
+						<li>Tiếng Indo: <strong>thesabasportsindo.com</strong></li>
+					</ul>
+					<p>Hiện tại ở thị trường Việt Nam, chúng tôi chỉ sử dụng <strong>tên miền duy nhất</strong> là <strong>SABAVN.NET</strong>, tất cả những trang web sử dụng tên miền khác đều là giả mạo.</p>
+					<div class="wp-block-image banner-desktop">
+						<img asp-append-version="true" src="~/images/banner.jpg" alt="banner-desktop" />
+					</div>
+					<div class="banner-mobile"><img asp-append-version="true" src="~/images/banner-mobile.jpg" alt="banner-mobile"></div>
+					<p>Nhằm nâng cao trải nghiệm người dùng và tăng độ an tâm cho Quý độc giả, chúng tôi cam kết <strong>KHÔNG</strong> sử dụng bất kỳ hình thức quảng cáo nào.</p>
+					<div class="wp-block-image">
+						<figure class="aligncenter size-large">
+							<img src="~/images/2021-03-25-15_53_28-Window-1.png" alt="" class="wp-image-5001" />
+							<figcaption>
+								<em>Hình ảnh banner quảng cáo trên trang web giả mạo</em>
+							</figcaption>
+						</figure>
+					</div>
+					<p><strong>SABA Sports </strong>- phiên bản tiếng Việt - là trang thông tin thể thao thuần tuý, tuyệt đối không lôi kéo, dẫn dụ Quý độc giả đi đến các trang web khác. </p>
+					<div class="wp-block-image">
+						<figure class="aligncenter size-large">
+							<img src="~/images/2021-03-25-16_20_13-.png" alt="" class="wp-image-30588" />
+							<figcaption>
+								<em>Website giả mạo dẫn dụ Quý độc giả đến nơi khác để lấy thông tin cá nhân</em>
+							</figcaption>
+						</figure>
+					</div>
+					<p><strong>2. Fanpage – Facebook</strong></p>
+					<p>
+						Trang fanpage duy nhất của SABA Sports (phiên bản tiếng Việt) là tại địa chỉ:
+						<a href="https://www.facebook.com/SabaSportsVietnam" target="_blank" class="rank-math-link">
+							SabaSports | Facebook
+						</a>
+					</p>
+					<div class="wp-block-image">
+						<figure class="aligncenter size-large">
+							<img src="~/images/2021-03-25-16_29_38-Window.png" asp-append-version="true" alt="" class="wp-image-30592" />
+						</figure>
+					</div>
+					<p>Trên đây là một số thông tin quan trọng nhằm giúp Quý độc giả không rơi vào bẫy của kẻ xấu, tránh việc để mất thông tin cá nhân, cũng như bị dẫn dắt sang những trang web lừa đảo, không rõ nguồn gốc.</p>
+					<p>Song song đó, đối với những trang web giả mạo, bộ phận pháp chế SABA Sports đã bắt đầu tiến hành các thủ tục pháp lý cần thiết để chống lại các pháp nhân, đại lý và công ty đứng phía sau.</p>
+                    <p><strong>SABA Sports</strong> kính chúc Quý độc giả một ngày tràn đầy may mắn và có nhiều trải nghiệm thú vị.</p>
+					<p>Trân trọng,</p>
+					<p><strong><strong>SABA Sports</strong></strong></p>
+					<p> (sabavn.net)</p>
+				</div>
+			</div>
+		</div>
+		<div class="block block-extension">
+			@await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel())
+		</div>
+	</div>
+	@await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>

@@ -1,0 +1,128 @@
+﻿@import "./fav-search";
+.modal-livescore {
+  z-index: 99999999;
+  padding-right: 0 !important;
+  outline: none !important;
+  background: $primary-bg;
+  position: fixed;
+  width: 100%;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%, 0);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  max-width: 50rem;
+
+  @include tableMobile {
+    max-width: 70rem;
+  }
+
+  @include Mobile {
+    max-width: 36.5rem;
+  }
+
+  .modal-header {
+    position: relative;
+    border-bottom: 1px solid $border-color;
+    align-items: center;
+    text-transform: uppercase;
+
+    .modal-title {
+      color: $color-active-icon;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      padding: 1rem 1.2rem;
+      font-weight: bold;
+    }
+
+    .icon-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  .modal-body {
+    padding: 1rem 0;
+    .livescore-soccer-search-bar {
+      padding: 0 1rem;
+    }
+    .btn-close-match{
+      right: 20px;
+    }
+  }
+}
+.modal-data {
+  min-height: 11.3rem;
+  max-height: 50rem;
+  overflow: auto;
+  margin-top: 1rem;
+  @media screen and (max-width: 1367px) and (min-width: 900px), (max-height: 601px){
+    max-height: 40rem;
+  }
+  .livescore-soccer-extension {
+    padding-left: 0;
+    margin-bottom: 0;
+    .toggle-league {
+      display: block !important;
+
+      .icon-favourite-outline {
+        &:hover {
+          &:before {
+            color: $fav-icon;
+          }
+        }
+      }
+    }
+
+    .leagues-item {
+      .leagues-name {
+        span {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  &.spacing-top {
+    margin-top: 1rem;
+
+    .livescore-soccer-extension {
+      padding-left: 0;
+
+      .leagues-item {
+        padding: 0.5rem 1.2rem;
+
+        &:hover {
+          .toggle-league {
+            display: block !important;
+          }
+        }
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 3px;
+  }
+
+  .not-found {
+    margin-top: 0.5rem;
+    padding: 0 1rem;
+  }
+}
+.search-league-title {
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.text-matched {
+  font-weight: 700;
+}
+.txt {
+  font-size: 1.3rem !important;
+}

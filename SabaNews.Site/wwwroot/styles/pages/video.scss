@@ -1,0 +1,104 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+@import '../base/base';
+
+@import '../layout/footer';
+@import '../layout/header';
+@import '../layout/block-extension';
+
+@import '../components/fonts';
+@import '../components/block';
+@import '../components/buttons';
+@import '../components/container';
+@import '../components/img';
+@import '../components/pagination';
+@import '../components/swipper';
+@import '../components/card-vertical';
+@import '../components/sub-structure';
+@import '../components/lazyload';
+@import '../components/ads';
+@import '../components/_popup-event';
+@import '../components/loading';
+@import '../components/sub-menu-category';
+
+.main {
+    @include tableMobile {
+        position: relative;
+        overflow-x: hidden;
+    }
+}
+
+
+.block__swipper {
+    margin-bottom: 4rem;
+    @include Mobile{
+        margin-bottom: 2.5rem;
+    }
+
+    .swiper-container {
+        .skeleton-swiper-slide {
+            height: 49rem;
+        }
+
+        .swiper-slide {
+            .img-item {
+                // max-height: 43rem;
+                overflow: hidden;
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.block__video {
+    @include grid(repeat(3, 1fr), unset, 2rem);
+
+    @include tableMobile {
+        @include grid(repeat(2, 1fr), unset, #{$column-gap-tablet} #{$column-gap-tablet});
+    }
+
+    .card-vertical__image, .skeleton-vertical__image {
+        margin-bottom: 1rem;
+        height: 15rem;
+        overflow: hidden;
+        border-radius: 3px;
+        @include tableMobile {
+            height: 13rem;
+        }
+    }
+
+    .card-vertical-highlight {
+        [class*="card-vertical__"]:not(.card-vertical__image) {
+            padding: 0;
+        }
+    }
+    .card-vertical{
+        padding-bottom: 0;
+    }
+    .grid-ads{
+        grid-column: 1/4;
+        margin-top: 0;
+        @include Mobile{
+            grid-column: 1/3;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.play_video {
+    border-radius: 0;
+}
+
+.title-new-page {
+    padding-left: 0;
+
+    &::after {
+        display: none;
+    }
+}
+

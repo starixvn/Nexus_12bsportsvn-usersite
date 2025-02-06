@@ -1,0 +1,32 @@
+﻿@import '../abstracts/variables';
+@import './buttons';
+
+.modal {
+    &.modal-page {
+        border: 1px solid #E5E5E5;
+        max-width: 40rem;
+        box-shadow: 0px 7px 25px rgba(0, 0, 0, 0.25);
+
+        .modal-body-custom {
+            padding: 2.4rem 1.6rem;
+
+            .heading-modal-page {
+                margin-bottom: 2.4rem;
+                line-height: 1.6rem;
+                color: #444444;
+                font-weight: 400;
+                font-size: 1.4rem;
+            }
+
+            .button-confirm {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+
+                .unsubscribe {
+                    margin-right: 2.4rem;
+                }
+            }
+        }
+    }
+}

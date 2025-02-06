@@ -1,0 +1,63 @@
+﻿@using SabaNews.Resources
+
+<table width="100%" id="add-player">
+    <tbody>
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr class="row">
+                            <td>
+                                <label class="label-top">@ViewResources.Top</label>
+                            </td>
+                            <td>
+                                <input type="number" value="@ViewBag.TopTotal" class="form-control txt-top input-number" id="addTop" name="Top" min="1" />
+                            </td>
+                            <td class="col-sm">
+                                <label class="lable-Goals">@ViewResources.Win</label>
+                            </td>
+                            <td class="col-sm">
+                                <input type="number" class="form-control txt-goals" id="addGoals" name="Goals" />
+                            </td>
+                            <td class="col-sm">
+                                <label class="lable-Assist ">@ViewResources.Assist</label>
+                            </td>
+                            <td class="col-sm">
+                                <input type="number" class="form-control txt-Assist" id="addAssist" name="Assists" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.Team</label>
+                            </td>
+                            <td>
+                                <select class="form-control txt-teamFullNameEn" id="TeamFullNameENAdd">
+                                    @foreach (var team in Model.Teams)
+                                    {
+                                        <option value="@team.TeamId">@(!string.IsNullOrEmpty(team.TeamNameVN) ? team.TeamNameVN : team.TeamNameEN)</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>@ViewResources.PlayerFullNameEN</label>
+                            </td>
+                            <td id="dropdowplaer">
+                                <div>
+                                    @Html.DropDownList("PlayerId", new SelectList(Model.Players, "PlayerId", "FullNameEN"), new { @class = "form-control txt-playerFullNameEn", id = "PlayerFullNameENAdd", value = "PlayerId" })
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-btn">
+                    <button class="btn btn-primary pl-4 pr-4" data-url="@Url.Action("AddPlayer", "TopScorerManagement")" id="btn-save-add">Save</button>
+                    <button class="btn btn-secondary pl-4 pr-4" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

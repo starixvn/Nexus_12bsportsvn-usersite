@@ -1,0 +1,41 @@
+.btn-play-video, .euro-play-video {
+    height: 8rem;
+    width: 8rem;
+
+    @include tableMobile {
+        height: 4.6rem;
+        width: 4.6rem;
+    }
+
+    background-color: rgba($color: #fff, $alpha: .2);
+    @include flex(center,nowrap,center,column);
+    border-radius: 50%;
+    @include position('center',50%,50%);
+    cursor: pointer;
+
+    span {
+        font-size: 4.6rem;
+        color: #fff;
+
+        @include tableMobile {
+            font-size: 2rem;
+        }
+    }
+}
+
+.load-more-page {
+    text-align: center;
+    button {
+        border: 1px solid $primary-bg;
+        background: $primary-bg;
+        width: 13.5rem;
+        height: 4.2rem;
+        margin: 0.4rem auto;
+        color: #FFFFFF;
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+}

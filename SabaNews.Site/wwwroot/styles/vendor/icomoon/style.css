@@ -1,0 +1,525 @@
+@font-face {
+  font-family: 'Fraud-Sensor';
+  src:  url('fonts/Fraud-Sensor.eot?cr2nn9');
+  src:  url('fonts/Fraud-Sensor.eot?cr2nn9#iefix') format('embedded-opentype'),
+    url('fonts/Fraud-Sensor.ttf?cr2nn9') format('truetype'),
+    url('fonts/Fraud-Sensor.woff?cr2nn9') format('woff'),
+    url('fonts/Fraud-Sensor.svg?cr2nn9#Fraud-Sensor') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Fraud-Sensor' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-setting-3:before {
+  content: "\e95e";
+  color: #4f4f4f;
+}
+.icon-email1:before {
+  content: "\e95d";
+  color: #5c5c5c;
+}
+.icon-Verify:before {
+  content: "\e95c";
+  color: #2865b5;
+}
+.icon-logout1:before {
+  content: "\e959";
+  color: #4f4f4f;
+}
+.icon-profile-circle:before {
+  content: "\e95a";
+  color: #e13c29;
+}
+.icon-Bookmark2:before {
+  content: "\e95b";
+  color: #4f4f4f;
+}
+.icon-calendar:before {
+  content: "\e952";
+  color: #5c5c5c;
+}
+.icon-lock:before {
+  content: "\e953";
+  color: #5c5c5c;
+}
+.icon-personalcard:before {
+  content: "\e954";
+  color: #5c5c5c;
+}
+.icon-ph_gender-intersex-bold:before {
+  content: "\e955";
+  color: #5c5c5c;
+}
+.icon-phone:before {
+  content: "\e956";
+  color: #5c5c5c;
+}
+.icon-profile-user:before {
+  content: "\e957";
+  color: #5c5c5c;
+}
+.icon-status-win:before {
+  content: "\e958";
+  color: #03a700;
+}
+.icon-icon-minigame_standing_full:before {
+  content: "\e951";
+  color: #0f2da3;
+}
+.icon-button-dot:before {
+  content: "\e950";
+}
+.icon-google-news .path1:before {
+  content: "\e948";
+  color: rgb(12, 157, 88);
+}
+.icon-google-news .path2:before {
+  content: "\e949";
+  margin-left: -1em;
+  color: rgb(234, 67, 53);
+}
+.icon-google-news .path3:before {
+  content: "\e94a";
+  margin-left: -1em;
+  color: rgb(255, 193, 7);
+}
+.icon-google-news .path4:before {
+  content: "\e94b";
+  margin-left: -1em;
+  color: rgb(66, 133, 244);
+}
+.icon-google-news .path5:before {
+  content: "\e94c";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-google-news .path6:before {
+  content: "\e94d";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-google-news .path7:before {
+  content: "\e94e";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-google-news .path8:before {
+  content: "\e94f";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-refresh-circle:before {
+  content: "\e947";
+  color: #7a7a7a;
+}
+.icon-subtract:before {
+  content: "\e946";
+  color: #e13c29;
+}
+.icon-menu-wheel:before {
+  content: "\e945";
+  color: #4f4f4f;
+}
+.icon-emtry:before {
+  content: "\e944";
+  color: #fff;
+}
+.icon-lose:before {
+  content: "\e942";
+  color: #fff;
+}
+.icon-win:before {
+  content: "\e943";
+  color: #fff;
+}
+.icon-go_back:before {
+  content: "\e941";
+  color: #fff;
+}
+.icon-minigame_draw:before {
+  content: "\e940";
+  color: #e8e8d6;
+}
+.icon-minigame_connect:before {
+  content: "\e93a";
+  color: #833d55;
+}
+.icon-minigame_guide:before {
+  content: "\e93b";
+  color: #958288;
+}
+.icon-minigame_home:before {
+  content: "\e93c";
+  color: #958288;
+}
+.icon-minigame_list_user:before {
+  content: "\e93d";
+  color: #958288;
+}
+.icon-minigame_my_fav:before {
+  content: "\e93e";
+  color: #958288;
+}
+.icon-minigame_standing:before {
+  content: "\e93f";
+  color: #958288;
+}
+.icon-icon_search:before {
+  content: "\e938";
+  color: #eeeee4;
+}
+.icon-icon_lock:before {
+  content: "\e939";
+  color: #eeeee4;
+}
+.icon-warning:before {
+  content: "\e936";
+  color: #833d55;
+}
+.icon-bxh_view:before {
+  content: "\e937";
+  color: #833d55;
+}
+.icon-admin-goal:before {
+  content: "\e935";
+  color: #fff;
+}
+.icon-link-post:before {
+  content: "\e933";
+  color: #ef4300;
+}
+.icon-tick-post:before {
+  content: "\e934";
+  color: #ef4300;
+}
+.icon-cup:before {
+  content: "\e932";
+  color: #ef4300;
+}
+.icon-next-wc:before {
+  content: "\e931";
+}
+.icon-double-arrow:before {
+  content: "\e930";
+}
+.icon-wc-live:before {
+  content: "\e92f";
+  color: #ee2316;
+}
+.icon-drop-drag:before {
+  content: "\e92d";
+  color: #d1d1d1;
+}
+.icon-ball:before {
+  content: "\e927";
+  color: #324a75;
+}
+.icon-in:before {
+  content: "\e926";
+  color: #319c2f;
+}
+.icon-out:before {
+  content: "\e928";
+  color: #e94633;
+}
+.icon-red-card:before {
+  content: "\e92a";
+  color: #e94633;
+}
+.icon-shoes:before {
+  content: "\e92b";
+}
+.icon-yellow-card:before {
+  content: "\e92c";
+  color: #f9c91e;
+}
+.icon-favourite-outline:before {
+  content: "\e925";
+  color: #a8a8a8;
+}
+.icon-var:before {
+  content: "\e929";
+  color: #324a75;
+}
+.icon-mdi_whistle:before {
+  content: "\e92e";
+  color: #324a75;
+}
+.icon-live-right:before {
+  content: "\e91d";
+}
+.icon-live-realtime:before {
+  content: "\e91e";
+  color: #e13c29;
+}
+.icon-live-calender:before {
+  content: "\e91c";
+  color: #6f6f6f;
+}
+.icon-live-up:before {
+  content: "\e91a";
+  color: #4e7cb1;
+}
+.icon-live-start:before {
+  content: "\e91b";
+}
+.icon-event-home:before {
+  content: "\e919";
+  color: #b44414;
+}
+.icon-close-event:before {
+  content: "\e918";
+  color: #fde9b2;
+}
+.icon-field-number:before {
+  content: "\e91f";
+  color: #b44414;
+}
+.icon-list-event:before {
+  content: "\e920";
+  color: #b44414;
+}
+.icon-list-event-true:before {
+  content: "\e921";
+  color: #b44414;
+}
+.icon-menu-event:before {
+  content: "\e922";
+  color: #fff;
+}
+.icon-next-event:before {
+  content: "\e923";
+  color: #fde9b2;
+}
+.icon-prev-event:before {
+  content: "\e924";
+  color: #fde9b2;
+}
+.icon-account_circle:before {
+  content: "\e915";
+  color: #fff;
+}
+.icon-sort-admin:before {
+  content: "\e914";
+}
+.icon-copy-admin:before {
+  content: "\e913";
+  color: #666;
+}
+.icon-resend-admin:before {
+  content: "\e90f";
+  color: #828282;
+}
+.icon-delete-admin:before {
+  content: "\e910";
+  color: #828282;
+}
+.icon-edit-admin:before {
+  content: "\e911";
+  color: #828282;
+}
+.icon-send-admin:before {
+  content: "\e912";
+  color: #828282;
+}
+.icon-error-admin:before {
+  content: "\e90d";
+  color: #fff;
+}
+.icon-warning-admin:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-success-admin:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-error_outline:before {
+  content: "\e905";
+  color: #0052cc;
+}
+.icon-icon-admin:before {
+  content: "\e90b";
+  color: #5243aa;
+}
+.icon-list_alt-admin:before {
+  content: "\e907";
+  color: #9ea1d0;
+}
+.icon-post-view:before {
+  content: "\e908";
+  color: #00875a;
+}
+.icon-video-admin:before {
+  content: "\e909";
+  color: #de350b;
+}
+.icon-video-view-admin:before {
+  content: "\e90a";
+  color: #0052cc;
+}
+.icon-chart-admin:before {
+  content: "\e902";
+  color: #fff;
+}
+.icon-date_range:before {
+  content: "\e903";
+  color: #1f2252;
+}
+.icon-exit-admin:before {
+  content: "\e904";
+  color: #9193b8;
+}
+.icon-mail-admin:before {
+  content: "\e906";
+  color: #9ea1d0;
+}
+.icon-bell:before {
+  content: "\e900";
+  color: #4f4f4f;
+}
+.icon-logout:before {
+  content: "\e901";
+}
+.icon-like:before {
+  content: "\e969";
+  color: #757575;
+}
+.icon-reply:before {
+  content: "\e96a";
+  color: #076db6;
+}
+.icon-validate:before {
+  content: "\e96b";
+}
+.icon-birthday:before {
+  content: "\e96c";
+}
+.icon-hide:before {
+  content: "\e96d";
+}
+.icon-show:before {
+  content: "\e96e";
+}
+.icon-upload:before {
+  content: "\e96f";
+}
+.icon-mode_comment_full:before {
+  content: "\e970";
+  color: #999;
+}
+.icon-bookmark:before {
+  content: "\e971";
+  color: #999;
+}
+.icon-mode_comment:before {
+  content: "\e972";
+  color: #999;
+}
+.icon-back:before {
+  content: "\e973";
+}
+.icon-detail_facebook:before {
+  content: "\e974";
+  color: #999;
+}
+.icon-email:before {
+  content: "\e975";
+  color: #999;
+}
+.icon-link:before {
+  content: "\e976";
+  color: #999;
+}
+.icon-sport-basketball:before {
+  content: "\e977";
+}
+.icon-play:before {
+  content: "\e978";
+}
+.icon-arrow-left:before {
+  content: "\e979";
+}
+.icon-arrow-right:before {
+  content: "\e98b";
+}
+.icon-bullet-arrow-right:before {
+  content: "\e97a";
+}
+.icon-chevron-down:before {
+  content: "\e97b";
+}
+.icon-chevron-left:before {
+  content: "\e97c";
+}
+.icon-chevron-right:before {
+  content: "\e97d";
+}
+.icon-chevron-up:before {
+  content: "\e97e";
+}
+.icon-home:before {
+  content: "\e97f";
+}
+.icon-menu:before {
+  content: "\e980";
+}
+.icon-page-first:before {
+  content: "\e981";
+}
+.icon-page-last:before {
+  content: "\e982";
+}
+.icon-search:before {
+  content: "\e983";
+}
+.icon-social-facebook:before {
+  content: "\e984";
+}
+.icon-social-pinterest:before {
+  content: "\e985";
+}
+.icon-social-telegram:before {
+  content: "\e986";
+}
+.icon-social-twitter:before {
+  content: "\e987";
+}
+.icon-sport-soccer:before {
+  content: "\e988";
+}
+.icon-sport-tennis:before {
+  content: "\e989";
+}
+.icon-sport-tennis-2:before {
+  content: "\e98a";
+}
+.icon-video:before {
+  content: "\e968";
+}
+.icon-close:before {
+  content: "\e99d";
+}
+.icon-tiktok:before {
+  content: "\e917";
+  color: #fff;
+}
+.icon-social-youtube:before {
+  content: "\e916";
+  color: #fff;
+}

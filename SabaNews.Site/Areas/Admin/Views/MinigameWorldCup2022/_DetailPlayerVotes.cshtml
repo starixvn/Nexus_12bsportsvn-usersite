@@ -1,0 +1,297 @@
+﻿@using static SabaNews.Site.Extensions.LivescoreHelper;
+@using static SabaNews.Site.Extensions.WorldCupHelper;
+@{
+    var count = 0;
+    var totalPoint = 0;
+}
+<div class="table-admin">
+    <div class="form-filter-detail">
+        <form class="form-horizontal">
+            <p>User Name: </p>
+            <input class="username" disabled type="text" value="@Model.Username" />
+            <p>Email: </p>
+            <input class="email" disabled type="text" value="@Model.Email" />
+        </form>
+        <form class="form-horizontal">
+            <p>Ranking No. </p>
+            <input class="rank" disabled type="text" value="@Model.Rank" />
+            <p>Total Point: </p>
+            <input class="total-point" disabled type="text" value="@Model.Totalpoint" />
+        </form>
+    </div>
+    @if(Model.StageDetail != 4){
+        <table class="data-grid">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="30%">Match</th>
+                    <th width="15%">Prediction</th>
+                    <th width="10%">Result</th>
+                    <th width="19%">Date & Time</th>
+                    <th width="6%">Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    count = 16 * (Model.StageDetail - 1);
+                    totalPoint = 0;
+                    for (int i = 16 * (Model.StageDetail - 1); i < 16 * Model.StageDetail; i++)
+                    {
+                        count++;
+                        var vote = GetVotePredict(Model.Matches[i], Model.Votes);
+                        var result = GetResultPredict(Model.Matches[i], Model.Votes);
+                        var teamVote = GetMatchNamePredict(Model.Matches[i], Model.Votes);
+                        var point = vote != null ? vote.Point : 0;
+                        totalPoint = totalPoint + point;
+                            <tr>
+                                <td class="text-center" width="5%">@count</td>
+                                <td class="text-left" width="30%">@GetTeamName(Model.Matches[i].HomeTeam) -vs- @GetTeamName(Model.Matches[i].AwayTeam)</td>
+                                <td class="text-center" width="15%">@teamVote</td>
+                                <td class="text-center" width="10%">
+                                    <span class="choose choose-@result">
+                                        <i class="icon-@result"></i>
+                                    </span>
+                                </td>
+                                <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                            </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="total-score">
+            <span>Total point</span>
+            <span>@totalPoint</span>
+        </div>
+    }
+    else{
+        <div class="filter-detail">
+            <span id="btn-round-eight-team" class="active" cl>Vòng 1/8</span>
+            <span id="btn-round-quarterfinals">Tứ Kết</span>
+            <span id="btn-round-semifinal">Bán Kết</span>
+            <span id="btn-round-third-place">Tranh Hạng 3</span>
+            <span id="btn-round-final">Chung Kết</span>
+        </div>
+        <div id="table-round-eight-team" >
+            <table class="data-grid">
+                <thead style="width: 100% !important;">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="30%">Match</th>
+                        <th width="15%">Prediction</th>
+                        <th width="10%">Result</th>
+                        <th width="19%">Date & Time</th>
+                        <th width="6%">Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        count = 48;
+                        totalPoint = 0;
+                        for (var i = 0; i < Model.MatchesRoundEightTeam.Count; i++)
+                        {
+                            count++;
+                            var vote = GetVotePredict(Model.MatchesRoundEightTeam[i], Model.Votes);
+                            var result = GetResultPredict(Model.MatchesRoundEightTeam[i], Model.Votes);
+                            var teamVote = GetMatchNamePredict(Model.MatchesRoundEightTeam[i], Model.Votes);
+                            var point = vote != null ? vote.Point : 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="30%">@GetTeamName(Model.MatchesRoundEightTeam[i].HomeTeam) -vs- @GetTeamName(Model.MatchesRoundEightTeam[i].AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="total-score">
+                <span>Total point</span>
+                <span>@totalPoint</span>
+            </div>
+        </div>
+        <div id="table-round-quarterfinals" style="display:none">
+            <table class="data-grid">
+                <thead style="width: 100% !important;">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="30%">Match</th>
+                        <th width="15%">Prediction</th>
+                        <th width="10%">Result</th>
+                        <th width="19%">Date & Time</th>
+                        <th width="6%">Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        totalPoint = 0;
+                        for (var i = 0; i < Model.MatchesRoundQuarterfinals.Count; i++)
+                        {
+                            count++;
+                            var vote = GetVotePredict(Model.MatchesRoundQuarterfinals[i], Model.Votes);
+                            var result = GetResultPredict(Model.MatchesRoundQuarterfinals[i], Model.Votes);
+                            var teamVote = GetMatchNamePredict(Model.MatchesRoundQuarterfinals[i], Model.Votes);
+                            var point = vote != null ? vote.Point : 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="30%">@GetTeamName(Model.MatchesRoundQuarterfinals[i].HomeTeam) -vs- @GetTeamName(Model.MatchesRoundQuarterfinals[i].AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="total-score">
+                <span>Total point</span>
+                <span>@totalPoint</span>
+            </div>
+        </div>
+        <div id="table-round-semifinal" style="display:none">
+            <table class="data-grid">
+                <thead style="width: 100% !important;">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="30%">Match</th>
+                        <th width="15%">Prediction</th>
+                        <th width="10%">Result</th>
+                        <th width="19%">Date & Time</th>
+                        <th width="6%">Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        totalPoint = 0;
+                        for (var i = 0; i < Model.MatchesRoundSemifinal.Count; i++)
+                        {
+                            count++;
+                            var vote = GetVotePredict(Model.MatchesRoundSemifinal[i], Model.Votes);
+                            var result = GetResultPredict(Model.MatchesRoundSemifinal[i], Model.Votes);
+                            var teamVote = GetMatchNamePredict(Model.MatchesRoundSemifinal[i], Model.Votes);
+                            var point = vote != null ? vote.Point : 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="30%">@GetTeamName(Model.MatchesRoundSemifinal[i].HomeTeam) -vs- @GetTeamName(Model.MatchesRoundSemifinal[i].AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="total-score">
+                <span>Total point</span>
+                <span>@totalPoint</span>
+            </div>
+        </div>
+        <div id="table-round-third-place" style="display:none">
+            <table class="data-grid">
+                <thead style="width: 100% !important;">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="30%">Match</th>
+                        <th width="15%">Prediction</th>
+                        <th width="10%">Result</th>
+                        <th width="19%">Date & Time</th>
+                        <th width="6%">Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        totalPoint = 0;
+                        for (var i = 0; i < Model.MatchesRoundThirdPlace.Count; i++)
+                        {
+                            count++;
+                            var vote = GetVotePredict(Model.MatchesRoundThirdPlace[i], Model.Votes);
+                            var result = GetResultPredict(Model.MatchesRoundThirdPlace[i], Model.Votes);
+                            var teamVote = GetMatchNamePredict(Model.MatchesRoundThirdPlace[i], Model.Votes);
+                            var point = vote != null ? vote.Point : 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="30%">@GetTeamName(Model.MatchesRoundThirdPlace[i].HomeTeam) -vs- @GetTeamName(Model.MatchesRoundThirdPlace[i].AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="total-score">
+                <span>Total point</span>
+                <span>@totalPoint</span>
+            </div>
+        </div>
+        <div id="table-round-final" style="display:none">
+            <table class="data-grid">
+                <thead style="width: 100% !important;">
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="30%">Match</th>
+                        <th width="15%">Prediction</th>
+                        <th width="10%">Result</th>
+                        <th width="19%">Date & Time</th>
+                        <th width="6%">Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        totalPoint = 0;
+                        for (var i = 0; i < Model.MatchesRoundFinal.Count; i++)
+                        {
+                            count++;
+                            var vote = GetVotePredict(Model.MatchesRoundFinal[i], Model.Votes);
+                            var result = GetResultPredict(Model.MatchesRoundFinal[i], Model.Votes);
+                            var teamVote = GetMatchNamePredict(Model.MatchesRoundFinal[i], Model.Votes);
+                            var point = vote != null ? vote.Point : 0;
+                            totalPoint = totalPoint + point;
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="30%">@GetTeamName(Model.MatchesRoundFinal[i].HomeTeam) -vs- @GetTeamName(Model.MatchesRoundFinal[i].AwayTeam)</td>
+                                    <td class="text-center" width="15%">@teamVote</td>
+                                    <td class="text-center" width="10%">
+                                        <span class="choose choose-@result">
+                                            <i class="icon-@result"></i>
+                                        </span>
+                                    </td>
+                                    <td class="text-center" width="19%">@(vote != null ? vote.UpdatedDate.ToString("dd/MM/yyyy, HH:mm:ss") : "")</td>
+                                    <td class="text-center" width="6%">@(vote != null ? vote.Point : "")</td>
+                                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="total-score">
+                <span>Total point</span>
+                <span>@totalPoint</span>
+            </div>
+        </div>
+    }
+</div>

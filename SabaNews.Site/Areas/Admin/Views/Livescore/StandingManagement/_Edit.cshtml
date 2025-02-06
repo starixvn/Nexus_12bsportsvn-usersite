@@ -1,0 +1,181 @@
+﻿@using SabaNews.Resources
+@using SabaNews.Site.Extensions;
+@{
+    var currentGroupName = Model.Standing.GroupNameCustom ?? Model.Standing.GroupName;
+}
+
+<form id="UpdateStanding">
+    <div class="flex-form-input">
+        <div class="form-group-input" style="width : 10%">
+            <label class="label-admin">
+                @ViewResources.TeamIcon
+            </label>
+            <div class="admin-text-logo admin-text-logo-data-img">
+                <img src="@(Model.Standing.IconVN ?? LivescoreHelper.GetTeamIcon(Model.Standing.Icon))" alt="Alternate Text" />
+            </div>
+        </div>
+    </div>
+    <div class="flex-form-input">
+        @if (Model.Groups.Count > 1)
+        {
+            <div class="form-group-input form-group-input-left">
+                <label class="label-admin">
+                    @ViewResources.GroupName
+                </label>
+            
+                    <div class="admin-text-logo">
+                        <select class="form-control custom-input" id="groupName">
+                            @foreach (var group in Model.Groups)
+                            {
+
+                                var groupName = $"{@ViewResources.Board} {group.GroupName.Substring(0, 1)}";
+                                var selected = currentGroupName == group.GroupName ? "selected" : "";
+                                <option value="@group.GroupName" data-count="@group.Standings.Count" @selected>@groupName</option>
+                            }
+
+                        </select>
+                    </div>
+            
+            </div>
+        }
+        <div class="form-group-input form-group-input-right">
+            <label class="label-admin">
+                @ViewResources.TeamName
+            </label>
+            <div class="admin-text-logo admin-text-logo-round">
+                <input type="hidden" id="editTeamId" value="@Model.Standing.TeamId" />
+                <input type="text" name="table-around" readonly="" class="form-control custom-input bg-custom-input"
+                       value="@(!string.IsNullOrEmpty(Model.Standing.TeamNameVN) ? Model.Standing.TeamNameVN : Model.Standing.TeamNameEN)">
+            </div>
+        </div>
+    </div>
+    <div class="flex-form-input">
+        <div class="form-group-input form-group-input-left">
+            <label class="label-admin">
+                @ViewResources.Position
+            </label>
+            <div class="admin-text-logo">
+                <input type="hidden" value="@Model.Standing.Position" id="current-position" />
+                <select class="form-control custom-input" id="editPosition">
+                    @for (var i = 1; i <= Model.Group.Standings.Count; i++)
+                    {
+                        var selected = Model.Standing.Position == i ? "selected" : "";
+                        <option value="@i" @selected>@i</option>
+                    }
+
+                </select>
+                <p class="help-block"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="admin-match-management">
+        <div class="item item-home">
+            <div class="admin-edit-title">Home</div>
+
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.Played
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="total" name="total" value="@(Model.Standing.TotalCustom ?? Model.Standing.Total)" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.Won
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="won" name="won"
+                               value="@(Model.Standing.WonCustom ?? Model.Standing.Won)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.Drawn
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="draw" name="Draw"
+                               value="@(Model.Standing.DrawCustom ?? Model.Standing.Draw)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.Lost
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="loss" name="Loss"
+                               value="@(Model.Standing.LossCustom ?? Model.Standing.Loss)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="item item-away">
+            <div class="admin-edit-title">Away</div>
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.GoalsFor
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="goals" name="Goals"
+                               value="@(Model.Standing.GoalsCustom ?? Model.Standing.Goals)" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.GoalsAgainst
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" min="0" type="number" id="goalsAgainst" name="GoalsAgainst"
+                               value="@(Model.Standing.GoalsAgainstCustom ?? Model.Standing.GoalsAgainst)" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.GoalsDiff
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" type="number" id="goalDiff" name="GoalDiff"
+                               value="@(Model.Standing.GoalDiffCustom ?? Model.Standing.GoalDiff)" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-input">
+                <div class="form-group-input w-100">
+                    <label class="label-admin">
+                        @ViewResources.Points
+                    </label>
+                    <div class="admin-text-logo">
+                        <input class="form-control custom-input input-number" type="number" id="points" name="Points"
+                           value="@(Model.Standing.PointsCustom ?? Model.Standing.Points)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-btn">
+        <button class="btn-custom-admin btn-btn-save" data-stageid="@Model.Standing.StageId" id="btn-save">Save</button>
+        <button class="btn-custom-admin btn-btn-cancel" type="button" data-dismiss="modal">Cancel</button>
+    </div>
+</form>

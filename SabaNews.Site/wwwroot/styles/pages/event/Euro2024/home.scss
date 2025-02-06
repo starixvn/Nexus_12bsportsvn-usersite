@@ -1,0 +1,530 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './layout/header';
+@import './layout/footer';
+@import './base/base';
+@import './components/container';
+@import './components/block';
+@import './components/button';
+@import './components/hover-img-item';
+@import './components/items-block';
+@import './components/table';
+@import './components/swiper';
+@import './components/scroll-snap';
+@import './components/poll';
+
+
+.block-hot-news{
+    .gird-hot-news{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto;
+        grid-gap: 2rem;
+        @include tableMobile {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto;
+        }
+    
+        @include Mobile {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(1, 1fr);
+            .home-excerpt {
+                display: none;
+            }
+        }
+        .block-child {
+            grid-column: 5/7;
+            grid-row: 1/2;
+            @include tableMobile{
+                max-height: 40rem;
+                overflow: auto;
+            }
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 5/6;
+                max-height: 100%;
+                overflow: unset;
+            }
+        }
+        .block-items{
+            &-1 {
+                grid-column: 1/5;
+                grid-row: 1/2;
+    
+                @include Mobile {
+                    grid-column: 1/4;
+                    grid-row: 1/2;
+                }
+                .hover-image{
+                    height: 100%;
+                }
+            }
+            &-2 {
+                grid-column: 1/3;
+                grid-row: 2/3;
+    
+                @include Mobile {
+                    grid-column: 1/4;
+                    grid-row: 3/4;
+                }
+            }
+    
+            &-3 {
+                grid-column: 3/5;
+                grid-row: 2/3;
+    
+                @include Mobile {
+                    grid-column: 1/4;
+                    grid-row: 4/5;
+                }
+            }
+    
+            &-4 {
+                grid-column: 5/7;
+                grid-row: 2/3;
+    
+                @include Mobile {
+                    grid-column: 1/4;
+                    grid-row: 2/3;
+                }
+            }
+            &-2,&-3,&-4{
+                .hover-image{
+                    max-height: 23.4rem;
+                    height: 23.4rem;
+                    @include tableMobile{
+                        max-height: 12.4rem;
+                        height: 12.4rem;
+                    }
+                    @include Mobile{
+                        height: 21rem;
+                        max-height: 21rem;
+                    }
+                }
+            }
+        }
+        .group-title-hot{
+            .block-items-heading{
+                a{
+                    font-size: 1.6rem;
+                }
+            }
+        }
+        .block-items-vertical-hot{
+            @include Mobile{
+                border-radius: 0;
+                margin: 0 -1.2rem;
+            }
+            .block-items-img{
+                @include Mobile{
+                    border-radius: 0;
+                } 
+            }
+            .block-items-heading{
+                a{
+                    font-size: 2.2rem;
+                    @include tableMobile{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.block-standing{
+    background: url('../../../../images/euro2024/standing.png') no-repeat center #0c1d6b ;
+    background-size: cover;
+    .block-heading{
+        margin-bottom: 0;
+    }
+    .block-heading-text{
+        margin-bottom: 2.4rem;
+        a{
+            color: $white-color;
+        }
+    }
+    .grid-bxh{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        position: relative;
+        @include tableMobile{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        &-items{
+            text-decoration: none;
+            color: $white-color;
+            .wc-table{
+                &-2{
+                    &::after{
+                        background: #00BA5E;
+                    }
+                }
+                &-3{
+                    &::after{
+                        background: #FE0000;
+                    }
+                }
+                &-4{
+                    &::after{
+                        background: #FFC800;
+                    }
+                    .wc-table-cell{
+                        color: #000;
+                    }
+                }
+                &-5{
+                    &::after{
+                        background: #Fff;
+                    }
+                    .wc-table-cell{
+                        color: #000;
+                    }
+                }
+                &-6{
+                    &::after{
+                        background: #1E1E2A;
+                    }
+                }
+            }
+        }
+    }
+    .show-pc{
+        display: grid;
+        @include Mobile{
+            display: none;
+        }
+    }
+    
+    .show-mb{
+        display: none;
+        @include Mobile{
+            display: block;
+        }
+    }
+
+    .table-on-mobile{
+        color: $white-color;
+        a{
+            text-decoration: none;
+        }
+    }
+    .wc-table{
+        .wc-table-header{
+            @include tableMobile{
+                height: 6rem;
+                padding: 2rem 1.2rem;
+            }
+            @include Mobile{
+                height: 4rem;
+                padding: 2rem 1.2rem;
+            }
+        }
+        .wc-table-row{
+            @include tableMobile{
+                padding: 1.2rem 0;
+                margin: 0 1.2rem;
+            }
+        }
+    }
+}
+
+.block-guess{
+    @include Mobile{
+        padding: 0;
+    }
+    .container{
+        @include Mobile{
+            padding: 0;
+        }
+    }
+    .main-guess{
+        border-radius: 5px;
+        border: 2px solid #E5DEC1;
+        background: #FFF7D7;
+        padding: 2.4rem;
+        @include Mobile{
+            border: none;
+            padding: 2rem 1.2rem;
+        }
+        .news-and-poll{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 0 1.6rem;
+            margin-bottom: 1.6rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid #E4D9D0;
+            @include Mobile{
+                display: block;
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .block-items-vertical-hot{
+                grid-column: 1/3;
+                grid-row: 1/3;
+                height: 43rem;
+                max-height: 43rem;
+                @include tableMobile{
+                    height: 40rem;
+                    max-height: 40rem;
+                }
+                @include Mobile{
+                    display: none;
+                }
+                .hover-image{
+                    height: 100%;
+                }
+                
+            }
+            .poll{
+                grid-column: 3/4;
+                grid-row: 1/3;
+                border-radius: 5px;
+                border: 2px solid #E0DABF;
+                background: #FFFDF4;
+                padding: 2rem;
+                max-height: 43rem;
+                height: 43rem;
+                @include Mobile{
+                    max-height: 100%;
+                    height: 100%;
+                }
+            }
+            .euro-poll{
+                @include Mobile{
+                    margin-top: 2rem;
+                }
+            }
+            .euro-poll{
+                min-width: 39.2rem;
+                @include Mobile{
+                    min-width: 100%;
+                }
+            }
+        }
+        .swiper {
+            @include Mobile{
+                display: none;
+            }
+            .hover-image{
+                height: 17rem;
+                max-height: 17rem;
+            }
+        }
+        .block-body{
+            display: flex;
+            flex-direction: column;
+        }
+        .scroll-snap{
+            grid-template-columns: repeat(12, 1fr);
+            display: none;
+            margin: 0 -1.2rem;
+            &-items{
+                width: 32rem;
+                .hover-image{
+                    height: 18rem;
+                    max-height: 18rem;
+                }
+            }
+        }
+    }
+}
+
+.block-videos-and-kingsocer{
+    background: url('../../../../images/euro2024/bg_video.png') no-repeat center;
+    padding: 2.4rem 0;
+    background-size: cover;
+    @include tableMobile{
+        padding: 2rem 0;
+    }
+    .block-group{
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        @include Mobile {
+            display: unset;
+        }
+        .block-video{
+            border-radius: 5px;
+            border: 2px solid $primary-bg;
+            background: #FFFDF9;
+            padding: 2rem;
+            @include Mobile{
+                background: transparent;
+                margin-bottom: 2rem;
+            }
+        }   
+
+        .group-video{
+            .block-items-vertical{
+                &-hot{
+                    margin-bottom: 1rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 1px solid #CFCFCF;
+                    border-radius: 0;
+                    .hover-image{
+                        height: 40.6rem;
+                        max-height: 40.6rem;
+                        @include Mobile{
+                            height: 20.5rem;
+                            max-height: 20.5rem;
+                        }
+                    }
+                    .block-items-heading{
+                        margin-bottom: 0;
+                        a{
+                            color: $text-color;
+                            &:hover{
+                                color: $primary-bg;
+                            }
+                        }
+                    }
+                }
+            }
+            .block-child-video{
+                @include Mobile{
+                    margin: 0 -1.2rem;
+                }
+                .hover-image{
+                    height: 13rem;
+                    max-height: 13rem;
+                }
+                .swiper-slide{
+                    @include Mobile{
+                        width: 20rem;
+                    }
+                }
+                .swiper-button{
+                    @include Mobile{
+                        display: none !important;
+                    }
+                }
+                .block-items-heading{
+                    line-height: 1.8rem;
+                    @include Mobile{
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+        .block-video{
+            width: 100%;
+            max-width: 71.3rem;
+            @include tableMobile{
+                width: 50%;
+            }
+            @include Mobile{
+                padding: 0;
+                border: none;
+                width: 100%;
+            }
+            
+        }
+        .block-kingsocer{
+            max-width: 41.7rem;
+            width: 100%;
+            border: 2px solid #143cdb;
+            border-radius: 5px;
+            @include tableMobile{
+                max-width: 37rem;
+            }
+            @include Mobile {
+                min-width: auto;
+                width: 100%;
+                max-width: 100%;
+            }
+            .euro-top-scorer{
+                border: none;
+                border-radius: 0;
+            }
+            .team-logo{
+                width: 3rem;
+                height: 3rem;
+                @include Mobile{
+                    width: 2.4rem;
+                    height: 2.4rem;
+                }
+                img{
+                    width: 3rem;
+                    height: 3rem;
+                    @include Mobile{
+                        width: 2.4rem;
+                        height: 2.4rem;
+                    }
+                }
+            }
+            .king-soccer{
+                @include tableMobile{
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+.block-all{
+    background-image:  url('../../../../images/euro2024/bg-all.png') , linear-gradient(180deg, #0C1D6B 0%, #07113F 100%);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding-bottom: 40rem;
+    background-size: 100%;
+    @include Mobile{
+        padding-bottom: 11rem;
+        background-size: 100%;
+    }
+    .block-heading-text{
+        a{
+            color: $white-color;
+        }
+    }
+    .gird-main{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        @include Mobile{
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1.2rem;
+        }
+        &-items{
+            overflow: hidden;
+            border-radius: 5px;
+            &-title{
+                display: block;
+                color: #0A1651;
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+                background: #FFCA00;
+                padding: .9rem 0;
+                text-decoration: none;
+                @include Mobile{
+                    padding: 1.4rem 0;
+                }
+            }
+            &-img{
+                display: block;
+                img{
+                    display: block;
+                }
+                &.hover-image{
+                    border-radius: 0;
+                    @include Mobile{
+                        height: 20rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#home-standing{
+    min-height: 59.4rem;
+    @include Mobile{
+        min-height: 33rem;
+    }
+}

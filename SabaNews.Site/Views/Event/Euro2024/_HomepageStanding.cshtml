@@ -1,0 +1,96 @@
+@using SabaNews.Site.Extensions;
+@using static SabaNews.Site.Extensions.DeviceHelper;
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+}
+
+<div class="container">
+    <div class="grid-bxh show-pc">
+        @{
+            var indexTable = 0;
+            @foreach (var group in Model)
+            {
+                indexTable++;
+                var groupName = $"Bảng {group.GroupName[0]}";
+                <a href="@Url.Action("Standing", "Euro2024")" class="grid-bxh-items grid-bxh-items">
+                    <div class="wc-table wc-table-@indexTable">
+                        <div class="wc-table-header">
+                            <div class="wc-table-cell cell-participant name-group">@groupName</div>
+                            <div class="wc-table-cell cell-rank">Trận</div>
+                            <div class="wc-table-cell cell-rank">+/-</div>
+                            <div class="wc-table-cell cell-rank">Điểm</div>
+                        </div>
+
+                        <div class="wc-table-body">
+                            @foreach (var standing in group.Standings)
+                            {
+                                var icon = LivescoreHelper.GetTeamIcon(standing.Icon);
+                                var teamName = LivescoreHelper.GetStandingTeamName(standing);
+                                <div class="wc-table-row">
+                                    <div class="wc-table-cell cell-participant">
+                                        <ul class="team">
+                                            <li class="team-logo"><img src=@(string.IsNullOrEmpty(standing.IconVN) ? icon : standing.IconVN) alt="@teamName" /></li>
+                                            <li class="team-name" tabindex="0" data-toggle="tooltip" title="@(teamName.Length > (isMobile? 17 : 12) ? teamName : "")">@teamName</li>
+                                        </ul>
+                                    </div>
+                                    <div class="wc-table-cell cell-rank">@standing.Total</div>
+                                    <div class="wc-table-cell cell-rank">@standing.GoalDiff</div>
+                                    <div class="wc-table-cell cell-rank">@standing.Points</div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+
+    <div class="wc-on-mobile show-mb">
+        <div class="wc-table">
+            <div class="group-button">
+                <div class="name">Bảng</div>
+                <ul class="list-button nav-tab-js">
+                    @{
+                        var index = 0;
+                        @foreach (var group in Model)
+                        {
+                            index++;
+                            var active = index == 1 ? "active" : "";
+                            <li class="@active" ><a data-id="#tab-@group.GroupName[0]" class="nav-tab-item">@group.GroupName[0]</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="wc-table-header">
+                <div class="wc-table-cell cell-participant"></div>
+                <div class="wc-table-cell cell-rank">Trận</div>
+                <div class="wc-table-cell cell-rank">+/-</div>
+                <div class="wc-table-cell cell-rank">Điểm</div>
+            </div>
+            <div class="tab-content">
+                @foreach (var group in Model)
+                {
+                    <div class="wc-table-body" id="tab-@group.GroupName[0]">
+
+                        @foreach(var standing in group.Standings)
+                        {
+                            var icon = LivescoreHelper.GetTeamIcon(standing.Icon);
+                            var teamName = LivescoreHelper.GetStandingTeamName(standing);
+                            <div class="wc-table-row">
+                                <div class="wc-table-cell cell-participant">
+                                    <ul class="team">
+                                        <li class="team-logo"><img src=@(string.IsNullOrEmpty(standing.IconVN) ? icon : standing.IconVN) alt="Alternate Text" /></li>
+                                        <li class="team-name">@teamName</li>
+                                    </ul>
+                                </div>
+                                <div class="wc-table-cell cell-rank">@standing.Total</div>
+                                <div class="wc-table-cell cell-rank">@standing.GoalDiff</div>
+                                <div class="wc-table-cell cell-rank">@standing.Points</div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

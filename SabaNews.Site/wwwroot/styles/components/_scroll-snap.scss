@@ -1,0 +1,29 @@
+.scroll-snap {
+    @include tableMobile {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-scroll-snap-type: x mandatory;
+        -ms-scroll-snap-type: x mandatory;
+        scroll-snap-type: x mandatory;
+        scroll-snap-stop: always;
+        grid-template-columns: unset;
+        grid-auto-flow: column;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-snap-items {
+            scroll-snap-align: center;
+        }
+
+        .post-items, .wc-table {
+            margin-left: 1.2rem;
+        }
+
+        .post-items {
+            &:last-child {
+                padding-right: 1.2rem !important;
+            }
+        }
+    }
+}

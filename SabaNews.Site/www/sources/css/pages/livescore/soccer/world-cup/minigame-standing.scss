@@ -1,0 +1,85 @@
+@import './../../../../abstracts/mixins';
+@import './components/minigame_control';
+@import './components/input-custom';
+@import './components/minigame-section';
+
+
+.section-icon{
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    z-index: 0;
+    @include tableMobile{
+        display: none;
+    }
+}
+
+.standing-title{
+    .text{
+        color: #833D55;
+        @include tableMobile{
+            font-size: 2rem;
+            padding-bottom: 1.2rem;
+        }
+    }
+    .dots-parent{
+        background: #833D55;
+        &::before,&::after{
+            background: #833D55;
+        }
+        .dots{
+            background: #E8E8D6;
+           li{
+                background: #833D55;
+           } 
+        }
+        .line{
+            display: block;
+            width: 37%;
+            background: #E8E8D6;
+            height: 2px;
+            position: absolute;
+            @include Mobile{
+                width: 30%;
+            }
+            &-left{
+                left: 0;
+            }
+            &-right{
+                right: 0;
+            }
+        }
+    }
+}
+
+.standing-me{
+    max-width: 67rem;
+    margin: 0 auto;
+    color: #833D55;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    padding-bottom: 1.2rem;
+    @include tableMobile{
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+        text-align: center;;
+    }
+}
+
+.minigame-standing-control{
+    @include Mobile{
+        justify-content: center !important;
+    }
+}
+
+.custom-select{
+   @include Mobile{
+    width: 25rem !important;
+    height: 3.2rem !important;
+    font-weight: 700 !important;
+    font-size: 1.4rem !important;
+    line-height: 2.8rem !important;
+   }
+}
+

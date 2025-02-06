@@ -1,0 +1,128 @@
+﻿@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+@import '../../base/base';
+
+@import '../../layout/footer';
+@import '../../layout/block-extension';
+@import '../../layout/Euro2020/_header.scss';
+@import '../../components/Euro2020/_title.scss';
+@import '../../components/buttons';
+@import '../../components/fonts';
+@import '../../components/container';
+@import '../../components/img';
+@import '../../components/card-horizontal';
+@import '../../components/card-vertical';
+@import '../../components/pagination';
+@import '../../components/lazyload';
+@import '../../components/sub-structure';
+@import '../../components/Euro2020/icon.scss';
+@import '../../components/swipper';
+
+
+
+$main-color: #03647B;
+$border-block-color: #4DAEC6;
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.main-content .container {
+    width: 80rem;
+    @include Mobile {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-device-width: 768px) {
+    .swiper-container .swiper-slide .img-item {
+        height: 12rem;
+    }
+
+    .hidden-body .top-header {
+        position: absolute;
+        height: calc(100% - 7rem);
+        top: 7rem;
+
+        .group-menu .nav-menu .main-menu {
+            display: block;
+        }
+    }
+
+    .header .header-controls {
+        border-bottom: 1px solid #eee;
+    }
+}
+
+
+.block__swipper {
+    margin-bottom: 4rem;
+
+    .swiper-container {
+        .swiper-slide {
+            .img-item {
+                max-height: 43rem;
+                overflow: hidden;
+                @media screen and (max-width: 767px) {
+                    height: 22rem;
+                }
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.block__video {
+    @include grid(repeat(3, 1fr), unset, 1.6rem #{$column-gap});
+
+    @include tableMobile {
+        @include grid(repeat(2, 1fr), unset, #{$column-gap-tablet} #{$column-gap-tablet});
+    }
+
+    .card-vertical__image {
+        margin-bottom: 1rem;
+        height: 15rem;
+        overflow: hidden;
+
+        @include tableMobile {
+            height: 13rem;
+        }
+    }
+
+    .card-vertical-highlight {
+        [class*="card-vertical__"]:not(.card-vertical__image) {
+            padding: 0;
+        }
+    }
+}
+
+.play_video iframe {
+    height: 43rem;   
+}
+
+.wapper.active-fixed {
+    .child-mobile-menu {
+        position: fixed;
+        z-index: 10005;
+        top: 0;
+    }
+
+    .button-mobile {
+        z-index: 10004;
+    }
+}
+
+.play_video{
+    display: none;
+}

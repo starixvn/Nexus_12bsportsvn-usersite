@@ -1,0 +1,180 @@
+﻿@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+@import '../../base/base';
+
+@import '../../layout/footer';
+@import '../../layout/block-extension';
+@import '../../layout/Euro2020/_header.scss';
+
+@import '../../components/fonts';
+@import '../../components/block';
+@import '../../components/buttons';
+@import '../../components/container';
+@import '../../components/img';
+@import '../../components/card-horizontal';
+@import '../../components/card-vertical';
+@import '../../components/pagination';
+@import '../../components/lazyload';
+@import '../../components/sub-structure';
+@import '../../components/Euro2020/icon.scss';
+@import '../../components/swipper';
+
+
+
+$main-color: #03647B;
+$border-block-color: #4DAEC6;
+
+.main {
+    padding-top: 2rem;
+
+    @include Mobile {
+        padding-top: 2rem;
+    }
+}
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+@media screen and (max-device-width: 768px) {
+    .swiper-container .swiper-slide .img-item {
+        height: 12rem;
+    }
+
+    .hidden-body .top-header {
+        position: absolute;
+        height: calc(100% - 7rem);
+        top: 7rem;
+
+        .group-menu .nav-menu .main-menu {
+            display: block;
+        }
+    }
+
+    .header .header-controls {
+        border-bottom: 1px solid #eee;
+    }
+}
+
+
+.card-horizontal {
+    margin-bottom: 1.6rem;
+
+    @include Mobile {
+        margin-bottom: 1.2rem;
+    }
+
+    &-highlight {
+        height: 30rem;
+        grid-template-columns: 44rem 1fr;
+        grid-column-gap: 0;
+        grid-template-rows: unset;
+        align-items: flex-start;
+        margin-bottom: $column-gap;
+        background-color: $block-highlight-bgcolor;
+        padding-bottom: 0;
+
+        @include tableMobile {
+            display: inherit;
+            height: auto;
+        }
+
+        @include Mobile {
+            margin-bottom: 1.2rem;
+        }
+
+        .card-horizontal__content {
+            padding: 16px;
+
+            @include tableMobile {
+                margin-top: 1rem;
+            }
+
+            @include Mobile {
+                padding: 8px;
+                margin-top: 0;
+            }
+        }
+
+        .title {
+            font-size: 2rem;
+            line-height: 2.8rem;
+
+            @include Mobile {
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+            }
+        }
+
+        .description {
+            margin-top: 1rem;
+
+            @include tableMobile {
+                display: block;
+                margin-top: 0;
+            }
+
+            @include Mobile {
+                font-size: 1.2rem;
+                line-height: 2rem;
+            }
+        }
+
+        .card-horizontal__image {
+            height: 100%;
+
+            @include tableMobile {
+                max-height: 100% !important;
+            }
+        }
+    }
+}
+
+.wapper.active-fixed {
+    .top-header {
+        position: relative;
+    }
+
+    .child-mobile-menu {
+        position: fixed;
+        z-index: 10005;
+        top: 0;
+
+        @media screen and (max-device-width: 768px) {
+            border-bottom: 1px solid #666;
+            background-color: #fff;
+        }
+    }
+
+    .button-mobile {
+        z-index: 10004;
+    }
+}
+
+@media screen and (max-device-width: 768px) {
+
+    .hidden-body .top-header {
+        position: absolute;
+        height: calc(100% - 7rem);
+        top: 7rem;
+
+        .group-menu .nav-menu .main-menu {
+            display: block;
+        }
+    }
+
+    .header .header-controls {
+        border-bottom: 1px solid #eee;
+    }
+}
+
+.pagination .main-pagination .active {
+    background-color: #03647B;
+}

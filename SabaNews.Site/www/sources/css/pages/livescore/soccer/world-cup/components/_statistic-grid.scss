@@ -1,0 +1,188 @@
+.statistic-grid{
+    width: 70rem;
+    @include tableMobile{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    &-item{
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(136, 60, 86, 0.5);
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        transition: box-shadow .2s ease-in ;
+        &.active{
+            .statistic-grid-item-header{
+                background: #E8E8D6;
+                .statistic-grid-item-fav, .statistic-grid-item-round{
+                    color: #5B0E21;
+                }
+            }
+            .finish{
+                .statistic-team{
+                    &.active{
+                        &:hover{
+                            cursor: no-drop;
+                            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+                            background: #E8E8D6;
+                            .statistic-team-name{
+                                color: #833D55;
+                            }
+                            i{
+                                &::before{
+                                    color: #833D55;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+        &:hover{
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+        }
+        &-header{
+            background: rgba(0, 0, 0, 0.1);
+            transition: background .2s ease;
+            border-bottom: 1px solid rgba(136, 60, 86, 0.5);
+            border-radius: 5px 5px 0 0;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            height: 3.6rem;
+            align-items: center;
+            color: #E8E8D6;
+            @include tableMobile{
+                padding: 0 1rem;
+            }
+        }
+        &-body{
+            padding: 1.8rem 1rem;
+            @include tableMobile{
+                padding: 1rem;
+            }
+            .team-main{
+                display: flex;
+                grid-gap: 4.4rem;
+                justify-content: center;
+                @include tableMobile{
+                    grid-gap: 2rem;
+                }
+            }
+            &.finish{
+                &:hover{
+                    box-shadow: none;
+                    cursor: no-drop;
+                }
+                .statistic-team{
+                    &:hover{
+                        cursor: no-drop;
+                        box-shadow: none;
+                        background: rgba(0, 0, 0, 0.1);
+                        .statistic-team-name{
+                            color: #E8E8D6;
+                        }
+                        i{
+                            &::before{
+                                color: #E8E8D6;
+                            }
+                        }
+                    }
+                }
+            }
+           
+        }
+        &-round{
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 2.8rem;
+            @include tableMobile{
+                font-size: 1.4rem;
+            }
+        }
+        &-fav{
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 2.8rem;
+            @include tableMobile{
+                margin-top: 1rem;
+                color: #E8E8D6;
+            }
+        }
+    }
+
+    .statistic-team{
+        background: rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba($color: #E8E8D6, $alpha: .2);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 10rem;
+        align-items: center;
+        padding: .3rem;
+        cursor: pointer;
+        transition: box-shadow , background .2s ease-in ;
+        &.active{
+            background: #E8E8D6;
+            .statistic-team-name{
+                color: #833D55;
+            }
+            i{
+                &::before{
+                    color: #833D55;
+                }
+            }
+        }
+        &:hover{
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+            background: #E8E8D6;
+            .statistic-team-name{
+                color: #833D55;
+            }
+            i{
+                &::before{
+                    color: #833D55;
+                }
+            }
+        }
+        &-logo{
+            width: 7.5rem;
+            height: 5rem;
+            object-fit: contain;
+            display: block;
+            border-radius: 3px;
+        }
+        &-name{
+            color: #E8E8D6;
+            margin-top: 1.5rem;
+            margin-bottom: .5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: 1.9rem;
+            text-align: center;
+        }
+        .icon-minigame_draw {
+            font-size: 5rem;
+        }
+    }
+}
+.equal-height-JlocK{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-pc{
+    display: block;
+    @include tableMobile{
+        display: none;
+    }
+}
+
+.show-mb{
+    display: none;
+    @include tableMobile{
+        display: block;
+    }
+}

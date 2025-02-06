@@ -1,0 +1,85 @@
+﻿@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@section Title {
+    @Model.Header.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/home.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/minify/styles/worldcup2022-story-post.min.css" asp-append-version="true">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/world-cup/fixture.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        window.slug = '@Model.Header.Slug';
+        window.paging = {
+            page: '@Model.Paging.CurrentPage',
+            pageSize: '@Model.Paging.PageSize',
+            totalPages: '@Model.Paging.TotalPages'
+        };
+        window.type = 'story_post';
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/pages/livescore/soccer/world-cup/fixture.chunk.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/minify/js/worldcup-2022-story-post.min.js" asp-append-version="true"></script>
+    
+}
+@(await Component.InvokeAsync("HeaderWorldCup", new { cateSlug = Model.Header.Slug }))
+
+<section class="worldcup-fixture">
+    <div id="worldcup-fixture"></div>
+    <div class="wc-page-main">
+        <div class="title-section">
+            <div class="dots"><span></span><span></span><span class="dots-items"></span></div>
+            <h2>Khoảnh khắc</h2>
+            <div class="dots"><span class="dots-items"></span><span></span><span></span></div>
+        </div>
+        <div class="container">
+            <div class="grid-stories-post" id="news-grid">
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="post-items post-hot">
+                        <div class="hover-image">
+                            <a href=@Url.Action("StoryPostDetail", "WorldCup2022", new { slug = post.Slug })>
+                                <img src=@post.FeatureImage alt=@post.PostTitle class="img-res" />
+                            </a>
+                            <div class="title-hot">
+                                <p>@post.PostTitle</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.Paging.TotalPages > 1)
+            { 
+                <div class="loading-page">
+                    <div class="lds-ellipsis">
+                        <div></div><div></div><div></div><div></div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>

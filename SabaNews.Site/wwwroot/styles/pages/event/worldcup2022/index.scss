@@ -1,0 +1,499 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/title-section';
+@import './components/wc-block';
+@import './components/hover-img-item';
+@import './components/post-items';
+@import './components/post-hot';
+@import './components/view-more';
+@import './components/scroll-snap';
+@import './components/table';
+@import './components/title-items';
+@import './components/container';
+@import './components/dots-post';
+@import './components/swipper-slide';
+@import './components/wc-modal';
+@import './components/tooltip';
+@import './components/ads';
+
+.gird-hot-news {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 45rem auto;
+    grid-gap: 2rem;
+
+    @include tableMobile {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 30rem 10rem;
+    }
+
+    @include Mobile {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        .home-excerpt {
+            display: none;
+        }
+    }
+
+    .post-items {
+        &-1 {
+            grid-column: 1/5;
+            grid-row: 1/2;
+
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 1/2;
+            }
+        }
+
+        &-2 {
+            grid-column: 5/7;
+            grid-row: 1/2;
+
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 2/3;
+            }
+        }
+
+        &-3 {
+            grid-column: 1/3;
+            grid-row: 2/3;
+
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 3/4;
+            }
+        }
+
+        &-4 {
+            grid-column: 3/5;
+            grid-row: 2/3;
+
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 4/5;
+            }
+        }
+
+        &-5 {
+            grid-column: 5/7;
+            grid-row: 2/3;
+
+            @include Mobile {
+                grid-column: 1/4;
+                grid-row: 5/6;
+            }
+        }
+
+        &-2, &-3, &-4, &-5 {
+            .hover-image {
+                height: 21rem;
+                max-height: 21rem;
+
+                @include tableMobile {
+                    height: 13rem;
+                    max-height: 13rem;
+                }
+
+                @include Mobile {
+                    height: 20rem;
+                    max-height: 20rem;
+                }
+            }
+        }
+    }
+
+    .post-hot {
+        .hover-image {
+            height: 45rem;
+            max-height: 45rem;
+
+            @include tableMobile {
+                height: 30rem;
+                max-height: 30rem;
+            }
+        }
+    }
+}
+
+.wc-block-hotnews {
+    .view-more {
+        margin-top : 1.8rem;
+        @include tableMobile{
+            margin-top : 11rem;
+        }
+        @include Mobile{
+            margin-top : 3.2rem;
+        }
+        a {
+            color: $title-color;
+        }
+    }
+}
+
+
+.wc-block-bxh {
+    background: url('../../../../images/worldcup/section-2.jpg') no-repeat;
+    background-size: cover;
+    margin-top: 5rem;
+
+    @include tableMobile {
+        margin-top: 2.5rem;
+    }
+
+    a {
+        text-decoration: none;
+
+        @include tableMobile {
+            margin-left: 1.2rem;
+
+            &:first-child {
+                margin-left: 1.2rem;
+            }
+
+            &:last-child {
+                margin-right: 1.2rem;
+            }
+
+            .wc-table {
+                margin-left: 0;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .title-section {
+        h2 {
+            a {
+                color: #FFD68F;
+            }
+        }
+    }
+
+    .dots {
+
+
+        span {
+            background: #FFD68F;
+        }
+    }
+
+    .grid-bxh {
+        margin-top: 6rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 4rem 2rem;
+        position: relative;
+        z-index: 9;
+
+        @include tableMobile {
+            grid-template-columns: repeat( 8, 33.2rem);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+    }
+
+    .wc-table {
+        background: linear-gradient(180deg, #67182B 0%, #470817 100%);
+        color: $white-color;
+        border: 1px solid $table-border;
+        height: 100%;
+
+        .wc-table-header {
+            align-items: flex-end;
+        }
+
+        .cell-participant {
+            flex: 1 0 13rem;
+
+            @include tableMobile {
+                flex: 1 0 16rem;
+            }
+        }
+
+        .team {
+            &-name {
+                width: 8rem;
+
+                @include tableMobile {
+                    width: 12rem;
+                }
+            }
+        }
+    }
+
+    .img-section {
+        position: absolute;
+        left: 30px;
+        bottom: 30px;
+        z-index: 0;
+
+        @include tableMobile {
+            display: none;
+        }
+    }
+
+    .view-more {
+        @include tableMobile {
+            padding: 0 1.2rem;
+        }
+
+        a {
+            color: $title-bxh-color;
+        }
+    }
+}
+
+.wc-block-stories-post {
+    background: url('../../../../images/worldcup/bg.png') no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    @include tableMobile {
+        background-size: cover;
+        background-position: 0 -7rem;
+    }
+
+    .grid-stories-post {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+
+        @include tableMobile {
+            grid-template-columns: repeat(4,33.2rem);
+            grid-gap: 2rem;
+        }
+
+        .hover-image {
+            max-height: 40rem;
+            height: 40rem;
+
+            @include tableMobile {
+                max-height: 45rem !important;
+                height: 45rem !important;
+            }
+
+            .title-hot {
+                text-align: center;
+                padding: 6rem 3.2rem 2rem 3.2rem;
+
+                p {
+                    color: $white-color;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    line-height: 1.8rem;
+
+                    @include tableMobile {
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .date-time {
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    line-height: 2.4rem;
+                }
+            }
+        }
+    }
+
+    .view-more {
+        @include tableMobile {
+            padding: 0 1.2rem;
+        }
+
+        a {
+            color: $title-color;
+        }
+    }
+}
+
+
+.wc-block-all {
+    background: url('../../../../images/worldcup/section-4.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .title-section {
+        h2 {
+            color: $white-color;
+
+            a {
+                color: $white-color;
+            }
+        }
+
+        .dots {
+            span {
+                background: $white-color;
+            }
+        }
+    }
+
+    .grid-all {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+
+        @include tableMobile {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1.2rem;
+        }
+
+        .title-hot {
+            padding: 6rem 2rem 4rem 2rem;
+
+            @include tableMobile {
+                padding: 4rem 1rem 1.2rem 1rem;
+            }
+        }
+
+        .hover-image {
+            height: 45rem;
+            @include tableMobile {
+                min-height: 22rem;
+                height: 22rem;
+            }
+        }
+
+        .dots {
+            span {
+                background: $white-color;
+            }
+        }
+    }
+}
+
+.wc-block-group {
+    padding: 5rem 0 3.2rem 0;
+
+    @include tableMobile {
+        padding: 3rem 0 0 0;
+    }
+
+    .king-soccer {
+        @include tableMobile {
+            padding: 0 1.2rem;
+        }
+
+        .wc-table {
+            &-body {
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.grid-section-group {
+    display: grid;
+    grid-template-columns: 61% 37%;
+    grid-gap: 2rem;
+
+    @include tableMobile {
+        grid-template-columns: 100%;
+        grid-gap: 4rem;
+    }
+}
+
+.guess {
+    .post-hot {
+        .hover-image {
+            max-height: none;
+        }
+    }
+
+    .swiper {
+        height: 46.7rem;
+
+        @include tableMobile {
+            height: 25rem;
+        }
+    }
+
+    .view-more {
+        margin-top: 1.8rem;
+
+        @include tableMobile {
+            margin-top: 3.2rem;
+            margin-right: 1.4rem;
+        }
+
+        a {
+            color: $title-color;
+        }
+    }
+
+    .scroll-snap {
+        @include tableMobile {
+            .post-items, .wc-table {
+                margin-left: 1.2rem;
+
+                &:first-child {
+                    padding-left: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+.wc-block-video {
+    background: $primary-bg;
+    position: relative;
+    z-index: 9;
+
+    @include tableMobile {
+        margin-top: 2.5rem;
+    }
+
+    .view-more {
+        @include tableMobile {
+            padding: 0 1.2rem;
+        }
+
+        a {
+            color: $title-color;
+        }
+    }
+
+    .img-section {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        z-index: 0;
+
+        @include tableMobile {
+            display: none;
+        }
+    }
+
+    .hover-image {
+        height: 20rem;
+    }
+
+    .scroll-snap {
+        @include tableMobile {
+            .post-items, .wc-table {
+                margin-left: 1.2rem;
+
+                &:first-child {
+                    padding-left: 0 !important;
+                }
+            }
+        }
+    }
+}

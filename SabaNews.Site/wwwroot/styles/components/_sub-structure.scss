@@ -1,0 +1,95 @@
+﻿@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+
+
+.main .container {
+    @include grid(auto 37rem, unset, 0);
+
+    @include tableMobile {
+        grid-template-columns: auto 32rem;
+    }
+
+    @include Mobile {
+        display: inherit;
+    }
+}
+
+.main .detail-container {
+    @include grid(5% 62% 37rem, unset, 0);
+    align-items : start;
+
+    @include tableMobile {
+        grid-template-columns: 60% 40%;
+    }
+
+    @include Mobile {
+        display: inherit;
+    }
+}
+
+.main .profile-container {
+    @include grid(30% 70%, unset, 0);
+
+    @include tableMobile {
+        grid-template-columns: 30% 70%;
+    }
+
+    @include Mobile {
+        display: inherit;
+    }
+}
+
+
+
+
+
+.block-main {
+    padding-right: 2rem;
+    border-right: 1px solid $separator-color;
+
+    @include tableMobile {
+        padding-right: 1rem;
+        border: none;
+    }
+
+    @include Mobile {
+        padding: 0;
+    }
+}
+
+.block-extension {
+    padding-left: 2rem;
+    @include tableMobile {
+        padding-left: 1rem;
+    }
+
+    @include Mobile {
+        padding: 0;
+    }
+}
+
+.video-sidebar,#guess-section{
+    margin-top: 2rem;
+    .card-horizontal{
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        grid-template-columns: 13rem 1fr;
+        &__image{
+            border-radius: 3px !important;
+            height: 9.4rem
+        }
+        &__content{
+            .title{
+                font-weight: 600;
+                font-size: 1.4rem;
+                line-height: 2.6rem;
+            }
+        }
+    }
+}
+
+.text-no-data{
+    text-align: center;
+    padding: .5rem;
+}

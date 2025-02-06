@@ -1,0 +1,232 @@
+﻿@import './abstracts/wc-variables';
+@import '../../../abstracts/mixins';
+@import './abstracts/wc-base';
+@import './layout/header';
+@import './components/title-section';
+@import './components/hover-img-item';
+@import './components/post-items';
+@import './components/post-hot';
+@import './components/view-more';
+@import './components/scroll-snap';
+@import './components/table';
+@import './components/title-items';
+@import './components/container';
+@import './components/dots-post';
+@import './components/wc-modal';
+@import './components/tooltip';
+@import './components/ads';
+
+body{
+    overflow : unset;
+}
+
+.block-extension{
+    padding-left : 0;
+    position : unset;
+}
+img{
+    margin : unset;
+}
+.block-main {
+    padding-right: 2rem;
+
+    @include tableMobile {
+        padding-right: 0;
+    }
+}
+.sticky-position {
+    padding-left: 2rem;
+    margin-bottom: 2rem !important;
+    @include tableMobile{
+        padding-left : 0;
+    }
+}
+.detail-container {
+    display: grid;
+    grid-template-columns: 5% 64% 35.7rem;
+    grid-template-rows: unset;
+    grid-gap: 0;
+    align-items: start;
+
+    @include tableMobile {
+        grid-template-columns: 60% 40%;
+    }
+
+    @include Mobile {
+        display: inherit;
+    }
+}
+
+.block__content {
+    .title-section {
+        justify-content: flex-start;
+        margin-bottom: 2rem !important;
+
+        h2 {
+            margin: 0 1rem 0 0;
+        }
+    }
+
+    .card-horizontal {
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.2rem;
+
+        &__image {
+            border-radius: 5px;
+        }
+    }
+}
+.block-extension {
+    .card-vertical {
+        &:last-child {
+            border-bottom: 1px solid #e5e5e5 !important;
+        }
+        &__image{
+            border-radius : 5px;
+        }
+    }
+}
+.comment-post .filter_comment {
+    a {
+        color: #333333;
+        font-size: 1.6rem;
+        padding-bottom: 1rem;
+
+        &:after {
+            bottom: -1px;
+        }
+
+        &.active {
+            color: #48041A;
+            font-weight: 700;
+        }
+    }
+}
+.comment-post .add_comment, .comment-post .add_sub_comment {
+    background: $title-color;
+    cursor: pointer;
+    margin: 1.6rem 0 2.4rem 0;
+}
+.comment-post .show_get_more_comment:hover:not(.active), .comment-post .show_get_more_comment {
+    background-color: #48041A;
+    color : #fff;
+}
+
+.comment-post {
+    border-bottom: 1px solid #DADACB;
+    margin-bottom : 2rem;
+}
+.block {
+    margin-bottom: 2.9rem;
+}
+.comment-post form .comment-content-box, .comment-post form .comment-content-box textarea {
+    background-color: #F6F6EE;
+}
+.tag-post {
+    .tag-item {
+        background: #DBDBC9;
+        color: #6B6B60;
+    }
+}
+
+.view-more{
+    @include tableMobile{
+        margin-right : 1.2rem;
+    }
+}
+
+.card-vertical__video{
+    img{
+        width : 100%;
+    }
+}
+
+.comment-post .list_comments .comment_item .group-comment .avatar {
+    background: #48041A;
+}
+.comment-post .list_comments .comment_item .group-comment .user-comment .controls-comment a{
+    color : #838383;
+}
+.comment-post .list_comments .comment_item .group-comment .user-comment .nick-name a {
+    color: #333333;
+}
+
+.icon-reply {
+    &:before {
+        color: #838383;
+    }
+}
+
+.euro-detail-title {
+    border: 1px solid #6D2D42;
+    color : #833D55;
+    .euro-number {
+        background: #6D2D42;
+    }
+}
+.content a {
+    color: #0066CC;
+}
+
+
+
+
+
+.hidden-detail {
+    .main-menu {
+        padding-top: 0 !important;
+    }
+}
+
+#standingWC {
+    .king-soccer {
+        @include tableMobile {
+            padding: 0 1.2rem;
+        }
+    }
+
+    .scroll-snap {
+        @include tableMobile {
+            .wc-table {
+                &:first-child {
+                    margin-left: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.fixed-social {
+    @include tableMobile {
+        background: #48041a !important;
+        box-shadow: none !important;
+
+        .icon-social {
+            &:before {
+                color: #fff !important;
+            }
+        }
+
+        .button-detail-page {
+            .line-mb {
+                background: #fff !important;
+            }
+        }
+    }
+}
+
+.banner-change-domain, .skeleton-banner-align {
+    top: 24.2rem !important;
+
+    &.active-ads {
+        top: 7.5rem !important;
+        position: fixed;
+    }
+}
+.banner-mobile {
+    @include Mobile {
+        margin-left: -1.2rem;
+        margin-right: -1.2rem;
+    }
+}
+  

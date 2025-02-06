@@ -1,0 +1,306 @@
+﻿.flexbox {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.item-th {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    font-size: 1.3rem;
+    line-height: 1.9rem;
+    margin-bottom: .4rem;
+
+    .icon-th {
+        width: 16px;
+        text-align: center;
+        margin-bottom: .4rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .ic {
+            max-width: 16px;
+        }
+    }
+
+    .name-th {
+        font-weight: 600;
+
+        @include Mobile {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            max-width: 12rem;
+            text-align: right;
+        }
+    }
+}
+
+.item-th-time {
+    font-size: 1.4rem !important;
+
+    @include Mobile {
+        font-size: 1.2rem !important;
+    }
+}
+
+.time-line {
+    &-start {
+        text-align: center;
+        padding-top: 1.4rem;
+
+        .icon-livescore {
+            font-size: 2rem !important;
+        }
+
+        .txt-start {
+            margin-top: .7rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 1.9rem;
+            color: $color-title;
+
+            @include Mobile {
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+            }
+        }
+    }
+
+    &-main {
+        margin-top: 1rem;
+        padding-bottom: .2rem;
+
+        @include Mobile {
+            padding-bottom: 1.2rem;
+        }
+
+        .line-up-live {
+            margin: 1rem 0;
+
+            @include Mobile {
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+                margin: .8rem 0;
+            }
+
+            &-item {
+                -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+                position: relative;
+                z-index: 1;
+
+                .inner-item-db {
+                    width: calc((100% - 2.4rem)/2);
+                    margin-top: 0;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                    -ms-flex-item-align: center;
+                    align-items: center;
+
+                    .item-th {
+                        margin-top: 0;
+                        width: 100%;
+                        flex-wrap: wrap;
+                        list-style: none;
+                        align-items :center;
+                        li {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            font-weight: 400;
+                            font-size: 1.3rem;
+                            line-height: 1.9rem;
+
+                            @include Mobile {
+                                font-size: 1.2rem;
+                                line-height: 1.6rem;
+                            }
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        &-name {
+                            font-weight: 600;
+                        }
+
+                        .sp-score {
+                            .item-th-name {
+                                font-weight: 400;
+                            }
+                        }
+                    }
+
+                    .icon-th {
+                        margin-right: 5px;
+                    }
+
+                    &.item-th-home {
+                        padding-right: 1rem;
+                        border-right: 1px solid $border-color;
+                        justify-content: flex-end;
+
+                        .item-th {
+                            -webkit-box-pack: end;
+                            -ms-flex-pack: end;
+                            justify-content: flex-end;
+
+                            li {
+                                justify-content: flex-end;
+                            }
+
+                            .icon-livescore {
+                                margin-right: 1rem;
+
+                                @include Mobile {
+                                    font-size: 1.6rem !important;
+                                    margin-right: .8rem;
+                                }
+                            }
+                        }
+
+                        .icon-th {
+                            -webkit-box-ordinal-group: 3;
+                            -ms-flex-order: 2;
+                            order: 2;
+                            margin-left: 5px;
+                        }
+
+                        .in-out-icon {
+                            margin-right: 1rem;
+                        }
+                    }
+
+                    &.item-th-away {
+                        padding-left: 1rem;
+                        border-left: 1px solid $border-color;
+
+                        .in-out-icon {
+                            margin-left: 1rem;
+                        }
+
+                        .icon-livescore {
+                            margin-left: 1rem;
+
+                            @include Mobile {
+                                font-size: 1.6rem;
+                                margin-left: .8rem;
+                            }
+                        }
+                    }
+                }
+
+                .item-mins {
+                    width: 6rem;
+                    text-align: center;
+                    min-height: 5rem;
+                    font-weight: bold;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    font-size: 1.4rem;
+                    color: $color-detail-league;
+                    list-style: none;
+                    margin: 0 1rem;
+
+                    @include Mobile {
+                        width: 5rem;
+                    }
+
+                    .icon-th {
+                        margin-bottom: .4rem;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    li {
+                        margin-bottom: .4rem;
+                        line-height: 1;
+
+                        @include Mobile {
+                            font-size: 1.2rem;
+                            line-height: 1.6rem;
+                        }
+                    }
+
+                    .icon-livescore {
+                        font-size: 2.4rem;
+
+                        @include Mobile {
+                            width: 2rem;
+                        }
+                    }
+
+                    svg {
+                        width: 2.4rem;
+                        height: 2.4rem;
+                        margin: 0 auto;
+                        @include Mobile {
+                            width: 2rem;
+                            height: 2rem;
+                        }
+                    }
+                }
+
+                .name-th.out {
+                    color: #A4ABB6;
+                }
+            }
+        }
+    }
+}
+
+
+.head-top-team {
+    margin: 1rem auto;
+    background: $bg-today;
+    border: 1px solid $border-today;
+    border-radius: 5px;
+    max-width: 15rem;
+    padding: .6rem 1.3rem;
+
+    @include Mobile {
+        margin: .4rem auto;
+    }
+
+    .time-event {
+        justify-content: center;
+        text-align :center;
+        &-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 1;
+            color: $color-title;
+
+            @include Mobile {
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+            }
+        }
+
+        &-score {
+            font-weight: 700;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-top: .5rem;
+            color: $color-title;
+
+            @include Mobile {
+                font-size: 1.4rem;
+                line-height: 1rem;
+            }
+        }
+    }
+}

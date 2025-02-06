@@ -1,0 +1,57 @@
+﻿.live {
+    .soccer-match-stage {
+        span {
+            color: #E13C29 !important;
+            font-size: 1.3rem;
+            line-height: 1.5rem;
+            position: relative;
+            font-weight: 700;
+
+            &:before {
+                content: "";
+                display: block;
+                width: .6rem;
+                height: .6rem;
+                background: #E13C29;
+                border-radius: 100%;
+                left: -15px;
+                top: 6px;
+                position: absolute;
+
+                @include Mobile {
+                    top: 5px;
+                }
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                width: 1.4rem;
+                height: 1.4rem;
+                background-color: #E13C29;
+                opacity: 0.7;
+                border-radius: 100%;
+                left: -19px;
+                top: 2px;
+                position: absolute;
+                animation: live 2s ease-in-out infinite;
+
+                @include Mobile {
+                    top: 1px;
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes live {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1.5);
+        background-color: rgba(#E13C29,0);
+    }
+}

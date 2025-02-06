@@ -1,0 +1,55 @@
+﻿@using SabaNews.Core.Constants;
+
+<section class="footer-event">
+    <div class="container">
+        <div class="footer-event-top">
+             <ul class="footer-event-menu">
+                @foreach(var menu in Euro2024.Menus)
+                {
+                    var link = $"/{Euro2024.HomepageSlug}/{menu.Slug}";
+                    <li><a href="@link">@menu.Name</a></li>
+                }
+            </ul>
+            <div class="footer-event-social">
+                <p class="text-follow">Theo dõi SABA Sports trên</p>
+                <div class="follow">
+                    <a class="icon-social-facebook" href="https://www.facebook.com/sabasportsvietnam"></a>
+                    <a class="icon-social-youtube" href="https://www.youtube.com/SABASportsVietnam"></a>
+                    <a class="icon-tiktok" href="https://www.tiktok.com/@@sabasportsvietnam"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-info">
+            <div class="footer-logo">
+                <a href="/">
+                 <img src="~/images/euro2024/logo-ft.svg" alt="logo" class="img-res" asp-append-version="true"  width="88" height="46" loading="lazy"/>
+                </a>
+            </div>
+
+            <div class="footer-info-main">
+                <ul class="footer-list-service">
+                    <li><a data-section="#thu-thap" href="/policy/#thu-thap">Thu thập và sử dụng thông tin</a></li>
+                    <li><a data-section="#luu-tru" href="/policy/#luu-tru">Lưu trữ thông tin cá nhân</a></li>
+                    <li><a data-section="#cookie" href="/policy/#cookie">Cookie</a></li>
+                    <li><a data-section="#tiet-lo" href="/policy/#tiet-lo">Tiết lộ thông tin cá nhân</a></li>
+                    <li><a data-section="#quang-cao" href="/policy/#quang-cao">Quảng cáo bên thứ ba</a></li>
+                    <li><a data-section="#bao-mat" href="/policy/#bao-mat">Bảo mật và An ninh</a></li>
+                </ul>
+                <div class="copy-right">
+                   <p> © @DateTime.Now.Year Bản quyền thuộc về SABA Sports</p>
+                    <div class="ex">
+                        <a href="//www.dmca.com/Protection/Status.aspx?ID=f936b4b7-f675-4399-9627-694869ab0664"
+                            title="DMCA.com Protection Status" class="dmca-badge"> <img width="120" height="21"
+                                loading="lazy"
+                                src="https://images.dmca.com/Badges/dmca_protected_sml_120b.png?ID=f936b4b7-f675-4399-9627-694869ab0664"
+                                alt="DMCA.com Protection Status" /></a>
+                        <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-top-box">
+        <div class="back-to-top"><span class="icon-chevron-right"></span></div>
+    </div>
+</section>

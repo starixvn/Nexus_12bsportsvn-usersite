@@ -1,0 +1,221 @@
+﻿@using static SabaNews.Site.Extensions.DeviceHelper;
+@using SabaNews.Core.Constants;
+@{
+    var schemaVideo = "";
+    var count = 0;
+    @foreach(var post in Model.Posts)
+    {
+        count++;
+        schemaVideo += "{";
+        schemaVideo +="\"@type\":\"VideoObject\",";
+        schemaVideo += $"\"name\":\"{post.PostTitle}\",";
+        schemaVideo += $"\"description\":\"{post.PostExcerpt}\",";
+        schemaVideo += $"\"embedUrl\":\"{SabaNews.Site.Extensions.PostHelper.GetVideoLink(post.PostContent)}\",";
+        schemaVideo += $"\"thumbnailUrl\":\"{post.FeatureImage}\",";
+        schemaVideo += $"\"uploadDate\":\"{post.PostDate.ToString("yyyy-MM-ddTHH:mm:sszzz")}\",";
+        schemaVideo += $"\"interactionStatistic\": {{ \"@type\": \"InteractionCounter\", \"interactionType\": \"https://schema.org/WatchAction\", \"userInteractionCount\":{post.VideoViews} }}";
+        schemaVideo += string.IsNullOrEmpty(post.CustomSchema) ? "" : $",{post.CustomSchema.TrimEnd(',')}";
+        schemaVideo += "}";
+        if(count <  Model.Posts.Count)
+        {
+            schemaVideo += ",\n";
+        }
+    }
+    schemaVideo = schemaVideo.TrimEnd(',');
+}
+@section Schema {
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "CollectionPage",
+        "name": "@Model.Header.Title",
+        "description": "@Model.Header.Description",
+        "hasPart": [
+            @Html.Raw(schemaVideo)
+        ]
+    }
+</script>
+}
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Category.OgDescription' />
+    <meta property="og:title" content='@Model.Category.OgTitle' />
+    <meta property="og:image" content='@Model.Category.OgImage' />
+    <meta name="robots" content="noindex, follow,noarchive,max-image-preview:large" />
+}
+
+@section Title{
+    @Model.Header.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" media="all" href="~/minify/styles/video.min.css" asp-append-version="true">
+}
+
+@section Scripts {
+    <script>
+        window.slug = '@Model.Slug'
+        window.paging = {
+            page: '@Model.Paging.CurrentPage',
+            pageSize: '@Model.Paging.PageSize',
+            totalPages: '@Model.Paging.TotalPages'
+        };
+        window.isVideo = true;
+        window.type = '@Model.Header.Controller';
+
+    </script>
+    <script src="~/js/post/blog.js" asp-append-version="true"></script>
+    <script src="~/minify/js/swiper.min.js" asp-append-version="true"></script>
+}
+
+@{
+    var isMobile = IsMobile(Context.Request.Headers["User-Agent"].ToString());
+    var item1 = Model.MenuItems != null ? Model.MenuItems.Item1 : null;
+    var item2 = Model.MenuItems != null ? Model.MenuItems.Item2: null;
+    var item3 = Model.MenuItems != null ? Model.MenuItems.Item3 : null;
+}
+
+@(await Component.InvokeAsync("Menu", new { page = "video-page", CategorySlug = Model.Header.ActiveCategory, MenuItems = Model.MenuItems }))
+<section class="main">
+    <div class="base-container medium-container">
+        @if (Model.Menus != null)
+        {
+            var subMenu = Model.GetSubMenu(Model.Slug);
+            if (item3 > 0)
+            {
+                var menu = Model.GetMenuDetail(item3);
+                var coMenu = Model.GetCoMenu(item3);
+                <div class="menu-select single-select-menu show-on-mobile">
+                    <a href="@Url.Action("Category", "Home", new { slug = Model.Slug + CategoryKey.Suffix })">@menu.MenuTitle</a>
+                    <select class="select_ad"   onChange="window.location.href=this.value">
+                        @foreach (var item in coMenu)
+                        {
+
+                            var selected = menu.PostId == item.PostId ? "selected" : "";
+                            <!option class="@selected" @selected value="@Url.Action("Category", "Home", new { slug = item.CateSlug + CategoryKey.Suffix })">@item.MenuTitle</!option>
+                        }
+                    </select>
+                </div>
+            }
+            else if(subMenu.Count > 0)
+            {
+                <div class="sub-category show-on-mobile">
+                    @foreach (var menu in subMenu)
+                    {
+                        var link = Url.Action("Category", "Home", new { slug = menu.CateSlug + CategoryKey.Suffix });
+                        <h2 class="sub-item @(Model.Slug == menu.CateSlug ? "active" : "")"><a href="@link">@menu.MenuTitle</a></h2>
+                    }
+                </div>
+            }
+            <div class="group-sub-category show-on-pc">
+                <div class="sub-category parent-sub">
+                    <h1 class="heading-category count-wrap"><a href="@Url.Action("Category", "Home", new { slug = Model.Header.ActiveCategory + CategoryKey.Suffix })">Video</a></h1>
+                    <div class="group-parent-sub">
+                        @foreach (var menu in Model.GetSubMenu(item1))
+                        {
+                            <h2 class="sub-item @item2 @menu.PostId @(item2 == menu.PostId ? "active" : "")"><a href="@Url.Action("Category", "Home", new { slug = menu.CateSlug + CategoryKey.Suffix })">@menu.MenuTitle</a></h2>
+                        }
+                    </div>
+                    <span class="button-dropdown-category"><i class="icon-button-dot"></i></span>
+                    <div class="list-dropdown-category">
+                    </div>
+                </div>
+                <div class="sub-category child-sub">
+                    @foreach (var menu in Model.GetSubMenu(item2))
+                    {
+                        <h2 class="sub-item @item3 @(item3 == menu.PostId ? "active" : "")"><a href="@Url.Action("Category", "Home", new {slug = menu.CateSlug + CategoryKey.Suffix })">@menu.MenuTitle</a></h2>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="container medium-container">
+        <div class="block block-main">
+            <div class="block__swipper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img-item">
+                                <input type="hidden" name="iframe_value" value="@Model.Posts[0].PostContent" />
+                                <picture>
+                                    <source srcset="@Url.Content(Model.Posts[0].FeatureImage)" type="image/webp">
+                                    <source srcset="@Url.Content(Model.Posts[0].FeatureImage)" type="image/jpeg">
+                                    <img asp-append-version="true" data-original="@Url.Content(Model.Posts[0].FeatureImage)" src="@Url.Content(Model.Posts[0].FeatureImage)" alt="@Model.Posts[0].PostTitle">
+                                    <noscript>
+                                        <img asp-append-version="true" src="@Url.Content(Model.Posts[0].FeatureImage)" alt="@Model.Posts[0].PostTitle">
+                                    </noscript>
+                                </picture>
+                                <div class="btn-play-video" post-id="@Model.Posts[0].ID">
+                                    <span class="icon-play"></span>
+                                </div>
+                            </div>
+                            <div style="display:none;" class="play_video"></div>
+                            <div class="content-box">
+                                <h4 class="title-box"><a href="@Url.Action("Single", "Post", new { slug = Model.Posts[0].Uri })" class="heading">@Model.Posts[0].PostTitle</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="category-grid" class="block__video">
+                @{
+                    var postIndex = 0;
+                    foreach (var post in Model.Posts)
+                    {
+                        {
+                            postIndex++;
+                            if (postIndex <= 1)
+                            {
+                                continue;
+                            }
+                        }
+                        <div class="card-vertical card-vertical-highlight">
+                            <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="card-vertical__image hover-image thumb">
+                                <picture>
+                                    <source srcset="@Url.Content(post.FeatureImage)" type="image/webp" class="img-res">
+                                    <source srcset="@Url.Content(post.FeatureImage)" type="image/jpeg" class="img-res">
+                                    <img asp-append-version="true" data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                    <noscript>
+                                        <img asp-append-version="true" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy">
+                                    </noscript>
+                                </picture>
+                            </a>
+                            <a href="@Url.Action("Single", "Post", new { slug = post.Uri })" class="card-vertical__title text-description">@post.PostTitle</a>
+                            <p class="card-vertical__datetime">
+                                <span>
+                                    @post.PostTime
+                                    @if (post.CommentCount > 0)
+                                    {
+                                        <a href="@Url.Action("Single", "Post", new { slug =  post.Uri})#comment" class="comment"><i class="icon-mode_comment"></i> <i class="number">@post.CommentCount</i></a>
+                                    }
+                                </span>
+                            </p>
+                        </div>
+                        @if(postIndex == 4)
+                        {
+                            <div class="grid-ads ads-insite show-pc banner-left"></div>
+                        }
+                        @if(postIndex == 5)
+                        {
+                            <div class="grid-ads ads-insite show-mobile banner-mobile-top"></div>
+                        }
+                    }
+                }
+            </div>
+            @if(Model.Posts.Count >= 10)
+            {
+                <div class="loading-page">
+                    <div class="lds-ellipsis">
+                        <div></div><div></div><div></div><div></div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="banner-scroll banner-mobile-center" style="display: none;"></div>
+        <div class="ads-insite show-mobile banner-mobile-bottom"></div>
+        <div class="block block-extension">
+            @await Html.PartialAsync(ViewResources.SidebarPostView, new PostComponentViewModel { CateSlug = Model.Header.Slug })
+        </div>
+    </div>
+</section>

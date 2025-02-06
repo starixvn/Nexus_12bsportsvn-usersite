@@ -1,0 +1,98 @@
+//button
+button {
+    outline: none;
+    border: 0;
+    padding: 0;
+}
+
+.btn-play-video {
+    height: 8rem;
+    width: 8rem;
+
+    @include tableMobile {
+        height: 4.6rem;
+        width: 4.6rem;
+    }
+
+    background-color: rgba($color: $color-fff, $alpha: .2);
+    @include flex(center,nowrap,center,column);
+    border-radius: 50%;
+    @include position('center',50%,50%);
+    cursor: pointer;
+
+    span {
+        font-size: 4.6rem;
+        color: $color-fff;
+
+        @include tableMobile {
+            font-size: 2rem;
+        }
+    }
+}
+.btn-custom-admin {
+    cursor: pointer;
+    width: 11.3rem;
+    height: 4rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    color: $color-fff;
+    background: #E13C29;
+    font-weight: bold;
+    transition :  box-shadow .3s ease-in-out;
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        box-shadow: 0px 1px 4px #E13C29;
+    }
+    &.submit-btn{
+        margin-right: 2.4rem;
+    }
+}
+.btn-custom-outline {
+    cursor: pointer;
+    width: 10rem;
+    height: 4rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    background: transparent;
+    color: #E13C29;
+    font-weight: bold;
+    border: 1px solid;
+    &:focus {
+        outline: none;
+    }
+}
+@keyframes dhBlink {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.view-more-block{
+    margin-top: 1rem;
+    background: #EAEFF2;
+    width: 10rem;
+    margin: 1rem auto 0;
+    text-align: center;
+    border-radius: 3px;
+    display: none;
+    @include Mobile{
+        display: flex;
+        justify-content: center;
+    }
+    a{
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        text-decoration: none;
+        display: block;
+        padding: .6rem 1.2rem;
+        color: #333;
+    }
+}

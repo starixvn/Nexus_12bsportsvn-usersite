@@ -1,0 +1,86 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+}
+
+@section TopHeader{
+    @ViewResources.MembershipEventWinner
+}
+
+@section Title{
+    @ViewResources.MembershipEvent
+}
+
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.MembershipEvent" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/styles/pages/admin/event/membership-event.css" asp-append-version="true">
+}
+
+<section class="page-content">
+    <p class="back-parent-page">
+        <a href="/Admin/Event/MembershipEvent">
+            <i class="icon-arrow-left"></i>
+            <span>Back to list lucky number</span>
+        </a>
+    </p>
+
+    <div class="form-filter" style="margin-bottom: 2rem" >
+        <form class="form-horizontal" action="/Admin/Event/MembershipEventResult" method="get">
+            <div class="form-input">
+                <input type="number" class="custom-input list-input" value="@ViewBag.ResultNumber" id="search" name="resultNumber" placeholder="enter lucky number..." />
+            </div>
+
+            <button class="btn-custom-admin" type="submit" id="submit-btn">Check Winner</button>
+        </form>
+    </div>
+
+    <div class="content">
+        <div class="data-grid" id="data-grid">
+            @{ var count = 0; }
+            <div class="table-admin">
+                <table class="data-grid">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>@ViewResources.Username</th>
+                            <th>@ViewResources.Email</th>
+                            <th>@ViewResources.LuckynumberAdmin</th>
+                            <th>
+                                <p class="warning-admin">
+                                    @ViewResources.JoinedDate
+                                    @*<i id="date-sort" class="table-sort icon-sort-admin" sort-type="@Model.DateSort"></i>*@
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var user in Model)
+                            {
+                                count++;
+                                var joinDate = SabaNews.Core.Helper.DateTimeUtilize.FormatDateTime(user.JoinDate, "dd/MM/yyyy HH:mm:ssss");
+                                <tr>
+                                    <td class="text-center" width="5%">@count</td>
+                                    <td class="text-left" width="20%">@user.Name</td>
+                                    <td class="text-left" width="25%">@user.Email</td>
+                                    <td class="text-center">@user.LuckyNumber</td>
+                                    <td class="text-center" width="25%">@joinDate</td>
+                                </tr>
+                            }
+                        }
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td class="nodata_table" colspan="9">@ViewResources.EmptyData</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

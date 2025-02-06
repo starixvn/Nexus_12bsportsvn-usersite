@@ -1,0 +1,56 @@
+.custom-search{
+    position: relative;
+    @include Mobile{
+        display: none;
+    }
+    &-input{
+        outline: none;
+        background: transparent;
+        width: 25rem;
+        height: 4rem;
+        border: 1px solid #833D55;
+        padding-left: 4rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #833D55;
+        @include Mobile{
+            width: 17rem;
+            font-size: 1.2rem;
+        }
+        &::placeholder{
+            color: #833D55;
+            font-style: italic;
+            @include Mobile{
+                font-size: 1.2rem;
+            }
+        }
+    }
+    &-icon{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        &::before{
+            color: #833D55;
+            font-size: 2.4rem;
+            @include Mobile{
+                font-size: 2rem;
+            }
+        }
+    }
+    
+}
+
+.custom-select{
+    outline: none;
+    width: 25rem;
+    height: 4rem;
+    border: 1px solid #833D55;
+    color: #833D55;
+    font-weight: 700;
+    font-size: 1.6rem;
+    padding-left: 1.2rem;
+    @include Mobile{
+        width: 14rem;
+        font-size: 1.2rem;
+    }
+}

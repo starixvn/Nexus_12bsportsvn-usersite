@@ -1,0 +1,254 @@
+﻿@using SabaNews.Core.Constants;
+@using static SabaNews.Site.Extensions.EuroHelper;
+@{
+    Layout = "_LayoutEuro2024";
+}
+@section Title {
+    @Model.Header.Title
+}
+
+@section Metadata {
+    <meta name="description" content='@Model.Header.Description' />
+    <meta property="og:description" content='@Model.Header.Description' />
+    <meta property="og:title" content='@Model.Header.Title' />
+}
+
+@{
+    var countStageActive = GetCountStageActiveMinigame(Model.Matches);
+    var countStageEnd = GetCountStageEndMinigame(Model.Matches);
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/euro2024-minigame.min.css" asp-append-version="true">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dev/pages/livescore/soccer/euro-2024/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/minigame-standing.chunk.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/pro/pages/livescore/soccer/euro-2024/minigame-winner.chunk.css" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <script>
+        var checkLogin = '@Model.IsLogin';
+        window.User = '@Model.UserId';
+        window.CountStageActive = '@countStageActive';
+        window.CountStageEnd = '@countStageEnd';
+        window.timeStartStage = [
+            '@Euro2024.TimestampMinigameStage01Start',
+            '@Euro2024.TimestampMinigameStage02Start'
+        ];
+    </script>
+    <environment include="Development">
+        <script src="~/js/dev/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/dev/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>
+        @if (countStageActive > 0)
+        {
+            <script src="~/js/dev/pages/livescore/soccer/euro-2024/minigame-standing.chunk.js" asp-append-version="true"></script>
+        }
+        @if (countStageEnd > 0)
+        {
+            <script src="~/js/dev/pages/livescore/soccer/euro-2024/minigame-winner.chunk.js" asp-append-version="true"></script>
+        }
+        <script src="~/js/event/euro2024/minigame.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/pro/lib/lang-vi-VN.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-vendor.chunk.js" asp-append-version="true"></script>
+        <script src="~/js/pro/lib/react-bootstrap-vendor.chunk.js" asp-append-version="true"></script>  
+        @if (countStageActive > 0)
+        {
+            <script src="~/js/pro/pages/livescore/soccer/euro-2024/minigame-standing.chunk.js" asp-append-version="true"></script>
+        }
+        @if (countStageEnd > 0)
+        {
+            <script src="~/js/pro/pages/livescore/soccer/euro-2024/minigame-winner.chunk.js" asp-append-version="true"></script>
+        }
+        <script src="~/minify/js/euro-2024-minigame.min.js" asp-append-version="true"></script>
+    </environment>
+
+}
+
+@(await Component.InvokeAsync("HeaderEuro2024" , new { cateSlug = Model.Header.Slug }))
+
+
+
+<div class="event-minigame">
+    <div class="wrapper-header">
+        <div class="wave-game minigame-block">
+            <div class="main-wave">
+                <div class="left-wave">
+                    <img src="~/images/euro2024/minigame/result.png" alt="result" class="img-res"/>
+                </div>
+                <div class="right-wave">
+                    <div class="title-light">
+                        <img src="~/images/euro2024/minigame/title.png" alt="title" class="img-res" />
+                    </div>
+                    <div class="header-control">
+                        <ul>
+                            <li><a href="javascript:;" class="btn btn-event btn-event-success" id="btn-guide">Thể Lệ</a></li>
+                            <li><a href="#minigame-standing" class="btn btn-event btn-event-success btn-standing">Bảng xếp hạng</a></li>
+                        </ul>
+                        <p class="click-number-event">
+                            <a href="#nhap-so-may-man" class="btn btn-event btn-event-warning">Tham Gia</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="line-header">
+                <img src="~/images/euro2024/minigame/line.svg" alt="line" class="img-res"/>
+            </div>
+        </div>
+    </div>
+    <ul class="header-nav-event">
+        <li>
+            <a href="javascript:;" class="btn-home active">
+                <i class="icon icon-minigame_home"></i>
+                <span>Sự Kiện</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="click-number-rule btn-nav-guide">
+                <i class="icon icon-minigame_guide"></i>
+                <span>Thể Lệ</span>
+            </a>
+        </li>
+        <li>
+            <a href="#stage-minigame" class="click-list-rigister">
+                <i class="icon icon-minigame_connect"></i>
+                <span>Tham Gia Dự Đoán</span>
+            </a>
+        </li>
+        @{
+            if (Model.IsLogin)
+            {
+                <li>
+                    <a href="@Url.Action("MinigameProfile", "Euro2024")" class="click-my-prediction">
+                        <i class="icon icon-minigame_my_fav"></i>
+                        <span>Dự Đoán Của Tôi</span>
+                    </a>
+                </li>
+            }
+            if (countStageActive > 0)
+            {
+                <li>
+                    <a href="#minigame-standing" class="click-list-standing">
+                        <i class="icon icon-icon-minigame_standing_full"></i>
+                        <span>Bảng Xếp Hạng</span>
+                    </a>
+                </li>
+            }
+            if (countStageEnd > 0)
+            {
+                <li>
+                    <a href="#minigame-winners" class="click-list-result">
+                        <i class="icon icon-minigame_list_user"></i>
+                        <span>Danh Sách Trúng Thưởng</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+    <div id="stage-minigame" class="section-stage minigame-block">
+        <div class="container">
+            <div class="wrapper-title-stage">
+                <div class="minigame-title">
+                    <div class="icon-gift">
+                        <img src="~/images/euro2024/minigame/gift.svg" alt="line" class="img-res"/>
+                    </div>
+                    <h1 class="text">
+                        Dự đoán đội chiến thắng trong mỗi trận đấu để nhận điểm và có cơ
+                        hội giành được những giải thưởng hấp dẫn!
+                    </h1>
+                </div>
+            </div>
+
+
+            <div class="main-stage">
+                <div class="row-stage">
+                    @{
+                        for (var i = 0; i < Euro2024.maxCountStage; i++)
+                        {
+                            var status = GetStatusStage(Model.Matches, i + 1);
+                            var icon = GetIconStage(status);
+                            var isActive = CheckActive(status);
+
+                            <div id="boxStage@(i+1)" class="stage-items stage-items-1 @(status == Euro2024.OnEndStage ? "end-stage" : "") @(isActive ? "stage-votes" : "")" 
+                                    data-status="@status" data-stage="@(i+1)" data-timeendstage="@Model.Matches[Euro2024.indexMatches[i]].StartTime.AddHours(7)">
+                                <div class="stage-round  @(isActive ? "stage-votes-round active" : "") ">
+                                    <h2 class="btn-event btn-stage @(isActive ? "btn-event-warning" : "btn-event-lock")" data-stage="@(i+1)">Giai Đoạn @(i + 1)</h2>
+                                    <a class="icon-stage @(isActive || status == Euro2024.OnEndStage ? "btn-event-warning" : "btn-event-lock") @(string.IsNullOrEmpty(icon) ? "disable-background": "")"><i class="@icon"></i></a>
+                                </div>
+                                <ul class="count-and-time">
+                                    @if (status != Euro2024.LockStage)
+                                    {
+                                        @if(Model.IsLogin)
+                                        {
+                                            <li class="font-weight-bold">Số trận dự đoán: @GetCountVotesStage(Model.Votes, i + 1)/@Euro2024.NumberMatch[i]</li>
+                                        }
+                                        else
+                                        {
+                                            <li class="font-weight-bold">Số trận dự đoán: 0/@Euro2024.NumberMatch[i]</li>
+                                        }
+                                    }
+                                    @if (status != Euro2024.LockStage)
+                                    {
+                                        <li id="stage@(i+1)" class="status-stage-time hight-light" data-timeCountDown="@GetCountDownStage(status,Model.Matches, i)">
+                                            @status
+                                            @if (status == Euro2024.BeforeStartedStage || status == Euro2024.BeforeEndStage)
+                                            {
+                                                <span id="hours@(i+1)" style="margin-left : 5px"></span>
+                                                <span id="minutes@(i+1)"></span>
+                                                <span id="seconds@(i+1)"></span>
+                                            }
+                                        </li>
+                                    }
+                                    @if (status == Euro2024.LockStage)
+                                    {
+                                        <li class="font-weight-bold">Thời gian bắt đầu</li>
+                                        <li class="font-weight-bold">@DateTime.Parse(Euro2024.startStages[i]).ToString("dd/MM/yyyy hh:mm:ssss tt")</li>
+                                    }
+                                </ul>
+                                <div class="line-stage">
+                                    <img src="~/images/euro2024/minigame/line-stage.png" alt="line" class="img-res"/>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="bg-stage"></div>
+    </div>
+    <div id="minigame-standing" class="@(countStageActive > 0 ? "minigame-block minigame-block-standing" : "none-stage")"></div>
+    <div id="minigame-winners" class="@(countStageEnd > 0 ? "minigame-block minigame-block-winners" : "none-stage")"></div>
+</div>
+
+<div class="euro-modal">
+    <div class="modal is-login" id="joining" style="display:none">
+        <div class="modal-content modal-auth">
+            <div class="modal-warning">
+                <button type="button" class="close-event" data-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-event"></i>
+                </button>
+                <div class="modal-body field-number field-number-validate">
+                    <div class="modal-is-login">
+                        <div class="warning-event">
+                            Vui lòng đăng nhập hoặc đăng ký để tham gia
+                        </div>
+                        <ul class="flex-btn auth-input">
+                            <li><a href="javascript:;" class="btn btn-modal-minigame auth-login">Đăng nhập</a></li>
+                            <li><a href="javascript:;" class="btn btn-modal-minigame auth-login" data-form="register">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Views/Event/Euro2024/Minigame/_Guide.cshtml")

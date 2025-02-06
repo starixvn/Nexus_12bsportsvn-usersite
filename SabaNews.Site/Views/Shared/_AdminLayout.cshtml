@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin - @RenderSection("Title", false)</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="~/images/favicon/android-icon-192x192.png">
+    <link rel="shortcut icon" href="~/images/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/images/favicon/manifest.json">
+    <link rel="stylesheet" href="~/minify/styles/admin.min.css" asp-append-version="true">
+
+    @RenderSection("Styles", false)
+</head>
+
+<body>
+    @RenderSection("ActiveMenu", false)
+    <div class="page-admin">
+        <header class="header-admin">
+            <div class="main-header">
+                <div class="title-page">@RenderSection("TopHeader", false)</div>
+                <ul class="control-header">
+                    <li class="icon-item">
+                        <a href="/">
+                            <i class="icon-page icon-home"></i>
+                        </a>
+                        <span class="tooltip-menu">
+                            SABA Sports Website
+                        </span>
+                    </li>
+                    <li class="icon-item">
+                        <a href="~/Auth/Logout"><i class="icon-page icon-exit-admin"></i></a>
+                        <span class="tooltip-menu">
+                            Sign Out
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="slide-nav">
+            <div class="logo-admin"><img loading="lazy" src="~/images/logo-admin.png"></div>
+            <ul class="menu-slide">
+                <li class="menu-item">
+                    <a href="~/Admin/Statistic/Index"><i class="icon-page icon-chart-admin"></i>@ViewResources.PostViewStatistic</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/User/Index"><i class="icon-page icon-account_circle"></i>@ViewResources.User</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/BannerManagement/Desktop"><i class="icon-page icon-mail-admin"></i>@ViewResources.BannerInfo</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/Event/MembershipEvent"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.MembershipEvent</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/MinigameWorldCup2022/MinigameWorldCup2022"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.MinigameWorldCup2022</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/Euro2024Management/Poll"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.Euro2024Management</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/HomepageManagement/Fixture"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.HomepageManagement</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/CategoryManagement/Index"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.CategoryManagement</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/ManagementLeague/Index"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.ManagementLeague</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/MatchManagement/Index"><i class="icon-page icon-admin-goal"></i>@ViewResources.MatchManagement</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/StandingManagement/Index"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.StandingManagement</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/TopScorerManagement/Index"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.TopScorersManagement</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/Email/Index"><i class="icon-page icon-list_alt-admin"></i>@ViewResources.EDMList</a>
+                </li>
+                <li class="menu-item">
+                    <a href="~/Admin/Email/Create"><i class="icon-page icon-mail-admin"></i>@ViewResources.CreateEDM</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-admin">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/minify/js/admin.min.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

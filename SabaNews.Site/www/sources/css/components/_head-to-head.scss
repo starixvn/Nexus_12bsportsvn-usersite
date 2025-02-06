@@ -1,0 +1,240 @@
+﻿.head-to-head {
+    padding: 1.2rem;
+    color: $color-detail-league;
+
+    &-nav {
+        background: $head-to-head-bg-nav;
+        border: 1px solid $border-soccer-item;
+        box-sizing: border-box;
+        border-radius: 3px;
+        padding: .6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        margin-bottom: 1.2rem;
+
+        a {
+            text-decoration: none;
+            width: 33%;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.4rem;
+            line-height: 1;
+            color: $color-detail-league;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include Mobile {
+                font-size: .9rem;
+                line-height: 1.2rem;
+                padding: 0.4rem 1rem;
+            }
+
+            &.active {
+                background: $color-active-icon;
+                border-radius: 5px;
+                color: $white;
+            }
+        }
+    }
+
+    .hth-section {
+        .h2h-statistic {
+            ul {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 1.6rem 0;
+
+                li {
+                    width: 33%;
+                    text-align: center;
+                    border-right: 1px solid $border-color;
+
+                    &:last-child {
+                        border: none;
+                    }
+
+                    p {
+                        font-weight: 600;
+                        font-size: 1.3rem;
+                        line-height: 1.8rem;
+
+                        @include Mobile {
+                            font-size: 1.1rem;
+                            line-height: 1.5rem;
+                        }
+                    }
+
+                    .h2h-score {
+                        font-weight: 700;
+                        font-size: 1.6rem;
+                        line-height: 2.2rem;
+
+                        @include Mobile {
+                            font-size: 1.3rem;
+                            line-height: 1.8rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .f-row {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .name-league {
+                margin-bottom: .6rem;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                &-img {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    overflow: hidden;
+                    border-radius: 50px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        image-rendering: -webkit-optimize-contrast;
+                    }
+                }
+
+                .txt {
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    line-height: 2.4rem;
+                    color: $color-title;
+                    margin-left: .6rem;
+                }
+            }
+        }
+    }
+
+    .group-match-item .soccer-match-item .soccer-match-team {
+        width: 70%;
+
+        @include tableMobile {
+            width: 75%;
+        }
+    }
+
+    .group-match-item .soccer-match-item .soccer-match-stage {
+        @include tableMobile {
+            order: 0;
+        }
+
+        @include Mobile {
+            order: 3;
+            width: 5.4rem;
+        }
+
+        span {
+            @include tableMobile {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .soccer-team-status {
+        margin-bottom: 0 !important;
+    }
+
+    .group-team {
+        .home-team, .away-team {
+            .soccer-team-name {
+                font-weight: 400 !important;
+
+                &.win {
+                    font-weight: 700 !important;
+                }
+            }
+        }
+
+        .soccer-team-result {
+            font-weight: 700;
+
+            @include tableMobile {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .soccer-match-star-icon {
+        width: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        @include tableMobile {
+            width: 15%;
+        }
+
+        @include Mobile {
+            display: none;
+        }
+    }
+}
+
+
+.bg-color {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    color: $white;
+    margin-right: 1.5rem;
+
+    @include Mobile {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+    }
+
+    &.bgred {
+        background: #FF5744;
+    }
+
+    &.bggreen {
+        background: #42AD40;
+    }
+
+    &.bgyelow {
+        background: #F09700;
+    }
+}
+
+.soccer-match-star-hidden-pc {
+    display: none !important;
+
+    @include Mobile {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center;
+    }
+
+    i {
+        display: none;
+    }
+
+    .bg-color {
+        @include Mobile {
+            margin: 0 auto;
+        }
+    }
+}

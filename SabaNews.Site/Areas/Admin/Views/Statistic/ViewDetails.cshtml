@@ -1,0 +1,28 @@
+﻿@using SabaNews.Resources
+@{
+    Layout = "_AdminLayout";
+    var createdDate = (DateTime)ViewBag.CreatedDate;
+    var isVideo = (bool)ViewBag.IsVideo;
+}
+
+@section TopHeader{
+    @ViewBag.Title
+}
+
+@section Title{
+    @ViewResources.PostViewStatistic
+}
+@section ActiveMenu {
+    <input type="text" readonly hidden name="activeMenu" value="@ViewResources.PostViewStatistic" />
+}
+
+<input type="text" hidden name="CreatedDate" value="@createdDate.ToString("yyyy-MM-dd")" />
+<input type="checkbox" hidden name="IsVideo" checked="@isVideo" />
+<section class="page-content">
+    <div id="grid-details">
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/minify/js/admin_statistic_view_detail.min.js" asp-append-version="true"></script>
+}

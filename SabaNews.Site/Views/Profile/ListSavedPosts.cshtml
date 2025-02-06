@@ -1,0 +1,96 @@
+﻿@section Title{
+    @Model.Title
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/minify/styles/profile.min.css" asp-append-version="true">
+}
+
+@section Scripts{
+    <script src="~/minify/js/update_profile.min.js" asp-append-version="true"></script>
+}
+
+@(await Component.InvokeAsync("Menu"))
+<section class="main">
+
+	<div class="container profile-container">
+		<div class="block block-main">
+			@await Html.PartialAsync("~/Views/Profile/_LeftMenu.cshtml", new SabaNews.Models.ViewModel.Profile.LeftMenuViewModel { User = Model.User, Page = Model.Page  })
+		</div>
+		<div class="block block-extension">
+			<div class="block-header">
+				<h2 class="block__title">@ViewResources.SavedPost</h2>
+			</div>
+			<div class="block-body">
+				<div class="controls save-list">
+				
+					@if (Model.Posts.Length == 0)
+					{
+						<div class="security">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<g clip-path="url(#clip0_16401_12792)">
+									<path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z" fill="#2865B5"/>
+								</g>
+								<defs>
+								<clipPath id="clip0_16401_12792">
+									<rect width="24" height="24" fill="white"/>
+								</clipPath>
+								</defs>
+							</svg>
+							@ViewResources.NoSavedPosts
+						</div>
+					}
+					@* @if (Model.ToDayPost != null)
+					{
+						<div class="controls__datetime">
+							<h4 class="time-save">@ViewResources.Today</h4>
+						</div>
+					} *@
+					@{ var isCheck = false; }
+					@foreach (var post in Model.Posts)
+					{
+						if (isCheck)
+						{
+							isCheck = false;
+						}
+						if (!isCheck && Model.ToDayPost != null && post.ID == Model.ToDayPost.PostID)
+						{
+							isCheck = true;
+						}
+						<div class="controls__news">
+							<div class="card-horizontal">
+								<a href="@Url.Action("Single", "Post", new { slug =  post.Uri})" class="card-horizontal__image hover-image">
+									<img asp-append-version="true" data-original="@Url.Content(post.FeatureImage)" src="@Url.Content(post.FeatureImage)" alt="@post.PostTitle" class="img-res img-block lazy"/>
+								</a>
+								<div class="card-horizontal__content">
+									<a href="@Url.Action("Single", "Post", new { slug =  post.Uri})" class="title">@post.PostTitle </a>
+									<p class="description">
+										@post.PostExcerpt
+									</p>
+									<div class="social-control">
+										<div class="time">
+											@post.PostTime
+										</div>
+										<div class="group-icon">
+											<a class="icon save remove_save_post" href="javascript:;" data-postid="@post.ID">
+												bỏ lưu
+											</a>
+											@* @if (post.CommentCount > 0)
+											{
+												<a href="@Url.Action("Single", "Post", new { slug =  post.Uri})#comment" class="icon comment">
+													<i class="icon-mode_comment_full"></i>
+												</a>
+												<span class="number">@post.CommentCount</span>
+											} *@
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync(ViewResources.SidebarBannerView)
+</section>
